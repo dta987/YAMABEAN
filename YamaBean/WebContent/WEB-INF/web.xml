@@ -47,6 +47,11 @@
 		</init-param>
 
 	</servlet>
+	
+	<servlet-mapping>
+		<servlet-name>Board</servlet-name>
+		<url-pattern>/board/*</url-pattern>
+	</servlet-mapping>
 
 	<!-- /////////////// 메뉴 /////////////// -->
 	<servlet>

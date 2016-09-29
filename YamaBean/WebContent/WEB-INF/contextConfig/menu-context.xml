@@ -20,7 +20,7 @@
 	<!-- 뷰리졸버 등록 -->
 	<bean
 		class="org.springframework.web.servlet.view.InternalResourceViewResolver">
-		<property name="prefix" value="/WEB-INF/views/menu" />
+		<property name="prefix" value="/WEB-INF/views/menu/" />
 		<property name="suffix" value=".jsp" />
 	</bean>
 

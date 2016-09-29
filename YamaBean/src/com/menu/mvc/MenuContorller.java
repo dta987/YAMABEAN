@@ -9,7 +9,7 @@ public class MenuContorller {
 	
 	@RequestMapping(value="/move", method=RequestMethod.GET)
 	public String moveMenu() {
-		System.out.println("이동해보자");
+		System.out.println("==Menu이동==");
 		return "menu";
 		
 	}
