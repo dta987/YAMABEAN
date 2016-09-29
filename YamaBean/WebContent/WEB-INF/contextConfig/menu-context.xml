@@ -24,6 +24,6 @@
 		<property name="suffix" value=".jsp" />
 	</bean>
 
-	<context:component-scan base-package="com.menu" />
+	<context:component-scan base-package="com.menu.mvc" />
 
 </beans>

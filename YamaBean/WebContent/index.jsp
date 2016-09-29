@@ -8,5 +8,7 @@
 </head>
 <body>
 여기가 메인
+
+<a href="menu/move">메뉴 </a>
 </body>
 </html>

@@ -4,9 +4,7 @@
 
 <configuration>
 	<mappers>
-		<!-- <mapper resource="com/customer/mapper/CustomerMapper.xml"></mapper> -->
-		<mapper class="com.customer.mapper.AnnotationCustomerMapper"></mapper>
-		<mapper resource="com/product/mapper/ProductMapper.xml"></mapper>
+		
 	</mappers>
 
 </configuration>
