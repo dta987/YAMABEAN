@@ -4,6 +4,24 @@
 	"http://mybatis.org/dtd/mybatis-3-mapper.dtd">
 
 <mapper namespace="com.storeMap.mapper.StoreMapMapper">
+    
+    <resultMap type="com.storeMap.dto.Store" id="storeList">
+        <id property="store_num" column="store_num"/>
+        <result property="store_name" column="store_name"/>
+        <result property="store_phone" column="store_phone"/>
+        <result property="store_address" column="store_address"/>
+    </resultMap>
+    
+    <insert id="insertStoreMap" parameterType="com.storeMap.dto.Store" >
+        <selectKey keyProperty="store_num" resultType="int" order="BEFORE">   
+            select stores_seq.nextval from dual
+            </selectKey>
+        insert into stores(store_num, store_name, store_phone, store_address) values(#{store_num}, #{store_name}, #{store_phone}, #{store_address})
+    </insert>
+    
+    <select id="selectList" resultMap="storeList">
+        select * from stores
+    </select>
 
 
 
