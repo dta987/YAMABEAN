@@ -2,6 +2,7 @@
 	pageEncoding="utf-8"%>
 <%@ taglib prefix="sf" uri="http://www.springframework.org/tags/form"%>
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"%>
+<%@ include file="/WEB-INF/views/rvTOP.jsp"%>
 <!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3.org/TR/html4/loose.dtd">
 <html>
 <head>
@@ -31,7 +32,7 @@
 						<td>${getList.m_group}</td>
 						<td>${getList.m_category}</td>
 						<td>${getList.content}</td>
-						<td><img src="/YamaBean/WebContent/WEB-INF/coffee/${getList.image_name}">${getList.image_name}</td> <!-- 왜이미지가안뜰까요 -->
+						<td><img src="<%=uploadedFolder%>ad6c6230-2a89-42d4-93dd-85ba4e499cfa_images.jpg">${getList.image_name}</td> <!-- 왜이미지가안뜰까요 -->
 						<td>${getList.price}</td>
 						<td><a href="/YamaBean/menu/updateMenu?menu_num=${getList.menu_num}">수정</a></td>
 						<td><a href="/YamaBean/menu/deleteMenu?menu_num=${getList.menu_num}">삭제</a></td>

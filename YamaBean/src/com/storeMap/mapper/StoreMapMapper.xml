@@ -22,7 +22,4 @@
     <select id="selectList" resultMap="storeList">
         select * from stores
     </select>
-
-
-
 </mapper>
