@@ -5,6 +5,13 @@ public class MenuEntity {
 
 	// DB
 	private int menu_num ;
+	private String m_name ;
+	public String getM_name() {
+		return m_name;
+	}
+	public void setM_name(String m_name) {
+		this.m_name = m_name;
+	}
 	private String m_group ;
 	private String m_category ; 
 	private String image ;	

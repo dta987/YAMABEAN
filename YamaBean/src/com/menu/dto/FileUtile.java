@@ -10,7 +10,7 @@ import org.springframework.util.FileCopyUtils;
 
 public class FileUtile {
 
-	static final String uploadPath="c:\\yamabean\\upload";
+	static final String uploadPath="c://yamabean/upload";
 	
 	
 	/*1. 파일 서버에 저장될 유일한 파일 이름 생성 */

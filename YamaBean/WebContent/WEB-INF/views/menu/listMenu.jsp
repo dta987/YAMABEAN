@@ -22,6 +22,7 @@
 					<th>메뉴분류</th>
 					<th>메뉴카테고리</th>
 					<th>메뉴이름</th>
+					<th>메뉴내용</th>
 					<th>메뉴이미지</th>
 					<th>메뉴가격</th>
 				</tr>
@@ -30,8 +31,9 @@
 						<td>${getList.menu_num}</td>
 						<td>${getList.m_group}</td>
 						<td>${getList.m_category}</td>
+						<td>${getList.m_name}</td>
 						<td>${getList.content}</td>
-						<td><img src="/YamaBean/WebContent/WEB-INF/coffee/${getList.image_name}">${getList.image_name}</td> <!-- 왜이미지가안뜰까요 -->
+						<td><img src="/YamaBean/WEB-INF/coffee/${getList.image_name}">${getList.image_name}</td>
 						<td>${getList.price}</td>
 						<td><a href="/YamaBean/menu/updateMenu?menu_num=${getList.menu_num}">수정</a></td>
 						<td><a href="/YamaBean/menu/deleteMenu?menu_num=${getList.menu_num}">삭제</a></td>

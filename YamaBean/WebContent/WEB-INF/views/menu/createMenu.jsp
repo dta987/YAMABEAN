@@ -22,6 +22,7 @@
 						<input type="checkbox" value="에스프레소" name="m_category" />에스프레소
 						<input type="checkbox" value="프라푸치노" name="m_category" />프라푸치노
 						<input type="checkbox" value="원두" name="m_category" />원두<br><br>
+		메뉴 이름 m_name <input type="text" name="m_name"/><br><br>
 		이미지 image <input type="file" name="image" /><br><br>
 		설명 content <input type="text" name="content" /><br><br>
 		가격 price <input type="text" name="price" /><br><br>

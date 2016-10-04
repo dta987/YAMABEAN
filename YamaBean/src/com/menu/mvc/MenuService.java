@@ -46,7 +46,8 @@ public class MenuService implements MuServiceInterface {
 			menuEntity = new MenuEntity();
 			menuEntity.setM_group(menuDomain.getM_group());
 			menuEntity.setM_category(menuDomain.getM_category());
-			menuEntity.setImage(menuDomain.getImage().getOriginalFilename());
+			menuEntity.setM_name(menuDomain.getM_name());
+			menuEntity.setImage(saveFileName);
 			menuEntity.setContent(menuDomain.getContent());
 			menuEntity.setPrice(menuDomain.getPrice());
 		}
@@ -66,6 +67,7 @@ public class MenuService implements MuServiceInterface {
 			menuModel.setMenu_num(menuListEntity.getMenu_num());
 			menuModel.setM_group(menuListEntity.getM_group());
 			menuModel.setM_category(menuListEntity.getM_category());
+			menuModel.setM_name(menuListEntity.getM_name());
 			menuModel.setImage_name(menuListEntity.getImage());
 			menuModel.setContent(menuListEntity.getContent());
 			menuModel.setPrice(menuListEntity.getPrice());
@@ -92,14 +94,18 @@ public class MenuService implements MuServiceInterface {
 		MenuEntity menuEntity = menuRepository.selectByMenu(menu_num);
 		MenuDomain menuDomain = new MenuDomain();
 		if (menuEntity != null ) {
-			/*FileUtile.deleteFile(menuEntity.getImage());*/
-			
 			menuDomain.setM_group(menuEntity.getM_group());
 			menuDomain.setM_category(menuEntity.getM_category());
+			menuDomain.setM_name(menuEntity.getM_name());
 			menuDomain.setContent(menuEntity.getContent());
-			menuDomain.setPrice(menuEntity.getPrice());	
+			menuDomain.setPrice(menuEntity.getPrice());
+			
+			System.out.println("--수정 : 기존 정보 가져오기 성공--");
+			
+			/*FileUtile.deleteFile(menuEntity.getImage());
+			System.out.println("--수정 : 서버에서 기존 이미지파일 삭제 성공--");*/
 		}else {
-			System.out.println("--서버에서 기존 이미지파일 삭제 실패--");		
+			System.out.println("--수정 : 기존 정보 가져오기 실패--");		
 		}	
 		return menuDomain;
 		
@@ -123,7 +129,7 @@ public class MenuService implements MuServiceInterface {
 			menuEntity = new MenuEntity();
 			menuEntity.setM_group(menuDomain.getM_group());
 			menuEntity.setM_category(menuDomain.getM_category());
-			menuEntity.setImage(menuDomain.getImage().getOriginalFilename());
+			menuEntity.setImage(saveFileName);
 			menuEntity.setContent(menuDomain.getContent());
 			menuEntity.setPrice(menuDomain.getPrice());
 		}

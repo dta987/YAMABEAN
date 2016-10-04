@@ -35,8 +35,9 @@ public class MenuContorller implements MuContorllerInterface{
 	@Override
 	@RequestMapping(value="/createMenu", method=RequestMethod.POST)
 	public String createMenu(@ModelAttribute MenuDomain menuDomain) {
-		System.out.println("M_group : " +menuDomain.getM_group());
-		System.out.println("category : "+menuDomain.getM_category());
+		System.out.println("m_group : " +menuDomain.getM_group());
+		System.out.println("m_category : "+menuDomain.getM_category());
+		System.out.println("m_name : " +menuDomain.getM_name());
 		System.out.println("image : " +menuDomain.getImage().getOriginalFilename());
 		System.out.println("Price : " +menuDomain.getPrice());
 		System.out.println("Content : " +menuDomain.getContent());
