@@ -6,5 +6,46 @@
 <mapper namespace="com.menu.mapper.MenuMapper">
 
 
+	<insert id="createMenu" parameterType="com.menu.dto.MenuEntity">
+		<selectKey keyProperty="menu_num" resultType="int" order="BEFORE">
+			select menus_seq.nextval from dual
+		</selectKey>
+		insert into menus(menu_num, m_group, m_category, image, content, price, qty) values(#{menu_num}, #{m_group}, #{m_category}, #{image}, #{content}, #{price}, #{qty})
+	</insert>
 
+	<select id="selectList" resultMap="menuResult">
+		select * from menus order by menu_num desc
+	</select>
+
+	<resultMap type="com.menu.dto.MenuEntity" id="menuResult">
+		<id property="menu_num"/>
+		<result property="m_group" column="m_group" />
+		<result property="m_category" column="m_category" />
+		<result property="image" column="image" />
+		<result property="content" column="content" />
+		<result property="price" column="price" />
+		<result property="qty" column="qty" />
+	</resultMap>
+
+	<select id="selectByMenu" resultMap="menuResult">
+		select * from menus where menu_num=#{menu_num}
+	</select>
+
+	<delete id="deleteMenu" parameterType="int">
+		delete menus where menu_num=#{menu_num}
+	</delete>
+
+	<update id="updateMenu" parameterType="com.menu.dto.MenuEntity">
+		update menus set m_group=#{m_group}, m_category=#{m_category}, image=#{image}, content=#{content}, price=#{price}, qty=#{qty} where menu_num=#{menu_num}
+	</update>
+	
+
+	
+	<!-- 
+	 public int updateMenu(Menu menu); // 메뉴수정 
+
+	 
+	 -->
+	 
+	 
 </mapper>

@@ -14,8 +14,8 @@
 		<hr width="500px">
 
 		<div>
-			
-			
+		<a href="/YamaBean/menu/createMenu">createMenu</a> <br>
+ 		<a href="/YamaBean/menu/listMenu">listMenu</a><br>
 
 		</div>
 
