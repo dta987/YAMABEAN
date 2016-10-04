@@ -30,16 +30,16 @@ public class MenuService implements MuServiceInterface {
 		3. DB에 저장할 엔티티 생성				*/
 		
 		String saveFileName = FileUtile.makeSavedFileName(menuDomain.getImage().getOriginalFilename()) ;
-		System.out.println(saveFileName.toString());
+		System.out.println("service_addMenuSaveFileName : " +saveFileName.toString());
 		
 		boolean uploadResult = false; 
 		try {
 			uploadResult = FileUtile.saveFile(saveFileName, menuDomain.getImage().getBytes());
 		} catch (IOException e) {
-			System.out.println("--파일업로드실패--");
+			System.out.println("--service_addMenu파일업로드실패--");
 			e.printStackTrace();
 		}		
-		System.out.println("uploadResult : "+uploadResult);
+		System.out.println("service_addMenuUploadResult : "+uploadResult);
 		
 		MenuEntity menuEntity = null ;
 		if (uploadResult) {
@@ -52,7 +52,7 @@ public class MenuService implements MuServiceInterface {
 			menuEntity.setPrice(menuDomain.getPrice());
 		}
 		
-		System.out.println("menuEntity.getContent : " +menuEntity.getContent());
+		System.out.println("service_addMenuMenuEntity.getM_name : " +menuEntity.getM_name());
 		
 		return menuRepository.createMenu(menuEntity);
 	}
@@ -72,7 +72,7 @@ public class MenuService implements MuServiceInterface {
 			menuModel.setContent(menuListEntity.getContent());
 			menuModel.setPrice(menuListEntity.getPrice());
 			
-			System.out.println("menuModel.getContent() : "+menuModel.getContent());
+			System.out.println("service_menuModel.getM_name : "+menuModel.getM_name());
 			menuModelList.add(menuModel);
 		}
 		return menuModelList;
@@ -100,12 +100,12 @@ public class MenuService implements MuServiceInterface {
 			menuDomain.setContent(menuEntity.getContent());
 			menuDomain.setPrice(menuEntity.getPrice());
 			
-			System.out.println("--수정 : 기존 정보 가져오기 성공--");
+			System.out.println("--service_수정 : 기존 정보 가져오기 성공--");
 			
 			/*FileUtile.deleteFile(menuEntity.getImage());
 			System.out.println("--수정 : 서버에서 기존 이미지파일 삭제 성공--");*/
 		}else {
-			System.out.println("--수정 : 기존 정보 가져오기 실패--");		
+			System.out.println("--service_수정 : 기존 정보 가져오기 실패--");		
 		}	
 		return menuDomain;
 		
@@ -113,13 +113,13 @@ public class MenuService implements MuServiceInterface {
 	@Override
 	public int modifyMenu(MenuDomain menuDomain) {
 		String saveFileName = FileUtile.makeSavedFileName(menuDomain.getImage().getOriginalFilename()) ;
-		System.out.println(saveFileName.toString());
+		System.out.println("service_modifyMenuSaveFileName" +saveFileName.toString());
 		
 		boolean uploadResult = false; 
 		try {
 			uploadResult = FileUtile.saveFile(saveFileName, menuDomain.getImage().getBytes());
 		} catch (IOException e) {
-			System.out.println("--파일업로드실패--");
+			System.out.println("--service_파일업로드실패--");
 			e.printStackTrace();
 		}		
 		System.out.println("uploadResult : "+uploadResult);
