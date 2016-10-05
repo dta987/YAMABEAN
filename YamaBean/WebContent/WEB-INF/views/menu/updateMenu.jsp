@@ -6,6 +6,12 @@
 <head>
 <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
 <title>Insert title here</title>
+<script type="text/javascript">
+	function goBack() {
+		window.history.back();
+	}
+
+</script>
 </head>
 <body>
 	
@@ -29,8 +35,9 @@
 	 	수량 qty : 메뉴추가에는 수량 등록 없음 
 	 	
 	 	<br><br>
-	 	<input type="text" value="취소"/>
-		<input type="submit" value="메뉴수정" />
+	 	<button type="reset" onclick="goBack()">취소</button>
+	 	<button type="submit" >메뉴 수정</button>
+	 	
 		</sf:form>
 	</div>
 	
