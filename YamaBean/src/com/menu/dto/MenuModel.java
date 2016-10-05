@@ -5,11 +5,12 @@ public class MenuModel {
 
 	// model Àü´Ş°ª
 	private int menu_num;
-	public int getMenu_num() {
-		return menu_num;
+	private String m_name;
+	public String getM_name() {
+		return m_name;
 	}
-	public void setMenu_num(int menu_num) {
-		this.menu_num = menu_num;
+	public void setM_name(String m_name) {
+		this.m_name = m_name;
 	}
 	private String m_group ;
 	private String m_category ; 
@@ -17,7 +18,12 @@ public class MenuModel {
 	private String content ; 
 	private int price ;
 	
-	
+	public int getMenu_num() {
+		return menu_num;
+	}
+	public void setMenu_num(int menu_num) {
+		this.menu_num = menu_num;
+	}
 	public String getM_group() {
 		return m_group;
 	}

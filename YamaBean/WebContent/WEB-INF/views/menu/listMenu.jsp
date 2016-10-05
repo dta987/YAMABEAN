@@ -23,6 +23,7 @@
 					<th>메뉴분류</th>
 					<th>메뉴카테고리</th>
 					<th>메뉴이름</th>
+					<th>메뉴내용</th>
 					<th>메뉴이미지</th>
 					<th>메뉴가격</th>
 				</tr>
@@ -31,6 +32,7 @@
 						<td>${getList.menu_num}</td>
 						<td>${getList.m_group}</td>
 						<td>${getList.m_category}</td>
+						<td>${getList.m_name}</td>
 						<td>${getList.content}</td>
 						<td><img src="<%=uploadedFolder%>ad6c6230-2a89-42d4-93dd-85ba4e499cfa_images.jpg">${getList.image_name}</td> <!-- 왜이미지가안뜰까요 -->
 						<td>${getList.price}</td>
