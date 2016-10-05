@@ -25,12 +25,42 @@
 		
 		<br><br>
 		<a href="/YamaBean/member/move">회원 </a> &nbsp;&nbsp; <!-- 나영상 가입/로그인/수정/탈퇴/id,pw찾기 잘 부탁드립니당 -->
+				 
 		<a href="/YamaBean/board/move">게시판 </a> &nbsp;&nbsp;
 		<a href="/YamaBean/storeMap/move">매장 </a> <!-- 연구중 -->	 	
 		
-		
+				<div id="login" class="modal fade" tabindex="5" role="dialog" aria-hidden="true">
+		<div class="modal-dialog">
+			<div class="modal-content">
+				<div class="modal-header">
+				<h3>Login</h3>
+				</div>
+				<div class="modal-body">
+					<div class="col-md-12">
+						<form class="form" method="post" action="http://localhost:8989/YamaBean/member/login" accept-charset="UTF-8" id="login-nav">
+							<input type="hidden" name="command" value="meLogin">
+							<div class="form-group">
+								ID
+								<input type="text" name="id" class="form-control" size="20" placeholder="ID ENTER" required>
+							</div>
+							<div class="form-group">
+								Password
+								<input type="password" name="password" class="form-control" size="20" placeholder="Password ENTER" required>
+							</div>
+							<div class="form-group">
+								<button type="submit" class="btn btn-primary btn-block" >Sign In</button>
+							</div>
+						</form>
+					</div>
+					<div class="bottom text-center">
+						<a href="/YamaBean/member/move"><b>Join Us</b></a>
+					</div>
+				</div>
+				<!-- 로그인 창 -->
+			</div>
 		</div>
-		
+	</div>	
+		</div>
 		<!-- 힘내용 -->
 		
 		

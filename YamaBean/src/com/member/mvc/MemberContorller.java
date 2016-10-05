@@ -32,14 +32,20 @@ public class MemberContorller implements MContorllerInterface {
 	@RequestMapping(value = "/move", method = RequestMethod.POST)
 	@Override
 	public String createMember(@ModelAttribute Member member) {
+		
+		System.out.println("member_bday : " + member.getBday());
+		System.out.println("member_name : " + member.getName());
+		
+		System.out.println(member.toString());
 		int count = memberService.addMember(member);
+				
 		if (count > 0) {
 			System.out.println("회원가입 성공");
 		} else {
 			System.out.println("회원가입 실패");
 		}
 
-		return "redirect:/";
+		return "redirect:/yamabean/index";
 	}
 
 	@RequestMapping(value = "/login", method = RequestMethod.POST)

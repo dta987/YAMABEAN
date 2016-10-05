@@ -4,15 +4,18 @@
 <!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3.org/TR/html4/loose.dtd">
 <html>
 <head>
-<meta http-equiv="Content-Type" content="text/html; charset=EUC-KR">
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8">
 <title>Insert title here</title>
 </head>
 <body>
 
 	<div align="center">
 		<br>
-		<h1>Menu</h1>
+		<h1>Member</h1>
 		<hr width="500px">
+
+
+
 
  <form class="form" method="POST" >
 
@@ -60,7 +63,7 @@
                <label>name</label>
             </div>
             <div class="form-group1" style="float: left;"   align="left">
-               <input type="text" name="nickame" id="name" class="form-control" placeholder="Enter Your Nickname" required/>
+               <input type="text" name="name" id="name" class="form-control" placeholder="Enter Your Nickname" required/>
             </div>
             <form:errors id="name" cssClass="error" />
          </div>

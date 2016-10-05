@@ -20,10 +20,7 @@
 	</resultMap>
 
 	<insert id="insertMember" parameterType="com.member.dto.Member">
-		insert into members (id, password, name, gender, phone, nickname, address, bday, email)
-		values 
-		(#{id},#{password},#{name}, #{gender,jdbcType=VARCHAR},
-		#{phone,jdbcType=VARCHAR},#{nickname,jdbcType=VARCHAR},#{address,jdbcType=VARCHAR},#{bday,jdbcType=DATE},#{email,jdbcType=VARCHAR})
+		insert into members (id, password, name, gender, phone, nickname, address, bday, email) values (#{id},#{password},#{name}, #{gender}, #{phone},#{nickname},#{address},to_date(#{bday}, 'yyyy-MM-dd'),#{email})
 	</insert>
 
 	<select id="selectByMember" parameterType="string"
