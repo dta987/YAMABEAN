@@ -2,6 +2,8 @@ package com.member.mvc;
 
 import java.util.List;
 
+import org.springframework.stereotype.Service;
+
 import com.member.dto.Member;
 
 public interface MServiceInterface {

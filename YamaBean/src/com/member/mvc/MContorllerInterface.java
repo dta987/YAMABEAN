@@ -1,5 +1,7 @@
 package com.member.mvc;
 
+import javax.servlet.http.HttpSession;
+
 import org.springframework.ui.Model;
 
 import com.member.dto.Member;
@@ -8,7 +10,7 @@ public interface MContorllerInterface {
 
 	public String createMember(Member member); // 회원가입
 
-	public String login(String id, String password, Model model); // 로그인
+	public String login(String id, String password, Model model, HttpSession httpSession); // 로그인
 
 	public String forgottenID(String name, String email, Model model); // ID찾기
 
@@ -21,5 +23,7 @@ public interface MContorllerInterface {
 	public String deleteMember(String id); // 회원삭제, 회원탈퇴
 
 	public String alertMember(Member member, Model model); // 회원 수정
+
+
 
 }
