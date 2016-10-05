@@ -25,7 +25,7 @@
 	<form class="form-horizontal" style="margin-top: 200px;">
 		<div class="form-group">
 			<label class="control-label col-sm-<%=label%>" for="email">ID</label>
-			<div class="col-sm-3">
+			<div class="col-sm-<%=input%>">
 				<input type="text" class="form-control" name="id" id="id" placeholder="ID">
 			</div>
 			<div class="form-group"

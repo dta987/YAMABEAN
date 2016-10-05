@@ -28,7 +28,7 @@ public class MemberContorller implements MContorllerInterface {
 		return "login";
 
 	}
-	
+
 	@RequestMapping(value = "/login", method = RequestMethod.POST)
 	@Override
 	public String login(String id, String password, Model model,
