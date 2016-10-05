@@ -36,6 +36,7 @@ public class MenuContorller implements MuContorllerInterface{
 	@Override
 	@RequestMapping(value="/createMenu", method=RequestMethod.POST)
 	public String createMenu(@ModelAttribute MenuDomain menuDomain) {
+		System.out.println("controller_menu_num : " +menuDomain.getMenu_num());
 		System.out.println("controller_m_group : " +menuDomain.getM_group());
 		System.out.println("controller_m_category : "+menuDomain.getM_category());
 		System.out.println("controller_m_name : " +menuDomain.getM_name());
@@ -71,7 +72,7 @@ public class MenuContorller implements MuContorllerInterface{
 	}
 	@Override
 	@RequestMapping(value="/updateMenu", method=RequestMethod.POST)
-	public String updateMenu(@ModelAttribute MenuDomain menuDomain, Model model) {
+	public String updateMenu(@ModelAttribute MenuDomain menuDomain) {
 		int modify = menuService.modifyMenu(menuDomain);
 		System.out.println("controller_modify : " +modify);
 		return "redirect:/menu/listMenu";

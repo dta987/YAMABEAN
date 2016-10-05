@@ -5,14 +5,20 @@ import org.springframework.web.multipart.MultipartFile;
 public class MenuDomain {
 
 	// view
+	private int menu_num ;
 	private String m_name ;
-	
 	private String m_group ;
 	private String m_category ; 
 	private MultipartFile image ;	
 	private String content ; 
 	private int price ;
 	
+	public int getMenu_num() {
+		return menu_num;
+	}
+	public void setMenu_num(int menu_num) {
+		this.menu_num = menu_num;
+	}
 	public String getM_name() {
 		return m_name;
 	}

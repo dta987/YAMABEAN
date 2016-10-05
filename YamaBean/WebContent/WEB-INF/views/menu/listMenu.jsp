@@ -1,8 +1,7 @@
 <%@ page language="java" contentType="text/html; charset=utf-8"
 	pageEncoding="utf-8"%>
-<%@ taglib prefix="sf" uri="http://www.springframework.org/tags/form"%>
-<%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"%>
 <%@ include file="/WEB-INF/views/rvTOP.jsp"%>
+
 <!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3.org/TR/html4/loose.dtd">
 <html>
 <head>
@@ -11,38 +10,122 @@
 </head>
 <body>
 
-	<div align="center">
-		<br>
-		<h1>listMenu</h1>
-		<hr width="500px">
+	<!-- !PAGE CONTENT! -->
+	<div class="w3-main" style="margin-left: 10%; margin-right: 10%;">
 
-		<div>
-			<table>
-				<tr>
-					<th>menu_num</th>
-					<th>메뉴분류</th>
-					<th>메뉴카테고리</th>
-					<th>메뉴이름</th>
-					<th>메뉴내용</th>
-					<th>메뉴이미지</th>
-					<th>메뉴가격</th>
-				</tr>
-				<c:forEach var="getList" items="${findByList}">
-					<tr>
-						<td>${getList.menu_num}</td>
-						<td>${getList.m_group}</td>
-						<td>${getList.m_category}</td>
-						<td>${getList.m_name}</td>
-						<td>${getList.content}</td>
-						<td><img src="<%=uploadedFolder%>ad6c6230-2a89-42d4-93dd-85ba4e499cfa_images.jpg">${getList.image_name}</td> <!-- 왜이미지가안뜰까요 -->
-						<td>${getList.price}</td>
-						<td><a href="/YamaBean/menu/updateMenu?menu_num=${getList.menu_num}">수정</a></td>
-						<td><a href="/YamaBean/menu/deleteMenu?menu_num=${getList.menu_num}">삭제</a></td>
-					</tr>
-				</c:forEach>
-			</table>
+		<h1>
+			<b>MENU</b>
+		</h1>
+		<div class="w3-section w3-bottombar w3-padding-16">
+			<ul class="nav nav-pills">
+				<li role="presentation"><input type="checkbox" name="menu_all"
+					value="menu_all" checked="checked"><label for="menu_all">전체
+						상품보기&nbsp;&nbsp;</label></li>
+				<li role="presentation"><input type="checkbox" name="cold_brew"
+					value="cold_brew"><label for="cold_brew">콜드브루 커피
+						&nbsp;&nbsp;</label></li>
+				<li role="presentation"><input type="checkbox" name="brood"
+					value="brood"><label for="brood">브루드 커피&nbsp;&nbsp;</label></li>
+				<li role="presentation"><input type="checkbox" name="espresso"
+					value="espresso"><label for="espresso">에스프레소
+						커피&nbsp;&nbsp;</label></li>
+				<li role="presentation"><input type="checkbox"
+						name="frappuccino" value="frappuccino"> <label
+						for="frappuccino">프라푸치노&nbsp;&nbsp;</label></li>
+				<li role="presentation"><input type="checkbox" name="bean"
+					value="bean"><label for="bean">원두</label></li>
+			</ul>
+		</div>
+
+		<!-- cold_brew -->
+		<div class="w3-row-padding" id="cold_brew">
+			<div class="page-header" style="background-color : #dcdcdc; padding-top: 5px; padding-left: 5px">
+				<h4>
+					콜드브루 커피
+				</h4>
+			</div>
+			<div class="w3-third w3-container w3-margin-bottom">
+				<img src="img_lights.jpg" alt="Norway" style="width: 100%"
+					class="w3-hover-opacity">
+				<div class="w3-container w3-white">
+					<p>
+						<b>Lorem Ipsum</b>
+					</p>
+					<p>Praesent tincidunt sed tellus ut rutrum. Sed vitae justo
+						condimentum, porta lectus vitae, ultricies congue gravida diam non
+						fringilla.</p>
+				</div>
+			</div>
+		</div>
+
+		<!-- brood -->
+		<div class="w3-row-padding" id="brood">
+			<div class="page-header" style="background-color : #dcdcdc; padding-top: 5px; padding-left: 5px">
+				<h4>
+					부르드 커피
+				</h4>
+			</div>
+			<div class="w3-third w3-container w3-margin-bottom">
+				<img src="img_lights.jpg" alt="Norway" style="width: 100%"
+					class="w3-hover-opacity">
+				<div class="w3-container w3-white">
+					<p>
+						<b>Lorem Ipsum</b>
+					</p>
+					<p>Praesent tincidunt sed tellus ut rutrum. Sed vitae justo
+						condimentum, porta lectus vitae, ultricies congue gravida diam non
+						fringilla.</p>
+				</div>
+			</div>
+		</div>
+		
+		<!-- espresso -->
+		<div class="w3-row-padding" id="espresso">
+			<div class="page-header" style="background-color : #dcdcdc; padding-top: 5px; padding-left: 5px">
+				<h4>
+					에스프레소 커피
+				</h4>
+			</div>
+			<div class="w3-third w3-container w3-margin-bottom">
+				<img src="img_lights.jpg" alt="Norway" style="width: 100%"
+					class="w3-hover-opacity">
+				<div class="w3-container w3-white">
+					<p>
+						<b>Lorem Ipsum</b>
+					</p>
+					<p>Praesent tincidunt sed tellus ut rutrum. Sed vitae justo
+						condimentum, porta lectus vitae, ultricies congue gravida diam non
+						fringilla.</p>
+				</div>
+			</div>
+		</div>
+		
+		<!-- frappuccino -->
+		<div class="w3-row-padding" id="frappuccino">
+			<div class="page-header" style="background-color : #dcdcdc; padding-top: 5px; padding-left: 5px">
+				<h4>
+					프라푸치노 커피
+				</h4>
+			</div>
+			<div class="w3-third w3-container w3-margin-bottom">
+				<img src="img_lights.jpg" alt="Norway" style="width: 100%"
+					class="w3-hover-opacity">
+				<div class="w3-container w3-white">
+					<p>
+						<b>Lorem Ipsum</b>
+					</p>
+					<p>Praesent tincidunt sed tellus ut rutrum. Sed vitae justo
+						condimentum, porta lectus vitae, ultricies congue gravida diam non
+						fringilla.</p>
+				</div>
+			</div>
 		</div>
 	</div>
+
+
+	<script>
+		
+	</script>
 
 </body>
 </html>

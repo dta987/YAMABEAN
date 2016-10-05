@@ -7,6 +7,8 @@ import java.util.List;
 import org.aspectj.util.FileUtil;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
+import org.springframework.transaction.annotation.Propagation;
+import org.springframework.transaction.annotation.Transactional;
 
 import com.menu.dto.FileUtile;
 import com.menu.dto.MenuEntity;
@@ -44,6 +46,7 @@ public class MenuService implements MuServiceInterface {
 		MenuEntity menuEntity = null ;
 		if (uploadResult) {
 			menuEntity = new MenuEntity();
+			menuEntity.setMenu_num(menuDomain.getMenu_num());
 			menuEntity.setM_group(menuDomain.getM_group());
 			menuEntity.setM_category(menuDomain.getM_category());
 			menuEntity.setM_name(menuDomain.getM_name());
@@ -94,6 +97,7 @@ public class MenuService implements MuServiceInterface {
 		MenuEntity menuEntity = menuRepository.selectByMenu(menu_num);
 		MenuDomain menuDomain = new MenuDomain();
 		if (menuEntity != null ) {
+			menuDomain.setMenu_num(menuEntity.getMenu_num());
 			menuDomain.setM_group(menuEntity.getM_group());
 			menuDomain.setM_category(menuEntity.getM_category());
 			menuDomain.setM_name(menuEntity.getM_name());
@@ -127,8 +131,10 @@ public class MenuService implements MuServiceInterface {
 		MenuEntity menuEntity = null ;
 		if (uploadResult) {
 			menuEntity = new MenuEntity();
+			menuEntity.setMenu_num(menuDomain.getMenu_num());
 			menuEntity.setM_group(menuDomain.getM_group());
 			menuEntity.setM_category(menuDomain.getM_category());
+			menuEntity.setM_name(menuDomain.getM_name()); 
 			menuEntity.setImage(saveFileName);
 			menuEntity.setContent(menuDomain.getContent());
 			menuEntity.setPrice(menuDomain.getPrice());

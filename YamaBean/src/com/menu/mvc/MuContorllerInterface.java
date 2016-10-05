@@ -23,7 +23,7 @@ public interface MuContorllerInterface {
 	/*public String alertMenu(MenuDomain menuDomain, Model model); // 메뉴수정 */	
 	public MenuDomain updateMenuForm(int menu_num, MenuDomain menuDomain); //메뉴수정
 
-	public String updateMenu(MenuDomain menuDomain, Model model); //메뉴수정
+	public String updateMenu(MenuDomain menuDomain); //메뉴수정
 	
 	
 	

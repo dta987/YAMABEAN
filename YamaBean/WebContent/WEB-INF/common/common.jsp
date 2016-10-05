@@ -18,7 +18,11 @@
 	String uploadPath = "/coffee/";
 	String uploadedFolder = myurl.substring(0, idx) + contextPath
 			+ uploadPath;
+
+	String imgPath = "/img/";
+	String imgFolder = myurl.substring(0, idx) + contextPath + imgPath;
 %>
+
 <html>
 <head>
 <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
@@ -37,10 +41,15 @@
 <link rel="stylesheet" href="/resources/demos/style.css">
 <script src="https://code.jquery.com/ui/1.12.0/jquery-ui.js"></script>
 <link rel="stylesheet" href="http://www.w3schools.com/lib/w3.css">
-<link rel="stylesheet"
-	href="https://fonts.googleapis.com/css?family=Lato">
-
+<link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Lato">
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.6.3/css/font-awesome.min.css">
 <title>Insert title here</title>
+
+<style type="text/css">
+body {
+margin-top: 45px;
+}
+</style>
 </head>
 <body>
 </body>
