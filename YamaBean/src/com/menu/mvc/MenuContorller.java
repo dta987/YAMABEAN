@@ -79,22 +79,22 @@ public class MenuContorller implements MuContorllerInterface{
 	}
 
 	
-
-	
 	@Override
-	public String searchMenu(int menu_num) {
-		// TODO Auto-generated method stub
-		return null;
+	@RequestMapping(value="/detailMenu", method=RequestMethod.GET)
+	public MenuModel detailMenu(@RequestParam int menu_num, @ModelAttribute MenuModel menuModel) {
+		menuModel = menuService.detailManeu(menu_num);
+		return menuModel;
 	}
 
 
 
 	
-
-
-
 	
 	
+	
+	
+	
+
 
 
 }

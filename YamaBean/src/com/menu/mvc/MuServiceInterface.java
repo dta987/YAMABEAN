@@ -19,8 +19,14 @@ public interface MuServiceInterface {
 	
 	
 	public int modifyMenu(MenuDomain menuDomain); // 메뉴수정
+	public MenuDomain findByMenu(int menu_num); // 메뉴 num 찾기	
+	public MenuModel detailManeu(int menu_num) ; // 메뉴 상세보기
 	
-	public MenuDomain findByMenu(int menu_num); // 메뉴찾기
+	
+	
+	
+	
+	
 	
 	
 

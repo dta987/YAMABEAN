@@ -26,7 +26,7 @@ public class MenuRepository implements MuRepositoryInterface{
 		return menuMapper.selectList();
 	}
 	
-	@Override
+	@Override 
 	public MenuEntity selectByMenu(int menu_num) {
 		return menuMapper.selectByMenu(menu_num);
 	}

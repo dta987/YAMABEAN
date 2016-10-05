@@ -26,9 +26,9 @@ public interface MuContorllerInterface {
 	public String updateMenu(MenuDomain menuDomain); //메뉴수정
 	
 	
+	public MenuModel detailMenu(int menu_num, MenuModel menuModel);
 	
 	
 
-	public String searchMenu(int menu_num); // 메뉴찾기
-
+	/*public String searchMenu(int menu_num); // 메뉴찾기 */
 }

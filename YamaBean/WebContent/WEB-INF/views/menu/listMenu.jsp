@@ -33,7 +33,7 @@
 						<td>${getList.m_category}</td>
 						<td>${getList.m_name}</td>
 						<td>${getList.content}</td>
-						<td><img src="/YamaBean/WEB-INF/coffee/${getList.image_name}">${getList.image_name}</td>
+						<td><a href="/YamaBean/menu/detailMenu?menu_num=${getList.menu_num}"><img src="/YamaBean/WEB-INF/coffee/${getList.image_name}"></a>${getList.image_name}</td>
 						<td>${getList.price}</td>
 						<td><a href="/YamaBean/menu/updateMenu?menu_num=${getList.menu_num}">수정</a></td>
 						<td><a href="/YamaBean/menu/deleteMenu?menu_num=${getList.menu_num}">삭제</a></td>
