@@ -22,26 +22,13 @@ public class MemberContorller implements MContorllerInterface {
 	@Autowired
 	private MemberService memberService;
 
-	@RequestMapping(value = "/move", method = RequestMethod.GET)
-	public String moveMenu() {
+	@RequestMapping(value = "/login", method = RequestMethod.GET)
+	public String login() {
 		System.out.println("==Member이동==");
-		return "member";
+		return "login";
 
 	}
-
-	@RequestMapping(value = "/move", method = RequestMethod.POST)
-	@Override
-	public String createMember(@ModelAttribute Member member) {
-		int count = memberService.addMember(member);
-		if (count > 0) {
-			System.out.println("회원가입 성공");
-		} else {
-			System.out.println("회원가입 실패");
-		}
-
-		return "redirect:/";
-	}
-
+	
 	@RequestMapping(value = "/login", method = RequestMethod.POST)
 	@Override
 	public String login(String id, String password, Model model,
@@ -65,6 +52,27 @@ public class MemberContorller implements MContorllerInterface {
 			return "index";
 		}
 	}
+	
+	@RequestMapping(value = "/signup", method = RequestMethod.GET)
+	@Override
+	public String createMember() {
+
+		return "signup";
+	}
+
+	@RequestMapping(value = "/signup", method = RequestMethod.POST)
+	@Override
+	public String createMember(@ModelAttribute Member member) {
+		int count = memberService.addMember(member);
+		if (count > 0) {
+			System.out.println("회원가입 성공");
+		} else {
+			System.out.println("회원가입 실패");
+		}
+
+		return "redirect:/";
+	}
+		
 
 	@Override
 	public String forgottenID(String name, String email, Model model) {

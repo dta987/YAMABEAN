@@ -4,6 +4,7 @@
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"%>
 <%@ page import="com.member.dto.Member"%>
 <%@ include file="/WEB-INF/common/common.jsp"%>
+<%@ taglib uri="http://www.springframework.org/tags/form" prefix="form"%>
 <%
 	Member loginfo = (Member) session.getAttribute("loginfo");
 
@@ -36,8 +37,8 @@
 			class="w3-padding-large" href="javascript:void(0)"
 			onclick="myFunction()" title="Toggle Navigation Menu"><i
 				class="fa fa-bars"></i></a></li>
-		<li class="w3-hide-small"><img alt=""
-			src="<%=imgFolder%>logo.JPG" width="50px" height="50px"></a></li>
+		<%-- <li class="w3-hide-small"><img alt=""
+			src="<%=imgFolder%>logo.JPG" width="50px" height="50px"></a></li> --%>
 		<li><a href="/YamaBean/"
 			class="w3-hover-none w3-hover-text-grey w3-padding-large">HOME</a></li>
 		<li class="w3-hide-small"><a href="#" class="w3-padding-large">ABOUT</a></li>
@@ -54,7 +55,7 @@
 			class="w3-hover-none w3-hover-text-grey w3-padding-large">LOCATIONS</a></li>
 		<c:if test="${sessionScope.whologin == 0}">
 			<li class="w3-hide-small w3-right"><a
-				href="/YamaBean/member/move" class="w3-padding-large">LOGIN</a></li>
+				href="/YamaBean/member/login" class="w3-padding-large">LOGIN</a></li>
 		</c:if>
 
 		<c:if test="${sessionScope.whologin == 1}">
