@@ -12,7 +12,6 @@
 
 	<!-- !PAGE CONTENT! -->
 	<div class="w3-main" style="margin-left: 20%; margin-right: 20%;">
-
 		<div class="w3-section w3-padding-16">
 			<img alt="" src="<%=imgFolder%>index1.jpg" width="100%"
 				height="300px">
@@ -140,11 +139,6 @@
 			</c:forEach>
 		</div>
 	</div>
-
-
-	<script>
-		
-	</script>
 
 </body>
 </html>

@@ -4,11 +4,8 @@ import java.io.IOException;
 import java.util.ArrayList;
 import java.util.List;
 
-import org.aspectj.util.FileUtil;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
-import org.springframework.transaction.annotation.Propagation;
-import org.springframework.transaction.annotation.Transactional;
 
 import com.menu.dto.FileUtile;
 import com.menu.dto.MenuEntity;
@@ -138,7 +135,26 @@ public class MenuService{
 		
 		return menuRepository.updateMenu(menuEntity);
 	}
-	
+
+
+	public MenuModel detailManeu(int menu_num) {
+		MenuEntity menuEntity = menuRepository.selectByMenu(menu_num);
+		MenuModel menuModel = new MenuModel();
+		if (menuEntity != null) {
+			menuModel.setMenu_num(menuEntity.getMenu_num());
+			menuModel.setM_group(menuEntity.getM_group());
+			menuModel.setM_category(menuEntity.getM_category());
+			menuModel.setImage_name(menuEntity.getImage());
+			menuModel.setContent(menuEntity.getContent());
+			menuModel.setPrice(menuEntity.getPrice());
+			menuModel.setM_name(menuEntity.getM_name());
+			
+			System.out.println("--service_ menu_num :" + menu_num + " / " + "DB에서 가져온 menu_num은  " + menuEntity.getMenu_num() + " --");
+		}
+		return menuModel;
+	}
+
+
 	
 
 }
