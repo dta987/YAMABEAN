@@ -13,7 +13,7 @@ public interface MuContorllerInterface {
 
 	public String createMenu(MenuDomain menuDomain); // 메뉴추가
 
-	public String deleteMenu(int menu_num); // 메뉴추가, 삭제
+	public String deleteMenu(int menu_num); // 메뉴 삭제
 
 	/* public String menuList(String mode, String keyword, Model model); */
 	public List<MenuModel> menuList(); // 메뉴리스트
