@@ -1,0 +1,73 @@
+<%@ page language="java" contentType="text/html; charset=utf-8"
+	pageEncoding="utf-8"%>
+<%@ taglib prefix="sf" uri="http://www.springframework.org/tags/form"%>
+<%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"%>
+<%@ page import="com.member.dto.Member"%>
+<%@ include file="/WEB-INF/common/common.jsp"%>
+<%@ taglib uri="http://www.springframework.org/tags/form" prefix="form"%>
+<%
+	Member loginfo = (Member) session.getAttribute("loginfo");
+
+	int whologin = 0; // 0 : 미로그인,  1 : 회원 로그인, 2 : 관리자 로그인
+
+	if (loginfo == null) {
+		whologin = 0;
+
+	} else { //관리자는 아이디가 admin이라고 가정한다.
+		if (loginfo.getId().equals("admin")) {
+			whologin = 2;
+		} else {
+			whologin = 1; //일반 사용자 로그인 
+		}
+	}
+	//out.println("whologin : " + whologin);
+	session.setAttribute("whologin", whologin);
+%>
+
+<!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3.org/TR/html4/loose.dtd">
+<html>
+<head>
+
+<meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+<title>TOP</title>
+
+<div class="w3-top">
+	<ul class="w3-navbar w3-black w3-card-2 w3-left-align">
+		<li class="w3-hide-medium w3-hide-large w3-opennav w3-right"><a
+			class="w3-padding-large" href="javascript:void(0)"
+			onclick="myFunction()" title="Toggle Navigation Menu"><i
+				class="fa fa-bars"></i></a></li>
+		<%-- <li class="w3-hide-small"><img alt=""
+			src="<%=imgFolder%>logo.JPG" width="50px" height="50px"></a></li> --%>
+		<li><a href="/YamaBean/"
+			class="w3-hover-none w3-hover-text-grey w3-padding-large">HOME</a></li>
+		<li class="w3-hide-small"><a href="#" class="w3-padding-large">ABOUT</a></li>
+		<li class="w3-hide-small"><a href="/YamaBean/menu/listMenu"
+			class="w3-padding-large">MENU</a></li>
+		<li class="w3-hide-small w3-dropdown-hover"><a
+			href="javascript:void(0)" class="w3-hover-none w3-padding-large"
+			title="BOARD">BORAD <i class="fa fa-caret-down"></i></a>
+			<div class="w3-dropdown-content w3-white w3-card-4">
+				<a href="/YamaBean/board/move/">자주하는 질문</a> <a
+					href="/YamaBean/board/move/">Q&A</a>
+			</div></li>
+		<li><a href="/YamaBean/storeMap/move"
+			class="w3-hover-none w3-hover-text-grey w3-padding-large">LOCATIONS</a></li>
+		<c:if test="${sessionScope.whologin == 0}">
+			<li class="w3-hide-small w3-right"><a
+				href="/YamaBean/member/login" class="w3-padding-large">LOGIN</a></li>
+		</c:if>
+
+		<c:if test="${sessionScope.whologin == 1}">
+			<li class="w3-hide-small w3-dropdown-hover"><a
+				href="javascript:void(0)" class="w3-hover-none w3-padding-large"
+				title="USER"><%=loginfo.getId()%><i class="fa fa-caret-down"></i></a>
+				<div class="w3-dropdown-content w3-white w3-card-4">
+					<a href="#">MY PAGE</a> <a href="#">ORDER</a> <a href="#">CART</a>
+				</div></li>
+		</c:if>
+	</ul>
+</div>
+</head>
+</body>
+</html>
