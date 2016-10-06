@@ -16,16 +16,22 @@ public class MyMenuController implements MineControllerInterface {
 	@Autowired
 	private MyMenuService myMenuService ;
 	
+	@RequestMapping(value="/mymenu", method=RequestMethod.GET)
+	public String move(){
+		System.out.println("==mymenu ¿Ãµø==");
+		return "mymenu";
+	}
+	
 	
 	@Override
 	@RequestMapping(value="/registerMyMenu", method=RequestMethod.GET)
 	public String register() {
-		System.out.println("==MYMENU_controller==");
-		return "registerMyMenu";
+		System.out.println("==mymenuController_register==");
+		return  "registerMyMenu";
 	}
 
 	@Override
-	@RequestMapping(value="/register", method=RequestMethod.POST)
+	@RequestMapping(value="/registerMyMenu", method=RequestMethod.POST)
 	public String registerMyMenu(@ModelAttribute MyMenuDomain mymenuDomain) {
 		System.out.println("controller_mymenuName : " +mymenuDomain.getMymenu_name());
 		myMenuService.register(mymenuDomain);

@@ -2,6 +2,7 @@ package com.mymenu.mvc;
 
 import java.util.List;
 
+import com.menu.dto.MenuEntity;
 import com.mymenu.dto.MyMenuDomain;
 
 public interface MineRepositoryInterface {

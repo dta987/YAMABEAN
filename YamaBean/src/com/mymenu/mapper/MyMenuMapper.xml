@@ -3,15 +3,16 @@
 	PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
 	"http://mybatis.org/dtd/mybatis-3-mapper.dtd">
 
-<mapper namespace="com.mymenu.mapper.myMapper">
+<mapper namespace="com.mymenu.mapper.MyMenuMapper">
 
-	<insert id="addMyMenu" parameterType="com.mymenu.dto.MymenuDomain">
+
+	
+	<insert id="addMyMenu" parameterType="com.mymenu.dto.MyMenuDomain">
 		<selectKey keyProperty="mymenu_num" resultType="int" order="BEFORE">
 			select mymenu_seq.nextval from dual
 		</selectKey>
 		insert into mymenus(mymenu_num, member_id, mymenu_name, menu, my_option, sub_day) values(#{mymenu_num}, #{member_id}, #{mymenu_name}, #{menu}, #{my_option}, to_date(#{}));
 	</insert>
-
 
 
 

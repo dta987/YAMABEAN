@@ -2,9 +2,10 @@ package com.mymenu.mapper;
 
 import java.util.List;
 
+import com.menu.dto.MenuEntity;
 import com.mymenu.dto.MyMenuDomain;
 
-public interface MyMapperInterface {
+public interface MyMenuMapper {
 	
 	public String addMyMenu(MyMenuDomain mymenuDomain);	//mymenu 등록
 	
@@ -15,5 +16,6 @@ public interface MyMapperInterface {
 	public String replaceMyMenu(MyMenuDomain mymenuDomain);	//mymenu 수정
 	
 	public MyMenuDomain detailViewMyMenu(int mymenu_num, MyMenuDomain mymenuDomain); //mymenu 상세보기
+
 
 }

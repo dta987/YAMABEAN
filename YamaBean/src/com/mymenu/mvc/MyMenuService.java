@@ -14,6 +14,8 @@ public class MyMenuService implements MineServiceInterface {
 	private MyMenuRepository myMenuRepository ;
 	
 	
+	
+	
 	@Override
 	public String register(MyMenuDomain mymenuDomain) {
 		return myMenuRepository.register(mymenuDomain);
@@ -42,5 +44,7 @@ public class MyMenuService implements MineServiceInterface {
 		// TODO Auto-generated method stub
 		return null;
 	}
+
+
 
 }

@@ -2,6 +2,7 @@ package com.mymenu.mvc;
 
 import java.util.List;
 
+import com.menu.dto.MenuModel;
 import com.mymenu.dto.MyMenuDomain;
 
 public interface MineServiceInterface {

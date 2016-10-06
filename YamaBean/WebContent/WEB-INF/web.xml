@@ -101,6 +101,7 @@
 		<servlet-name>Mymenu</servlet-name>
 		<url-pattern>/mymenu/*</url-pattern>
 	</servlet-mapping>
+	
 
 	<!-- /////////////// 인코딩 /////////////// -->
 	<filter>

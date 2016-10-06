@@ -2,12 +2,13 @@ package com.mymenu.mvc;
 
 import java.util.List;
 
+import com.menu.dto.MenuModel;
 import com.mymenu.dto.MyMenuDomain;
 
 
 public interface MineControllerInterface {
 	
-	public String register();
+	public String register() ;
 
 	public String registerMyMenu(MyMenuDomain mymenuDomain);	//mymenu µî·Ï
 	

@@ -5,15 +5,17 @@ import java.util.List;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Repository;
 
+import com.menu.dto.MenuEntity;
 import com.mymenu.dto.MyMenuDomain;
-import com.mymenu.mapper.MyMapperInterface;
+import com.mymenu.mapper.MyMenuMapper;
 
 @Repository
 public class MyMenuRepository implements MineRepositoryInterface {
 
 	@Autowired
-	private MyMapperInterface myMenuMapper ;
+	private MyMenuMapper myMenuMapper ;
 
+	
 	
 	@Override
 	public String register(MyMenuDomain mymenuDomain) {
