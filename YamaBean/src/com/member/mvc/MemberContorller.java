@@ -17,7 +17,7 @@ import org.springframework.web.bind.annotation.RequestParam;
 import com.member.dto.Member;
 
 @Controller
-public class MemberContorller implements MContorllerInterface {
+public class MemberContorller{
 
 	@Autowired
 	private MemberService memberService;
@@ -30,7 +30,6 @@ public class MemberContorller implements MContorllerInterface {
 	}
 
 	@RequestMapping(value = "/login", method = RequestMethod.POST)
-	@Override
 	public String login(String id, String password, Model model,
 			HttpSession httpSession) {
 		System.out.println("login 컨트롤러 접근");
@@ -45,23 +44,21 @@ public class MemberContorller implements MContorllerInterface {
 			httpSession.setAttribute("loginInfo", id);
 			msg = "로그인 성공";
 			model.addAttribute("msg", msg);
-			return "result";
+			return "redirect:/";
 		} else {
 			msg = "아이디나 비밀번호가 잘못 되었습니다";
 			model.addAttribute("msg", msg);
-			return "index";
+			return "login";
 		}
 	}
 	
 	@RequestMapping(value = "/signup", method = RequestMethod.GET)
-	@Override
 	public String createMember() {
 
 		return "signup";
 	}
 
 	@RequestMapping(value = "/signup", method = RequestMethod.POST)
-	@Override
 	public String createMember(@ModelAttribute Member member) {
 		int count = memberService.addMember(member);
 		if (count > 0) {
@@ -74,27 +71,23 @@ public class MemberContorller implements MContorllerInterface {
 	}
 		
 
-	@Override
 	public String forgottenID(String name, String email, Model model) {
 		System.out.println("forgottenID 컨트롤러 접근");
 
 		return null;
 	}
 
-	@Override
 	public String forgottenPW(String name, String email, String id, Model model) {
 
 		return null;
 	}
 
-	@Override
 	public String overLapCheck(String mode, String keyword) {
 
 		return null;
 	}
 
 	@RequestMapping(value = "/memberlist", method = RequestMethod.GET)
-	@Override
 	public String memberList(String mode, String keyword, Model model) {
 		System.out.println("멤버리스트 컨트롤러 접근 ");
 
@@ -106,7 +99,6 @@ public class MemberContorller implements MContorllerInterface {
 	}
 
 	@RequestMapping(value = "/delete", method = RequestMethod.GET)
-	@Override
 	public String deleteMember(@RequestParam String id) {
 		System.out.println("deleteMember 컨트롤러 접근");
 		int count = memberService.removeMember(id);
@@ -121,7 +113,6 @@ public class MemberContorller implements MContorllerInterface {
 			}
 
 	@RequestMapping(value = "/update", method = RequestMethod.POST)
-	@Override
 	public String alertMember(Member member, Model model) {
 		System.out.println("회원수정 컨트롤러 접근");
 		memberService.modifyMember(member);

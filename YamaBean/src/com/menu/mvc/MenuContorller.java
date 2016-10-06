@@ -14,7 +14,7 @@ import com.menu.dto.MenuDomain;
 import com.menu.dto.MenuModel;
 
 @Controller
-public class MenuContorller implements MuContorllerInterface{
+public class MenuContorller{
 	
 	@Autowired
 	private MenuService menuService;
@@ -25,15 +25,13 @@ public class MenuContorller implements MuContorllerInterface{
 		System.out.println("==controller_Menu이동==");
 		return "menu";
 	}
-	
-	
-	
+
 	@RequestMapping(value="/createMenu", method=RequestMethod.GET)
 	public String insertMenu() {
 		System.out.println("--controller_메뉴추가하기로이동--");
 		return "createMenu";
 	}
-	@Override
+	
 	@RequestMapping(value="/createMenu", method=RequestMethod.POST)
 	public String createMenu(@ModelAttribute MenuDomain menuDomain) {
 		System.out.println("controller_menu_num : " +menuDomain.getMenu_num());
@@ -47,7 +45,6 @@ public class MenuContorller implements MuContorllerInterface{
 		return "redirect:/menu/listMenu";
 	}
 	
-	@Override
 	@RequestMapping(value="/listMenu", method=RequestMethod.GET)
 	@ModelAttribute("findByList")
 	public List<MenuModel> menuList() {
@@ -55,7 +52,6 @@ public class MenuContorller implements MuContorllerInterface{
 		return menuService.findByList();
 	}
 	
-	@Override
 	@RequestMapping(value="/deleteMenu", method=RequestMethod.GET)
 	public String deleteMenu(@RequestParam int menu_num) {
 		boolean deleteMenu_num = menuService.removeMenu(menu_num);
@@ -64,13 +60,12 @@ public class MenuContorller implements MuContorllerInterface{
 	}
 	
 	
-	@Override
 	@RequestMapping(value="/updateMenu", method=RequestMethod.GET)
 	public MenuDomain updateMenuForm(@RequestParam int menu_num, @ModelAttribute MenuDomain menuDomain) {
 		menuDomain = menuService.findByMenu(menu_num);
 		return menuDomain;
 	}
-	@Override
+	
 	@RequestMapping(value="/updateMenu", method=RequestMethod.POST)
 	public String updateMenu(@ModelAttribute MenuDomain menuDomain) {
 		int modify = menuService.modifyMenu(menuDomain);
@@ -78,15 +73,11 @@ public class MenuContorller implements MuContorllerInterface{
 		return "redirect:/menu/listMenu";
 	}
 
-	
-
-	
-	@Override
-	public String searchMenu(int menu_num) {
-		// TODO Auto-generated method stub
-		return null;
+	@RequestMapping(value="/order")
+	public String OrderMenu(){
+		return "order";
+		
 	}
-
 
 
 	

@@ -22,47 +22,6 @@
 </head>
 <body>
 
-	<form class="form-horizontal" style="margin-top: 200px;">
-		<div class="form-group">
-			<label class="control-label col-sm-<%=label%>" for="email">ID</label>
-			<div class="col-sm-<%=input%>">
-				<input type="text" class="form-control" name="id" id="id" placeholder="ID">
-			</div>
-			<div class="form-group"
-				style="width: 110px; float: left; padding-left: 10px;" align="left">
-				<input type="button" id="ajax_request"
-					class="btn btn-primary btn-block" value="중복검사" />
-			</div>
-		</div>
-		<div class="form-group">
-			<label class="control-label col-sm-2" for="password">PW</label>
-			<div class="col-sm-10">
-				<input type="password" class="form-control" name="password" id="password"
-					placeholder="Enter password">
-			</div>
-		</div>
-		<div class="form-group">
-			<label class="control-label col-sm-2" for="password">PW Check</label>
-			<div class="col-sm-3">
-				<input type="password" class="form-control" name="password" id="password"
-					placeholder="Enter password">
-			</div>
-		</div>
-		
-		<div class="form-group">
-			<div class="col-sm-offset-2 col-sm-10">
-				<div class="checkbox">
-					<label><input type="checkbox"> Remember me</label>
-				</div>
-			</div>
-		</div>
-		<div class="form-group">
-			<div class="col-sm-offset-2 col-sm-10">
-				<button type="submit" class="btn btn-default">Submit</button>
-			</div>
-		</div>
-	</form>
-
 	<div class="col-sm-offset-<%=myoffset%> col-sm-<%=mywidth%>"
 		style="margin-top: 100px;">
 		<form class="form-horizontal" method="POST">

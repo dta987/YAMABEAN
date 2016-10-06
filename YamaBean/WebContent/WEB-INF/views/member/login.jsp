@@ -2,7 +2,7 @@
 	pageEncoding="utf-8"%>
 <%@ include file="/WEB-INF/views/rvTOP.jsp"%>
 <%
-	int myoffset = 2;
+	int myoffset = 3;
 	int mywidth = twelve - myoffset;
 	int label = 3;
 	int input = (twelve / 2) - label;
@@ -16,18 +16,18 @@
 </head>
 <body>
 	<div class="container col-md-offset-<%=myoffset%>" style="margin-top: 200px;">
-		<form class="form-horizontal">
+		<form class="form-horizontal" action="/YamaBean/member/login" method="POST">
 			<div class="form-group">
 				<label class="control-label col-md-<%=label%>" for="email">ID:</label>
 				<div class="col-md-<%=input%>">
-					<input type="password" class="form-control" id="pwd"
+					<input type="text" class="form-control" id="id" name="id"
 						placeholder="Enter password">
 				</div>
 			</div>
 			<div class="form-group">
 				<label class="control-label col-md-<%=label%>" for="pwd">Password:</label>
 				<div class="col-md-<%=input%>">
-					<input type="password" class="form-control" id="pwd"
+					<input type="password" class="form-control" id="password" name="password"
 						placeholder="Enter password">
 				</div>
 			</div>
