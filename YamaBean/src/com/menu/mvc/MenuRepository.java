@@ -10,35 +10,28 @@ import com.menu.dto.MenuDomain;
 import com.menu.mapper.MenuMapper;
 
 @Repository
-public class MenuRepository implements MuRepositoryInterface{
+public class MenuRepository{
 
 	@Autowired
 	private MenuMapper menuMapper ;
 	
 	
-	@Override
 	public int createMenu(MenuEntity menuEntity) {
 		return menuMapper.createMenu(menuEntity);
 	}
 	
-	@Override
 	public List<MenuEntity> selectList() {
 		return menuMapper.selectList();
 	}
 	
-	@Override 
 	public MenuEntity selectByMenu(int menu_num) {
 		return menuMapper.selectByMenu(menu_num);
 	}
-
 	
-	@Override
 	public int deleteMenu(int menu_num) {
 		return menuMapper.deleteMenu(menu_num);
 	}
 	
-
-	@Override
 	public int updateMenu(MenuEntity menuEntity) {
 		return menuMapper.updateMenu(menuEntity);
 	}

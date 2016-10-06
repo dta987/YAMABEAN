@@ -14,87 +14,77 @@ import com.menu.dto.MenuDomain;
 import com.menu.dto.MenuModel;
 
 @Controller
-public class MenuContorller implements MuContorllerInterface{
-	
+public class MenuContorller {
+
 	@Autowired
 	private MenuService menuService;
-	
-		
-	@RequestMapping(value="/move", method=RequestMethod.GET)
+
+	@RequestMapping(value = "/move", method = RequestMethod.GET)
 	public String moveMenu() {
 		System.out.println("==controller_Menu이동==");
 		return "menu";
 	}
-	
-	
-	
-	@RequestMapping(value="/createMenu", method=RequestMethod.GET)
+
+	@RequestMapping(value = "/createMenu", method = RequestMethod.GET)
 	public String insertMenu() {
 		System.out.println("--controller_메뉴추가하기로이동--");
 		return "createMenu";
 	}
-	@Override
-	@RequestMapping(value="/createMenu", method=RequestMethod.POST)
+
+	@RequestMapping(value = "/createMenu", method = RequestMethod.POST)
 	public String createMenu(@ModelAttribute MenuDomain menuDomain) {
-		System.out.println("controller_menu_num : " +menuDomain.getMenu_num());
-		System.out.println("controller_m_group : " +menuDomain.getM_group());
-		System.out.println("controller_m_category : "+menuDomain.getM_category());
-		System.out.println("controller_m_name : " +menuDomain.getM_name());
-		System.out.println("controller_image : " +menuDomain.getImage().getOriginalFilename());
-		System.out.println("controller_Price : " +menuDomain.getPrice());
-		System.out.println("controller_Content : " +menuDomain.getContent());
-		menuService.addMenu(menuDomain) ;		
+		System.out.println("controller_menu_num : " + menuDomain.getMenu_num());
+		System.out.println("controller_m_group : " + menuDomain.getM_group());
+		System.out.println("controller_m_category : "
+				+ menuDomain.getM_category());
+		System.out.println("controller_m_name : " + menuDomain.getM_name());
+		System.out.println("controller_image : "
+				+ menuDomain.getImage().getOriginalFilename());
+		System.out.println("controller_Price : " + menuDomain.getPrice());
+		System.out.println("controller_Content : " + menuDomain.getContent());
+		menuService.addMenu(menuDomain);
 		return "redirect:/menu/listMenu";
 	}
-	
-	@Override
-	@RequestMapping(value="/listMenu", method=RequestMethod.GET)
+
+	@RequestMapping(value = "/listMenu", method = RequestMethod.GET)
 	@ModelAttribute("findByList")
 	public List<MenuModel> menuList() {
 		System.out.println("--controller_menuList--");
 		return menuService.findByList();
 	}
-	
-	@Override
-	@RequestMapping(value="/deleteMenu", method=RequestMethod.GET)
+
+	@RequestMapping(value = "/deleteMenu", method = RequestMethod.GET)
 	public String deleteMenu(@RequestParam int menu_num) {
 		boolean deleteMenu_num = menuService.removeMenu(menu_num);
-		System.out.println("controller_deleteMenu_num : " +menu_num +" / "+ deleteMenu_num);
+		System.out.println("controller_deleteMenu_num : " + menu_num + " / "
+				+ deleteMenu_num);
 		return "redirect:/menu/listMenu";
 	}
-	
-	
-	@Override
-	@RequestMapping(value="/updateMenu", method=RequestMethod.GET)
-	public MenuDomain updateMenuForm(@RequestParam int menu_num, @ModelAttribute MenuDomain menuDomain) {
+
+	@RequestMapping(value = "/updateMenu", method = RequestMethod.GET)
+	public MenuDomain updateMenuForm(@RequestParam int menu_num,
+			@ModelAttribute MenuDomain menuDomain) {
 		menuDomain = menuService.findByMenu(menu_num);
 		return menuDomain;
 	}
-	@Override
-	@RequestMapping(value="/updateMenu", method=RequestMethod.POST)
+
+	@RequestMapping(value = "/updateMenu", method = RequestMethod.POST)
 	public String updateMenu(@ModelAttribute MenuDomain menuDomain) {
 		int modify = menuService.modifyMenu(menuDomain);
-		System.out.println("controller_modify : " +modify);
+		System.out.println("controller_modify : " + modify);
 		return "redirect:/menu/listMenu";
 	}
 
-	
-	@Override
-	@RequestMapping(value="/detailMenu", method=RequestMethod.GET)
-	public MenuModel detailMenu(@RequestParam int menu_num, @ModelAttribute MenuModel menuModel) {
+	@RequestMapping(value = "/order")
+	public String OrderMenu() {
+		return "order";
+	}
+
+	@RequestMapping(value = "/detailMenu", method = RequestMethod.GET)
+	public MenuModel detailMenu(@RequestParam int menu_num,
+			@ModelAttribute MenuModel menuModel) {
 		menuModel = menuService.detailManeu(menu_num);
 		return menuModel;
 	}
-
-
-
-	
-	
-	
-	
-	
-	
-
-
 
 }

@@ -10,65 +10,47 @@
 </head>
 <body>
 
-<%-- <<<<<<< HEAD
-		<div>
-			<table>
-				<tr>
-					<th>menu_num</th>
-					<th>메뉴분류</th>
-					<th>메뉴카테고리</th>
-					<th>메뉴이름</th>
-					<th>메뉴내용</th>
-					<th>메뉴이미지</th>
-					<th>메뉴가격</th>
-				</tr>
-				<c:forEach var="getList" items="${findByList}">
-					<tr>
-						<td>${getList.menu_num}</td>
-						<td>${getList.m_group}</td>
-						<td>${getList.m_category}</td>
-						<td>${getList.m_name}</td>
-						<td>${getList.content}</td>
-						<td><a href="/YamaBean/menu/detailMenu?menu_num=${getList.menu_num}"><img src="/YamaBean/WEB-INF/coffee/${getList.image_name}"></a>${getList.image_name}</td>
-						<td>${getList.price}</td>
-						<td><a href="/YamaBean/menu/updateMenu?menu_num=${getList.menu_num}">수정</a></td>
-						<td><a href="/YamaBean/menu/deleteMenu?menu_num=${getList.menu_num}">삭제</a></td>
-					</tr>
-				</c:forEach>
-			</table>
-======= --%>
-
 	<!-- !PAGE CONTENT! -->
-	<div class="w3-main" style="margin-left: 10%; margin-right: 10%;">
+	<div class="w3-main" style="margin-left: 20%; margin-right: 20%;">
 		<div class="w3-section w3-padding-16">
 			<img alt="" src="<%=imgFolder%>index1.jpg" width="100%"
 				height="300px">
 		</div>
 
 		<h1>
-			<b>MENU</b>
+			<div>
+				<b>MENU</b>
+			</div>
+			<div align="right">
+				<button type="button" class="btn btn-primary"
+					onclick="location.href='/YamaBean/menu/order'">주문하기</button>
+			</div>
 		</h1>
-		<div class="w3-section w3-bottombar w3-padding-16">
-			<ul class="nav nav-pills">
-				<li role="presentation"><input type="checkbox" name="menu_all"
-					value="menu_all" checked="checked"><label for="menu_all">전체
-						상품보기&nbsp;&nbsp;</label></li>
-				<li role="presentation"><input type="checkbox" name="cold_brew"
-					value="cold_brew"><label for="cold_brew">콜드브루 커피
-						&nbsp;&nbsp;</label></li>
-				<li role="presentation"><input type="checkbox" name="brood"
-					value="brood"><label for="brood">브루드 커피&nbsp;&nbsp;</label></li>
-				<li role="presentation"><input type="checkbox" name="espresso"
-					value="espresso"><label for="espresso">에스프레소
-						커피&nbsp;&nbsp;</label></li>
-				<li role="presentation"><input type="checkbox"
-					name="frappuccino" value="frappuccino"> <label
-					for="frappuccino">프라푸치노&nbsp;&nbsp;</label></li>
-				<li role="presentation"><input type="checkbox" name="bean"
-					value="bean"><label for="bean">원두</label></li>
-			</ul>
-		</div>
-
+		<fieldset style="height: 100px">
+			<div class="w3-section w3-padding-16">
+				<ul class="nav nav-pills">
+					<li role="presentation"><input type="checkbox" name="menu_all"
+						value="menu_all" checked="checked"><label for="menu_all">전체
+							상품보기&nbsp;&nbsp;</label></li>
+				</ul>
+				<ul class="nav nav-pills">
+					<li role="presentation"><input type="checkbox"
+						name="cold_brew" value="cold_brew"><label for="cold_brew">콜드브루
+							커피 &nbsp;&nbsp;</label></li>
+					<li role="presentation"><input type="checkbox" name="brood"
+						value="brood"><label for="brood">브루드
+							커피&nbsp;&nbsp;</label></li>
+					<li role="presentation"><input type="checkbox" name="espresso"
+						value="espresso"><label for="espresso">에스프레소
+							커피&nbsp;&nbsp;</label></li>
+					<li role="presentation"><input type="checkbox"
+						name="frappuccino" value="frappuccino"> <label
+						for="frappuccino">프라푸치노&nbsp;&nbsp;</label></li>
+					<li role="presentation"><input type="checkbox" name="bean"
+						value="bean"><label for="bean">원두</label></li>
+				</ul>
+			</div>
+		</fieldset>
 		<!-- cold_brew -->
 		<div class="w3-row-padding" id="cold_brew">
 			<div class="page-header"

@@ -6,7 +6,7 @@
 <%@ include file="/WEB-INF/common/common.jsp"%>
 <%@ taglib uri="http://www.springframework.org/tags/form" prefix="form"%>
 <%
-	Member loginfo = (Member) session.getAttribute("loginfo");
+	Member loginfo = (Member)session.getAttribute("loginfo");
 
 	int whologin = 0; // 0 : 미로그인,  1 : 회원 로그인, 2 : 관리자 로그인
 
@@ -44,15 +44,9 @@
 		<li class="w3-hide-small"><a href="#" class="w3-padding-large">ABOUT</a></li>
 		<li class="w3-hide-small"><a href="/YamaBean/menu/listMenu"
 			class="w3-padding-large">MENU</a></li>
-		<li class="w3-hide-small w3-dropdown-hover"><a
-			href="javascript:void(0)" class="w3-hover-none w3-padding-large"
-			title="BOARD">BORAD <i class="fa fa-caret-down"></i></a>
-			<div class="w3-dropdown-content w3-white w3-card-4">
-				<a href="/YamaBean/board/move/">자주하는 질문</a> <a
-					href="/YamaBean/board/move/">Q&A</a>
-			</div></li>
-		<li><a href="/YamaBean/storeMap/move"
-			class="w3-hover-none w3-hover-text-grey w3-padding-large">LOCATIONS</a></li>
+			<li class="w3-hide-small"><a href="/YamaBean/board/move/" class="w3-padding-large">BORAD</a></li>
+		<li class="w3-hide-small"><a href="/YamaBean/storeMap/move"
+			class="w3-padding-large">LOCATIONS</a></li>
 		<c:if test="${sessionScope.whologin == 0}">
 			<li class="w3-hide-small w3-right"><a
 				href="/YamaBean/member/login" class="w3-padding-large">LOGIN</a></li>
@@ -66,8 +60,45 @@
 					<a href="#">MY PAGE</a> <a href="#">ORDER</a> <a href="#">CART</a>
 				</div></li>
 		</c:if>
+		<c:if test="${sessionScope.whologin == 1}">
+			<li class="w3-hide-small w3-dropdown-hover"><a
+				href="javascript:void(0)" class="w3-hover-none w3-padding-large"
+				title="USER"><%=loginfo.getId()%><i class="fa fa-caret-down"></i></a>
+				<div class="w3-dropdown-content w3-white w3-card-4">
+					<a href="#">Admin Page</a> <a href="#">Order List</a>
+				</div></li>
+		</c:if>
 	</ul>
 </div>
+
+<!-- Navbar on small screens -->
+<div id="navDemo" class="w3-hide w3-hide-large w3-hide-medium w3-top" style="margin-top: 46px">
+	<ul class="w3-navbar w3-left-align w3-black">
+		<li><a class="w3-padding-large" href="#band">ABOUT</a></li>
+		<li><a class="w3-padding-large" href="#tour">MENU</a></li>
+		<li><a class="w3-padding-large" href="#contact">BORAD</a></li>
+		<li><a class="w3-padding-large" href="#">LOCATIONS</a></li>
+	</ul>
+</div>
+
+<script type="text/javascript">
+	function myFunction() {
+		var x = document.getElementById("navDemo");
+		if (x.className.indexOf("w3-show") == -1) {
+			x.className += " w3-show";
+		} else {
+			x.className = x.className.replace(" w3-show", "");
+		}
+	}
+
+	// When the user clicks anywhere outside of the modal, close it
+	var modal = document.getElementById('ticketModal');
+	window.onclick = function(event) {
+		if (event.target == modal) {
+			modal.style.display = "none";
+		}
+	}
+</script>
 </head>
 </body>
 </html>

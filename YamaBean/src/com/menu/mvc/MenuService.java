@@ -13,13 +13,11 @@ import com.menu.dto.MenuDomain;
 import com.menu.dto.MenuModel;
 
 @Service
-public class MenuService implements MuServiceInterface {
+public class MenuService{
 
 	@Autowired
 	private MenuRepository menuRepository ;
 	
-	
-	@Override
 	public int addMenu(MenuDomain menuDomain) {
 		System.out.println("addMenuService");
 		
@@ -57,8 +55,6 @@ public class MenuService implements MuServiceInterface {
 		return menuRepository.createMenu(menuEntity);
 	}
 
-	
-	@Override
 	public List<MenuModel> findByList() {
 		List<MenuEntity> menuEntity = menuRepository.selectList();
 		List<MenuModel> menuModelList = new ArrayList<MenuModel>();
@@ -77,8 +73,7 @@ public class MenuService implements MuServiceInterface {
 		}
 		return menuModelList;
 	}
-	
-	@Override
+
 	public boolean removeMenu(int menu_num) {
 		MenuEntity menuEntity = menuRepository.selectByMenu(menu_num) ;
 		int cnt = menuRepository.deleteMenu(menu_num) ;
@@ -89,7 +84,6 @@ public class MenuService implements MuServiceInterface {
 		return false;
 	}
 
-	@Override
 	public MenuDomain findByMenu(int menu_num) {
 		MenuEntity menuEntity = menuRepository.selectByMenu(menu_num);
 		MenuDomain menuDomain = new MenuDomain();
@@ -111,7 +105,7 @@ public class MenuService implements MuServiceInterface {
 		return menuDomain;
 		
 	}
-	@Override
+	
 	public int modifyMenu(MenuDomain menuDomain) {
 		String saveFileName = FileUtile.makeSavedFileName(menuDomain.getImage().getOriginalFilename()) ;
 		System.out.println("service_modifyMenuSaveFileName" +saveFileName.toString());
@@ -143,7 +137,6 @@ public class MenuService implements MuServiceInterface {
 	}
 
 
-	@Override
 	public MenuModel detailManeu(int menu_num) {
 		MenuEntity menuEntity = menuRepository.selectByMenu(menu_num);
 		MenuModel menuModel = new MenuModel();
