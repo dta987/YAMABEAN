@@ -119,5 +119,12 @@ public class MemberContorller{
 
 		return "list";
 	}
+	
+	@RequestMapping(value = "/admin", method = RequestMethod.GET)
+	public String AdminPage() {
+		System.out.println("관리자 페이지");
+
+		return "admin";
+	}
 
 }

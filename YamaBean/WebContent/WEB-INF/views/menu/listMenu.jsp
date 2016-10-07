@@ -10,6 +10,7 @@
 </head>
 <body>
 
+
 	<!-- !PAGE CONTENT! -->
 	<div class="w3-main" style="margin-left: 20%; margin-right: 20%;">
 		<div class="w3-section w3-padding-16">
@@ -23,7 +24,7 @@
 			</div>
 			<div align="right">
 				<button type="button" class="btn btn-primary"
-					onclick="location.href='/YamaBean/menu/order'">주문하기</button>
+					onclick="location.href='/YamaBean/order/order'">주문하기</button>
 			</div>
 		</h1>
 		<fieldset style="height: 100px">
@@ -55,18 +56,20 @@
 		<div class="w3-row-padding" id="cold_brew">
 			<div class="page-header"
 				style="background-color: #dcdcdc; padding-top: 5px; padding-left: 5px">
-				<h4>콜드브루</h4>
+				<h4>
+					<strong>콜드브루</strong>
+				</h4>
 			</div>
 			<c:forEach var="item" items="${findByList}">
 				<c:if test="${item.getM_category() == '콜드브루' }">
-					<div class="w3-third w3-container w3-margin-bottom">
-						<img src="<%=uploadedFolder%>image_name" alt="Norway"
+					<div class="w3-third w3-container w3-margin-bottom"
+						onclick="location.href='/YamaBean/menu/detailMenu?menu_num=${item.menu_num}'">
+						<img src="<%=uploadedFolder%>${item.image_name}" alt="Norway"
 							style="width: 100%" class="w3-hover-opacity">
 						<div class="w3-container w3-white">
 							<p>
-								<b>${item.getM_name()}</b>
+							<h4>${item.getM_name()}</h4>
 							</p>
-							<p>${item.getContent()}</p>
 						</div>
 					</div>
 				</c:if>
@@ -77,18 +80,20 @@
 		<div class="w3-row-padding" id="brood">
 			<div class="page-header"
 				style="background-color: #dcdcdc; padding-top: 5px; padding-left: 5px">
-				<h4>브루드</h4>
+				<h4>
+					<strong>브루드</strong>
+				</h4>
 			</div>
 			<c:forEach var="item" items="${findByList}">
 				<c:if test="${item.getM_category() == '브루드커피' }">
-					<div class="w3-third w3-container w3-margin-bottom">
-						<img src="<%=uploadedFolder%>image_name" alt="Norway"
+					<div class="w3-third w3-container w3-margin-bottom"
+						onclick="location.href='/YamaBean/menu/detailMenu?menu_num=${item.menu_num}'">
+						<img src="<%=uploadedFolder%>${item.image_name}" alt="Norway"
 							style="width: 100%" class="w3-hover-opacity">
 						<div class="w3-container w3-white">
 							<p>
-								<b>${item.getM_name()}</b>
+							<h4>${item.getM_name()}</h4>
 							</p>
-							<p>${item.getContent()}</p>
 						</div>
 					</div>
 				</c:if>
@@ -99,18 +104,20 @@
 		<div class="w3-row-padding" id="espresso">
 			<div class="page-header"
 				style="background-color: #dcdcdc; padding-top: 5px; padding-left: 5px">
-				<h4>에스프레소</h4>
+				<h4>
+					<strong>에스프레소</strong>
+				</h4>
 			</div>
 			<c:forEach var="item" items="${findByList}">
 				<c:if test="${item.getM_category() == '에스프레소' }">
-					<div class="w3-third w3-container w3-margin-bottom">
-						<img src="<%=uploadedFolder%>image_name" alt="Norway"
+					<div class="w3-third w3-container w3-margin-bottom"
+						onclick="location.href='/YamaBean/menu/detailMenu?menu_num=${item.menu_num}'">
+						<img src="<%=uploadedFolder%>${item.image_name}" alt="Norway"
 							style="width: 100%" class="w3-hover-opacity">
 						<div class="w3-container w3-white">
 							<p>
-								<b>${item.getM_name()}</b>
+							<h4>${item.getM_name()}</h4>
 							</p>
-							<p>${item.getContent()}</p>
 						</div>
 					</div>
 				</c:if>
@@ -121,24 +128,119 @@
 		<div class="w3-row-padding" id="frappuccino">
 			<div class="page-header"
 				style="background-color: #dcdcdc; padding-top: 5px; padding-left: 5px">
-				<h4>프라푸치노</h4>
+				<h4>
+					<strong>프라푸치노</strong>
+				</h4>
 			</div>
 			<c:forEach var="item" items="${findByList}">
 				<c:if test="${item.getM_category() == '프라푸치노' }">
-					<div class="w3-third w3-container w3-margin-bottom">
-						<img src="<%=uploadedFolder%>image_name" alt="Norway"
+					<div class="w3-third w3-container w3-margin-bottom"
+						onclick="location.href='/YamaBean/menu/detailMenu?menu_num=${item.menu_num}'">
+						<img src="<%=uploadedFolder%>${item.image_name}" alt="Norway"
 							style="width: 100%" class="w3-hover-opacity">
 						<div class="w3-container w3-white">
 							<p>
-								<b>${item.getM_name()}</b>
+							<h4>${item.getM_name()}</h4>
 							</p>
-							<p>${item.getContent()}</p>
 						</div>
 					</div>
 				</c:if>
 			</c:forEach>
 		</div>
 	</div>
+
+	<script type="text/javascript">
+		var cold_brew = $("div[id='cold_brew']");
+		var brood = $("div[id='brood']");
+		var espresso = $("div[id='espresso']");
+		var frappuccino = $("div[id='frappuccino']");
+
+		$(function() {
+			$("input[name='menu_all']").change(function() {
+				if ($("input[name='menu_all']").is(":checked") == true) {
+					
+					$("input[name='cold_brew']").attr("checked", false);
+					$("input[name='brood']").attr("checked", false);
+					$("input[name='espresso']").attr("checked", false);
+					$("input[name='frappuccino']").attr("checked", false);
+					
+					if (cold_brew.attr("class").indexOf("hide") != -1) {
+						cold_brew.attr("class", "w3-row-padding");
+					}
+					if (brood.attr("class").indexOf("hide") != -1) {
+						brood.attr("class", "w3-row-padding");
+					}
+					if (espresso.attr("class").indexOf("hide") != -1) {
+						espresso.attr("class", "w3-row-padding");
+					}
+					if (frappuccino.attr("class").indexOf("hide") != -1) {
+						frappuccino.attr("class", "w3-row-padding");
+					}
+				} else {
+					if (cold_brew.attr("class").indexOf("hide") == -1) {
+						cold_brew.attr("class", "w3-row-padding hide");
+					}
+					if (brood.attr("class").indexOf("hide") == -1) {
+						brood.attr("class", "w3-row-padding hide");
+					}
+					if (espresso.attr("class").indexOf("hide") == -1) {
+						espresso.attr("class", "w3-row-padding hide");
+					}
+					if (frappuccino.attr("class").indexOf("hide") == -1) {
+						frappuccino.attr("class", "w3-row-padding hide");
+					}
+				}
+			});
+			
+			$("input[name='cold_brew']").change(function() {
+				if ($("input[name='cold_brew']").is(":checked") == true) {
+					$("input[name='menu_all']").attr("checked", false);
+					if (cold_brew.attr("class").indexOf("hide") != -1) {
+						cold_brew.attr("class", "w3-row-padding");
+					}
+				} else {
+					cold_brew.attr("class", "w3-row-padding hide");
+				}
+				
+			});
+			$("input[name='brood']").change(function() {
+				if ($("input[name='brood']").is(":checked") == true) {
+					$("input[name='menu_all']").attr("checked", false);
+					if (brood.attr("class").indexOf("hide") != -1) {
+						brood.attr("class", "w3-row-padding");
+					} 
+				} else {
+					brood.attr("class", "w3-row-padding hide");
+				}
+				
+			});
+			$("input[name='espresso']").change(function() {
+				if ($("input[name='espresso']").is(":checked") == true) {
+					$("input[name='menu_all']").attr("checked", false);
+					if (espresso.attr("class").indexOf("hide") != -1) {
+						espresso.attr("class", "w3-row-padding");
+					} 
+				} else {
+					espresso.attr("class", "w3-row-padding hide");
+				}
+				
+			});
+			$("input[name='frappuccino']").change(function() {
+				if ($("input[name='frappuccino']").is(":checked") == true) {
+					$("input[name='menu_all']").attr("checked", false);
+					if (frappuccino.attr("class").indexOf("hide") != -1) {
+						frappuccino.attr("class", "w3-row-padding");
+					} 
+				} else {
+					frappuccino.attr("class", "w3-row-padding hide");
+				}
+				
+			});
+		});
+		
+		
+
+	</script>
 
 </body>
 </html>

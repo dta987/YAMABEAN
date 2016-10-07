@@ -6,7 +6,7 @@
 <%@ include file="/WEB-INF/common/common.jsp"%>
 <%@ taglib uri="http://www.springframework.org/tags/form" prefix="form"%>
 <%
-	Member loginfo = (Member)session.getAttribute("loginfo");
+	Member loginfo = (Member) session.getAttribute("loginfo");
 
 	int whologin = 0; // 0 : 미로그인,  1 : 회원 로그인, 2 : 관리자 로그인
 
@@ -44,9 +44,12 @@
 		<li class="w3-hide-small"><a href="#" class="w3-padding-large">ABOUT</a></li>
 		<li class="w3-hide-small"><a href="/YamaBean/menu/listMenu"
 			class="w3-padding-large">MENU</a></li>
-			<li class="w3-hide-small"><a href="/YamaBean/board/move/" class="w3-padding-large">BORAD</a></li>
+		<li class="w3-hide-small"><a href="/YamaBean/board/move/"
+			class="w3-padding-large">BORAD</a></li>
 		<li class="w3-hide-small"><a href="/YamaBean/storeMap/move"
 			class="w3-padding-large">LOCATIONS</a></li>
+		<li class="w3-hide-small"><a href="/YamaBean/admin/page"
+			class="w3-padding-large">ADMIN</a></li>
 		<c:if test="${sessionScope.whologin == 0}">
 			<li class="w3-hide-small w3-right"><a
 				href="/YamaBean/member/login" class="w3-padding-large">LOGIN</a></li>
@@ -65,14 +68,16 @@
 				href="javascript:void(0)" class="w3-hover-none w3-padding-large"
 				title="USER"><%=loginfo.getId()%><i class="fa fa-caret-down"></i></a>
 				<div class="w3-dropdown-content w3-white w3-card-4">
-					<a href="#">Admin Page</a> <a href="#">Order List</a>
+					<a href="/YamaBean/member/admin">Admin Page</a> <a href="#">Order
+						List</a>
 				</div></li>
 		</c:if>
 	</ul>
 </div>
 
 <!-- Navbar on small screens -->
-<div id="navDemo" class="w3-hide w3-hide-large w3-hide-medium w3-top" style="margin-top: 46px">
+<div id="navDemo" class="w3-hide w3-hide-large w3-hide-medium w3-top"
+	style="margin-top: 46px">
 	<ul class="w3-navbar w3-left-align w3-black">
 		<li><a class="w3-padding-large" href="#band">ABOUT</a></li>
 		<li><a class="w3-padding-large" href="#tour">MENU</a></li>
