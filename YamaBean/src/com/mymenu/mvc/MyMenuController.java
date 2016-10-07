@@ -7,7 +7,10 @@ import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
+import org.springframework.web.bind.annotation.RequestParam;
 
+import com.menu.dto.MenuModel;
+import com.menu.mvc.MenuService;
 import com.mymenu.dto.MyMenuDomain;
 
 @Controller
@@ -25,31 +28,49 @@ public class MyMenuController implements MineControllerInterface {
 	
 	@Override
 	@RequestMapping(value="/registerMyMenu", method=RequestMethod.GET)
-	public String register() {
-		System.out.println("==mymenuController_register==");
-		return  "registerMyMenu";
+	@ModelAttribute("allFindMenus")
+	public List<MenuModel> menusAllList() {
+		System.out.println("==menus 모든 리스트 불러오기==");
+		return myMenuService.menuAllList();
 	}
 
+	
+	
 	@Override
 	@RequestMapping(value="/registerMyMenu", method=RequestMethod.POST)
 	public String registerMyMenu(@ModelAttribute MyMenuDomain mymenuDomain) {
+		System.out.println(mymenuDomain.getMember_id());
+		System.out.println(mymenuDomain.getMenu_num());
+		System.out.println(mymenuDomain.getMy_optionAmount());
+		System.out.println(mymenuDomain.getMy_optionShot());
+		System.out.println(mymenuDomain.getMy_optionSize());
+		System.out.println(mymenuDomain.getMy_optionWhip());
+		System.out.println(mymenuDomain.getMymenu_num());
+		System.out.println(mymenuDomain.getMymenu_price());
+		System.out.println(mymenuDomain.getSub_day());
 		System.out.println("controller_mymenuName : " +mymenuDomain.getMymenu_name());
 		myMenuService.register(mymenuDomain);
 		return "redirect:/mymenu/listMyMenu";
 	}
 
+	
+	@Override
+	@RequestMapping(value="/listMyMenu", method=RequestMethod.GET)
+	@ModelAttribute("allListMyMenu")
+	public List<MyMenuDomain> mymenuList() {
+		System.out.println("==mymenuList 불러오기==");
+		return myMenuService.mymenuList();
+	}
+
+	
+	
 	@Override
 	public String deleteMyMenu(int mymenu_num) {
 		// TODO Auto-generated method stub
 		return null;
 	}
 
-	@Override
-	public List<MyMenuDomain> mymenuList() {
-		// TODO Auto-generated method stub
-		return null;
-	}
-
+	
 	@Override
 	public String updateMyMenu(MyMenuDomain mymenuDomain) {
 		// TODO Auto-generated method stub

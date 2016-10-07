@@ -7,22 +7,25 @@ public class MyMenuDomain {
 
 	//view
 	private int mymenu_num ;
-	private Member member_id ; //fk, member : id 
+	private String member_id ; //fk, member : id 
 	private String mymenu_name ;
-	private MenuEntity menu ; //fk, menus : menu_num 
-	private String my_option ; 
+	private int menu_num ; //fk, menus : menu_num 
+	private String my_optionSize ; 
 	private String sub_day ;
-	
+	private int mymenu_price;
+	private int my_optionAmount ;
+	private int my_optionShot ;
+	private int my_optionWhip ;
 	public int getMymenu_num() {
 		return mymenu_num;
 	}
 	public void setMymenu_num(int mymenu_num) {
 		this.mymenu_num = mymenu_num;
 	}
-	public Member getMember_id() {
+	public String getMember_id() {
 		return member_id;
 	}
-	public void setMember_id(Member member_id) {
+	public void setMember_id(String member_id) {
 		this.member_id = member_id;
 	}
 	public String getMymenu_name() {
@@ -31,17 +34,17 @@ public class MyMenuDomain {
 	public void setMymenu_name(String mymenu_name) {
 		this.mymenu_name = mymenu_name;
 	}
-	public MenuEntity getMenu() {
-		return menu;
+	public int getMenu_num() {
+		return menu_num;
 	}
-	public void setMenu(MenuEntity menu) {
-		this.menu = menu;
+	public void setMenu_num(int menu_num) {
+		this.menu_num = menu_num;
 	}
-	public String getMy_option() {
-		return my_option;
+	public String getMy_optionSize() {
+		return my_optionSize;
 	}
-	public void setMy_option(String my_option) {
-		this.my_option = my_option;
+	public void setMy_optionSize(String my_optionSize) {
+		this.my_optionSize = my_optionSize;
 	}
 	public String getSub_day() {
 		return sub_day;
@@ -49,5 +52,31 @@ public class MyMenuDomain {
 	public void setSub_day(String sub_day) {
 		this.sub_day = sub_day;
 	}
+	public int getMymenu_price() {
+		return mymenu_price;
+	}
+	public void setMymenu_price(int mymenu_price) {
+		this.mymenu_price = mymenu_price;
+	}
+	public int getMy_optionAmount() {
+		return my_optionAmount;
+	}
+	public void setMy_optionAmount(int my_optionAmount) {
+		this.my_optionAmount = my_optionAmount;
+	}
+	public int getMy_optionShot() {
+		return my_optionShot;
+	}
+	public void setMy_optionShot(int my_optionShot) {
+		this.my_optionShot = my_optionShot;
+	}
+	public int getMy_optionWhip() {
+		return my_optionWhip;
+	}
+	public void setMy_optionWhip(int my_optionWhip) {
+		this.my_optionWhip = my_optionWhip;
+	}
+	
+
 	
 }

@@ -6,6 +6,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Repository;
 
 import com.menu.dto.MenuEntity;
+import com.menu.dto.MenuModel;
 import com.mymenu.dto.MyMenuDomain;
 import com.mymenu.mapper.MyMenuMapper;
 
@@ -15,29 +16,32 @@ public class MyMenuRepository implements MineRepositoryInterface {
 	@Autowired
 	private MyMenuMapper myMenuMapper ;
 
-	
+	@Override
+	public List<MenuEntity> menuAllList() {
+		return myMenuMapper.allListMenu();
+	}
 	
 	@Override
-	public String register(MyMenuDomain mymenuDomain) {
+	public int register(MyMenuDomain mymenuDomain) {
 		return myMenuMapper.addMyMenu(mymenuDomain);
 	}
 
 	@Override
-	public String deleteMyMenu(int mymenu_num) {
-		// TODO Auto-generated method stub
-		return null;
-	}
-
-	@Override
 	public List<MyMenuDomain> mymenuList() {
+		return myMenuMapper.viewMyMenuList();
+	}
+	
+	@Override
+	public int deleteMyMenu(int mymenu_num) {
 		// TODO Auto-generated method stub
-		return null;
+		return 0;
 	}
 
+
 	@Override
-	public String updateMyMenu(MyMenuDomain mymenuDomain) {
+	public int updateMyMenu(MyMenuDomain mymenuDomain) {
 		// TODO Auto-generated method stub
-		return null;
+		return 0;
 	}
 
 	@Override
@@ -45,5 +49,7 @@ public class MyMenuRepository implements MineRepositoryInterface {
 		// TODO Auto-generated method stub
 		return null;
 	}
+
+	
 
 }
