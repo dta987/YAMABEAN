@@ -46,6 +46,7 @@
 		<li class="w3-hide-small"><a href="/YamaBean/mymenu/mymenu"class="w3-padding-large">MY MENU</a></li>
 			<li class="w3-hide-small"><a href="/YamaBean/board/move/" class="w3-padding-large">BORAD</a></li>
 		<li class="w3-hide-small"><a href="/YamaBean/storeMap/move" class="w3-padding-large">LOCATIONS</a></li>
+		<li class="w3-hide-small"><a href="/YamaBean/member/move" class="w3-padding-large">MEMBER</a></li>
 		<c:if test="${sessionScope.whologin == 0}">
 			<li class="w3-hide-small w3-right"><a href="/YamaBean/member/login" class="w3-padding-large">LOGIN</a></li>
 		</c:if>
