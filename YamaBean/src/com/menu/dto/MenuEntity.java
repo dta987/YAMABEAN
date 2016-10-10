@@ -6,13 +6,11 @@ public class MenuEntity {
 	// DB
 	private int menu_num ;
 	private String m_name ;
-
 	private String m_group ;
 	private String m_category ; 
 	private String image ;	
 	private String content ; 
 	private int price ;
-	private int qty ;
 	
 	
 	public String getM_name() {
@@ -57,13 +55,7 @@ public class MenuEntity {
 	public void setPrice(int price) {
 		this.price = price;
 	}
-	public int getQty() {
-		return qty;
-	}
-	public void setQty(int qty) {
-		this.qty = qty;
-	}
-	
+
 	
 }
 

@@ -8,7 +8,7 @@ import com.mymenu.dto.MyMenuDomain;
 
 public interface MineControllerInterface {
 	
-	public String register() ;
+	public List<MenuModel> menusAllList() ; //menus 모든 리스트 불러오기
 
 	public String registerMyMenu(MyMenuDomain mymenuDomain);	//mymenu 등록
 	
