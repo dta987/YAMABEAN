@@ -194,7 +194,12 @@
 			
 			$("input[name='cold_brew']").change(function() {
 				if ($("input[name='cold_brew']").is(":checked") == true) {
-					$("input[name='menu_all']").attr("checked", false);
+					if($("input[name='menu_all']").is(":checked") == true) {
+						$("input[name='menu_all']").attr("checked", false);
+						brood.attr("class", "w3-row-padding hide");
+						espresso.attr("class", "w3-row-padding hide");
+						frappuccino.attr("class", "w3-row-padding hide");
+					}
 					if (cold_brew.attr("class").indexOf("hide") != -1) {
 						cold_brew.attr("class", "w3-row-padding");
 					}
@@ -203,9 +208,14 @@
 				}
 				
 			});
-			$("input[name='brood']").change(function() {
+			$("input[name='brood']").change(function() {				
 				if ($("input[name='brood']").is(":checked") == true) {
-					$("input[name='menu_all']").attr("checked", false);
+					if($("input[name='menu_all']").is(":checked") == true) {
+						$("input[name='menu_all']").attr("checked", false);
+						cold_brew.attr("class", "w3-row-padding hide");
+						espresso.attr("class", "w3-row-padding hide");
+						frappuccino.attr("class", "w3-row-padding hide");
+					}
 					if (brood.attr("class").indexOf("hide") != -1) {
 						brood.attr("class", "w3-row-padding");
 					} 
@@ -216,7 +226,12 @@
 			});
 			$("input[name='espresso']").change(function() {
 				if ($("input[name='espresso']").is(":checked") == true) {
-					$("input[name='menu_all']").attr("checked", false);
+					if($("input[name='menu_all']").is(":checked") == true) {
+						$("input[name='menu_all']").attr("checked", false);
+						cold_brew.attr("class", "w3-row-padding hide");
+						brood.attr("class", "w3-row-padding hide");
+						frappuccino.attr("class", "w3-row-padding hide");
+					}
 					if (espresso.attr("class").indexOf("hide") != -1) {
 						espresso.attr("class", "w3-row-padding");
 					} 
@@ -227,7 +242,12 @@
 			});
 			$("input[name='frappuccino']").change(function() {
 				if ($("input[name='frappuccino']").is(":checked") == true) {
-					$("input[name='menu_all']").attr("checked", false);
+					if($("input[name='menu_all']").is(":checked") == true) {
+						$("input[name='menu_all']").attr("checked", false);
+						cold_brew.attr("class", "w3-row-padding hide");
+						brood.attr("class", "w3-row-padding hide");
+						espresso.attr("class", "w3-row-padding hide");
+					}
 					if (frappuccino.attr("class").indexOf("hide") != -1) {
 						frappuccino.attr("class", "w3-row-padding");
 					} 

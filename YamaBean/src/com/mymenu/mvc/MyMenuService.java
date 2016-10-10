@@ -1,0 +1,50 @@
+package com.mymenu.mvc;
+
+import java.util.List;
+
+import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.stereotype.Service;
+
+import com.mymenu.dto.MyMenuDomain;
+
+@Service
+public class MyMenuService implements MineServiceInterface {
+
+	@Autowired
+	private MyMenuRepository myMenuRepository ;
+	
+	
+	
+	
+	@Override
+	public String register(MyMenuDomain mymenuDomain) {
+		return myMenuRepository.register(mymenuDomain);
+	}
+
+	@Override
+	public String deleteMyMenu(int mymenu_num) {
+		// TODO Auto-generated method stub
+		return null;
+	}
+
+	@Override
+	public List<MyMenuDomain> mymenuList() {
+		// TODO Auto-generated method stub
+		return null;
+	}
+
+	@Override
+	public String updateMyMenu(MyMenuDomain mymenuDomain) {
+		// TODO Auto-generated method stub
+		return null;
+	}
+
+	@Override
+	public MyMenuDomain detailMyMenu(int mymenu_num, MyMenuDomain mymenuDomain) {
+		// TODO Auto-generated method stub
+		return null;
+	}
+
+
+
+}

@@ -17,28 +17,14 @@ public class MemberService{
 		return memberRepository.insertMember(member);
 	}
 
-	public boolean findByMember(String id, String password) {
-
-		boolean loginCondition = false;
+	public Member findByMember(String id, String password) {
 
 		Member member = new Member();
 
 		if (memberRepository.selectByMember(id) != null) {
 			member = memberRepository.selectByMember(id);
 		}
-
-		if (id.equals(member.getId())) {
-			if (password.equals(member.getPassword())) {
-				loginCondition = true;
-
-			} else {
-				loginCondition = false;
-			}
-		} else {
-			loginCondition = false;
-		}
-
-		return loginCondition;
+		return member;
 	}
 
 	public Member findByMember(String id) {

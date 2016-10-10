@@ -17,7 +17,7 @@ import org.springframework.web.bind.annotation.RequestParam;
 import com.member.dto.Member;
 
 @Controller
-public class MemberContorller{
+public class MemberContorller {
 
 	@Autowired
 	private MemberService memberService;
@@ -37,21 +37,29 @@ public class MemberContorller{
 		System.out.println("Id: " + id);
 		System.out.println("Password" + password);
 
-		boolean loginCondition = memberService.findByMember(id, password);
+		Member member = memberService.findByMember(id, password);
 		String msg = "";
 		model.addAttribute("msg", msg);
-		if (loginCondition) {
-			httpSession.setAttribute("loginInfo", id);
-			msg = "로그인 성공";
-			model.addAttribute("msg", msg);
-			return "redirect:/";
+
+		if (id.equals(member.getId())) {
+			if (password.equals(member.getPassword())) {
+				httpSession.setAttribute("loginInfo", id);
+				msg = "로그인 성공";
+				model.addAttribute("msg", msg);
+				return "redirect:/";
+
+			} else {
+				msg = "아이디나 비밀번호가 잘못 되었습니다";
+				model.addAttribute("msg", msg);
+				return "login";
+			}
 		} else {
 			msg = "아이디나 비밀번호가 잘못 되었습니다";
 			model.addAttribute("msg", msg);
 			return "login";
 		}
 	}
-	
+
 	@RequestMapping(value = "/signup", method = RequestMethod.GET)
 	public String createMember() {
 
@@ -69,7 +77,6 @@ public class MemberContorller{
 
 		return "redirect:/";
 	}
-		
 
 	public String forgottenID(String name, String email, Model model) {
 		System.out.println("forgottenID 컨트롤러 접근");
@@ -106,11 +113,11 @@ public class MemberContorller{
 		return "redirect:/member/list";
 	}
 
-	@RequestMapping(value="/update", method=RequestMethod.GET)
+	@RequestMapping(value = "/update", method = RequestMethod.GET)
 	public String updateMember(@RequestParam String id) {
 		Member member = memberService.updateMember(id);
 		return "list";
-			}
+	}
 
 	@RequestMapping(value = "/update", method = RequestMethod.POST)
 	public String alertMember(Member member, Model model) {

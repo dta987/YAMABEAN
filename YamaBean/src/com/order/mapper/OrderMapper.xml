@@ -1,0 +1,23 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper 
+	PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+	"http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+
+<mapper namespace="com.order.mapper.OrderMapper">
+    
+    <resultMap type="com.menu.dto.MenuEntity" id="menuResult">
+		<id property="menu_num"/>
+		<result property="m_group" column="m_group" />
+		<result property="m_category" column="m_category" />
+		<result property="m_name" column="m_name"/>
+		<result property="image" column="image" />
+		<result property="content" column="content" />
+		<result property="price" column="price" />
+		<result property="qty" column="qty" />
+	</resultMap>
+    
+    <select id="selectList" resultMap="menuResult">
+		select * from menus order by menu_num desc
+	</select>
+	
+</mapper>
