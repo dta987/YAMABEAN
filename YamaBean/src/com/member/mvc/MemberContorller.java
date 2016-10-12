@@ -39,12 +39,11 @@ public class MemberContorller {
 
 		Member member = memberService.findByMember(id, password);
 		String msg = "";
-		model.addAttribute("msg", msg);
 
 		if (id.equals(member.getId())) {
 			if (password.equals(member.getPassword())) {
-				httpSession.setAttribute("loginInfo", id);
-				msg = "로그인 성공";
+				msg = member.getId()+"님 환영합니다.";
+				httpSession.setAttribute("loginInfo", member);
 				model.addAttribute("msg", msg);
 				return "redirect:/";
 

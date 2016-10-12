@@ -6,7 +6,7 @@
 <%@ include file="/WEB-INF/common/common.jsp"%>
 <%@ taglib uri="http://www.springframework.org/tags/form" prefix="form"%>
 <%
-	Member loginfo = (Member) session.getAttribute("loginfo");
+	Member loginfo = (Member) session.getAttribute("loginInfo");
 
 	int whologin = 0; // 0 : 미로그인,  1 : 회원 로그인, 2 : 관리자 로그인
 
@@ -63,15 +63,15 @@
 		</c:if>
 
 		<c:if test="${sessionScope.whologin == 1}">
-			<li class="w3-hide-small w3-dropdown-hover"><a
+			<li class="w3-hide-small w3-dropdown-hover w3-right"><a
 				href="javascript:void(0)" class="w3-hover-none w3-padding-large"
 				title="USER"><%=loginfo.getId()%><i class="fa fa-caret-down"></i></a>
 				<div class="w3-dropdown-content w3-white w3-card-4">
 					<a href="#">MY PAGE</a> <a href="#">ORDER</a> <a href="#">CART</a>
 				</div></li>
 		</c:if>
-		<c:if test="${sessionScope.whologin == 1}">
-			<li class="w3-hide-small w3-dropdown-hover"><a
+		<c:if test="${sessionScope.whologin == 2}">
+			<li class="w3-hide-small w3-dropdown-hover w3-right"><a
 				href="javascript:void(0)" class="w3-hover-none w3-padding-large"
 				title="USER"><%=loginfo.getId()%><i class="fa fa-caret-down"></i></a>
 				<div class="w3-dropdown-content w3-white w3-card-4">
