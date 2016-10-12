@@ -54,7 +54,7 @@
 			class="w3-padding-large">MENU</a></li>
 		<li class="w3-hide-small"><a href="/YamaBean/mymenu/mymenu"
 			class="w3-padding-large">MY MENU</a></li>
-		<li class="w3-hide-small"><a href="/YamaBean/member/move"
+		<li class="w3-hide-small"><a href="/YamaBean/member/mymember"
 			class="w3-padding-large">MEMBER</a></li>
 
 		<c:if test="${sessionScope.whologin == 0}">

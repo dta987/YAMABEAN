@@ -35,7 +35,7 @@ public class MemberContorller {
 		System.out.println("login 컨트롤러 접근");
 
 		System.out.println("Id: " + id);
-		System.out.println("Password" + password);
+		System.out.println("Password: " + password);
 
 		Member member = memberService.findByMember(id, password);
 		String msg = "";
@@ -101,7 +101,7 @@ public class MemberContorller {
 		System.out.println(members.size());
 
 		model.addAttribute("members", members);
-		return "list";
+		return "listmember";
 	}
 
 	@RequestMapping(value = "/delete", method = RequestMethod.GET)
@@ -109,13 +109,13 @@ public class MemberContorller {
 		System.out.println("deleteMember 컨트롤러 접근");
 		int count = memberService.removeMember(id);
 
-		return "redirect:/member/list";
+		return "redirect:/member/listmember";
 	}
 
 	@RequestMapping(value = "/update", method = RequestMethod.GET)
 	public String updateMember(@RequestParam String id) {
 		Member member = memberService.updateMember(id);
-		return "list";
+		return "listmember";
 	}
 
 	@RequestMapping(value = "/update", method = RequestMethod.POST)
@@ -123,7 +123,7 @@ public class MemberContorller {
 		System.out.println("회원수정 컨트롤러 접근");
 		memberService.modifyMember(member);
 
-		return "list";
+		return "listmember";
 	}
 	
 	@RequestMapping(value = "/admin", method = RequestMethod.GET)
