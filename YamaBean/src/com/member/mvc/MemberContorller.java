@@ -39,12 +39,11 @@ public class MemberContorller {
 
 		Member member = memberService.findByMember(id, password);
 		String msg = "";
-		model.addAttribute("msg", msg);
 
 		if (id.equals(member.getId())) {
 			if (password.equals(member.getPassword())) {
-				httpSession.setAttribute("loginInfo", id);
-				msg = "로그인 성공";
+				msg = member.getId()+"님 환영합니다.";
+				httpSession.setAttribute("loginInfo", member);
 				model.addAttribute("msg", msg);
 				return "redirect:/";
 
@@ -125,6 +124,13 @@ public class MemberContorller {
 		memberService.modifyMember(member);
 
 		return "list";
+	}
+	
+	@RequestMapping(value = "/admin", method = RequestMethod.GET)
+	public String AdminPage() {
+		System.out.println("관리자 페이지");
+
+		return "admin";
 	}
 
 }

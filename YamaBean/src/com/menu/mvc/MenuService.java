@@ -68,7 +68,7 @@ public class MenuService{
 			menuModel.setContent(menuListEntity.getContent());
 			menuModel.setPrice(menuListEntity.getPrice());
 			
-			System.out.println("service_menuModel.getM_name : "+menuModel.getM_name());
+			System.out.println("service_menuModel.getM_name : "+menuModel.getMenu_num());
 			menuModelList.add(menuModel);
 		}
 		return menuModelList;

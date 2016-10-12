@@ -75,11 +75,6 @@ public class MenuContorller {
 		return "redirect:/menu/listMenu";
 	}
 
-	@RequestMapping(value = "/order")
-	public String OrderMenu() {
-		return "order";
-	}
-
 	@RequestMapping(value = "/detailMenu", method = RequestMethod.GET)
 	public MenuModel detailMenu(@RequestParam int menu_num,
 			@ModelAttribute MenuModel menuModel) {
