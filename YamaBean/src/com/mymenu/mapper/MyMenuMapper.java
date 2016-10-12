@@ -18,7 +18,7 @@ public interface MyMenuMapper {
 		
 	public int replaceMyMenu(MyMenuDomain mymenuDomain);	//mymenu 수정
 	
-	public MyMenuDomain detailViewMyMenu(int mymenu_num, MyMenuDomain mymenuDomain); //mymenu 상세보기
+	public MyMenuDomain detailViewMyMenu(int mymenu_num); //mymenu 상세보기
 
 	
 

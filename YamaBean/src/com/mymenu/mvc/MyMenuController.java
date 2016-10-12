@@ -61,27 +61,28 @@ public class MyMenuController implements MineControllerInterface {
 		System.out.println("==mymenuList 불러오기==");
 		return myMenuService.mymenuList();
 	}
-
-	
 	
 	@Override
-	public String deleteMyMenu(int mymenu_num) {
-		// TODO Auto-generated method stub
-		return null;
+	@RequestMapping(value="/deleteMyMenu", method=RequestMethod.GET)
+	public String deleteMyMenu(@RequestParam int mymenu_num) {
+		int deleteMyMenu_num = myMenuService.deleteMyMenu(mymenu_num);
+		System.out.println("deleteMyMenu_num : " +mymenu_num +" / "+ deleteMyMenu_num);
+		return "redirect:/mymenu/listMyMenu";
 	}
 
+
+	@Override
+	@RequestMapping(value="/detailMyMenu", method=RequestMethod.GET)
+	public MyMenuDomain detailMyMenu(@RequestParam int mymenu_num, @ModelAttribute MyMenuDomain mymenuDomain) {
+		mymenuDomain = myMenuService.detailMyMenu(mymenu_num);
+		return mymenuDomain;
+	}
 	
 	@Override
 	public String updateMyMenu(MyMenuDomain mymenuDomain) {
-		// TODO Auto-generated method stub
 		return null;
 	}
 
-	@Override
-	public MyMenuDomain detailMyMenu(int mymenu_num, MyMenuDomain mymenuDomain) {
-		// TODO Auto-generated method stub
-		return null;
-	}
 
 
 

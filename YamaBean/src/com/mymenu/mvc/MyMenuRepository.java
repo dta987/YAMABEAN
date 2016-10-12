@@ -33,8 +33,7 @@ public class MyMenuRepository implements MineRepositoryInterface {
 	
 	@Override
 	public int deleteMyMenu(int mymenu_num) {
-		// TODO Auto-generated method stub
-		return 0;
+		return myMenuMapper.removeMyMenu(mymenu_num);
 	}
 
 
@@ -45,9 +44,8 @@ public class MyMenuRepository implements MineRepositoryInterface {
 	}
 
 	@Override
-	public MyMenuDomain detailMyMenu(int mymenu_num, MyMenuDomain mymenuDomain) {
-		// TODO Auto-generated method stub
-		return null;
+	public MyMenuDomain detailMyMenu(int mymenu_num) {
+		return myMenuMapper.detailViewMyMenu(mymenu_num);
 	}
 
 	

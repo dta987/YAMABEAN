@@ -39,7 +39,6 @@ public class MyMenuService implements MineServiceInterface {
 	
 	@Override
 	public int register(MyMenuDomain mymenuDomain) {
-		
 		return myMenuRepository.register(mymenuDomain);
 	}
 	
@@ -50,8 +49,7 @@ public class MyMenuService implements MineServiceInterface {
 
 	@Override
 	public int deleteMyMenu(int mymenu_num) {
-		// TODO Auto-generated method stub
-		return 0;
+		return myMenuRepository.deleteMyMenu(mymenu_num);
 	}
 
 	
@@ -62,9 +60,8 @@ public class MyMenuService implements MineServiceInterface {
 	}
 
 	@Override
-	public MyMenuDomain detailMyMenu(int mymenu_num, MyMenuDomain mymenuDomain) {
-		// TODO Auto-generated method stub
-		return null;
+	public MyMenuDomain detailMyMenu(int mymenu_num) {
+		return myMenuRepository.detailMyMenu(mymenu_num);
 	}
 
 

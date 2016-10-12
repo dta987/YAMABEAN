@@ -32,8 +32,8 @@
 						<td>${mymenulist.my_optionSize}</td>
 						<td>${mymenulist.mymenu_price}</td>
 						<td>수량 ${mymenulist.my_optionAmount} / 샷 ${mymenulist.my_optionShot} / 휘핑 ${mymenulist.my_optionWhip}</td>
-						<td><a href="updateMyMenu?id=${mymenulist.mymenu_name}">수정</a></td>
-						<td><a href="deleteMyMenu?id=${mymenulist.mymenu_name}">삭제</a></td>
+						<td><a href="/YamaBean/mymenu/updateMyMenu?mymenu_num=${mymenulist.mymenu_num}">수정</a></td>
+						<td><a href="/YamaBean/mymenu/deleteMyMenu?mymenu_num=${mymenulist.mymenu_num}">삭제</a></td>
 					</tr>
 				</c:forEach>
 			</table>

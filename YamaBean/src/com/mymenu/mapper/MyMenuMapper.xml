@@ -45,12 +45,21 @@
 		<result property="my_optionShot" column="my_optionShot" />
 		<result property="my_optionWhip" column="my_optionWhip" />
 	</resultMap>
+	
+	<delete id="removeMyMenu" parameterType="int">
+		delete mymenus where mymenu_num=#{mymenu_num}
+	</delete>
+	
+	<select id="detailViewMyMenu" resultMap="mymenuAllResult">
+		select member_id, mymenu_name, menu_num, my_optionSize, mymenu_price, my_optionAmount, my_optionShot, my_optionWhip, to_char(sub_day, 'yyyy-MM-dd') as s_day from mymenus where mymenu_num=#{mymenu_num}
+	</select>
+	
+	<!-- <update id="" parameterType="com.mymenu.dto.MyMenuDomain">
+		update mymenus set mymenu_name==${mymenu_name} menu_num=${menu_num}, my_optionSize=${my_optionSize}, mymenu_price==${mymenu_price}, my_optionAmount=${my_optionAmount}, my_optionShot=${my_optionShot}, my_optionWhip=${my_optionWhip} where mymenu_num=${mymenu_num}
+	</update>
+ -->
 
-
-	<!-- public int removeMyMenu(int mymenu_num) ; //mymenu 삭제 public List<MymenuDomain> 
-		viewMyMenuList(); //mymenu 리스트 public int replaceMyMenu(MymenuDomain mymenuDomain); 
-		//mymenu 수정 public MymenuDomain detailViewMyMenu(int mymenu_num, MymenuDomain 
-		mymenuDomain); //mymenu 상세보기 -->
+	<!-- public int replaceMyMenu(MymenuDomain mymenuDomain); 	//mymenu 수정 -->
 
 
 </mapper>
