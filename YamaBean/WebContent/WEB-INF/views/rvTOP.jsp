@@ -50,8 +50,6 @@
 			class="w3-padding-large">LOCATIONS</a></li>
 		<li class="w3-hide-small"><a href="/YamaBean/admin/page"
 			class="w3-padding-large">ADMIN</a></li>
-		<li class="w3-hide-small"><a href="/YamaBean/menu/listMenu"
-			class="w3-padding-large">MENU</a></li>
 		<li class="w3-hide-small"><a href="/YamaBean/mymenu/mymenu"
 			class="w3-padding-large">MY MENU</a></li>
 		<li class="w3-hide-small"><a href="/YamaBean/member/move"

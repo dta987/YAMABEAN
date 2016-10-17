@@ -10,7 +10,6 @@ import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RequestParam;
 
 import com.menu.dto.MenuModel;
-import com.menu.mvc.MenuService;
 import com.mymenu.dto.MyMenuDomain;
 
 @Controller
@@ -24,6 +23,7 @@ public class MyMenuController implements MineControllerInterface {
 		System.out.println("==mymenu ¿Ãµø==");
 		return "mymenu";
 	}
+
 	
 	
 	@Override
