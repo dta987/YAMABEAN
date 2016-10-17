@@ -42,10 +42,20 @@ public class MemberContorller {
 
 		if (id.equals(member.getId())) {
 			if (password.equals(member.getPassword())) {
-				msg = member.getId()+"님 환영합니다.";
-				httpSession.setAttribute("loginInfo", member);
-				model.addAttribute("msg", msg);
-				return "redirect:/";
+				if(member.getId().equals("admin")) {
+					msg = member.getId()+"님 환영합니다.";
+					httpSession.setAttribute("loginInfo", member);
+					httpSession.setAttribute("whologin", 2);
+					model.addAttribute("msg", msg);
+					return "redirect:/";
+				} else {
+					msg = member.getId()+"님 환영합니다.";
+					httpSession.setAttribute("loginInfo", member);
+					httpSession.setAttribute("whologin", 1);
+					model.addAttribute("msg", msg);
+					return "redirect:/";
+				}
+				
 
 			} else {
 				msg = "아이디나 비밀번호가 잘못 되었습니다";

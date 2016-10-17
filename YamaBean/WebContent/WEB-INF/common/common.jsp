@@ -6,22 +6,9 @@
 %>
 
 <!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3.org/TR/html4/loose.dtd">
-
-
-<%
-	String contextPath = request.getContextPath(); //현재 진행 중인 프로젝트 이름 
-	String myurl = request.getRequestURI().toString();
-	String uri = request.getRequestURI();
-
-	int idx = myurl.indexOf(uri);
-
-	String uploadPath = "/coffee/";
-	String uploadedFolder = myurl.substring(0, idx) + contextPath
-			+ uploadPath;
-
-	String imgPath = "/img/";
-	String imgFolder = myurl.substring(0, idx) + contextPath + imgPath;
-%>
+<c:set value="${pageContext.request.contextPath}" var="contextPath"></c:set>
+<c:set value="${pageContext.request.contextPath}/coffee/" var="uploadedFolder"></c:set>
+<c:set value="${pageContext.request.contextPath}/img/" var="imgFolder"></c:set>
 
 <html>
 <head>
@@ -29,7 +16,7 @@
 
 <meta name="viewport" content="width=device-width, initial-scale=1">
 
-
+<script src="https://ajax.googleapis.com/ajax/libs/jquery/1.12.4/jquery.min.js"></script>
 <script src="https://code.jquery.com/jquery-1.12.4.js"></script>
 <script src="https://code.jquery.com/ui/1.12.1/jquery-ui.js"></script>
 <link rel="stylesheet"

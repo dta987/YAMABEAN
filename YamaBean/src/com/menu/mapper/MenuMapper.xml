@@ -18,7 +18,7 @@
 	</select>
 
 	<resultMap type="com.menu.dto.MenuEntity" id="menuResult">
-		<id property="menu_num"/>
+		<id property="menu_num" column="menu_num"/>
 		<result property="m_group" column="m_group" />
 		<result property="m_category" column="m_category" />
 		<result property="m_name" column="m_name"/>

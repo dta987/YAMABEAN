@@ -17,7 +17,6 @@
 		<param-value>/WEB-INF/applicationContext/applicationContext.xml</param-value>
 	</context-param>
 
-
 	<!-- /////////////// 멤버 /////////////// -->
 	<servlet>
 		<servlet-name>Member</servlet-name>
@@ -93,7 +92,7 @@
 		<servlet-class>org.springframework.web.servlet.DispatcherServlet</servlet-class>
 		<init-param>
 			<param-name>contextConfigLocation</param-name>
-			<param-value>/WEB-INF/contextConfig/admin-context.xml</param-value>
+			<param-value>/WEB-INF/contextConfig/mymenu-context.xml</param-value>
 		</init-param>
 	</servlet>
 	
@@ -130,6 +129,23 @@
 	<servlet-mapping>
 		<servlet-name>Order</servlet-name>
 		<url-pattern>/order/*</url-pattern>
+	</servlet-mapping>
+	
+	<!-- /////////////// 메뉴 /////////////// -->
+	<servlet>
+		<servlet-name>Main</servlet-name>
+		<servlet-class>org.springframework.web.servlet.DispatcherServlet</servlet-class>
+
+		<init-param>
+			<param-name>contextConfigLocation</param-name>
+			<param-value>/WEB-INF/contextConfig/main-context.xml</param-value>
+		</init-param>
+
+	</servlet>
+
+	<servlet-mapping>
+		<servlet-name>Main</servlet-name>
+		<url-pattern>/main/*</url-pattern>
 	</servlet-mapping>
 
 	<!-- /////////////// 인코딩 /////////////// -->

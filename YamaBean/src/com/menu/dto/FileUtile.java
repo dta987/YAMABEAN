@@ -15,7 +15,6 @@ public class FileUtile {
 	/*1. 파일 서버에 저장될 유일한 파일 이름 생성 */
 	public static String makeSavedFileName(String originalFilename) {
 		System.out.println("fileUtile_makeSavedFileName");
-		
 		/*유일한 파일 이름을 만들어주는 클래스*/
 		UUID uid = UUID.randomUUID();
 		/*유일한 파일 이름 만들어 주기*/
