@@ -6,17 +6,25 @@
 <head>
 <meta http-equiv="Content-Type" content="text/html; charset=utf-8">
 <title>Insert title here</title>
+<script type="text/javascript" src="../js/jquery-3.1.0.min.js"></script>
 
 <script type="text/x-jquery-tmpl" id="orderTemplate">
 	<div id="\${name}" class="w3-row menu" style="padding-bottom: 10px;">
-		<input type="hidden" name="m_num" value="\${num}">
-		<div class="w3-col s3">
-			<img src="<%=uploadedFolder%>\${img}" style="width: 50%">
+		<input type="hidden" name="menu_num" value="\${num}">
+		<div class="w3-col s3" align="center">
+			<img src="${uploadedFolder}\${img}" style="width: 50%">
 		</div>
-		<div class="w3-col s6 w3-container" align="left">
-			<strong>\${name}</strong>
+		<div class="w3-col s3 w3-container" align="left">
+			<br>
+			<strong>\${name}</strong>		
+		</div>		
+		<div class="w3-col s3 w3-container" align="right">
 			<br>
 			<strong>\${price}</strong>
+		</div>
+		<div class="w3-col s3 w3-container" align="center">
+			<br>
+			<button name="\${name}remove" style="border: none;"><span class="glyphicon glyphicon-remove" aria-hidden="true"></span></button>
 		</div>		
 	</div>
 </script>
@@ -46,14 +54,97 @@
 
 			var div = $("#orderTemplate").tmpl(data);
 			$("#registerList").append(div);
-			createEvent(name);
-			addtotal(name);
-
+			sizePrice(price);
+			removeEvent(name);
 		}
 
 	}
 
-	function addtotal(name) {
+	function removeEvent(name) {
+		$("button[name='" + name + "remove']").on(
+				"click",
+				function() {
+					var amount = parseInt($("#" + name).find(
+							$("#" + name + "value")).val());
+					var m_price = parseInt($("#" + name).find(
+							$("input[name='m_price']")).val());
+
+					var sub = amount * m_price
+					var total = $("#total").text();
+
+					$("#total").text(total - sub);
+					$("input[name='totalprice']").val(total - sub);
+
+					$("div[id='" + name + "']").remove();
+					$("input:radio[name='my_optionSize']").prop("checked", false) ;
+					$("input[name='mymenu_sizePrice']").remove();
+					$("input[name='mymenu_price']").remove();
+				});
+	}
+
+	function sizePrice(price) {
+			$("input:radio[value='small']").prop("checked", true) ;
+			$("input[name='mymenu_sizePrice']").val(price);
+			totalPrice(price);		
+			countShot(price) ;
+			var mysize = null ;
+			$("input:radio[name='my_optionSize']").click(function(){
+				mysize = this.value;
+				$("input[name='mymenu_sizePrice']").empty();
+				if (mysize == 'small') {
+					$("input[name='mymenu_sizePrice']").val(price);
+					totalPrice(price);
+					countShot(price) ;
+				}else {
+					var add = 500 ;
+					var sizeprice = parseInt(price) + add ;
+					$("input[name='mymenu_sizePrice']").val(sizeprice);
+					totalPrice(sizeprice);
+					countShot(sizeprice) ;
+				}
+			});	
+			
+	}
+	
+	
+	function countShot(sizeprice) {
+		$("button[name='" + sizeprice + "addShot']").on("click", function () {
+			var shotValue = parseInt($("input[name='my_optionShot']").val());
+			shotValue += 1;
+			if (shotValue < 11) {
+				$("input[name='" + my_optionShot + "']").val());
+			}
+		});
+		
+		
+		$("button[name='" + name + "add']").on("click", function() {
+
+			var value = parseInt($("input[id='" + name + "value']").val());
+			value += 1;
+			if (value < 11) {
+				$("input[id='" + name + "value']").val(value);
+				addtotal(name);
+			}
+
+		});
+		$("button[name='" + name + "sub']").on("click", function() {
+
+			var value = parseInt($("input[id='" + name + "value']").val());
+			value -= 1;
+			if (value != 0) {
+				$("input[id='" + name + "value']").val(value);
+				subtotal(name);
+
+			}
+		});
+		
+		
+		
+	}
+	
+	
+
+	function addShot(name) {
 
 		var price = parseInt($("button[name='" + name + "add']").val());
 		var total = parseInt($("#total").text());
@@ -70,33 +161,10 @@
 		$("#total").text(total);
 
 	}
-
-	function createEvent(name) {
-		$("button[name='" + name + "add']").on("click", function() {
-
-			var value = parseInt($("input[name='" + name + "value']").val());
-			value += 1;
-			if (value == 0) {
-
-			} else {
-				$("input[name='" + name + "value']").val(value);
-				addtotal(name);
-			}
-
-		});
-		$("button[name='" + name + "sub']").on("click", function() {
-
-			var value = parseInt($("input[name='" + name + "value']").val());
-			value -= 1;
-			if (value == 0) {
-
-			} else {
-				$("input[name='" + name + "value']").val(value);
-				subtotal(name);
-			}
-
-		});
-
+	
+	
+	function totalPrice(price) {
+		$("input[name='mymenu_price']").val(price);
 	}
 
 	function myFunction(id) {
@@ -112,7 +180,7 @@
 	}
 
 	$(function() {
-		$("#registerMenu")
+		$("#registerMenu")		
 				.submit(
 						function() {
 							$("#registerList > div")
@@ -156,9 +224,9 @@
 					<c:forEach var="item" items="${allFindMenus}">
 						<c:if test="${item.getM_category() == '콜드브루' }">
 							<div class="w3-third w3-container w3-margin-bottom"
-								id="${item.m_name}">
-								<img src="<%=uploadedFolder%>${item.image_name}" alt="Norway"
-									style="width: 100%" class="w3-hover-opacity"
+								id="${item.menu_num}">
+								<img src="${pageContext.request.contextPath}${item.image_name}"
+									alt="Norway" style="width: 100%" class="w3-hover-opacity"
 									onclick="orderFunction('${item.menu_num}', '${item.m_name}', '${item.image_name}', '${item.content}', '${item.price}')">
 								<div>
 									<h5>${item.getM_name()}</h5>
@@ -175,8 +243,8 @@
 					<c:forEach var="item" items="${allFindMenus}">
 						<c:if test="${item.getM_category() == '브루드커피' }">
 							<div class="w3-third w3-container w3-margin-bottom"
-								id="${item.m_name}">
-								<img src="<%=uploadedFolder%>${item.image_name}" alt="Norway"
+								id="${item.menu_num}">
+								<img src="${uploadedFolder}${item.image_name}" alt="Norway"
 									style="width: 100%" class="w3-hover-opacity"
 									onclick="orderFunction('${item.menu_num}', '${item.m_name}', '${item.image_name}', '${item.content}', '${item.price}')">
 								<div>
@@ -194,8 +262,8 @@
 					<c:forEach var="item" items="${allFindMenus}">
 						<c:if test="${item.getM_category() == '에스프레소' }">
 							<div class="w3-third w3-container w3-margin-bottom"
-								id="${item.m_name}">
-								<img src="<%=uploadedFolder%>${item.image_name}" alt="Norway"
+								id="${item.menu_num}">
+								<img src="${uploadedFolder}${item.image_name}" alt="Norway"
 									style="width: 100%" class="w3-hover-opacity"
 									onclick="orderFunction('${item.menu_num}', '${item.m_name}', '${item.image_name}', '${item.content}', '${item.price}')">
 								<div>
@@ -213,8 +281,8 @@
 					<c:forEach var="item" items="${allFindMenus}">
 						<c:if test="${item.getM_category() == '프라푸치노' }">
 							<div class="w3-third w3-container w3-margin-bottom"
-								id="${item.m_name}">
-								<img src="<%=uploadedFolder%>${item.image_name}" alt="Norway"
+								id="${item.menu_num}">
+								<img src="${uploadedFolder}${item.image_name}" alt="Norway"
 									style="width: 100%" class="w3-hover-opacity"
 									onclick="orderFunction('${item.menu_num}', '${item.m_name}', '${item.image_name}', '${item.content}', '${item.price}')">
 								<div>
@@ -228,92 +296,74 @@
 		</div>
 
 
-		<div class="w3-half w3-blue-grey w3-container w3-center"
-			style="height: 500px;">
-			<div style="margin-top: 15px;">
-				<h1>MY MENU REGISTER</h1>
-			</div>
-			<hr>
-			<div class="w3-padding-10"
-				style="padding-bottom: 10px; height: 350px; overflow: auto;">
-				<form action="/YamaBean/mymenu/registerMyMenu" method="POST"
-					id="registerMenu">
-
+		<form action="/YamaBean/mymenu/registerMyMenu" method="POST"
+			id="registerMenu">
+			<div class="w3-half w3-blue-grey w3-container w3-center"
+				style="height: 200px;">
+				<div style="margin-top: 15px;">
+					<h1>MY MENU REGISTER</h1>
+				</div>
+				<hr>
+				<div class="w3-padding-10"
+					style="padding-bottom: 10px; height: 350px; overflow: auto;">
 					<div class="w3-row" align="left" id="registerList"></div>
-					
-					<br><br>
-						<div class="w3-col s3" align="left">
-							<h5>마이메뉴 이름</h5>
-						</div>
-						<div class="w3-col s3" align="right">
-							<input type="text" name="mymenu_name">
-						</div>
-						<br>
-						<div class="w3-col s3" align="left">
-							<h5>수량</h5>
-						</div>
-						<div class="w3-col s3" align="right">
+					<!-- 메뉴리스트에서 선택한 마이메뉴이미지 -->
+				</div>
+			</div>
 
-							<div class="w3-col s3" style="padding-top: 2px;">
-								<input type="text" size="3" id="value" name="\${name}value"
-									value="1" style="font-size: 12pt; color: black;">
-								<button type="button" class="btn btn-default" value="\${price}"
-									name="\${name}add">
-									<span class="glyphicon glyphicon-plus" aria-hidden="true"></span>
+
+			<div style="margin-top: 15px;" align="left">
+				<br> <br>
+				<div>
+					<label>My Menu NAME</label> <input type="text" name="mymenu_name">
+				</div>
+				<div id="my_size">
+					<label>My Menu SIZE</label> 
+					<input type="radio" value="small" name="my_optionSize">small 
+					<input type="radio" value="large" name="my_optionSize">large 
+					<input type="text" value="0" name="mymenu_sizePrice" readonly="readonly" style="border: none;">
+				</div>
+				<div>
+					<label>Personal Options</label>
+					<br>
+					<label>add SHOT (+ 500)</label>
+					<table style="background-color: white;">
+						<tr>
+							<td rowspan="2" width="50px;">
+								<input type="text" name="my_optionShot" value="0" readonly="readonly" style="color: black; width: 100%; height: 100%; border: none;">
+							</td>
+							<td>
+								<button type="button" class="btn btn-default" value="\${price}" name="\${name}addShot">
+								<span class="glyphicon glyphicon-plus" aria-hidden="true"></span>
 								</button>
-								<button type="button" class="btn btn-default" value="\${price}"
-									name="\${name}sub">
+							</td>
+						</tr>
+						<tr>
+							<td>
+								<button type="button" class="btn btn-default" value="\${price}" name="\${name}subShot">
 									<span class="glyphicon glyphicon-minus" aria-hidden="true"></span>
 								</button>
-							</div>
+							</td>
+						</tr>
+					</table>
+					<input type="text" value="0" name="mymenu_shotPrice" readonly="readonly" style="border: none;">
+				</div>
+				
 
 
-
-							<label id="mymenu_price">0</label> <label id="my_price">0</label>
-						</div>
-						<br>
-						<div class="w3-col s3" align="left">
-							<h5>사이즈</h5>
-						</div>
-						<div class="w3-col s3" align="right">
-							<input type="radio" value="small" name="my_optionSize"
-								id="my_optionSize">small <input type="radio"
-								value="large" name="my_optionSize" id="my_optionSize">large
-							<label id="my_Size">0</label>
-						</div>
-						<br>
-						<div class="w3-col s3" align="left">
-							<h5>퍼스널 옵션</h5>
-						</div>
-						<br>
-						<div class="w3-col s3" align="left">
-							<h5>샷 추가 (+ 500원)</h5>
-						</div>
-						<div class="w3-col s3" align="right">
-							<label id="my_optionShot">0</label> <label id="my_Shot">0</label>
-						</div>
-						<br>
-						<div class="w3-col s3" align="left">
-							<h5>휘핑 추가 (+ 500원)</h5>
-						</div>
-						<div class="w3-col s3" align="right">
-							<label id="my_optionWhip">0</label> <label id="my_Whip">0</label>
-						</div>
-						<div class="w3-col s3" align="right">
-							<h5>총 가격 :</h5>
-							<label id="mymenu_price">0</label>
-						</div>
-					<br><br>
-					<div class="w3-col s3" align="right">
-						<button type="reset" class="btn btn-default" onclick="goBack()">취소</button>
-						<button type="submit" class="btn btn-primary">주문하기</button>
-					</div>
-
-				</form>
+				<div>
+					<label>총 가격</label> <input type="text" name="mymenu_price"
+						readonly="readonly" style="border: none;">
+				</div>
+				<div>
+					<button type="reset" onclick="goBack()">취소</button>
+					<button type="submit">주문하기</button>
+				</div>
 			</div>
-
-		</div>
+		</form>
 	</div>
+
+
 
 
 	<!-- private int mymenu_num ;
@@ -328,6 +378,5 @@
 	private int my_optionWhip ;
 	
 	 -->
-
 </body>
 </html>

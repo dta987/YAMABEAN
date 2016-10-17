@@ -1,0 +1,36 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="EUC-KR">
+<title>Insert title here</title>
+<script type="text/javascript" src="../js/jquery-3.1.0.min.js"></script>
+<script type="text/javascript">
+	$(function(){
+		$("#sh > input:eq(0)").click(function(){
+			$("#sh > div").show(200);			//()안의 숫자는 보여지는 초 단위 200 = 0.2초
+		});
+		
+		$("#sh > input:eq(1)").click(function(){
+			$("#sh > div").hide(2000);
+		});
+		
+		$("#sh > input:eq(2)").click(function(){
+			$("#sh > div").toggle(500);
+		});
+	});
+</script>
+</head>
+<body>
+	<h1 align="center">show/hide/toggle</h1>
+	<div id="sh" align="center">
+		<input type="button" value="보이기" />
+		<input type="button" value="숨기기" />
+		<input type="button" value="토글" />
+		
+		<div>
+		<img src="../img/1.jpg" width="300px" height="500px"/>
+		</div>
+	</div>
+	
+</body>
+</html>

@@ -14,7 +14,7 @@
 	<!-- !PAGE CONTENT! -->
 	<div class="w3-main" style="margin-left: 20%; margin-right: 20%;">
 		<div class="w3-section w3-padding-16">
-			<img alt="" src="<%=imgFolder%>index1.jpg" width="100%"
+			<img alt="" src="${imgFolder}index1.jpg" width="100%"
 				height="300px">
 		</div>
 
@@ -24,7 +24,7 @@
 			</div>
 			<div align="right">
 				<button type="button" class="btn btn-primary"
-					onclick="location.href='/YamaBean/order/order'">주문하기</button>
+					onclick="location.href='${pageContext.request.contextPath}/order/order'">주문하기</button>
 			</div>
 		</h1>
 		<fieldset style="height: 100px">
@@ -63,8 +63,8 @@
 			<c:forEach var="item" items="${findByList}">
 				<c:if test="${item.getM_category() == '콜드브루' }">
 					<div class="w3-third w3-container w3-margin-bottom"
-						onclick="location.href='/YamaBean/menu/detailMenu?menu_num=${item.menu_num}'">
-						<img src="<%=uploadedFolder%>${item.image_name}" alt="Norway"
+						onclick="location.href='${pageContext.request.contextPath}/menu/detailMenu?menu_num=${item.menu_num}'">
+						<img src="${uploadedFolder}${item.image_name}" alt="Norway"
 							style="width: 100%" class="w3-hover-opacity">
 						<div class="w3-container w3-white">
 							<p>
@@ -87,8 +87,8 @@
 			<c:forEach var="item" items="${findByList}">
 				<c:if test="${item.getM_category() == '브루드커피' }">
 					<div class="w3-third w3-container w3-margin-bottom"
-						onclick="location.href='/YamaBean/menu/detailMenu?menu_num=${item.menu_num}'">
-						<img src="<%=uploadedFolder%>${item.image_name}" alt="Norway"
+						onclick="location.href='${pageContext.request.contextPath}/menu/detailMenu?menu_num=${item.menu_num}'">
+						<img src="${uploadedFolder}${item.image_name}" alt="Norway"
 							style="width: 100%" class="w3-hover-opacity">
 						<div class="w3-container w3-white">
 							<p>
@@ -111,8 +111,8 @@
 			<c:forEach var="item" items="${findByList}">
 				<c:if test="${item.getM_category() == '에스프레소' }">
 					<div class="w3-third w3-container w3-margin-bottom"
-						onclick="location.href='/YamaBean/menu/detailMenu?menu_num=${item.menu_num}'">
-						<img src="<%=uploadedFolder%>${item.image_name}" alt="Norway"
+						onclick="location.href='${pageContext.request.contextPath}/menu/detailMenu?menu_num=${item.menu_num}'">
+						<img src="${uploadedFolder}${item.image_name}" alt="Norway"
 							style="width: 100%" class="w3-hover-opacity">
 						<div class="w3-container w3-white">
 							<p>
@@ -135,8 +135,8 @@
 			<c:forEach var="item" items="${findByList}">
 				<c:if test="${item.getM_category() == '프라푸치노' }">
 					<div class="w3-third w3-container w3-margin-bottom"
-						onclick="location.href='/YamaBean/menu/detailMenu?menu_num=${item.menu_num}'">
-						<img src="<%=uploadedFolder%>${item.image_name}" alt="Norway"
+						onclick="location.href='${pageContext.request.contextPath}/menu/detailMenu?menu_num=${item.menu_num}'">
+						<img src="${uploadedFolder}${item.image_name}" alt="Norway"
 							style="width: 100%" class="w3-hover-opacity">
 						<div class="w3-container w3-white">
 							<p>

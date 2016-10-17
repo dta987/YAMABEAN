@@ -28,7 +28,7 @@
 
 		<div class="w3-row w3-marginv">
 			<div class="w3-third">
-				<img src="<%=uploadedFolder%>${menuModel.image_name}"
+				<img src="${uploadedFolder}${menuModel.image_name}"
 					style="width: 100%; min-height: 100%">
 			</div>
 			<div class="w3-twothird w3-container w3-margin-bottom" align="left">

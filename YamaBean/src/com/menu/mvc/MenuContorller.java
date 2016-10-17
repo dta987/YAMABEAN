@@ -33,15 +33,6 @@ public class MenuContorller {
 
 	@RequestMapping(value = "/createMenu", method = RequestMethod.POST)
 	public String createMenu(@ModelAttribute MenuDomain menuDomain) {
-		System.out.println("controller_menu_num : " + menuDomain.getMenu_num());
-		System.out.println("controller_m_group : " + menuDomain.getM_group());
-		System.out.println("controller_m_category : "
-				+ menuDomain.getM_category());
-		System.out.println("controller_m_name : " + menuDomain.getM_name());
-		System.out.println("controller_image : "
-				+ menuDomain.getImage().getOriginalFilename());
-		System.out.println("controller_Price : " + menuDomain.getPrice());
-		System.out.println("controller_Content : " + menuDomain.getContent());
 		menuService.addMenu(menuDomain);
 		return "redirect:/menu/listMenu";
 	}

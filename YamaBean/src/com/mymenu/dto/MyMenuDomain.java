@@ -16,6 +16,7 @@ public class MyMenuDomain {
 	private int my_optionAmount ;
 	private int my_optionShot ;
 	private int my_optionWhip ;
+	
 	public int getMymenu_num() {
 		return mymenu_num;
 	}
