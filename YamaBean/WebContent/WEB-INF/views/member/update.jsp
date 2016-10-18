@@ -34,7 +34,7 @@ ${member.bday}
 ${member.joinday}
 ${member.point} --%>
 
-	<div class="col-sm-offset-<%=myoffset%> col-sm-<%=mywidth%>"
+<%-- 	<div class="col-sm-offset-<%=myoffset%> col-sm-<%=mywidth%>"
 		style="margin-top: 100px;">
 		<sf:form class="form-horizontal" method="POST" modelAttribute="member">
 			<div class="form-group1" align="left">
@@ -213,6 +213,6 @@ ${member.point} --%>
 				<button type="reset" class="btn btn-primary btn-block">reset</button>
 			</div>
 		</sf:form>
-	</div>
+	</div> --%>
 </body>
 </html>
