@@ -1,5 +1,6 @@
 <%@ page language="java" contentType="text/html; charset=utf-8"
 	pageEncoding="utf-8"%>
+<%@ taglib uri="http://www.springframework.org/tags/form" prefix="sf"%>
 <%@ include file="/WEB-INF/views/rvTOP.jsp"%>
 
 <%
@@ -18,13 +19,24 @@
 <html>
 <head>
 <meta http-equiv="Content-Type" content="text/html; charset=utf-8">
-<title>Insert title here</title>
+<title>Member Update</title>
 </head>
 <body>
+	<%-- ${member.id}
+${member.password}
+${member.name}
+${member.email}
+${member.gender}
+${member.phone}
+${member.nickname}
+${member.address}
+${member.bday}
+${member.joinday}
+${member.point} --%>
 
 	<div class="col-sm-offset-<%=myoffset%> col-sm-<%=mywidth%>"
 		style="margin-top: 100px;">
-		<form class="form-horizontal" method="POST">
+		<sf:form class="form-horizontal" method="POST" modelAttribute="member">
 			<div class="form-group1" align="left">
 				<div class="form-group1" style="width: 240px; float: none;"
 					align="left">
@@ -32,23 +44,12 @@
 				</div>
 				<div class="form-group1" style="width: 230px; float: left;"
 					align="left">
-					<input type="text" name="id" id="id" class="form-control"
-						placeholder="Enter Your ID" pattern="[a-zA-Z]{1}[a-zA-Z0-9]{4,11}"
-						title="ID는 4~11자리의 영문,숫자의 조합으로, 첫 글자는 영문이어야 합니다." required />
+					<sf:input type="text" path="id" name="id" id="id"
+						class="form-control" disabled="true" placeholder="Enter Your ID" />
 				</div>
-				<div class="form-group1"
-					style="width: 110px; float: left; padding-left: 10px;" align="left">
-					<input type="button" id="ajax_request"
-						class="btn btn-primary btn-block" value="중복검사" />
-				</div>
-				<form:errors id="id" cssClass="error" />
 			</div>
 
 			<!-- 비밀번호 -->
-
-
-
-
 
 			<div class="form-group1" align="left">
 				<div class="form-group1" style="width: 240px; float: none;"
@@ -56,10 +57,9 @@
 					<label>Password</label>
 				</div>
 				<div class="form-group1" style="float: left;" align="left">
-					<input type="password" name="password" id="password"
-						class="form-control" placeholder="Enter Your Password"
-						pattern=".*(?=^.{8,15}$)(?=.*\d)(?=.*[a-zA-Z])(?=.*[!@#$%^&+=]).*"
-						title="특수문자 / 문자 / 숫자 포함 형태의 8~15자리 이내" required />
+					<sf:input type="password" path="password" name="password"
+						id="password" class="form-control"
+						placeholder="Enter Your Password" />
 				</div>
 				<form:errors id="password" cssClass="error" />
 			</div>
@@ -78,8 +78,8 @@
 					<label>name</label>
 				</div>
 				<div class="form-group1" style="float: left;" align="left">
-					<input type="text" name="name" id="name" class="form-control"
-						placeholder="Enter Your Nickname" required />
+					<sf:input type="text" path="name" name="name" id="name"
+						class="form-control" placeholder="Enter Your Nickname" />
 				</div>
 				<form:errors id="name" cssClass="error" />
 			</div>
@@ -91,10 +91,8 @@
 					<label>email</label>
 				</div>
 				<div class="form-group1" style="float: left;" align="left">
-					<input type="text" name="email" id="email" class="form-control"
-						placeholder="Enter Your Nickname"
-						pattern="[0-9a-zA-Z]([-_.]?[0-9a-zA-Z])*@[0-9a-zA-Z]([-_.]?[0-9a-zA-Z])*.[a-zA-Z]{2,3}$"
-						title="올바른 이메일 형식으로 입력해 주세요." />
+					<sf:input type="text" path="email" name="email" id="email"
+						class="form-control" placeholder="Enter Your Nickname" />
 				</div>
 				<form:errors id="email" cssClass="error" />
 			</div>
@@ -112,7 +110,7 @@
 						<div>
 							<div style="float: left;">남자</div>
 							<div style="float: left; width: 20px;">
-								<input type="radio" name="gender" id="gender"
+								<sf:input path="gender" name="gender" id="gender"
 									class="form-control" value="남자" />
 							</div>
 						</div>
@@ -120,7 +118,7 @@
 						<div>
 							<div style="float: left;">여자</div>
 							<div style="float: left; width: 20px;">
-								<input type="radio" name="gender" id="gender"
+								<sf:input path="gender" name="gender" id="gender"
 									class="form-control" value="여자" />
 							</div>
 						</div>
@@ -136,9 +134,8 @@
 				</div>
 				<div class="form-group1" style="width: 230px; float: left;"
 					align="left">
-					<input type="text" name="phone" id="phone" class="form-control"
-						placeholder="Ex) 01012345678" pattern="[0-9]{10}[0-9]?"
-						title="'-'를 뺀 휴대전화 번호 10~11자리를 입력해주세요." required />
+					<sf:input type="text" path="phone" name="phone" id="phone"
+						class="form-control" placeholder="Ex) 01012345678" />
 				</div>
 				<form:errors path="phone" cssClass="error" />
 			</div>
@@ -150,8 +147,8 @@
 					<label>nickname</label>
 				</div>
 				<div class="form-group1" style="float: left;" align="left">
-					<input type="text" name="nickname" id="nickname"
-						class="form-control" placeholder="Enter Your E-Mail" required />
+					<sf:input type="text" path="nickname" name="nickname" id="nickname"
+						class="form-control" placeholder="Enter Your E-Mail" />
 				</div>
 				<form:errors id="nickname" cssClass="error" />
 			</div>
@@ -163,8 +160,8 @@
 					<label>address</label>
 				</div>
 				<div class="form-group1" style="float: left;" align="left">
-					<input type="text" name="address" id="address" class="form-control"
-						placeholder="Enter Your E-Mail" required />
+					<sf:input type="text" path="address" name="address" id="address"
+						class="form-control" placeholder="Enter Your address" />
 				</div>
 				<form:errors id="address" cssClass="error" />
 			</div>
@@ -179,16 +176,43 @@
 				</div>
 				<div class="form-group1" style="width: 230px; float: left;"
 					align="left">
-					<input type="text" name="bday" id="bday" class="form-control"
-						size="20" required />
+					<sf:input type="text" path="bday" name="bday" id="bday"
+						class="form-control" size="20" />
 				</div>
 				<form:errors path="bday" cssClass="error" />
 			</div>
 
-			<div style="width: 80px;">
-				<button type="submit" class="btn btn-primary btn-block">join</button>
+			<!-- joinday -->
+			<div class="form-group1" align="left">
+				<div class="form-group1" style="width: 240px; float: none;"
+					align="left">
+					<label>joinday</label>
+				</div>
+				<div class="form-group1" style="float: left;" align="left">
+					<sf:input type="text" path="joinday" name="joinday" id="joinday"
+						class="form-control" placeholder="Enter Your joinday" />
+				</div>
+				<form:errors id="joinday" cssClass="error" />
 			</div>
-		</form>
+
+			<!-- point -->
+			<div class="form-group1" align="left">
+				<div class="form-group1" style="width: 240px; float: none;"
+					align="left">
+					<label>point</label>
+				</div>
+				<div class="form-group1" style="float: left;" align="left">
+					<sf:input type="text" path="point" id="point" class="form-control"
+						placeholder="Enter Your point" />
+				</div>
+				<form:errors id="point" cssClass="error" />
+			</div>
+
+			<div style="width: 80px;">
+				<button type="submit" class="btn btn-primary btn-block">update</button>
+				<button type="reset" class="btn btn-primary btn-block">reset</button>
+			</div>
+		</sf:form>
 	</div>
 </body>
 </html>

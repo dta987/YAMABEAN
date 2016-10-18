@@ -18,5 +18,5 @@ public interface MemberMapper {
 
 	public int deleteMember(String id); // 회원삭제, 회원탈퇴
 
-	public Member updateMember(Member member); // 회원 수정
+	public int updateMember(Member member); // 회원 수정
 }

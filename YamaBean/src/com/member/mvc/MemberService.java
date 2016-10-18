@@ -8,7 +8,7 @@ import org.springframework.stereotype.Service;
 import com.member.dto.Member;
 
 @Service
-public class MemberService{
+public class MemberService {
 
 	@Autowired
 	private MemberRepository memberRepository;
@@ -42,7 +42,7 @@ public class MemberService{
 		return false;
 	}
 
-	public List<Member> findByList(String mode, String keyword) {		
+	public List<Member> findByList(String mode, String keyword) {
 		return memberRepository.selectByList(mode, keyword);
 	}
 
@@ -51,13 +51,10 @@ public class MemberService{
 	}
 
 	public Member updateMember(String id) {
-
 		return memberRepository.selectByMember(id);
 	}
 
-	public Member modifyMember(Member member) {
-		// TODO Auto-generated method stub
-		return null;
+	public int modifyMember(Member member) {
+		return memberRepository.updateMember(member);
 	}
-
 }

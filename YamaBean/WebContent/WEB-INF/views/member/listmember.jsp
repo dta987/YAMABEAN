@@ -42,7 +42,7 @@
 				<td>${bean.email}</td>
 				<td>${bean.joinday}</td>
 				<td>${bean.point}</td>
-				<td><a href="update?id=${bean.id}">수정</a></td>
+				<td><a href="/YamaBean/member/update?id=${bean.id}">수정</a></td>
 				<td><a href="delete?id=${bean.id}">삭제</a></td>
 			</tr>
 		</c:forEach>

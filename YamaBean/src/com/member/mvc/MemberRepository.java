@@ -41,7 +41,7 @@ public class MemberRepository{
 		return MemberMapper.deleteMember(id);
 	}
 
-	public Member updateMember(Member member) {
+	public int updateMember(Member member) {
 		return MemberMapper.updateMember(member);
 	}
 
