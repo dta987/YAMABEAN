@@ -12,7 +12,7 @@
 	<div id="\${name}" class="w3-row menu" style="padding-bottom: 10px;">
 		<input type="hidden" name="menu_num" value="\${num}">
 		<div class="w3-col s3" align="center">
-			<img src="${uploadedFolder}\${img}" style="width: 50%">
+			<img src="${uploadedFolder}\${img}" style="width: 50%" >
 		</div>
 		<div class="w3-col s3 w3-container" align="left">
 			<br>
@@ -54,13 +54,17 @@
 
 			var div = $("#orderTemplate").tmpl(data);
 			$("#registerList").append(div);
+			createEvent(name);
 			sizePrice(price);
-			removeEvent(name);
+			addShot(shotNum) ;
+			addWhip(whipNum);
+			totalPrice() ;
 		}
 
 	}
 
-	function removeEvent(name) {
+	function createEvent(name) {
+		
 		$("button[name='" + name + "remove']").on(
 				"click",
 				function() {
@@ -77,16 +81,75 @@
 
 					$("div[id='" + name + "']").remove();
 					$("input:radio[name='my_optionSize']").prop("checked", false) ;
-					$("input[name='mymenu_sizePrice']").remove();
+					$("input[name='mymenu_sizePrice']").detach();
+					$("input[name='my_optionShot']").val(0);
+					$("input[name='mymenu_shotPrice']").remove();
+					$("input[name='my_optionWhip']").val(0);
+					$("input[name='mymenu_whipPrice']").remove();
 					$("input[name='mymenu_price']").remove();
-				});
+					
+					/* window.location.reload(); */
+		});
+		
+		
+		$("button[name='addShot']").on("click", function () {
+			var shotNum = parseInt($("input[name='my_optionShot']").val());
+			shotNum += 1;
+			var addShotNum = null;
+			if (shotNum < 11) {
+				$("input[name='my_optionShot']").val(shotNum);
+				addShotNum = parseInt(shotNum) * 500;
+				$("input[name='mymenu_shotPrice']").val(addShotNum) ;
+				totalPrice(addShotNum);
+			}			
+			
+		});
+		
+	
+		$("button[name='subShot']").on("click", function() {
+			var shotNum = parseInt($("input[name='my_optionShot']").val());
+			shotNum -= 1;
+			var addShotNum = null;
+			if (shotNum >= 0) {
+				$("input[name='my_optionShot']").val(shotNum);
+				addShotNum = parseInt(shotNum) * 500;
+				$("input[name='mymenu_shotPrice']").val(addShotNum) ;
+				totalPrice(addShotNum);
+			}
+		});
+		
+		$("button[name='addWhip']").on("click", function () {
+			var whipNum = parseInt($("input[name='my_optionWhip']").val());
+			whipNum += 1;
+			var addWhipNum = null ;
+			if (whipNum < 11) {
+				$("input[name='my_optionWhip']").val(whipNum);
+				addWhipNum = parseInt(whipNum) * 500 ;
+				$("input[name='mymenu_whipPrice']").val(addWhipNum) ;
+				totalPrice(addWhipNum);
+			}	
+		});
+		
+	
+		$("button[name='subWhip']").on("click", function() {
+			var whipNum = parseInt($("input[name='my_optionWhip']").val());
+			whipNum -= 1;
+			var addWhipNum = null ;
+			if (whipNum >= 0) {
+				$("input[name='my_optionWhip']").val(whipNum);
+				addWhipNum = parseInt(whipNum) * 500 ;
+				$("input[name='mymenu_whipPrice']").val(addWhipNum) ;
+				totalPrice(addWhipNum);
+			}
+		});
 	}
+	
+	
 
 	function sizePrice(price) {
 			$("input:radio[value='small']").prop("checked", true) ;
 			$("input[name='mymenu_sizePrice']").val(price);
 			totalPrice(price);		
-			countShot(price) ;
 			var mysize = null ;
 			$("input:radio[name='my_optionSize']").click(function(){
 				mysize = this.value;
@@ -94,79 +157,39 @@
 				if (mysize == 'small') {
 					$("input[name='mymenu_sizePrice']").val(price);
 					totalPrice(price);
-					countShot(price) ;
 				}else {
 					var add = 500 ;
 					var sizeprice = parseInt(price) + add ;
 					$("input[name='mymenu_sizePrice']").val(sizeprice);
 					totalPrice(sizeprice);
-					countShot(sizeprice) ;
 				}
-			});	
-			
+			});
+					
 	}
 	
+	/* function addShot(shotNum) {
+		var addShotNum = parseInt(shotNum) * 500 ;
+		$("input[name='mymenu_shotPrice']").val(addShotNum) ;
+		totalPrice(addShotNum);
+	} */
 	
-	function countShot(sizeprice) {
-		$("button[name='" + sizeprice + "addShot']").on("click", function () {
-			var shotValue = parseInt($("input[name='my_optionShot']").val());
-			shotValue += 1;
-			if (shotValue < 11) {
-				$("input[name='" + my_optionShot + "']").val());
-			}
-		});
-		
-		
-		$("button[name='" + name + "add']").on("click", function() {
-
-			var value = parseInt($("input[id='" + name + "value']").val());
-			value += 1;
-			if (value < 11) {
-				$("input[id='" + name + "value']").val(value);
-				addtotal(name);
-			}
-
-		});
-		$("button[name='" + name + "sub']").on("click", function() {
-
-			var value = parseInt($("input[id='" + name + "value']").val());
-			value -= 1;
-			if (value != 0) {
-				$("input[id='" + name + "value']").val(value);
-				subtotal(name);
-
-			}
-		});
-		
-		
-		
-	}
-	
-	
-
-	function addShot(name) {
-
-		var price = parseInt($("button[name='" + name + "add']").val());
-		var total = parseInt($("#total").text());
-		total += price;
-		$("#total").text(total);
-
-	}
-
-	function subtotal(name) {
-
-		var price = parseInt($("button[name='" + name + "sub']").val());
-		var total = parseInt($("#total").text());
-		total -= price;
-		$("#total").text(total);
-
-	}
+	/* function addWhip(whipNum) {
+		var addWhipNum = parseInt(whipNum) * 500 ;
+		$("input[name='mymenu_whipPrice']").val(addWhipNum) ;
+		totalPrice(addWhipNum);
+	} */
 	
 	
 	function totalPrice(price) {
-		$("input[name='mymenu_price']").val(price);
+		var mySizePrice = parseInt($("input[name='mymenu_sizePrice']").val());
+		var myShotPrice = parseInt($("input[name='mymenu_shotPrice']").val());
+		var myWhipPrice = parseInt($("input[name='mymenu_whipPrice']").val());
+		var myPrice = mySizePrice + myShotPrice + myWhipPrice ;
+		$("input[name='mymenu_price']").val(myPrice);
 	}
 
+	
+	
 	function myFunction(id) {
 		var x = document.getElementById(id);
 		if (x.className.indexOf("w3-show") == -1) {
@@ -180,20 +203,12 @@
 	}
 
 	$(function() {
-		$("#registerMenu")		
-				.submit(
-						function() {
-							$("#registerList > div")
-									.each(
-											function(index) {
-												alert("m_num : "
-														+ $(this)
-																.children(
-																		$("input[name='m_num']"))
-																.val());
-											});
-							return false;
-						});
+		$("#registerMenu").submit(function() {
+			$("#registerList > div").each(function(index) {
+				alert("m_num : "+ $(this).children($("input[name='m_num']")).val());
+			});
+		return false;
+		});
 	});
 
 	function goBack() {
@@ -297,7 +312,7 @@
 
 
 		<form action="/YamaBean/mymenu/registerMyMenu" method="POST"
-			id="registerMenu">
+			id="registerMyMenu">
 			<div class="w3-half w3-blue-grey w3-container w3-center"
 				style="height: 200px;">
 				<div style="margin-top: 15px;">
@@ -305,7 +320,7 @@
 				</div>
 				<hr>
 				<div class="w3-padding-10"
-					style="padding-bottom: 10px; height: 350px; overflow: auto;">
+					style="padding-bottom: 10px; height: 300px; overflow: auto;">
 					<div class="w3-row" align="left" id="registerList"></div>
 					<!-- 메뉴리스트에서 선택한 마이메뉴이미지 -->
 				</div>
@@ -333,32 +348,51 @@
 								<input type="text" name="my_optionShot" value="0" readonly="readonly" style="color: black; width: 100%; height: 100%; border: none;">
 							</td>
 							<td>
-								<button type="button" class="btn btn-default" value="\${price}" name="\${name}addShot">
+								<button type="button" class="btn btn-default" name="addShot">
 								<span class="glyphicon glyphicon-plus" aria-hidden="true"></span>
 								</button>
 							</td>
 						</tr>
 						<tr>
 							<td>
-								<button type="button" class="btn btn-default" value="\${price}" name="\${name}subShot">
+								<button type="button" class="btn btn-default" name="subShot">
 									<span class="glyphicon glyphicon-minus" aria-hidden="true"></span>
 								</button>
+								<input type="text" value="0" name="mymenu_shotPrice" readonly="readonly" style="border: none;">
 							</td>
 						</tr>
 					</table>
-					<input type="text" value="0" name="mymenu_shotPrice" readonly="readonly" style="border: none;">
+					<br>
+					<label>add WHIP (+ 500)</label>
+					<table style="background-color: white;">
+						<tr>
+							<td rowspan="2" width="50px;">
+								<input type="text" name="my_optionWhip" value="0" readonly="readonly" style="color: black; width: 100%; height: 100%; border: none;">
+							</td>
+							<td>
+								<button type="button" class="btn btn-default" name="addWhip">
+								<span class="glyphicon glyphicon-plus" aria-hidden="true"></span>
+								</button>
+							</td>
+						</tr>
+						<tr>
+							<td>
+								<button type="button" class="btn btn-default" name="subWhip">
+									<span class="glyphicon glyphicon-minus" aria-hidden="true"></span>
+								</button>
+								<input type="text" value="0" name="mymenu_whipPrice" readonly="readonly" style="border: none;">
+							</td>
+						</tr>
+					</table>
 				</div>
-				
-
-
 				<div>
-					<label>총 가격</label> <input type="text" name="mymenu_price"
+					<label>총 가격</label> <input type="text" name="mymenu_price" value="0"
 						readonly="readonly" style="border: none;">
 				</div>
-				<div>
+			</div>
+			<div>
 					<button type="reset" onclick="goBack()">취소</button>
 					<button type="submit">주문하기</button>
-				</div>
 			</div>
 		</form>
 	</div>

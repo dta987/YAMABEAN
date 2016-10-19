@@ -41,12 +41,7 @@
 	</update>
 	
 
-	
-	<!-- 
-	 public int updateMenu(Menu menu); // 메뉴수정 
 
-	 
-	 -->
 	 
 	 
 </mapper>

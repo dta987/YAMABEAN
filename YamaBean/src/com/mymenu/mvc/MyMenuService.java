@@ -10,6 +10,7 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import com.menu.dto.MenuEntity;
 import com.menu.dto.MenuModel;
 import com.mymenu.dto.MyMenuDomain;
+import com.mymenu.dto.MyMenuModel;
 
 @Service
 public class MyMenuService implements MineServiceInterface {
@@ -43,7 +44,7 @@ public class MyMenuService implements MineServiceInterface {
 	}
 	
 	@Override
-	public List<MyMenuDomain> mymenuList() {
+	public List<MyMenuModel> mymenuList() {
 		return myMenuRepository.mymenuList();
 	}
 
@@ -52,19 +53,19 @@ public class MyMenuService implements MineServiceInterface {
 		return myMenuRepository.deleteMyMenu(mymenu_num);
 	}
 
-	
+	@Override
+	public MyMenuModel findByMymenu(int mymenu_num) {
+		return myMenuRepository.selectByMenu(mymenu_num);
+	}
+
 	@Override
 	public int updateMyMenu(MyMenuDomain mymenuDomain) {
-		// TODO Auto-generated method stub
-		return 0;
+		return myMenuRepository.updateMyMenu(mymenuDomain) ;
 	}
 
-	@Override
-	public MyMenuDomain detailMyMenu(int mymenu_num) {
-		return myMenuRepository.detailMyMenu(mymenu_num);
-	}
+	
 
-
+	
 	
 
 

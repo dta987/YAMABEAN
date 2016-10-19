@@ -5,12 +5,9 @@
 
 <mapper namespace="com.mymenu.mapper.MyMenuMapper">
 
-	<select id="allListMenu" resultMap="menuAllResult">
-		select * from menus order by menu_num desc
-	</select>
-
+	<!-- mymenu등록시 menu 불러오는 리스트 -->
 	<resultMap type="com.menu.dto.MenuEntity" id="menuAllResult">
-		<id property="menu_num" />
+		<id property="menu_num" column="menu_num"/>
 		<result property="m_group" column="m_group" />
 		<result property="m_category" column="m_category" />
 		<result property="m_name" column="m_name" />
@@ -18,46 +15,68 @@
 		<result property="content" column="content" />
 		<result property="price" column="price" />
 	</resultMap>
+	
+	<select id="allListMenu" resultMap="menuAllResult">
+		select * from menus order by menu_num desc
+	</select>
 
+	
 
+	<!-- mymenu 등록하기 -->
 	<insert id="addMyMenu" parameterType="com.mymenu.dto.MyMenuDomain">
 		<selectKey keyProperty="mymenu_num" resultType="int" order="BEFORE">
 			select mymenus_seq.nextval from dual
 		</selectKey>
 		insert into mymenus(mymenu_num, member_id, mymenu_name, menu_num,
-		my_optionSize, mymenu_price, my_optionAmount, my_optionShot, my_optionWhip) values(#{mymenu_num}, #{member_id}, #{mymenu_name}, #{menu_num}, #{my_optionSize}, #{mymenu_price}, #{my_optionAmount}, #{my_optionShot}, #{my_optionWhip})
+		my_optionSize, mymenu_price, my_optionShot, my_optionWhip) values(#{mymenu_num}, #{member_id}, #{mymenu_name}, #{menu_num}, #{my_optionSize}, #{mymenu_price}, #{my_optionShot}, #{my_optionWhip})
 	</insert>
 
 
+
+
+	<!-- mymenu list 불러오기 -->
 	<select id="viewMyMenuList" resultMap="mymenuAllResult">
-		select mymenu_num, member_id, mymenu_name, menu_num, my_optionSize, mymenu_price, my_optionAmount, my_optionShot, my_optionWhip, to_char(sub_day, 'yyyy-MM-dd') as s_day from mymenus order by mymenu_num desc
+		select mymenu_num, member_id, mymenu_name, menu_num, my_optionSize, mymenu_price, my_optionShot, my_optionWhip, to_char(sub_day, 'yyyy-MM-dd') as s_day from mymenus order by mymenu_num desc
 	</select>
 	
-	<resultMap type="com.mymenu.dto.MyMenuDomain" id="mymenuAllResult">
+	<resultMap type="com.mymenu.dto.MyMenuModel" id="mymenuAllResult">
 		<id property="mymenu_num" />
 		<result property="member_id" column="member_id" />
 		<result property="mymenu_name" column="mymenu_name" />
-		<result property="menu_num" column="menu_num" />
 		<result property="my_optionSize" column="my_optionSize" />
 		<result property="sub_day" column="s_day" />
 		<result property="mymenu_price" column="mymenu_price" />
-		<result property="my_optionAmount" column="my_optionAmount" />
 		<result property="my_optionShot" column="my_optionShot" />
 		<result property="my_optionWhip" column="my_optionWhip" />
+		<association property="menuEntity" column="menu_num" select="findByMenu" />
 	</resultMap>
+				<!-- mymenu에서 menu_num을 통해 해당 menu 정보 불러오기 -->
+	<select id="findByMenu" parameterType="int" resultType="com.menu.dto.MenuEntity">
+		select * from menus where menu_num=#{menu_num}
+	</select>
 	
+	
+	<!-- mymenu 수정(mymenu_num으로 찾기) -->
+	<select id="detailViewMyMenu" parameterType="int" resultMap="mymenuAllResult">
+		select mymenu_num, member_id, mymenu_name, menu_num, my_optionSize, mymenu_price, my_optionShot, my_optionWhip, to_char(sub_day, 'yyyy-MM-dd') as s_day from mymenus where mymenu_num=#{mymenu_num}
+	</select>
+	
+	<!-- mymenu 수정하기 -->
+	<update id="updateMyMenus" parameterType="com.mymenu.dto.MyMenuDomain">
+		update mymenus set mymenu_name==${mymenu_name} menu_num=${menu_num}, my_optionSize=${my_optionSize}, mymenu_price==${mymenu_price}, my_optionShot=${my_optionShot}, my_optionWhip=${my_optionWhip} where mymenu_num=${mymenu_num}
+	</update>
+	
+
+	
+	<!-- mymenu 삭제하기 -->
 	<delete id="removeMyMenu" parameterType="int">
 		delete mymenus where mymenu_num=#{mymenu_num}
 	</delete>
 	
-	<select id="detailViewMyMenu" resultMap="mymenuAllResult">
-		select member_id, mymenu_name, menu_num, my_optionSize, mymenu_price, my_optionAmount, my_optionShot, my_optionWhip, to_char(sub_day, 'yyyy-MM-dd') as s_day from mymenus where mymenu_num=#{mymenu_num}
-	</select>
 	
-	<!-- <update id="" parameterType="com.mymenu.dto.MyMenuDomain">
-		update mymenus set mymenu_name==${mymenu_name} menu_num=${menu_num}, my_optionSize=${my_optionSize}, mymenu_price==${mymenu_price}, my_optionAmount=${my_optionAmount}, my_optionShot=${my_optionShot}, my_optionWhip=${my_optionWhip} where mymenu_num=${mymenu_num}
-	</update>
- -->
+	
+	
+
 
 	<!-- public int replaceMyMenu(MymenuDomain mymenuDomain); 	//mymenu 수정 -->
 
