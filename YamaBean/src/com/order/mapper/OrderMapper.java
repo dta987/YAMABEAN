@@ -28,5 +28,6 @@ public interface OrderMapper {
 	public Store selectStore(int store_num);
 
 	public Member seelctByMember(String member_id);
-
+	
+	public List<OrderProductEntty> selectByOrder_p(int order_num);
 }

@@ -25,5 +25,15 @@
 	</bean>
 
 	<context:component-scan base-package="com.member.mvc" />
+	
+	<mvc:interceptors> <!-- 컨트롤러 전에 preHandle를 거쳐서 가라 -->
+		<mvc:interceptor>
+			<mvc:mapping path="/mypage" />
+			<mvc:mapping path="/delete" />
+			<mvc:mapping path="/update" />
+			<bean class="com.interceptor.OrderInterceptor">
+			</bean>
+		</mvc:interceptor>
+	</mvc:interceptors>
 
 </beans>

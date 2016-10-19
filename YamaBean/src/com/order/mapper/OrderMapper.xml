@@ -15,6 +15,21 @@
 		<result property="price" column="price" />
 		<result property="qty" column="qty" />
 	</resultMap>
+	
+	<resultMap type="com.order.dto.OrderProductEntty" id="orderProductResult">
+		<id property="order_p_num" column="order_p_num" />
+		<result property="menu_num" column="menu_num" />
+		<result property="order_num" column="order_num" />
+		<result property="order_p_qty" column="order_p_qty" />
+		<result property="order_p_price" column="order_p_price" />
+		<result property="order_p_group" column="order_p_group" />
+		<result property="m_name" column="m_name" />
+	</resultMap>
+
+	<select id="selectByOrder_p" parameterType="int" resultMap="orderProductResult">
+		select * from order_products p inner join menus on
+		p.menu_num=menus.menu_num where order_num=#{order_num}
+	</select>
 
 	<select id="selectMenuList" resultMap="orderMenuResult">
 		select * from menus order
@@ -34,22 +49,28 @@
 
 	<select id="seelctByMember" parameterType="String"
 		resultType="com.member.dto.Member">
-		select * from member where id=#{member_id}
+		select * from members where id=#{member_id}
 	</select>
 
 	<select id="selectStore" parameterType="int" resultType="com.storeMap.dto.Store">
-		select * from stores where store_num=#{store_num}
+		select *
+		from stores where store_num=#{store_num}
 	</select>
 
 	<select id="selectOrder_num" resultType="int">
-		select orders_seq.nextval from dual
+		select
+		orders_seq.nextval from dual
 	</select>
 
 	<insert id="insertOrder" parameterType="com.order.dto.OrderEntty">
-		insert into orders(order_num, member_id, m_group, pickup, address,
-		store_num, total_price, order_etc, payment) values(#{order_num},
-		#{member_id}, #{m_group}, #{pickup}, #{address}, #{store_num},
-		#{total_price}, #{order_etc}, #{payment})
+		insert into
+		orders(order_num, member_id, m_group, pickup, address,
+		store_num,
+		total_price, order_etc, payment) values(#{order_num},
+		#{member_id},
+		#{m_group}, #{pickup}, #{address}, #{store_num},
+		#{total_price},
+		#{order_etc}, #{payment})
 	</insert>
 
 	<insert id="insertOrderProduct" parameterType="com.order.dto.OrderProductEntty">
@@ -62,11 +83,13 @@
 	</insert>
 
 	<select id="selectPoint" resultType="int" parameterType="String">
-		select point from members where id=#{member_id}
+		select
+		point from members where id=#{member_id}
 	</select>
 
 	<update id="updatePoint" parameterType="com.order.dto.PointEntty">
-		update members set point=#{Point} where id=#{member_id}
+		update members set
+		point=#{Point} where id=#{member_id}
 	</update>
 
 	<update id="updateMenu" parameterType="com.menu.dto.MenuEntity">

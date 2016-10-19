@@ -1,10 +1,10 @@
-<%@ page language="java" contentType="text/html; charset=utf-8"
-	pageEncoding="utf-8"%>
+<%@ page language="java" contentType="text/html; charset=UTF-8"
+	pageEncoding="UTF-8"%>
 <%@ include file="/WEB-INF/views/rvTOP.jsp"%>
 <!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3.org/TR/html4/loose.dtd">
 <html>
 <head>
-<meta http-equiv="Content-Type" content="text/html; charset=utf-8">
+<meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
 <title>주문관리</title>
 <style>
 /* Set height of the grid so .sidenav can be 100% (adjust if needed) */
@@ -41,22 +41,19 @@ footer {
 
 	<div class="container-fluid" style="margin-top: 50px;">
 		<div class="row content">
-			<div class="col-sm-3 sidenav">
+			<div class="col-sm-2 sidenav" align="center">
 				<ul class="nav nav-pills nav-stacked">
-					<li><a href="/YamaBean/admin/page" >HOME</a></li>
-					<li><a href="/YamaBean/admin/menu" >메뉴관리</a></li>
+					<li><a href="/YamaBean/admin/page">HOME</a></li>
+					<li><a href="/YamaBean/admin/menu">메뉴관리</a></li>
 					<li><a href="/YamaBean/admin/member">회원관리</a></li>
-					<li><a href="/YamaBean/admin/order">주문관리</a></li>
+					<li>---- 매장 ----</li>
 				</ul>
-				<br>
-				<div class="input-group">
-					<input type="text" class="form-control" placeholder="Search Blog..">
-					<span class="input-group-btn">
-						<button class="btn btn-default" type="button">
-							<span class="glyphicon glyphicon-search"></span>
-						</button>
-					</span>
-				</div>
+				<ul class="nav nav-pills nav-stacked">
+					<c:forEach var="store" items="${StoreList}">
+						<li><a
+							href="${pageContext.request.contextPath}/admin/order?store=${store.store_num}">${store.store_name}</a></li>
+					</c:forEach>
+				</ul>
 			</div>
 
 			<div class="col-sm-9">

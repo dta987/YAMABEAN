@@ -24,6 +24,10 @@ public class OrderCheckModel {
 		return member_id;
 	}
 
+	public Store getStore() {
+		return store;
+	}
+
 	public void setStore(Store store) {
 		this.store = store;
 	}

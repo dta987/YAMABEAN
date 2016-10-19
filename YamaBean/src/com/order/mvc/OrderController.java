@@ -40,6 +40,9 @@ public class OrderController {
 		System.out.println("=== order controller post===");		
 		OrderCheckModel orderCheckModel = service.createOrder(orderDomin);
 		session.setAttribute("loginInfo", service.findByMember(orderDomin.getMember_id()));
+		model.addAttribute("orderCheckModel", orderCheckModel);
+		
+		System.out.println(orderCheckModel.toString());
 		
 		return "check";
 	}

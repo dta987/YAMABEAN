@@ -4,8 +4,6 @@ import java.util.List;
 
 import javax.servlet.http.HttpSession;
 
-import oracle.jdbc.util.Login;
-
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
@@ -14,6 +12,8 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RequestParam;
 
+import com.admin.dto.OrderList;
+import com.member.dto.Forgotten;
 import com.member.dto.Member;
 
 @Controller
@@ -27,6 +27,29 @@ public class MemberContorller {
 		System.out.println("==Member이동==");
 		return "login";
 
+	}
+	
+	@RequestMapping(value = "/logout", method = RequestMethod.GET)
+	public String logout(HttpSession session) {
+		
+		session.invalidate();
+		return "login";
+	}
+	
+	@RequestMapping(value = "/mypage", method = RequestMethod.GET)
+	public String mypage(HttpSession session, Model model) {
+		
+		Member loginInfo = (Member)session.getAttribute("loginInfo");
+		List<OrderList> orderList = memberService.findByOrderList(loginInfo.getId());
+		
+		Member member = memberService.findByMember(loginInfo.getId());
+		
+		model.addAttribute("orderList", orderList);
+		model.addAttribute("member", member);
+		
+		
+		
+		return "mypage";
 	}
 
 	@RequestMapping(value = "/login", method = RequestMethod.POST)
@@ -86,32 +109,31 @@ public class MemberContorller {
 
 		return "redirect:/";
 	}
+	
+	@RequestMapping(value="/forgotten", method=RequestMethod.GET)
+	public String forgotten() {
+		System.out.println("forgotten 컨트롤러 접근");
 
-	public String forgottenID(String name, String email, Model model) {
+		return "forgotten";
+	}
+
+	@RequestMapping(value="/forgotten", method=RequestMethod.POST)
+	public String forgottenID(@ModelAttribute Forgotten forgotten, Model model) {
 		System.out.println("forgottenID 컨트롤러 접근");
+		
+		System.out.println(forgotten.toString());
+		boolean bool = memberService.overLapCheck(forgotten);
+		String path = "";
 
-		return null;
-	}
-
-	public String forgottenPW(String name, String email, String id, Model model) {
-
-		return null;
-	}
-
-	public String overLapCheck(String mode, String keyword) {
-
-		return null;
-	}
-
-	@RequestMapping(value = "/memberlist", method = RequestMethod.GET)
-	public String memberList(String mode, String keyword, Model model) {
-		System.out.println("멤버리스트 컨트롤러 접근 ");
-
-		List<Member> members = memberService.findByList(mode, keyword);
-		System.out.println(members.size());
-
-		model.addAttribute("members", members);
-		return "listmember";
+		if(bool) {
+			path = "login";
+			model.addAttribute("msg", "메일을 확인해주세요");
+		} else {
+			path = "forgotten";
+			model.addAttribute("msg", "입력정보를 확인해주세요");
+		}
+	
+		return path;
 	}
 
 	@RequestMapping(value = "/delete", method = RequestMethod.GET)
@@ -135,12 +157,4 @@ public class MemberContorller {
 
 		return "listmember";
 	}
-	
-	@RequestMapping(value = "/admin", method = RequestMethod.GET)
-	public String AdminPage() {
-		System.out.println("관리자 페이지");
-
-		return "admin";
-	}
-
 }

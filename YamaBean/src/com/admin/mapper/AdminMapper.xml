@@ -5,6 +5,82 @@
 
 <mapper namespace="com.admin.mapper.AdminMapper">
 
+	<resultMap type="com.admin.dto.OrderList" id="orderList">
+		<id property="order_num" column="order_num" />
+		<result property="totalprice" column="total_price" />
+		<result property="store_num" column="store_num" />
+		<association property="member" column="member_id"
+			select="com.member.mapper.MemberMapper.selectByMember" />
+		<collection property="orderProduct" column="order_num"
+			select="com.order.mapper.OrderMapper.selectByOrder_p" />
+	</resultMap>
 
+	<select id="selectByList" resultMap="orderList" parameterType="int">
+		select * from orders where m_group='coffee' and YN=0 and
+		store_num=#{num}
+	</select>
 
+	<resultMap type="com.admin.dto.BestMenuModel" id="BestMenuResult">
+		<id property="menu_num" column="menu_num" />
+		<result property="qty" column="qty" />
+		<association property="menu" column="menu_num"
+			select="com.menu.mapper.MenuMapper.selectByMenu" />
+	</resultMap>
+
+	<select id="selectBestMenu" resultMap="BestMenuResult">
+		select qty, menu_num,
+		ranking from (select qty, menu_num, rank() over(order by qty desc) as
+		ranking from (select sum(order_p_qty) as qty, p.menu_num from orders
+		join order_products p on orders.ORDER_NUM=p.ORDER_NUM join menus on
+		p.MENU_NUM=menus.MENU_NUM group by p.menu_num order by qty DESC))
+		where ranking between 1 and 3
+	</select>
+
+	<update id="updateOrder" parameterType="com.admin.dto.UpdateOrderYN">
+		update orders set
+		yn=#{val} where order_num=#{num}
+	</update>
+
+	<resultMap type="com.storeMap.dto.Store" id="storeResult">
+		<id property="store_num" column="store_num" />
+		<result property="store_name" column="store_name" />
+		<result property="store_phone" column="store_phone" />
+		<result property="store_address" column="store_address" />
+	</resultMap>
+
+	<select id="selectByStore" resultMap="storeResult">
+		select * from stores
+	</select>
+
+	<resultMap type="com.member.dto.Member" id="MemberListResult">
+		<id property="id" column="id" />
+		<result property="password" column="password" />
+		<result property="name" column="name" />
+		<result property="gender" column="gender" />
+		<result property="phone" column="phone" />
+		<result property="nickname" column="nickname" />
+		<result property="address" column="address" />
+		<result property="bday" column="bday" />
+		<result property="email" column="email" />
+		<result property="joinday" column="joinday" />
+		<result property="point" column="point" />
+	</resultMap>
+
+	<select id="selectByMemberList" resultMap="MemberListResult">
+		select * from members
+	</select>
+
+	<resultMap type="com.menu.dto.MenuEntity" id="MenuListResult">
+		<id property="menu_num" column="menu_num" />
+		<result property="m_group" column="m_group" />
+		<result property="m_category" column="m_category" />
+		<result property="m_name" column="m_name" />
+		<result property="image" column="image" />
+		<result property="content" column="content" />
+		<result property="price" column="price" />
+		<result property="qty" column="qty" />
+	</resultMap>
+	<select id="selectByMenuList" resultMap="MenuListResult">
+		select * from menus
+	</select>
 </mapper>

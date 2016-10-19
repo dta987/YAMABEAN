@@ -7,6 +7,8 @@ import org.springframework.stereotype.Repository;
 
 import jdk.nashorn.internal.ir.annotations.Reference;
 
+import com.admin.dto.OrderList;
+import com.member.dto.Forgotten;
 import com.member.dto.Member;
 import com.member.mapper.MemberMapper;
 
@@ -32,9 +34,9 @@ public class MemberRepository{
 		return MemberMapper.selectByList(mode, keyword);
 	}
 
-	public int overLapCheck(String mode, String keyword) {
+	public Member overLapCheck(Forgotten forgotten) {
 
-		return MemberMapper.overLapCheck(mode, keyword);
+		return MemberMapper.overLapCheck(forgotten);
 	}
 
 	public int deleteMember(String id) {
@@ -43,6 +45,10 @@ public class MemberRepository{
 
 	public Member updateMember(Member member) {
 		return MemberMapper.updateMember(member);
+	}
+
+	public List<OrderList> selectByOrderList(String id) {
+		return MemberMapper.selectByOrderList(id);
 	}
 
 }

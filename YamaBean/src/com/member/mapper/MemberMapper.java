@@ -2,6 +2,8 @@ package com.member.mapper;
 
 import java.util.List;
 
+import com.admin.dto.OrderList;
+import com.member.dto.Forgotten;
 import com.member.dto.Member;
 
 public interface MemberMapper {
@@ -14,9 +16,11 @@ public interface MemberMapper {
 
 	public List<Member> selectByList(String mode, String keyword); // 멤버리스트, 검색
 
-	public int overLapCheck(String mode, String keyword); // 종복검사 ID, 이메일, 닉네임
+	public Member overLapCheck(Forgotten forgotten); // 종복검사 ID, 이메일, 닉네임
 
 	public int deleteMember(String id); // 회원삭제, 회원탈퇴
 
 	public Member updateMember(Member member); // 회원 수정
+
+	public List<OrderList> selectByOrderList(String id);
 }

@@ -27,20 +27,51 @@
 		'yyyy-MM-dd'),#{email})
 	</insert>
 
+	<resultMap type="com.admin.dto.OrderList" id="orderList">
+		<id property="order_num" column="order_num" />
+		<result property="totalprice" column="total_price" />
+		<result property="store_num" column="store_num" />
+		<association property="member" column="member_id"
+			select="com.member.mapper.MemberMapper.selectByMember" />
+		<collection property="orderProduct" column="order_num"
+			select="com.order.mapper.OrderMapper.selectByOrder_p" />
+	</resultMap>
+
+
+	<select id="selectByOrderList" parameterType="String" resultMap="orderList">
+		select order_num, total_price, store_num, member_id, order_num,
+		sub_day, ranking
+		from
+		(
+		select order_num, total_price, store_num, member_id, sub_day,
+		rank() over(order by sub_day desc) as ranking
+		from orders where member_id=#{id}
+		)
+		where ranking between 1 and 3
+	</select>
+
 	<select id="selectByMember" parameterType="string"
 		resultType="com.member.dto.Member">
 		select * from members where id = #{id}
 	</select>
 
 	<update id="updateMember" parameterType="com.member.dto.Member">
-	    update members set password=#{password},name=#{name},gender=#{gender},phone=#{phone},address=#{address},to_date(#{bday},'yyyy-MM-dd'),email=#{email},
-	    sysdate(#{joinday},'yyyy-MM-dd',point=#{point}	    
+		update members set
+		password=#{password},name=#{name},gender=#{gender},phone=#{phone},address=#{address},to_date(#{bday},'yyyy-MM-dd'),email=#{email},
+		sysdate(#{joinday},'yyyy-MM-dd',point=#{point}
 	</update>
-	
-	
+
+
 	<delete id="deleteMember" parameterType="int">
 		delete members where id=#{id}
 	</delete>
+	
+	<select id="overLapCheck" parameterType="com.member.dto.Forgotten" resultType="com.member.dto.Member">
+	    select * from members where name=#{name} and email=#{email}
+	    <if test="id != null">
+	        and id=#{id}
+	    </if>
+	</select>
 
 </mapper>
 

@@ -1,10 +1,10 @@
-<%@ page language="java" contentType="text/html; charset=utf-8"
-	pageEncoding="utf-8"%>
+<%@ page language="java" contentType="text/html; charset=UTF-8"
+	pageEncoding="UTF-8"%>
 <%@ include file="/WEB-INF/views/rvTOP.jsp"%>
 <!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3.org/TR/html4/loose.dtd">
 <html>
 <head>
-<meta http-equiv="Content-Type" content="text/html; charset=utf-8">
+<meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
 <title>Insert title here</title>
 
 <script type="text/x-jquery-tmpl" id="orderTemplate">
@@ -176,13 +176,13 @@ input[type=text], select {
 		});
 
 	}
-	
+
 	$(function() {
 		$("input[name='usepoint']").change(function() {
 			var mypoint = parseInt($("#mypoint").val());
 			var usepoint = parseInt($("input[name='usepoint']").val());
 			var totalprice = parseInt($("#total").text());
-			if(mypoint < usepoint) {
+			if (mypoint < usepoint) {
 				alert("포인트가 부족합니다!!");
 				$(this).fouces();
 			} else {
@@ -225,20 +225,28 @@ input[type=text], select {
 
 						});
 	});
-	
+
 	$(function() {
 		$("#orderForm").submit(function() {
-			alert("서브밋");
+
 			var mypoint = parseInt($("#mypoint").val());
 			var usepoint = parseInt($("input[name='usepoint']").val());
-			
-			if(mypoint < usepoint) {
-				alert("포인트가 부족합니다!!");				
+			var payment = $("#payment").val();
+			var store = $("#store").val();
+			alert("여기옴");
+			if (store == "null") {
+				alert("매장을 선택해주세요");
+				return false;
+			} else if (payment == "null") {
+				alert("결재 수단을 선택해주세요");
+				return false;
+			} else if (mypoint < usepoint) {
+				alert("포인트가 부족합니다!!");
 				return false;
 			} else {
 				return true;
 			}
-		});		
+		});
 	})
 </script>
 
@@ -388,8 +396,9 @@ input[type=text], select {
 					</div>
 				</div>
 				<form id="orderForm" class="w3-container" method="post">
-					<input type="hidden" name="m_group" value="coffee">
-					<input type="hidden" name="member_id" value="${sessionScope.loginInfo.id}">
+					<input type="hidden" name="m_group" value="coffee"> <input
+						type="hidden" name="member_id"
+						value="${sessionScope.loginInfo.id}">
 					<div class="w3-section" id="orderMenu"
 						style="height: 200px; overflow: auto;"></div>
 					<div style="padding-top: 10px; border-top-style: solid;">
