@@ -31,8 +31,8 @@
 
 
 <script type="text/javascript">
-	function orderFunction(num, name, img, content, price) {
 
+	function orderFunction(num, name, img, content, price) {
 		var bool = Boolean(false);
 
 		$("#registerList > div ").each(function(index) {
@@ -56,97 +56,31 @@
 			$("#registerList").append(div);
 			createEvent(name);
 			sizePrice(price);
-			addShot(shotNum) ;
-			addWhip(whipNum);
-			totalPrice() ;
 		}
 
 	}
 
-	function createEvent(name) {
-		
+	function createEvent(name) {		
 		$("button[name='" + name + "remove']").on(
 				"click",
-				function() {
-					var amount = parseInt($("#" + name).find(
-							$("#" + name + "value")).val());
-					var m_price = parseInt($("#" + name).find(
-							$("input[name='m_price']")).val());
-
-					var sub = amount * m_price
-					var total = $("#total").text();
-
-					$("#total").text(total - sub);
-					$("input[name='totalprice']").val(total - sub);
-
+				function() {					
 					$("div[id='" + name + "']").remove();
 					$("input:radio[name='my_optionSize']").prop("checked", false) ;
-					$("input[name='mymenu_sizePrice']").detach();
+					$("input[name='mymenu_sizePrice']").val(0);
 					$("input[name='my_optionShot']").val(0);
-					$("input[name='mymenu_shotPrice']").remove();
+					$("input[name='mymenu_shotPrice']").val(0);
 					$("input[name='my_optionWhip']").val(0);
-					$("input[name='mymenu_whipPrice']").remove();
-					$("input[name='mymenu_price']").remove();
+					$("input[name='mymenu_whipPrice']").val(0);
+					$("input[name='mymenu_price']").val(0);
 					
-					/* window.location.reload(); */
-		});
-		
-		
-		$("button[name='addShot']").on("click", function () {
-			var shotNum = parseInt($("input[name='my_optionShot']").val());
-			shotNum += 1;
-			var addShotNum = null;
-			if (shotNum < 11) {
-				$("input[name='my_optionShot']").val(shotNum);
-				addShotNum = parseInt(shotNum) * 500;
-				$("input[name='mymenu_shotPrice']").val(addShotNum) ;
-				totalPrice(addShotNum);
-			}			
-			
-		});
-		
-	
-		$("button[name='subShot']").on("click", function() {
-			var shotNum = parseInt($("input[name='my_optionShot']").val());
-			shotNum -= 1;
-			var addShotNum = null;
-			if (shotNum >= 0) {
-				$("input[name='my_optionShot']").val(shotNum);
-				addShotNum = parseInt(shotNum) * 500;
-				$("input[name='mymenu_shotPrice']").val(addShotNum) ;
-				totalPrice(addShotNum);
-			}
-		});
-		
-		$("button[name='addWhip']").on("click", function () {
-			var whipNum = parseInt($("input[name='my_optionWhip']").val());
-			whipNum += 1;
-			var addWhipNum = null ;
-			if (whipNum < 11) {
-				$("input[name='my_optionWhip']").val(whipNum);
-				addWhipNum = parseInt(whipNum) * 500 ;
-				$("input[name='mymenu_whipPrice']").val(addWhipNum) ;
-				totalPrice(addWhipNum);
-			}	
-		});
-		
-	
-		$("button[name='subWhip']").on("click", function() {
-			var whipNum = parseInt($("input[name='my_optionWhip']").val());
-			whipNum -= 1;
-			var addWhipNum = null ;
-			if (whipNum >= 0) {
-				$("input[name='my_optionWhip']").val(whipNum);
-				addWhipNum = parseInt(whipNum) * 500 ;
-				$("input[name='mymenu_whipPrice']").val(addWhipNum) ;
-				totalPrice(addWhipNum);
-			}
 		});
 	}
 	
 	
-
+	
 	function sizePrice(price) {
+		
+		if(price != null) {
 			$("input:radio[value='small']").prop("checked", true) ;
 			$("input[name='mymenu_sizePrice']").val(price);
 			totalPrice(price);		
@@ -164,30 +98,152 @@
 					totalPrice(sizeprice);
 				}
 			});				
-	}
-	
-	/* function addShot(shotNum) {
-		var addShotNum = parseInt(shotNum) * 500 ;
-		$("input[name='mymenu_shotPrice']").val(addShotNum) ;
-		totalPrice(addShotNum);
-	} */
-	
-	/* function addWhip(whipNum) {
-		var addWhipNum = parseInt(whipNum) * 500 ;
-		$("input[name='mymenu_whipPrice']").val(addWhipNum) ;
-		totalPrice(addWhipNum);
-	} */
-	
-	
-	function totalPrice(price) {
-		var mySizePrice = parseInt($("input[name='mymenu_sizePrice']").val());
-		var myShotPrice = parseInt($("input[name='mymenu_shotPrice']").val());
-		var myWhipPrice = parseInt($("input[name='mymenu_whipPrice']").val());
-		var myPrice = mySizePrice + myShotPrice + myWhipPrice ;
-		$("input[name='mymenu_price']").val(myPrice);
-	}
 
+	}
 	
+	function subshot(shotprice) {
+		var total = parseInt($("input[name='mymenu_price']").val()) ;
+		var minus = parseInt(shotprice);
+		var addAmount = null ;
+		var shprice = null ;
+		var menuprice = parseInt($("input[name='mymenu_sizePrice']").val());
+		var whipprice = parseInt($("input[name='mymenu_whipPrice']").val()) ;
+		var totalprice = null ;
+		
+		
+		if (menuprice != null) {
+			
+			if($("input[name='my_optionShot']").val() <= 0) {
+				alert("더 이상 줄일 수 없습니다.(최소 0)") ;
+				
+				$("input[name='my_optionShot']").val(0);
+				shprice = 0 * minus ;
+				
+				totalprice = shprice + whipprice + menuprice ;
+				$("input[name='mymenu_shotPrice']").val(shprice);
+				$("input[name='mymenu_price']").val(totalprice);
+			}else {			
+				addAmount = parseInt($("input[name='my_optionShot']").val()) - 1
+				shprice = addAmount * minus ;
+				totalprice = shprice + whipprice + menuprice ;				
+				$("input[name='my_optionShot']").val(addAmount);
+				$("input[name='mymenu_shotPrice']").val(shprice);
+				$("input[name='mymenu_price']").val(totalprice);
+			}
+			
+		}else {
+			
+			if($("input[name='my_optionShot']").val() <= 0) {
+				alert("더 이상 줄일 수 없습니다.(최소 0)") ;
+				
+				$("input[name='my_optionShot']").val(0);
+				shprice = 0 * minus ;
+				
+				totalprice = shprice + whipprice ;
+				$("input[name='mymenu_shotPrice']").val(shprice);
+				$("input[name='mymenu_price']").val(totalprice);
+			}else {			
+				addAmount = parseInt($("input[name='my_optionShot']").val()) - 1
+				shprice = addAmount * minus ;
+				totalprice = shprice + whipprice ;
+				
+				$("input[name='my_optionShot']").val(addAmount);
+				$("input[name='mymenu_shotPrice']").val(shprice);
+				$("input[name='mymenu_price']").val(totalprice);
+			}
+			
+		}
+		
+		
+		
+		
+		
+		
+	}
+	
+	function addwhip(shotprice){
+		var total = parseInt($("input[name='mymenu_price']").val()) ;	//총합계
+		var plus = parseInt(shotprice);									//500원
+		var addAmount = parseInt($("input[name='my_optionWhip']").val()) +1  ;	//추가수
+		var shprice = addAmount * plus ;
+		var menuprice = parseInt($("input[name='mymenu_sizePrice']").val());
+		var shotprice = parseInt($("input[name='mymenu_shotPrice']").val()) ;
+		var totalprice = shprice + shotprice + menuprice ;
+		var optiontotal = shprice + shotprice ;
+		
+		$("input[name='mymenu_whipPrice']").val(shprice);
+		$("input[name='my_optionWhip']").val(addAmount);
+		
+		if (menuprice == null) {
+			$("input[name='mymenu_price']").val(optiontotal)
+		}else{
+			$("input[name='mymenu_price']").val(totalprice);
+		}
+	
+	}
+	
+	
+	
+	
+	
+	
+	
+	function subwhip(shotprice) {
+		var total = parseInt($("input[name='mymenu_price']").val()) ;
+		var minus = parseInt(shotprice);
+		var addAmount = null ;
+		var shprice = null ;
+		var menuprice = parseInt($("input[name='mymenu_sizePrice']").val());
+		var shotprice = parseInt($("input[name='mymenu_shotPrice']").val()) ;
+		var totalprice = null ;
+		
+	
+		if(menuprice != null){
+			
+			if($("input[name='my_optionWhip']").val() <= 0) {
+				alert("더 이상 줄일 수 없습니다.(최소 0)") ;
+				
+				$("input[name='my_optionWhip']").val(0);
+				shprice = 0 * minus ;
+				
+				totalprice = shprice + shotprice + menuprice ;
+				$("input[name='mymenu_whipPrice']").val(shprice);
+				$("input[name='mymenu_price']").val(totalprice);
+			}else {			
+				addAmount = parseInt($("input[name='my_optionWhip']").val()) - 1
+				shprice = addAmount * minus ;
+				totalprice = shprice + shotprice + menuprice ;
+				$("input[name='my_optionWhip']").val(addAmount);
+				$("input[name='mymenu_whipPrice']").val(shprice);
+				$("input[name='mymenu_price']").val(totalprice);
+			}
+			
+		}else {
+			
+			if($("input[name='my_optionWhip']").val() <= 0) {
+				alert("더 이상 줄일 수 없습니다.(최소 0)") ;
+				
+				$("input[name='my_optionWhip']").val(0);
+				shprice = 0 * minus ;
+				
+				totalprice = shprice + shotprice ;
+				$("input[name='mymenu_whipPrice']").val(shprice);
+				$("input[name='mymenu_price']").val(totalprice);
+			}else {			
+				addAmount = parseInt($("input[name='my_optionWhip']").val()) - 1
+				shprice = addAmount * minus ;
+				totalprice = shprice + shotprice ;
+				$("input[name='my_optionWhip']").val(addAmount);
+				$("input[name='mymenu_whipPrice']").val(shprice);
+				$("input[name='mymenu_price']").val(totalprice);
+			}
+		}
+		
+		
+		
+	}
+		
+
 	
 	function myFunction(id) {
 		var x = document.getElementById(id);
@@ -201,6 +257,7 @@
 		}
 	}
 
+
 	$(function() {
 		$("#registerMenu").submit(function() {
 			$("#registerList > div").each(function(index) {
@@ -213,6 +270,8 @@
 	function goBack() {
 		window.history.back();
 	}
+	
+	
 </script>
 
 
@@ -309,6 +368,7 @@
 			</div>
 		</div>
 
+<!-- --------------------------------mymenu 등록하기---------------------------------------------------  -->
 
 		<form action="/YamaBean/mymenu/registerMyMenu" method="POST"
 			id="registerMyMenu">
@@ -347,14 +407,14 @@
 								<input type="text" name="my_optionShot" value="0" readonly="readonly" style="color: black; width: 100%; height: 100%; border: none;">
 							</td>
 							<td>
-								<button type="button" class="btn btn-default" name="addShot">
+								<button type="button" class="btn btn-default" name="addShot" id="addShot" onclick="addshot('500')">
 								<span class="glyphicon glyphicon-plus" aria-hidden="true"></span>
 								</button>
 							</td>
 						</tr>
 						<tr>
 							<td>
-								<button type="button" class="btn btn-default" name="subShot">
+								<button type="button" class="btn btn-default" name="subShot" onclick="subshot('500')">
 									<span class="glyphicon glyphicon-minus" aria-hidden="true"></span>
 								</button>
 								<input type="text" value="0" name="mymenu_shotPrice" readonly="readonly" style="border: none;">
@@ -369,14 +429,14 @@
 								<input type="text" name="my_optionWhip" value="0" readonly="readonly" style="color: black; width: 100%; height: 100%; border: none;">
 							</td>
 							<td>
-								<button type="button" class="btn btn-default" name="addWhip">
+								<button type="button" class="btn btn-default" name="addWhip" onclick="addwhip('500')">
 								<span class="glyphicon glyphicon-plus" aria-hidden="true"></span>
 								</button>
 							</td>
 						</tr>
 						<tr>
 							<td>
-								<button type="button" class="btn btn-default" name="subWhip">
+								<button type="button" class="btn btn-default" name="subWhip" onclick="subwhip('500')">
 									<span class="glyphicon glyphicon-minus" aria-hidden="true"></span>
 								</button>
 								<input type="text" value="0" name="mymenu_whipPrice" readonly="readonly" style="border: none;">
