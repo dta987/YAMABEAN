@@ -14,6 +14,5 @@ public interface MenuMapper {
 	
 	public int deleteMenu(int menu_num); // 메뉴추가, 삭제
 
-	/*public List<MenuEntity> selectList(String mode, String keyword); // 메뉴리스트 */
 	public List<MenuEntity> selectList(); // 메뉴리스트
 }

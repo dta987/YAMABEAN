@@ -5,6 +5,7 @@ import java.util.List;
 import com.menu.dto.MenuEntity;
 import com.menu.dto.MenuModel;
 import com.mymenu.dto.MyMenuDomain;
+import com.mymenu.dto.MyMenuModel;
 
 public interface MineRepositoryInterface {
 	
@@ -14,10 +15,9 @@ public interface MineRepositoryInterface {
 	
 	public int deleteMyMenu(int mymenu_num) ; //mymenu 삭제
 	
-	public List<MyMenuDomain> mymenuList(); //mymenu 리스트
+	public List<MyMenuModel> mymenuList(); //mymenu 리스트
 	
-	public int updateMyMenu(MyMenuDomain mymenuDomain);	//mymenu 수정
-	
-	public MyMenuDomain detailMyMenu(int mymenu_num); //mymenu 상세보기
+	public MyMenuModel selectByMenu(int mymenu_num);	//mymenu 수정(mymenu_num으로 찾기)
+	public int updateMyMenu(MyMenuDomain mymenuDomain);
 
 }

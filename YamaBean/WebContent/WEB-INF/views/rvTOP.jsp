@@ -11,7 +11,7 @@
 
 <style>
 .w3-top {
-background-color: white;
+	background-color: white;
 }
 </style>
 <body>
@@ -23,7 +23,8 @@ background-color: white;
 					class="fa fa-bars"></i></a></li>
 			<li><a href="/YamaBean/"
 				class="w3-hover-none w3-hover-text-grey w3-padding-large w3-text-black">HOME</a></li>
-			<li class="w3-hide-small"><a href="#" class="w3-padding-large w3-text-black">ABOUT</a></li>
+			<li class="w3-hide-small"><a href="#"
+				class="w3-padding-large w3-text-black">ABOUT</a></li>
 			<li class="w3-hide-small"><a
 				href="${pageContext.request.contextPath}/menu/listMenu"
 				class="w3-padding-large w3-text-black">MENU</a></li>
@@ -36,9 +37,6 @@ background-color: white;
 			<li class="w3-hide-small"><a
 				href="${pageContext.request.contextPath}/mymenu/mymenu"
 				class="w3-padding-large w3-text-black">MY MENU</a></li>
-			<li class="w3-hide-small"><a
-				href="${pageContext.request.contextPath}/member/member"
-				class="w3-padding-large w3-text-black">MEMBER</a></li>
 
 			<c:if
 				test="${sessionScope.whologin != 1 && sessionScope.whologin != 2}">

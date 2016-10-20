@@ -5,11 +5,10 @@ import java.util.List;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Repository;
 
-import jdk.nashorn.internal.ir.annotations.Reference;
-
 import com.admin.dto.OrderList;
 import com.member.dto.Forgotten;
 import com.member.dto.Member;
+import com.member.dto.OvelapCheck;
 import com.member.mapper.MemberMapper;
 
 @Repository
@@ -34,21 +33,31 @@ public class MemberRepository{
 		return MemberMapper.selectByList(mode, keyword);
 	}
 
-	public Member overLapCheck(Forgotten forgotten) {
+	public Member forgotten(Forgotten forgotten) {
 
-		return MemberMapper.overLapCheck(forgotten);
+		return MemberMapper.forgotten(forgotten);
 	}
 
 	public int deleteMember(String id) {
 		return MemberMapper.deleteMember(id);
 	}
 
-	public Member updateMember(Member member) {
+	public int updateMember(Member member) {
 		return MemberMapper.updateMember(member);
 	}
 
 	public List<OrderList> selectByOrderList(String id) {
 		return MemberMapper.selectByOrderList(id);
+	}
+
+	public Member overLapCheckID(String keyword) {
+		return MemberMapper.overLapCheckID(keyword);
+	}
+	public Member overLapCheckNickName(String keyword) {
+		return MemberMapper.overLapCheckNickName(keyword);
+	}
+	public Member overLapCheckEmail(String keyword) {
+		return MemberMapper.overLapCheckEmail(keyword);
 	}
 
 }

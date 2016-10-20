@@ -59,6 +59,7 @@
 		<result property="gender" column="gender" />
 		<result property="phone" column="phone" />
 		<result property="nickname" column="nickname" />
+		<result property="zipcode" column="zipcode" />
 		<result property="address" column="address" />
 		<result property="bday" column="bday" />
 		<result property="email" column="email" />

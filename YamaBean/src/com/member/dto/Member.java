@@ -8,6 +8,7 @@ public class Member {
 	private String gender;
 	private String phone;
 	private String nickname;
+	private String zipcode;
 	private String address;
 	private String bday;
 	private String email;
@@ -18,13 +19,21 @@ public class Member {
 	public String toString() {
 		return "Member [id=" + id + ", password=" + password + ", name=" + name
 				+ ", gender=" + gender + ", phone=" + phone + ", nickname="
-				+ nickname + ", address=" + address + ", bday=" + bday
-				+ ", email=" + email + ", joinday=" + joinday + ", point="
-				+ point + "]";
+				+ nickname + ", zipcode=" + zipcode + ", address=" + address
+				+ ", bday=" + bday + ", email=" + email + ", joinday="
+				+ joinday + ", point=" + point + "]";
 	}
 
-	public String getId() {
+	public String getId() {	
 		return id;
+	}
+
+	public String getZipcode() {
+		return zipcode;
+	}
+
+	public void setZipcode(String zipcode) {
+		this.zipcode = zipcode;
 	}
 
 	public void setId(String id) {

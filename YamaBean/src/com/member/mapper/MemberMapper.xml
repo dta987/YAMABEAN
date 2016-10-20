@@ -11,6 +11,7 @@
 		<result property="gender" column="gender" />
 		<result property="phone" column="phone" />
 		<result property="nickname" column="nickname" />
+		<result property="zipcode" column="zipcode" />
 		<result property="address" column="address" />
 		<result property="bday" column="bday" />
 		<result property="email" column="email" />
@@ -23,9 +24,10 @@
 		insert into members (id,
 		password, name, gender, phone, nickname, address, bday, email) values
 		(#{id},#{password},#{name}, #{gender},
-		#{phone},#{nickname},#{address},to_date(#{bday},
+		#{phone},#{nickname},#{zipcode},#{address},to_date(#{bday},
 		'yyyy-MM-dd'),#{email})
 	</insert>
+
 
 	<resultMap type="com.admin.dto.OrderList" id="orderList">
 		<id property="order_num" column="order_num" />
@@ -56,17 +58,28 @@
 	</select>
 
 	<update id="updateMember" parameterType="com.member.dto.Member">
-		update members set
-		password=#{password},name=#{name},gender=#{gender},phone=#{phone},address=#{address},to_date(#{bday},'yyyy-MM-dd'),email=#{email},
-		sysdate(#{joinday},'yyyy-MM-dd',point=#{point}
+
 	</update>
+	
+	<select id="overLapCheckID" parameterType="String" resultType="com.member.dto.Member" >
+	    select * from members where id=#{keyword}
+	</select>
+	
+	<select id="overLapCheckNickName" parameterType="String" resultType="com.member.dto.Member" >
+	    select * from members where nickname=#{keyword}
+	</select>
+	
+	<select id="overLapCheckEmail" parameterType="String" resultType="com.member.dto.Member" >
+	    select * from members where email=#{keyword}
+	</select>
+	
 
 
 	<delete id="deleteMember" parameterType="int">
 		delete members where id=#{id}
 	</delete>
 	
-	<select id="overLapCheck" parameterType="com.member.dto.Forgotten" resultType="com.member.dto.Member">
+	<select id="forgotten" parameterType="com.member.dto.Forgotten" resultType="com.member.dto.Member">
 	    select * from members where name=#{name} and email=#{email}
 	    <if test="id != null">
 	        and id=#{id}

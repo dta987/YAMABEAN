@@ -10,8 +10,6 @@
 <head>
 <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
 <title>Insert title here</title>
-
-
 <head>
 <style>
 tr:hover {
@@ -24,7 +22,6 @@ tr:hover {
 	<br>
 	<br>
 	<div class="col-sm-offset-${myoffset} col-sm-${mywidth}">
-		<!-- <div class="panel-heading">게시판</div> -->
 		<label>Q & A</label><br> <br>
 		<table class="table" align="center">
 			<thead>
@@ -33,58 +30,66 @@ tr:hover {
 					<th>제목</th>
 					<th>작성자</th>
 					<th>작성일자</th>
-					<c:if test="${sessionScope.whologin == 2}">
-						<th>수정</th>
-						<th>삭제</th>
-					</c:if>
 				</tr>
 			</thead>
 
 			<tbody>
-				<c:forEach var="bean" items="${requestScope.lists}">
+				<c:forEach var="boardList" items="${boardList}">
 					<tr>
-						<td>${bean.board_no}</td>
-						<td><a href="#"></a></td>
-						<td></td>
-						<td></td>
-						<td></td>
-						<td></td>
+						<td>${boardList.board_num}</td>
+						<td><a
+							href="${pageContext.request.contextPath}/board/detail?num=${boardList.board_num}">${boardList.title}</a></td>
+						<td>${boardList.member_id}</td>
+						<td>${boardList.sub_day}</td>
 					</tr>
 				</c:forEach>
 			</tbody>
 
 			<tr>
 				<td colspan="10" align="center">
-					<form class="form-inline" role="form" name="myform" action=""
-						method="post">
+					<form class="form-inline" role="form" name="myform"
+						action="${pageContext.request.contextPath}/board/move"
+						method="get">
 						<div class="form-group">
 							<select class="form-control" name="mode" id="mode">
-								<option value="-" selected="selected">-- 선택하세요---------
-								
-								<option value="board_no">글 번호
-								<option value="board_title">제목
-								<option value="user_nickname">닉네임
+								<option value="-" selected="selected">--- 선택하세요 ---
+								<option value="board_num">글 번호
+								<option value="title">제목
+								<option value="member_id">아이디
 							</select>
 						</div>
 						<div class="form-group">
 							<input type="text" class="form-control btn-xs" name="keyword"
 								id="keyword" placeholder="검색 키워드">
 						</div>
-						<button id="search" class="topmybutton topmybutton1" type="submit">SEARCH</button>
-						<button class="topmybutton topmybutton1" type="button"
-							id="searchAll">ALL</button>
-						<button class="topmybutton topmybutton1" type="button"
-							id="insertForm">WRITE</button>
+						<button id="search"
+							class="w3-btn w3-white w3-border w3-round-large" type="submit">SEARCH</button>
+						<button class="w3-btn w3-white w3-border w3-round-large"
+							type="button" id="searchAll"
+							onclick="location.href='${pageContext.request.contextPath}/board/move'">ALL</button>
+						<button class="w3-btn w3-white w3-border w3-round-large"
+							type="button" id="insertForm">WRITE</button>
 						&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
-						<p class="form-control-static">${requestScope.pagingStatus}</p>
 					</form>
 				</td>
 			</tr>
 		</table>
-		<div align="center">
-			<footer>${requestScope.pagingHtml}</footer>
+		<div class="w3-container" align="center">
+			<ul class="w3-pagination">
+				<li><a href="#">&laquo;</a></li>
+				<c:forEach begin="${beginPage}" end="${endPage}" step="1" var="page"
+					varStatus="pageing">
+					<li><a href="${pageContext.request.contextPath}/board/move?selectPage=${pageing.index}">${pageing.index}</a></li>
+				</c:forEach>
+				<li><a href="#">&raquo;</a></li>
+			</ul>
 		</div>
 	</div>
+
+
+
+
+
 
 	<script type="text/javascript">
 		$(document).ready(

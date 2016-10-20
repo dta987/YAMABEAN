@@ -1,739 +1,286 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
 	pageEncoding="UTF-8"%>
+<%@ taglib prefix="sf" uri="http://www.springframework.org/tags/form"%>
 <%@ include file="/WEB-INF/views/rvTOP.jsp"%>
-
-<%
-	boolean idOverlapCheck = false;
-	boolean nicknameOverlapCheck = false;
-	boolean pwOverlapCheck = false;
-	boolean emailOverlapCheck = false;
-%>
-
-<c:set value="3" var="myoffset"></c:set>
-<c:set value="${twelve} - ${myoffset}" var="mywidth"></c:set>
-<c:set value="3" var="label"></c:set>
-<c:set value="${twelve - (label + 2)}" var="input"></c:set>
-
 <!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3.org/TR/html4/loose.dtd">
 <html>
 <head>
 <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
-<title>Insert title here</title>
-
-<script>
-	$(function() {
-		$("#datepicker").datepicker();
-	});
-
-	$(document)
-			.ready(
-					function() {
-						$("#id")
-								.keyup(
-										function() {
-											if ($("#id").val() == ""
-													|| $("#id").val() == null) {
-												$("#iddiv")
-														.attr("class",
-																"form-group has-feedback");
-												$("#id").popover("hide");
-												$("#idspan")
-														.attr("class",
-																"glyphicon form-control-feedback");
-											} else if (this.value
-													.match(/[^a-zA-Z0-9\_]/g)) {
-												//this.value = this.value.replace(/[^a-zA-Z0-9\_\s]/g, ''); //해당 값이 들어오면 ''으로 바꿔치기
-												$("#iddiv")
-														.attr("class",
-																"form-group has-error has-feedback");
-												$("#id")
-														.attr("data-content",
-																"아이디는 특수기호 _  , 영문, 숫자만 입력 가능합니다.");
-												$("#idspan")
-														.attr("class",
-																"glyphicon glyphicon-remove form-control-feedback");
-												$("#id").popover("show");
-												idOverlapCheck = false;
-											}
-											// 원하지 않는 값이 들어올 경우를 막기 위해	
-											else {
-												if ($("#id").val().length > 5
-														&& $("#id").val().length <= 14) {
-													if (this.value
-															.match(/^[a-zA-Z]{1}[\w]+[a-zA-Z0-9]{1}$/)) {//최소 영문자 1개, _특수문자로 끝나지 않기, 영문자로 시작하기
-
-														$
-																.ajax({
-																	type : "post",
-																	url : "meOverlapcheck",
-																	dataType : "JSON",
-																	data : {
-																		"id" : $(
-																				"#id")
-																				.val(),
-																	},
-																	success : function(
-																			result) {
-																		if (result.check) {
-																			$(
-																					"#iddiv")
-																					.attr(
-																							"class",
-																							"form-group has-success has-feedback");
-																			$(
-																					"#id")
-																					.attr(
-																							"data-content",
-																							"사용 가능 한 아이디 입니다.");
-																			$(
-																					"#idspan")
-																					.attr(
-																							"class",
-																							"glyphicon glyphicon-ok form-control-feedback");
-																			$(
-																					"#id")
-																					.popover(
-																							"show");
-																			idOverlapCheck = true;
-																		} else {
-																			$(
-																					"#iddiv")
-																					.attr(
-																							"class",
-																							"form-group has-warning has-feedback");
-																			$(
-																					"#id")
-																					.attr(
-																							"data-content",
-																							"사용할수 없는 아이디 입니다.");
-																			$(
-																					"#idspan")
-																					.attr(
-																							"class",
-																							"glyphicon glyphicon-warning-sign form-control-feedback");
-																			$(
-																					"#id")
-																					.popover(
-																							"show");
-																			idOverlapCheck = false;
-																		}
-																	}
-																});
-
-													} else {
-														$("#id")
-																.attr(
-																		"data-content",
-																		"아이디는 영문자로 시작, 끝자리는 _ 기호가 불가능합니다.");
-														$("#iddiv")
-																.attr("class",
-																		"form-group has-error has-feedback");
-														$("#idspan")
-																.attr("class",
-																		"glyphicon glyphicon-remove form-control-feedback");
-														$("#id")
-																.popover("show");
-														idOverlapCheck = false;
-													}
-												} else {
-													$("#id")
-															.attr(
-																	"data-content",
-																	"6글자이상 14글자 이하로 입력해주세요");
-													$("#iddiv")
-															.attr("class",
-																	"form-group has-error has-feedback");
-													$("#idspan")
-															.attr("class",
-																	"glyphicon glyphicon-remove form-control-feedback");
-													$("#id").popover("show");
-													idOverlapCheck = false;
-												}
-											}
-										});
-					});
-
-	$(document)
-			.ready(
-					function() {
-						// 원하지 않는 값이 들어올 경우를 막기 위해
-						$("#nickname")
-								.keyup(
-										function() {
-											if ($("#nickname").val() == ""
-													|| $("#nickname").val() == null) {
-												$("#nicknamediv")
-														.attr("class",
-																"form-group has-feedback");
-												$("#nickname").popover("hide");
-												$("#nicknamespan")
-														.attr("class",
-																"glyphicon form-control-feedback");
-											} else if (this.value
-													.match(/[^a-zA-Z0-9가-히\_]/g)) {
-												// replace it with nothing
-												//this.value = this.value.replace(/[^a-zA-Z0-9가-히\_\s]/g, '');
-												$("#nicknamediv")
-														.attr("class",
-																"form-group has-error has-feedback");
-												$("#nickname")
-														.attr("data-content",
-																"닉네임은 _ 를 제외한 특수기호는 입력 불가능합니다.");
-												$("#nicknamespan")
-														.attr("class",
-																"glyphicon glyphicon-remove form-control-feedback");
-												$("#nickname").popover("show");
-												nicknameOverlapCheck = false;
-											} else {
-												if ($("#nickname").val().length > 1) {
-													$
-															.ajax({
-																type : "post",
-																url : "meOverlapcheck",
-																dataType : "JSON",
-																data : {
-																	"nickname" : $(
-																			"#nickname")
-																			.val(),
-																},
-																success : function(
-																		result) {
-																	if (result.check) {
-																		$(
-																				"#nicknamediv")
-																				.attr(
-																						"class",
-																						"form-group has-succes has-feedback");
-																		$(
-																				"#nickname")
-																				.attr(
-																						"data-content",
-																						"사용가능한 닉네임 입니다");
-																		$(
-																				"#nicknamespan")
-																				.attr(
-																						"class",
-																						"glyphicon glyphicon-ok form-control-feedback");
-																		$(
-																				"#nickname")
-																				.popover(
-																						"show");
-																		nicknameOverlapCheck = true;
-																	} else {
-																		$(
-																				"#nicknamediv")
-																				.attr(
-																						"class",
-																						"form-group has-warning has-feedback");
-																		$(
-																				"#nickname")
-																				.attr(
-																						"data-content",
-																						"이미 사용중인 닉네임 입니다");
-																		$(
-																				"#nicknamespan")
-																				.attr(
-																						"class",
-																						"glyphicon glyphicon-warning-sign form-control-feedback");
-																		$(
-																				"#nickname")
-																				.popover(
-																						"show");
-																		nicknameOverlapCheck = false;
-																	}
-																}
-															});
-												} else {
-													$("#nicknamediv")
-															.attr("class",
-																	"form-group has-error has-feedback");
-													$("#nickname").attr(
-															"data-content",
-															"닉네임은 2글자 이상입니다");
-													$("#nicknamespan")
-															.attr("class",
-																	"glyphicon glyphicon-remove form-control-feedback");
-													$("#nickname").popover(
-															"show");
-													nicknameOverlapCheck = false;
-												}
-											}
-										});
-					});
-
-	$(document)
-			.ready(
-					function() {
-						// 원하지 않는 값이 들어올 경우를 막기 위해
-						$("#email")
-								.keyup(
-										function() {
-											if ($("#email").val() == ""
-													|| $("#email").val() == null) {
-												$("#emaildiv")
-														.attr("class",
-																"form-group has-feedback");
-												$("#email").popover("hide");
-												$("#emailspan")
-														.attr("class",
-																"glyphicon form-control-feedback");
-											} else if (this.value
-													.match(/[\w._%+-]+@[\w.-]+\.[a-zA-Z]{2,4}/)) {
-												$
-														.ajax({
-															type : "post",
-															url : "meOverlapcheck",
-															dataType : "JSON",
-															data : {
-																"email" : $(
-																		"#email")
-																		.val(),
-															},
-															success : function(
-																	result) {
-																if (result.check) {
-																	$(
-																			"#emaildiv")
-																			.attr(
-																					"class",
-																					"form-group has-success has-feedback");
-																	$("#email")
-																			.attr(
-																					"data-content",
-																					"사용가능한 이메일주소 입니다");
-																	$(
-																			"#emailspan")
-																			.attr(
-																					"class",
-																					"glyphicon glyphicon-ok form-control-feedback");
-																	$("#email")
-																			.popover(
-																					"show");
-																	emailOverlapCheck = true;
-																} else {
-																	$(
-																			"#emaildiv")
-																			.attr(
-																					"class",
-																					"form-group has-warning has-feedback");
-																	$("#email")
-																			.attr(
-																					"data-content",
-																					"이미 사용중인 이메일주소 입니다");
-																	$(
-																			"#emailspan")
-																			.attr(
-																					"class",
-																					"glyphicon glyphicon-warning-sign form-control-feedback");
-																	$("#email")
-																			.popover(
-																					"show");
-																	emailOverlapCheck = false;
-																}
-															}
-														});
-											} else {
-												$("#emaildiv")
-														.attr("class",
-																"form-group has-error has-feedback");
-												$("#email").attr(
-														"data-content",
-														"잘못된 형식의 이메일 주소입니다");
-												$("#emailspan")
-														.attr("class",
-																"glyphicon glyphicon-remove form-control-feedback");
-												$("#email").popover("show");
-												emailOverlapCheck = false;
-											}
-										});
-					});
-
-	$(document)
-			.ready(
-					function() {
-						//비밀번호 유효성 검사. 특수문자 하나 추가해야, 특수문자 최소 1개 들어가기, 8글자 이상, 16자 이하
-						$("#password")
-								.keyup(
-										function() {
-											if ($("#password").val() == ""
-													|| $("#password").val() == null) {
-												$("#pwdiv")
-														.attr("class",
-																"form-group has-feedback");
-												$("#password").popover("hide");
-												$("#pwspan")
-														.attr("class",
-																"glyphicon form-control-feedback");
-											} else if ($("#password").val().length > 7
-													&& $("#password").val().length < 17) {
-												if (this.value
-														.match(/^(?=.*[0-9])(?=.*[a-z])(?=.*[`~!@#$%^&*()+=,./?|{};:<>\\])(?=\S+$).{8,}$/)) {
-													$("#pwdiv")
-															.attr("class",
-																	"form-group has-success has-feedback");
-													$("#password").attr(
-															"data-content",
-															"사용가능한 비밀번호입니다.");
-													$("#pwspan")
-															.attr("class",
-																	"glyphicon glyphicon-ok form-control-feedback");
-													$("#password").popover(
-															"show");
-												} else {
-													$("#pwdiv")
-															.attr("class",
-																	"form-group has-error has-feedback");
-													$("#password")
-															.attr(
-																	"data-content",
-																	"사용할 수 없는 비밀번호입니다. 특수기호와 숫자 하나를 포함해야 합니다.");
-													$("#pwspan")
-															.attr("class",
-																	"glyphicon glyphicon-remove form-control-feedback");
-													$("#password").popover(
-															"show");
-												}
-											} else {
-												$("#pwdiv")
-														.attr("class",
-																"form-group has-error has-feedback");
-												$("#password")
-														.attr("data-content",
-																"비밀번호는 8글자 이상 16글자 이하로 입력해주세요.");
-												$("#pwspan")
-														.attr("class",
-																"glyphicon glyphicon-remove form-control-feedback");
-												$("#password").popover("show");
-											}
-										});
-					});
-
-	$(document)
-			.ready(
-					function() {
-						//패스워드 1번과 2번이 동일한지에 대한 유효성 검사
-						$("#password2")
-								.keyup(
-										function() {
-											if ($("#password2").val() == ""
-													|| $("#password2").val() == null) {
-												$("#pwdiv2")
-														.attr("class",
-																"form-group has-feedback");
-												$("#password2").popover("hide");
-												$("#pwspan2")
-														.attr("class",
-																"glyphicon form-control-feedback");
-											} else if ($("#password").val() == $(
-													"#password2").val()
-													&& $("#password").val() != null) {
-												$("#pwdiv2")
-														.attr("class",
-																"form-group has-success has-feedback");
-												$("#password2").attr(
-														"data-content", "사용가능");
-												$("#pwspan2")
-														.attr("class",
-																"glyphicon glyphicon-ok form-control-feedback");
-												$("#password2").popover("show");
-												pwOverlapCheck = true;
-											} else {
-												$("#pwdiv2")
-														.attr("class",
-																"form-group has-error has-feedback");
-												$("#password2").attr(
-														"data-content",
-														"비밀번호를 확인해주세요");
-												$("#pwspan2")
-														.attr("class",
-																"glyphicon glyphicon-remove form-control-feedback");
-												$("#password2").popover("show");
-												pwOverlapCheck = false;
-											}
-										});
-					});
-
-	$(document).ready(function() {
-		$("#signup").submit(function() {
-			if (idOverlapCheck) {
-				if (pwOverlapCheck) {
-					if (nicknameOverlapCheck) {
-						if (emailOverlapCheck) {
-							alert("가입을 축하드립니다!");
-							return true;
-						} else {
-							alert("이메일 주소를 확인해주세요");
-							$("#nickname").focus();
-							return false;
-						}
-					} else {
-						alert("닉네임를 확인해주세요");
-						$("#nickname").focus();
-						return false;
-					}
-				} else {
-					alert("비밀번호를 확인해주세요");
-					$("#password").focus();
-					return false;
-				}
-			} else {
-				alert("아이디를 확인해주세요");
-				$("#id").focus();
-				return false;
-			}
-
-		});
-	});
-
-	$(document).ready(function() {
-		$('[data-toggle="popover"]').popover();
-	});
-
-	$(document).ready(
-			function() {
-				$("#reset").click(
-						function() {
-							$("#iddiv")
-									.attr("class", "form-group has-feedback");
-							$("#id").popover("hide");
-							$("#idspan").attr("class",
-									"glyphicon form-control-feedback");
-							$("#id").attr("data-content",
-									"6글자이상 14글자 이하로 입력해주세요");
-
-							$("#pwdiv")
-									.attr("class", "form-group has-feedback");
-							$("#password").popover("hide");
-							$("#pwspan").attr("class",
-									"glyphicon form-control-feedback");
-							$("#password").attr("data-content",
-									"비밀번호는 8글자 이상 16글자 이하로 입력해주세요.");
-
-							$("#pw2div").attr("class",
-									"form-group has-feedback");
-							$("#password2").popover("hide");
-							$("#pw2span").attr("class",
-									"glyphicon form-control-feedback");
-							$("#password2")
-									.attr("data-content", "비밀번호를 확인해주세요");
-
-							$("#nicknamediv").attr("class",
-									"form-group has-feedback");
-							$("#nickname").popover("hide");
-							$("#nicknamespan").attr("class",
-									"glyphicon form-control-feedback");
-							$("#nickname").attr("data-content",
-									"닉네임은 2글자 이상입니다");
-
-							$("#emaildiv").attr("class",
-									"form-group has-feedback");
-							$("#email").popover("hide");
-							$("#emailspan").attr("class",
-									"glyphicon form-control-feedback");
-							$("#email").attr("data-content", "이메일을 입력해주세요");
-
-						});
-			});
-</script>
-
-<style type="text/css">
-.imabutton {
-	background-color: #cbe7cb;
-	border: none;
-	color: white;
-	padding: 5px;
-	text-align: center;
-	text-decoration: none;
-	display: inline-block;
-	margin: 2px;
-	-webkit-transition-duration: 0.4s; /* Safari */
-	transition-duration: 0.4s;
-	cursor: pointer;
-}
-
-.imamybutton1 {
-	background-color: white;
-	color: #cbe7cb;
-	border: 2px solid #cbe7cb;
-	border-radius: 20px;
-}
-
-.imamybutton1:hover {
-	background-color: #cbe7cb;
-	color: white;
-}
-</style>
-
+<title>JoinForm</title>
 </head>
+<script src="http://dmaps.daum.net/map_js_init/postcode.v2.js"></script>
+<script language="javascript" type="text/javascript">
+	//정규표현식을 위한것
+	function id_write(re, e, msg){
+    	if(re.test(e.value)) return true;
+    	alert(msg);
+    	e.value="";
+    	e.focus();
+    	return false;
+	}
+	function password_write(re, e, msg){
+    	if(re.test(e.value)) return true;
+    	alert(msg);
+    	e.value="";
+    	e.focus();
+    	return false;
+	}
+	function password_check(e1, e2, msg){
+		if(e1.value == e2.value)return true;
+     	alert(msg);
+     	e1.value="";
+        e2.value="";
+       	e1.focus();
+       	return false;
+	} 
+	function name_write(re, e, msg){
+    	if(re.test(e.value)) return true;
+    	alert(msg);
+    	e.value="";
+    	e.focus();
+    	return false;
+	}
+	function first_email_write(re, e, msg){
+    	if(re.test(e.value)) return true;
+    	alert(msg);
+    	e.value="";
+    	e.focus();
+    	return false;
+	}
+	function last_email_write(re, e, msg){
+    	if(re.test(e.value)) return true;
+    	alert(msg);
+    	e.value="";
+    	e.focus();
+    	return false;
+	}
+	function phone_write(re, e, msg){
+    	if(re.test(e.value)) return true;
+    	alert(msg);
+    	e.value="";
+    	e.focus();
+    	return false;
+	}
+	//회원가입 유효성 검사 
+	function checkIt(){
+		 var id = document.getElementById("id");
+		 var password = document.getElementById("password");
+		 var password2 = document.getElementById("password2");
+		 var name = document.getElementById("name");
+		 var gender = document.getElementById("gender");
+		 var first_email = document.getElementById("first_email");
+		 var last_email = document.getElementById("last_email");
+		 var phone = document.getElementById("phone");
+		 var zipcode = document.getElementById("zipcode");
+		 
+		 if(!id_write(/^[a-z][a-z\d]{3,11}$/, id, "ID는 \n영문자로 시작,공백과 특수문자 제외 ,4~12글자만 사용해주세요")){
+			 return false;
+		 } 
+		 if(!password_write(/^.*(?=^.{4,20}$)(?=.*\d)(?=.*[a-zA-Z])(?=.*[!@#$%^&+=]).*$/, password, "Password는 \n특수문자,숫자,글자를 포함해주세요")){
+			 return false;
+		 }
+		 if(!password_check(password,password2,"비밀번호를 확인해주세요 ")){
+			 return false;
+		 }
+		 if(!name_write(/^[가-힝]{2,5}$/,name,"이름을 확인해주세요")){
+	          return false;
+	     }
+		 if(!first_email_write(/^[a-z][a-z\d]{3,11}$/,first_email,"이메일 입력")){
+	          return false;
+	     }
+		 if(!last_email_write(/((?:[\w-]+\.)*\w[\w-]{0,66})\.([a-z]{2,6}(?:\.[a-z]{2})?)$/,last_email,"이메일 입력")){
+	          return false;
+	     }
+		 if(!phone_write(/^((01[1|6|7|8|9])[1-9]+[0-9]{6,7})|(010[1-9][0-9]{7})$/,phone,"전화번호 입력")){
+	          return false;
+	     }
+	 //필수 체크요소
+	      if($(':radio[name="gender"]:checked').length < 1){
+	    	  alert("성별을 입력하세요");
+	    	  return false;
+	      }
+	      if(!member.birth.value){
+	          alert("생년월일을 입력하세요");
+	          return false;
+	      }
+	      if(!member.zipcode.value){
+	          alert("주소를 입력하세요");
+	          return false;
+	      }
+	} 
+
+
+	//생년월일
+	$(document).ready(
+		function() {
+			var clareCalendar = {
+					
+				monthNamesShort : [ '1월', '2월', '3월', '4월', '5월',
+									'6월', '7월', '8월', '9월', '10월', '11월', '12월' ],
+				dayNamesMin : [ '일', '월', '화', '수', '목', '금', '토' ],
+				weekHeader : 'Wk',
+				dateFormat : 'yymmdd', //형식(20120303)
+				autoSize : false, //오토리사이즈(body등 상위태그의 설정에 따른다)
+				changeMonth : true, //월변경가능
+				changeYear : true, //년변경가능
+				showMonthAfterYear : true, //년 뒤에 월 표시
+				showOn : "both", //엘리먼트와 이미지 동시 사용(both,button)
+				yearRange : '1900:2020' //1990년부터 2020년까지
+			};
+			$("#birth").datepicker(clareCalendar);
+			$("#ui-datepicker-div").hide(); //자동으로 생성되는 div객체 숨김  
+		});
+	
+		//이메일
+		$(function(){
+		  $('#email_select').change(function(){
+		   if($('#email_select').val() == "1"){
+		    $("#last_email").val(""); //값 초기화
+		    $("#last_email").prop("readonly",false); //활성화
+		   } else {
+		    $("#last_email").val($('#email_select').val()); //선택값 입력
+		    $("#last_email").prop("readonly",true); //비활성화
+		   }
+		  });
+		});
+	
+		//주소
+		function zipCheck() {
+			new daum.Postcode({
+				oncomplete : function(data) {
+					var fullRoadAddr = data.roadAddress; // 도로명 주소 변수
+					var extraRoadAddr = ''; // 도로명 조합형 주소 변수
+					document.getElementById("zipcode").value = data.zonecode;
+					document.getElementById("address").value = fullRoadAddr;
+
+					document.getElementById('address').focus();
+				}
+			}).open();
+		}
+		$(function(){
+			$("#id").change(function(){
+				$.ajax({
+					type : "post",
+					url : "${pageContext.request.contextPath}/member/overlabCheck",
+					dataType : "JSON",
+					data : {
+						"keyword" : $("#id").val(),
+						"mode" : "id",
+					},
+					success : function(result) {
+						if(result) {
+							$("#mylabel").html("<span><font color='red'>중복된 ID입니다.</font></span>");
+							$("#checkid").val(false);
+						} else {
+							$("#mylabel").html("<span><font color='green'>사용 가능한 ID입니다.</font></span>");
+							$("#checkid").val(true);
+						}
+					
+					}
+				});
+			
+			});
+		
+		 $("#btn").click(function(){
+				   if($("#checkid").val() == 'false'){
+					   alert("ID를 확인해 주세요.");
+					   return false;
+				   }
+		 });	
+		});
+		
+</script>
+<style>
+	.form-control{
+		width: 20% ;
+	}
+	#first_email{
+		width: 10% ;
+	}
+	#last_email{
+		width: 10% ;
+	}
+</style>
 <body>
-
-	<div class="col-sm-offset-${myoffset} col-sm-${mywidth}"
-		style="margin-top: 100px; border: solid 1px;">
-
-		<form id="signup" class="form-horizontal" action="" method="post"
-			enctype="multipart/form-data">
-			<input type="hidden" name="command" value="meSignup">
-			<table>
-				<tr>
-					<td>
-						<div id="iddiv" class="form-group has-feedback">
-							<label for="ID" class="col-sm-${label} control-label">ID</label>
-							<div class="col-sm-${input}">
-								<input type="text" class="form-control" id="id" name="id"
-									placeholder="id" data-toggle="popover" data-trigger="top"
-									data-placement="top" data-content=""><span id="idspan"
-									class="glyphicon form-control-feedback"></span>
-								
-							</div>
-						</div>
-						<div id="pwdiv" class="form-group has-feedback">
-							<label for="passoword" class="col-sm-${label} control-label">PW</label>
-							<div class="col-sm-${input}">
-								<input type="password" class="form-control" id="password"
-									name="password" placeholder="password" data-toggle="popover"
-									data-trigger="top" data-placement="top" data-content="">
-								<span id="pwspan" class="glyphicon form-control-feedback"></span>
-							</div>
-							<div id="pwcheck"></div>
-						</div>
-						<div id="pwdiv" class="form-group has-feedback">
-							<label for="passoword2" class="col-sm-${label} control-label">P.W
-								Chcek</label>
-							<div class="col-sm-${input}">
-								<input type="password" class="form-control" id="password2"
-									name="password2" placeholder="password" data-toggle="popover"
-									data-trigger="top" data-placement="top" data-content="">
-								<span id="pwspan" class="glyphicon form-control-feedback"></span>
-							</div>
-							<div id="pwcheck"></div>
-						</div>
-						<div class="form-group">
-							<label for="name" class="col-sm-${label} control-label">Name</label>
-							<div class="col-sm-${input}">
-								<input type="text" class="form-control" id="name" name="name"
-									placeholder="name">
-							</div>
-						</div>
-						<div id="emaildiv" class="form-group has-feedback">
-							<label for="email" class="col-sm-${label} control-label">Email</label>
-							<div class="col-sm-${input}">
-								<input type="text" class="form-control" id="email" name="email"
-									placeholder="email" data-toggle="popover" data-trigger="top"
-									data-placement="top" data-content=""> <span
-									id="emailspan" class="glyphicon form-control-feedback"></span>
-							</div>
-							<div id="emailcheck"></div>
-						</div>
-						<div id="nicknamediv" class="form-group has-feedback">
-							<label for="nickname" class="col-sm-${label} control-label">NickName</label>
-							<div class="col-sm-${input}">
-								<input type="text" class="form-control" id="nickname"
-									name="nickname" placeholder="nickname" data-toggle="popover"
-									data-trigger="top" data-placement="top" data-content="">
-								<span id="nicknamespan" class="glyphicon form-control-feedback"></span>
-							</div>
-							<div id="nicknamecheck"></div>
-						</div>
-						<div id="address" class="form-group has-feedback">
-							<label for="address" class="col-sm-${label} control-label">Address</label>
-							<div class="col-sm-${input}">
-								<input class="form-control" type="text" id="sample4_postcode"
-									placeholder="우편번호" readonly="readonly"> <input
-									class="form-control" type="button"
-									onclick="sample4_execDaumPostcode()" value="우편번호 찾기"><br>
-								<input class="form-control" type="text" id="sample4_roadAddress"
-									placeholder="도로명주소" readonly="readonly"> <input
-									class="form-control" type="text" id="sample4_jibunAddress"
-									placeholder="지번주소"><span id="guide" style="color: #999"></span>
-
-								<script src="http://dmaps.daum.net/map_js_init/postcode.v2.js"></script>
-								<script>
-									//본 예제에서는 도로명 주소 표기 방식에 대한 법령에 따라, 내려오는 데이터를 조합하여 올바른 주소를 구성하는 방법을 설명합니다.
-									function sample4_execDaumPostcode() {
-										new daum.Postcode(
-												{
-													oncomplete : function(data) {
-														// 팝업에서 검색결과 항목을 클릭했을때 실행할 코드를 작성하는 부분.
-
-														// 도로명 주소의 노출 규칙에 따라 주소를 조합한다.
-														// 내려오는 변수가 값이 없는 경우엔 공백('')값을 가지므로, 이를 참고하여 분기 한다.
-														var fullRoadAddr = data.roadAddress; // 도로명 주소 변수
-														var extraRoadAddr = ''; // 도로명 조합형 주소 변수
-
-														// 법정동명이 있을 경우 추가한다. (법정리는 제외)
-														// 법정동의 경우 마지막 문자가 "동/로/가"로 끝난다.
-														if (data.bname !== ''
-																&& /[동|로|가]$/g
-																		.test(data.bname)) {
-															extraRoadAddr += data.bname;
-														}
-														// 건물명이 있고, 공동주택일 경우 추가한다.
-														if (data.buildingName !== ''
-																&& data.apartment === 'Y') {
-															extraRoadAddr += (extraRoadAddr !== '' ? ', '
-																	+ data.buildingName
-																	: data.buildingName);
-														}
-														// 도로명, 지번 조합형 주소가 있을 경우, 괄호까지 추가한 최종 문자열을 만든다.
-														if (extraRoadAddr !== '') {
-															extraRoadAddr = ' ('
-																	+ extraRoadAddr
-																	+ ')';
-														}
-														// 도로명, 지번 주소의 유무에 따라 해당 조합형 주소를 추가한다.
-														if (fullRoadAddr !== '') {
-															fullRoadAddr += extraRoadAddr;
-														}
-
-														// 우편번호와 주소 정보를 해당 필드에 넣는다.
-														document
-																.getElementById('sample4_postcode').value = data.zonecode; //5자리 새우편번호 사용
-														document
-																.getElementById('sample4_roadAddress').value = fullRoadAddr;
-														document
-																.getElementById('sample4_jibunAddress').value = data.jibunAddress;
-
-														// 사용자가 '선택 안함'을 클릭한 경우, 예상 주소라는 표시를 해준다.
-														if (data.autoRoadAddress) {
-															//예상되는 도로명 주소에 조합형 주소를 추가한다.
-															var expRoadAddr = data.autoRoadAddress
-																	+ extraRoadAddr;
-															document
-																	.getElementById('guide').innerHTML = '(예상 도로명 주소 : '
-																	+ expRoadAddr
-																	+ ')';
-
-														} else if (data.autoJibunAddress) {
-															var expJibunAddr = data.autoJibunAddress;
-															document
-																	.getElementById('guide').innerHTML = '(예상 지번 주소 : '
-																	+ expJibunAddr
-																	+ ')';
-
-														} else {
-															document
-																	.getElementById('guide').innerHTML = '';
-														}
-													}
-												}).open();
-									}
-								</script>
-							</div>
-							<div id="nicknamecheck"></div>
-						</div>
-
-						<div id="nicknamediv" class="form-group has-feedback">
-							<label for="nickname" class="col-sm-${label} control-label">생년얼일</label>
-							<div class="col-sm-${input}">
-								<input class="form-control" type="text" id="datepicker"
-									name="bday" readonly="readonly">
-							</div>
-						</div>
-
-
-					</td>
-			</table>
-		</form>
+<div style="margin-left: 100px; margin-top: 100px;">
+	<div style="margin-left: 70px"><p>회원가입<p></div>
+	<div style="margin-top: 20px; margin-left: 100px;" >
+	<form action="${pageContext.request.contextPath}/member/signup" method="post" id="member" onSubmit = "return checkIt()" name = "member">
+		<div class="form-group">
+			<label>아이디</label>
+			<label id="mylabel"></label><br>
+			<input class="form-control" type="text" name="id" id="id" placeholder="Enter ID">
+			<input type="hidden" name="checkid" id="checkid" value="false">
+		</div>	
+		<div class="form-group">
+			<label>비밀번호</label>
+			<input class="form-control" type="password" name="password" id="password" placeholder="Enter PassWord">
+		</div>	
+		<div class="form-group">
+			<label>비밀번호 확인</label>
+			<input class="form-control" type="password" name="password2" id="password2" placeholder="Check PassWord">
+		</div>
+		<div class="form-group">
+			<label>이름</label>
+			<input class="form-control" type="text" name="name" id="name" placeholder="Enter Name">
+		</div>
+		<div class="form-group">
+			<label>닉네임</label>
+			<input class="form-control" type="text" name="nickname" id="nickname" placeholder="Enter Name">
+		</div>
+		<div class="form-group">
+			<label>성별</label>
+			<div class="radio">
+				<label><input type="radio" name="gender" id="남" value="man">남자</label> 
+				<label><input type="radio" name="gender" id="여" value="woman">여자</label> 
+			</div>
+		</div>
+		<div class="form-group">
+			<label>생년월일</label>
+			<div class="form-inline">
+			<input class="form-control" type="text" readonly="readonly" name="bday" id="birth" placeholder="Enter Birth">
+			</div>
+		</div>
+		<div class="form-group">
+			<label>이메일</label>
+			<div class="form-inline">
+			<input class="form-control" type="text" id="first_email" name="email" placeholder="Enter mail">@
+  			<input class="form-control" type="text" id="last_email" name="email">
+  			<select class="form-control" id="email_select">
+   				<option value="1">::직접입력::</option>
+   				<option value="naver.com">naver.com</option>
+   				<option value="nate.com">nate.com</option>
+   				<option value="daum.net">daum.net</option>
+   				<option value="gmail.com">gmail.com</option>
+   				<option value="hotmail.com">hotmail.com</option>
+   				<option value="bondingedu.com">bondingedu.com</option>
+   				<option value="hanmir.com">hanmir.com</option>
+   				<option value="empas.com">empas.com</option>
+   				<option value="dreamwiz.com">dreamwiz.com</option>
+   				<option value="korea.com">korea.com</option>
+   				<option value="lycos.co.kr">lycos.co.kr</option>
+   				<option value="freechal.com">freechal.com</option>
+  			</select>
+		</div>
+		</div>
+		<div class="form-group">
+			<label>전화번호</label>
+			<input class="form-control" type="text" name="phone" id="phone" placeholder="Enter Phone (Only Number)" >
+		</div>
+		<div class="form-group">
+			<label>주소</label>
+			<div class="form-inline">
+			<input class="form-control"  id="zipcode" readonly="readonly" size="10" name="zipcode" placeholder="Address Code">
+			<input onclick="zipCheck()" class="btn btn-success" type="button" value="우편번호찾기"><br>
+			<span style="LINE-HEIGHT: 10%"><br></span>
+			</div> 
+			<input class="form-control"  id="address" readonly="" name="address" placeholder="Address"><br>
+		</div>
+		
+		<input type="submit" class="btn btn-primary" id="btn" name="btn" value="회원가입">
+		<input type="reset" class="btn btn-danger" value="가입취소">
+	</form>
 	</div>
+</div>	
 </body>
 </html>

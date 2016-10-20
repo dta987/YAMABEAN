@@ -4,17 +4,21 @@ import java.util.List;
 
 import javax.servlet.http.HttpSession;
 
+import org.json.simple.JSONObject;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.ModelAttribute;
+import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RequestParam;
+import org.springframework.web.bind.annotation.ResponseBody;
 
 import com.admin.dto.OrderList;
 import com.member.dto.Forgotten;
 import com.member.dto.Member;
+import com.member.dto.OvelapCheck;
 
 @Controller
 public class MemberContorller {
@@ -65,20 +69,19 @@ public class MemberContorller {
 
 		if (id.equals(member.getId())) {
 			if (password.equals(member.getPassword())) {
-				if(member.getId().equals("admin")) {
-					msg = member.getId()+"님 환영합니다.";
+				if (member.getId().equals("admin")) {
+					msg = member.getId() + "님 환영합니다.";
 					httpSession.setAttribute("loginInfo", member);
 					httpSession.setAttribute("whologin", 2);
 					model.addAttribute("msg", msg);
 					return "redirect:/";
 				} else {
-					msg = member.getId()+"님 환영합니다.";
+					msg = member.getId() + "님 환영합니다.";
 					httpSession.setAttribute("loginInfo", member);
 					httpSession.setAttribute("whologin", 1);
 					model.addAttribute("msg", msg);
 					return "redirect:/";
 				}
-				
 
 			} else {
 				msg = "아이디나 비밀번호가 잘못 되었습니다";
@@ -90,6 +93,13 @@ public class MemberContorller {
 			model.addAttribute("msg", msg);
 			return "login";
 		}
+	}
+
+	@RequestMapping(value = "/mymember", method = RequestMethod.GET)
+	public String move() {
+		System.out.println("mymember 컨트롤러 이동");
+		return "mymember";
+
 	}
 
 	@RequestMapping(value = "/signup", method = RequestMethod.GET)
@@ -118,11 +128,11 @@ public class MemberContorller {
 	}
 
 	@RequestMapping(value="/forgotten", method=RequestMethod.POST)
-	public String forgottenID(@ModelAttribute Forgotten forgotten, Model model) {
+	public String forgotten(@ModelAttribute Forgotten forgotten, Model model) {
 		System.out.println("forgottenID 컨트롤러 접근");
 		
 		System.out.println(forgotten.toString());
-		boolean bool = memberService.overLapCheck(forgotten);
+		boolean bool = memberService.forgotten(forgotten);
 		String path = "";
 
 		if(bool) {
@@ -135,6 +145,19 @@ public class MemberContorller {
 	
 		return path;
 	}
+	
+	@RequestMapping(value = "/overlabCheck", method = RequestMethod.POST)
+	public @ResponseBody Boolean overLapCheck(@RequestParam String keyword, @RequestParam String mode) {
+		
+		System.out.println("OverLapCheck");
+		
+		boolean bool = memberService.overLapCheck(keyword, mode);
+
+		System.out.println(bool);
+		
+		return bool;
+		
+	}
 
 	@RequestMapping(value = "/delete", method = RequestMethod.GET)
 	public String deleteMember(@RequestParam String id) {
@@ -145,16 +168,19 @@ public class MemberContorller {
 	}
 
 	@RequestMapping(value = "/update", method = RequestMethod.GET)
-	public String updateMember(@RequestParam String id) {
+	public Member updateMember(@RequestParam String id) {
+		System.out.println("updateMember 컨트롤러 접근");
 		Member member = memberService.updateMember(id);
-		return "listmember";
+	
+		return member;
 	}
 
 	@RequestMapping(value = "/update", method = RequestMethod.POST)
 	public String alertMember(Member member, Model model) {
-		System.out.println("회원수정 컨트롤러 접근");
-		memberService.modifyMember(member);
+		System.out.println("alertMember 컨트롤러 접근");
 
-		return "listmember";
+		int count = memberService.modifyMember(member);
+		model.addAttribute("member", member);
+		return "redirect:/member/listmember";
 	}
 }

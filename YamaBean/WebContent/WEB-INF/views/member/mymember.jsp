@@ -16,8 +16,8 @@
 		<hr width="500px">
 
 		<div>
-			<a href="/YamaBean/mymenu/memberlist">회원리스트 관리</a><br><br>
-			<a href="/YamaBean/mymenu/update">회원정보 수정</a> <br><br>
+			<a href="/YamaBean/member/memberlist">회원리스트 관리</a><br><br>
+			<a href="/YamaBean/member/update">회원정보 수정</a> <br><br>
 		</div>
 
 	</div>

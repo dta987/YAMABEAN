@@ -125,7 +125,7 @@ body, h1, h2, h3, h4, h5 {
 				</p>
 				<p>
 					Address <span class="glyphicon glyphicon-home" aria-hidden="true"></span>
-					: ${member.address}
+					: ${member.zipcode}&nbsp;&nbsp;${member.address}
 				</p>
 				<p>
 					Birthday <span class="glyphicon glyphicon-gift" aria-hidden="true"></span>

@@ -1,22 +1,28 @@
 package com.mymenu.dto;
 
-import com.member.dto.Member;
 import com.menu.dto.MenuEntity;
 
-public class MyMenuDomain {
 
-	//view
+public class MyMenuModel {
+	
+	private MenuEntity menuEntity ;
 	private int mymenu_num ;
 	private String member_id ; //fk, member : id 
 	private String mymenu_name ;
-	private int menu_num ; //fk, menus : menu_num 
+	/*private int menu_num ; //fk, menus : menu_num */	
 	private String my_optionSize ; 
 	private String sub_day ;
 	private int mymenu_price;
-	private int my_optionAmount ;
 	private int my_optionShot ;
 	private int my_optionWhip ;
 	
+	
+	public MenuEntity getMenuEntity() {
+		return menuEntity;
+	}
+	public void setMenuEntity(MenuEntity menuEntity) {
+		this.menuEntity = menuEntity;
+	}
 	public int getMymenu_num() {
 		return mymenu_num;
 	}
@@ -35,12 +41,7 @@ public class MyMenuDomain {
 	public void setMymenu_name(String mymenu_name) {
 		this.mymenu_name = mymenu_name;
 	}
-	public int getMenu_num() {
-		return menu_num;
-	}
-	public void setMenu_num(int menu_num) {
-		this.menu_num = menu_num;
-	}
+	
 	public String getMy_optionSize() {
 		return my_optionSize;
 	}
@@ -59,12 +60,6 @@ public class MyMenuDomain {
 	public void setMymenu_price(int mymenu_price) {
 		this.mymenu_price = mymenu_price;
 	}
-	public int getMy_optionAmount() {
-		return my_optionAmount;
-	}
-	public void setMy_optionAmount(int my_optionAmount) {
-		this.my_optionAmount = my_optionAmount;
-	}
 	public int getMy_optionShot() {
 		return my_optionShot;
 	}
@@ -78,6 +73,6 @@ public class MyMenuDomain {
 		this.my_optionWhip = my_optionWhip;
 	}
 	
-
+	
 	
 }

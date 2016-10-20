@@ -19,6 +19,8 @@
 
 			<table>
 				<tr align="center">
+					<th>메뉴 이미지</th>
+					<th>메뉴 이름</th>
 					<th>마이메뉴이름</th>
 					<th>등록날짜</th>
 					<th>사이즈</th>
@@ -27,11 +29,13 @@
 				</tr>
 				<c:forEach var="mymenulist" items="${allListMyMenu}">
 					<tr align="center">
-						<td>${mymenulist.mymenu_name}</td>
+						<td><img src="${uploadedFolder}${mymenulist.menuEntity.image}"></td>
+						<td>${mymenulist.menuEntity.m_name}</td>
+						<td><a href="/YamaBean/mymenu/detailMyMenu?mymenu_num=${mymenulist.mymenu_num}">${mymenulist.mymenu_name}</a></td>
 						<td>${mymenulist.sub_day}</td>
 						<td>${mymenulist.my_optionSize}</td>
 						<td>${mymenulist.mymenu_price}</td>
-						<td>수량 ${mymenulist.my_optionAmount} / 샷 ${mymenulist.my_optionShot} / 휘핑 ${mymenulist.my_optionWhip}</td>
+						<td>샷 ${mymenulist.my_optionShot} / 휘핑 ${mymenulist.my_optionWhip}</td>
 						<td><a href="/YamaBean/mymenu/updateMyMenu?mymenu_num=${mymenulist.mymenu_num}">수정</a></td>
 						<td><a href="/YamaBean/mymenu/deleteMyMenu?mymenu_num=${mymenulist.mymenu_num}">삭제</a></td>
 					</tr>

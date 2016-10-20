@@ -5,6 +5,46 @@
 
 <mapper namespace="com.board.mapper.BoardMapper">
 
+	<resultMap type="com.board.dto.Board" id="boardListResult">
+		<id property="board_num" column="board_num" />
+		<result property="b_category" column="b_category" />
+		<result property="title" column="title" />
+		<result property="sub_day" column="sub_day" />
+		<result property="member_id" column="member_id" />
+		<result property="contents" column="contents" />
+		<result property="group_no" column="group_no" />
+		<result property="order_no" column="order_no" />
+	</resultMap>
 
+	<select id="selectAll" parameterType="com.board.dto.BoardPage"
+		resultMap="boardListResult">
+		select * from boards where group_no=0
+		<if test="mode != null and mode.equals('board_num')">
+			and board_num=#{keyword}
+		</if>
+		<if test="mode != null and mode.equals('title')">
+			and title like '#{title}'
+		</if>
+		<if test="mode != null and mode.equals('member_id')">
+			and member_id=#{keyword}
+		</if>
+		order by board_num asc
+	</select>
+
+	<select id="count" parameterType="com.board.dto.BoardPage"
+		resultType="int">
+		select count(*) as cnt from boards
+		<where>
+			<if test="mode != null and mode.equals('board_num')">
+				and board_num=#{keyword}
+			</if>
+			<if test="mode != null and mode.equals('title')">
+				and title like '#{title}'
+			</if>
+			<if test="mode != null and mode.equals('member_id')">
+				and member_id=#{keyword}
+			</if>
+		</where>
+	</select>
 
 </mapper>

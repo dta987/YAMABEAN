@@ -10,8 +10,8 @@ import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RequestParam;
 
 import com.menu.dto.MenuModel;
-import com.menu.mvc.MenuService;
 import com.mymenu.dto.MyMenuDomain;
+import com.mymenu.dto.MyMenuModel;
 
 @Controller
 public class MyMenuController implements MineControllerInterface {
@@ -24,6 +24,7 @@ public class MyMenuController implements MineControllerInterface {
 		System.out.println("==mymenu 이동==");
 		return "mymenu";
 	}
+
 	
 	
 	@Override
@@ -39,9 +40,9 @@ public class MyMenuController implements MineControllerInterface {
 	@Override
 	@RequestMapping(value="/registerMyMenu", method=RequestMethod.POST)
 	public String registerMyMenu(@ModelAttribute MyMenuDomain mymenuDomain) {
+		mymenuDomain.setMember_id("unghye");
 		System.out.println(mymenuDomain.getMember_id());
 		System.out.println(mymenuDomain.getMenu_num());
-		System.out.println(mymenuDomain.getMy_optionAmount());
 		System.out.println(mymenuDomain.getMy_optionShot());
 		System.out.println(mymenuDomain.getMy_optionSize());
 		System.out.println(mymenuDomain.getMy_optionWhip());
@@ -57,10 +58,11 @@ public class MyMenuController implements MineControllerInterface {
 	@Override
 	@RequestMapping(value="/listMyMenu", method=RequestMethod.GET)
 	@ModelAttribute("allListMyMenu")
-	public List<MyMenuDomain> mymenuList() {
+	public List<MyMenuModel> mymenuList() {
 		System.out.println("==mymenuList 불러오기==");
 		return myMenuService.mymenuList();
 	}
+	
 	
 	@Override
 	@RequestMapping(value="/deleteMyMenu", method=RequestMethod.GET)
@@ -71,17 +73,23 @@ public class MyMenuController implements MineControllerInterface {
 	}
 
 
+
 	@Override
-	@RequestMapping(value="/detailMyMenu", method=RequestMethod.GET)
-	public MyMenuDomain detailMyMenu(@RequestParam int mymenu_num, @ModelAttribute MyMenuDomain mymenuDomain) {
-		mymenuDomain = myMenuService.detailMyMenu(mymenu_num);
-		return mymenuDomain;
+	@RequestMapping(value="/updateMyMenu", method=RequestMethod.GET)
+	@ModelAttribute("myMenuModel")
+	public MyMenuModel updateMyMenuForm(@RequestParam int mymenu_num) {
+		System.out.println(mymenu_num);
+		return myMenuService.findByMymenu(mymenu_num);		  
 	}
-	
+
 	@Override
-	public String updateMyMenu(MyMenuDomain mymenuDomain) {
-		return null;
+	@RequestMapping(value="/updateMyMenu", method=RequestMethod.POST)
+	public String updateMyMenu(@ModelAttribute MyMenuDomain mymenuDomain) {
+		myMenuService.updateMyMenu(mymenuDomain);
+		return "redirect:/mymenu/listMyMenu";
 	}
+
+
 
 
 
