@@ -61,22 +61,35 @@
     	e.focus();
     	return false;
 	}
+	function nickname_write(re, e, msg){
+    	if(re.test(e.value)) return true;
+    	alert(msg);
+    	e.value="";
+    	e.focus();
+    	return false;
+	}
+	
+	
 	//회원가입 유효성 검사 
 	function checkIt(){
-		 var id = document.getElementById("id");
+		 /* var id = document.getElementById("id"); */
 		 var password = document.getElementById("password");
 		 var password2 = document.getElementById("password2");
 		 var name = document.getElementById("name");
 		 var gender = document.getElementById("gender");
-		 var first_email = document.getElementById("first_email");
-		 var last_email = document.getElementById("last_email");
+		 /* var first_email = document.getElementById("first_email");
+		 var last_email = document.getElementById("last_email"); */
 		 var phone = document.getElementById("phone");
 		 var zipcode = document.getElementById("zipcode");
-		 
-		 if(!id_write(/^[a-z][a-z\d]{3,11}$/, id, "ID는 \n영문자로 시작,공백과 특수문자 제외 ,4~12글자만 사용해주세요")){
+		 /* var nickname = document.getElementById("nickname"); */
+		 		 
+		/*  if(!id_write(/^[a-z][a-z\d]{1,11}$/, id, "ID는 영문자로 시작,공백과 특수문자 제외 ,4~12글자만 사용해주세요")){
 			 return false;
-		 } 
-		 if(!password_write(/^.*(?=^.{4,20}$)(?=.*\d)(?=.*[a-zA-Z])(?=.*[!@#$%^&+=]).*$/, password, "Password는 \n특수문자,숫자,글자를 포함해주세요")){
+		 }  */
+		 /* if(!nickname_write(/[^a-zA-Z0-9가-히\_]/g, nickname, "닉네임은 _ 를 제외한 특수기호는 입력 불가능합니다.")){
+			 return false;
+		 }  */
+		 if(!password_write(/^.*(?=^.{4,20}$)(?=.*\d)(?=.*[a-zA-Z])(?=.*[!@#$%^&+=]).*$/, password, "Password는 특수문자,숫자,글자를 포함해주세요")){
 			 return false;
 		 }
 		 if(!password_check(password,password2,"비밀번호를 확인해주세요 ")){
@@ -85,12 +98,12 @@
 		 if(!name_write(/^[가-힝]{2,5}$/,name,"이름을 확인해주세요")){
 	          return false;
 	     }
-		 if(!first_email_write(/^[a-z][a-z\d]{3,11}$/,first_email,"이메일 입력")){
+		/*  if(!first_email_write(/^[a-z][a-z\d]{3,11}$/,first_email,"이메일 입력")){
 	          return false;
-	     }
-		 if(!last_email_write(/((?:[\w-]+\.)*\w[\w-]{0,66})\.([a-z]{2,6}(?:\.[a-z]{2})?)$/,last_email,"이메일 입력")){
+	     } */
+		 /* if(!last_email_write(/((?:[\w-]+\.)*\w[\w-]{0,66})\.([a-z]{2,6}(?:\.[a-z]{2})?)$/,last_email,"이메일 입력")){
 	          return false;
-	     }
+	     } */
 		 if(!phone_write(/^((01[1|6|7|8|9])[1-9]+[0-9]{6,7})|(010[1-9][0-9]{7})$/,phone,"전화번호 입력")){
 	          return false;
 	     }
@@ -124,7 +137,6 @@
 				changeMonth : true, //월변경가능
 				changeYear : true, //년변경가능
 				showMonthAfterYear : true, //년 뒤에 월 표시
-				showOn : "both", //엘리먼트와 이미지 동시 사용(both,button)
 				yearRange : '1900:2020' //1990년부터 2020년까지
 			};
 			$("#birth").datepicker(clareCalendar);
@@ -159,34 +171,102 @@
 		}
 		$(function(){
 			$("#id").change(function(){
-				$.ajax({
-					type : "post",
-					url : "${pageContext.request.contextPath}/member/overlabCheck",
-					dataType : "JSON",
-					data : {
-						"keyword" : $("#id").val(),
-						"mode" : "id",
-					},
-					success : function(result) {
-						if(result) {
-							$("#mylabel").html("<span><font color='red'>중복된 ID입니다.</font></span>");
-							$("#checkid").val(false);
-						} else {
-							$("#mylabel").html("<span><font color='green'>사용 가능한 ID입니다.</font></span>");
-							$("#checkid").val(true);
+				if(id_write(/^[a-z][a-z\d]{3,11}$/, document.getElementById("id"), "ID는 영문자로 시작,공백과 특수문자 제외 ,4~12글자만 사용해주세요")){
+					$.ajax({
+						type : "post",
+						url : "${pageContext.request.contextPath}/member/overlabCheck",
+						dataType : "JSON",
+						data : {
+							"keyword" : $("#id").val(),
+							"mode" : "id",
+						},
+						success : function(result) {
+							if(result) {
+								$("#mylabelid").html("<span><font color='red'>중복된 ID 입니다.</font></span>");
+								$("#overcheckid").val(false);
+							} else {
+								$("#mylabelid").html("<span><font color='green'>사용 가능한 ID 입니다.</font></span>");
+								$("#overcheckid").val(true);
+							}
+						
 						}
-					
-					}
-				});
+					});	
+				} else {
+					$("#mylabelid").html("<span><font color='red'>ID는 \n영문자로 시작,공백과 특수문자 제외 ,4~12글자만 사용해주세요</font></span>");
+					$("#overcheckid").val(false);	
+				}
+			});
 			
+			$("#nickname").change(function(){
+				if(nickname_write(/^[a-zA-Z0-9가-히\_]/, document.getElementById("nickname"), "닉네임은 '가나다', 'abc' 등만 사용가능합니다")){
+					$.ajax({
+						type : "post",
+						url : "${pageContext.request.contextPath}/member/overlabCheck",
+						dataType : "JSON",
+						data : {
+							"keyword" : $("#nickname").val(),
+							"mode" : "nickname",
+						},
+						success : function(result) {
+							if(result) {
+								$("#mylabelnickname").html("<span><font color='red'>이미 사용중인 닉네임 입니다.</font></span>");
+								$("#overchecknickname").val(false);
+							} else {
+								$("#mylabelnickname").html("<span><font color='green'>사용 가능한 닉네임 입니다.</font></span>");
+								$("#overchecknickname").val(true);
+							}
+						}
+					});	 
+				} else {
+					$("#mylabelnickname").html("<span><font color='red'>닉네임은 '가나다', 'abc' 등만 사용가능합니다.</font></span>");
+					$("#overchecknickname").val(false);
+				}
+			});
+			
+			$("#email").change(function(){
+				if(first_email_write(/^[a-z][a-z\d]{3,11}$/,document.getElementById("first_email"),"이메일 입력")){
+					if(!last_email_write(/((?:[\w-]+\.)*\w[\w-]{0,66})\.([a-z]{2,6}(?:\.[a-z]{2})?)$/,document.getElementById("last_email"),"이메일 입력")){
+						$.ajax({
+							type : "post",
+							url : "${pageContext.request.contextPath}/member/overlabCheck",
+							dataType : "JSON",
+							data : {
+								"keyword" : $("#email").val(),
+								"mode" : "email",
+							},
+							success : function(result) {
+								if(result) {
+									$("#mylabelemail").html("<span><font color='red'>이미 사용중인 Email 입니다.</font></span>");
+									$("#overcheckemail").val(false);
+								} else {
+									$("#mylabelemail").html("<span><font color='green'>사용 가능한 Email 입니다.</font></span>");
+									$("#overcheckemail").val(true);
+								}
+							
+							}
+						});
+					} else {
+						 $("#mylabelnickname").html("<span><font color='red'>이메일 입력</font></span>");
+						 $("#overchecknickname").val(false);
+					 }
+				} else {
+					 $("#mylabelnickname").html("<span><font color='red'>이메일 입력</font></span>");
+					 $("#overchecknickname").val(false);
+				 }
 			});
 		
-		 $("#btn").click(function(){
-				   if($("#checkid").val() == 'false'){
+		 /* $("#btn").click(function(){
+				   if($("#overcheckid").val() == 'false'){
 					   alert("ID를 확인해 주세요.");
 					   return false;
+				   } else if($("#overchecknickname").val() == 'false'){
+					   alert("닉네임을 확인해 주세요.");
+					   return false;
+				   } else if($("#overcheckemail").val() == 'false'){
+					   alert("이메일을 확인해 주세요.");
+					   return false;
 				   }
-		 });	
+		 });	 */
 		});
 		
 </script>
@@ -208,9 +288,9 @@
 	<form action="${pageContext.request.contextPath}/member/signup" method="post" id="member" onSubmit = "return checkIt()" name = "member">
 		<div class="form-group">
 			<label>아이디</label>
-			<label id="mylabel"></label><br>
+			<label id="mylabelid"></label><br>
 			<input class="form-control" type="text" name="id" id="id" placeholder="Enter ID">
-			<input type="hidden" name="checkid" id="checkid" value="false">
+			<input type="hidden" name="overcheckid" id="overcheckid" value="false">
 		</div>	
 		<div class="form-group">
 			<label>비밀번호</label>
@@ -226,7 +306,9 @@
 		</div>
 		<div class="form-group">
 			<label>닉네임</label>
-			<input class="form-control" type="text" name="nickname" id="nickname" placeholder="Enter Name">
+			<label id="mylabelnickname"></label><br>
+			<input class="form-control" type="text" name="nickname" id="nickname" placeholder="Enter NickName">
+			<input type="hidden" name="overchecknickname" id="overchecknickname" value="false">
 		</div>
 		<div class="form-group">
 			<label>성별</label>
@@ -243,6 +325,8 @@
 		</div>
 		<div class="form-group">
 			<label>이메일</label>
+			<label id="mylabelemail"></label><br>
+			<input type="hidden" name="overcheckemail" id="overcheckemail" value="false">
 			<div class="form-inline">
 			<input class="form-control" type="text" id="first_email" name="email" placeholder="Enter mail">@
   			<input class="form-control" type="text" id="last_email" name="email">

@@ -44,6 +44,7 @@ public class MemberContorller {
 	public String mypage(HttpSession session, Model model) {
 		
 		Member loginInfo = (Member)session.getAttribute("loginInfo");
+		
 		List<OrderList> orderList = memberService.findByOrderList(loginInfo.getId());
 		
 		Member member = memberService.findByMember(loginInfo.getId());
@@ -146,7 +147,7 @@ public class MemberContorller {
 		return path;
 	}
 	
-	@RequestMapping(value = "/overlabCheck", method = RequestMethod.POST)
+	@RequestMapping(value = "/overlabCheck", method = RequestMethod.POST, produces = "application/JSON; charset=utf-8")
 	public @ResponseBody Boolean overLapCheck(@RequestParam String keyword, @RequestParam String mode) {
 		
 		System.out.println("OverLapCheck");

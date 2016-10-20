@@ -10,8 +10,10 @@ import com.board.dto.BoardPage;
 
 public interface BoardMapper {
 
-	List<Board> selectAll(BoardPage boardPage);
+	List<Board> selectAll(RowBounds rowBounds, BoardPage boardPage);
 
 	int count(BoardPage boardPage);
+
+	Board selectByBoard(int num);
 
 }

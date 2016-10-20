@@ -22,7 +22,7 @@
 
 	<insert id="insertMember" parameterType="com.member.dto.Member">
 		insert into members (id,
-		password, name, gender, phone, nickname, address, bday, email) values
+		password, name, gender, phone, nickname, zipcode, address, bday, email) values
 		(#{id},#{password},#{name}, #{gender},
 		#{phone},#{nickname},#{zipcode},#{address},to_date(#{bday},
 		'yyyy-MM-dd'),#{email})
@@ -54,7 +54,7 @@
 
 	<select id="selectByMember" parameterType="string"
 		resultType="com.member.dto.Member">
-		select * from members where id = #{id}
+		select id, password, name, gender, phone, nickname, zipcode, address, bday, to_char(joinday, 'yyyy-mm-dd'), email from members where id = #{id}
 	</select>
 
 	<update id="updateMember" parameterType="com.member.dto.Member">

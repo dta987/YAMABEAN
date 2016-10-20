@@ -23,7 +23,7 @@ tr:hover {
 	<br>
 	<div class="col-sm-offset-${myoffset} col-sm-${mywidth}">
 		<label>Q & A</label><br> <br>
-		<table class="table" align="center">
+		<table class="table">
 			<thead>
 				<tr>
 					<th>번호</th>
@@ -68,7 +68,7 @@ tr:hover {
 							type="button" id="searchAll"
 							onclick="location.href='${pageContext.request.contextPath}/board/move'">ALL</button>
 						<button class="w3-btn w3-white w3-border w3-round-large"
-							type="button" id="insertForm">WRITE</button>
+							type="button" id="insertForm" onclick="location.href='${pageContext.request.contextPath}/board/boardForm'">WRITE</button>
 						&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
 					</form>
 				</td>

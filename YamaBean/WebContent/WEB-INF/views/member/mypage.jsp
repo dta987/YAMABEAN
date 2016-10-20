@@ -56,9 +56,9 @@ body, h1, h2, h3, h4, h5 {
 
 		<!-- Photo grid -->
 		<div class="w3-row">
-			<div class="col-sm-9">
+			<div class="col-sm-9 col-sm-offset-1">
 				<c:forEach var="order" items="${orderList}">
-					<div class="w3-third w3-margin-bottom col-sm-6">
+					<div class="w3-third w3-margin-bottom col-sm-4">
 						<ul class="w3-ul w3-border w3-center w3-hover-shadow">
 							<li class="w3-black">
 								<p class="w3-xlarge">${order.member.nickname}</p> <span

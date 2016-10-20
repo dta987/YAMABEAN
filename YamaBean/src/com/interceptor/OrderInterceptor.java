@@ -6,6 +6,8 @@ import javax.servlet.http.HttpSession;
 
 import org.springframework.web.servlet.handler.HandlerInterceptorAdapter;
 
+import com.member.dto.Member;
+
 public class OrderInterceptor extends HandlerInterceptorAdapter {
 
 	@Override
@@ -17,7 +19,11 @@ public class OrderInterceptor extends HandlerInterceptorAdapter {
 		System.out.println("요청주소 : " + request.getRequestURI());
 
 		HttpSession session = request.getSession();
-		if (session.getAttribute("loginInfo") == null) {
+		
+		Member loginInfo = null;
+		loginInfo = (Member)session.getAttribute("loginInfo");
+		
+		if (loginInfo == null) {
 			response.sendRedirect(request.getContextPath() + "/member/login");
 		} else if (((int)session.getAttribute("whologin")) == 1) {
 			if(request.getRequestURI().indexOf("admin") == -1) {

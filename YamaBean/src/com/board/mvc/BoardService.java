@@ -21,16 +21,22 @@ public class BoardService {
 	public List<Board> getBoardByPage(BoardPage boardPage) {
 		RowBounds rowBounds = new RowBounds((boardPage.getSelectPage() - 1)
 				* pageing.getPageSize(), pageing.getPageSize());
-
-		boardPage.setRowBounds(rowBounds);
 		
-		List<Board> boardList = repository.selectAll(boardPage);
+		if(boardPage.getMode() != null && boardPage.getMode().equals("title")) {
+			boardPage.setKeyword("%" + boardPage.getKeyword() + "%");
+		}
+		
+		List<Board> boardList = repository.selectAll(rowBounds, boardPage);
 
 		return boardList;
 	}
 
 	public int getCustomerPageing(BoardPage boardPage) {
 		return (int)Math.ceil((double)repository.Count(boardPage) / pageing.getPageSize());
+	}
+
+	public Board findByBoard(int num) {
+		return repository.selectByBoard(num);
 	}
 
 }

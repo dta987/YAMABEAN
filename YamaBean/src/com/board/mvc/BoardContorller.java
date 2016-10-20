@@ -26,6 +26,8 @@ public class BoardContorller {
 	public String Boardmove(@ModelAttribute BoardPage boardPage, Model model) {
 		System.out.println("==Board이동==");
 		
+		System.out.println(boardPage.toString());
+		
 		List<Board> boardList = null;
 		
 		
@@ -47,6 +49,34 @@ public class BoardContorller {
 		System.out.println("endPage : " + endPage);
 
 		return "board";
+	}
+	
+	@RequestMapping(value = "/boardForm", method = RequestMethod.GET)
+	public String BoardFrom() {
+		System.out.println("==boardForm이동==");
+		
+
+		return "boardForm";
+	}
+	
+	@RequestMapping(value = "/boardWriter", method = RequestMethod.POST)
+	public String BoardWriter() {
+		System.out.println("==boardWriter이동==");
+		
+
+		return "boardForm";
+	}
+	
+	@RequestMapping(value = "/detail", method = RequestMethod.GET)
+	public String BoardDetail(@RequestParam int num, Model model) {
+		System.out.println("==boardWriter이동==");
+		
+		Board board = service.findByBoard(num);
+		
+		model.addAttribute("board", board);
+		
+
+		return "boardDetail";
 	}
 
 }

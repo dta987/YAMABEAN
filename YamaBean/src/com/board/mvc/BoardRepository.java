@@ -2,6 +2,7 @@ package com.board.mvc;
 
 import java.util.List;
 
+import org.apache.ibatis.session.RowBounds;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Repository;
 
@@ -15,12 +16,16 @@ public class BoardRepository {
 	@Autowired
 	private BoardMapper mapper;
 
-	public List<Board> selectAll(BoardPage boardPage) {
-		return mapper.selectAll(boardPage);
+	public List<Board> selectAll(RowBounds rowBounds, BoardPage boardPage) {
+		return mapper.selectAll(rowBounds, boardPage);
 	}
 
 	public int Count(BoardPage boardPage) {
 		return mapper.count(boardPage);
+	}
+
+	public Board selectByBoard(int num) {
+		return mapper.selectByBoard(num);
 	}
 
 }

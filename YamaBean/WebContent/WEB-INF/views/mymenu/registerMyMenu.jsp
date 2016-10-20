@@ -163,8 +163,7 @@
 					$("input[name='mymenu_sizePrice']").val(sizeprice);
 					totalPrice(sizeprice);
 				}
-			});
-					
+			});				
 	}
 	
 	/* function addShot(shotNum) {
