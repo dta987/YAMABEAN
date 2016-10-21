@@ -85,10 +85,26 @@ public class MyMenuController implements MineControllerInterface {
 	@Override
 	@RequestMapping(value="/updateMyMenu", method=RequestMethod.POST)
 	public String updateMyMenu(@ModelAttribute MyMenuDomain mymenuDomain) {
-		myMenuService.updateMyMenu(mymenuDomain);
+		System.out.println("update할구야");	
+		int modify = myMenuService.updateMyMenu(mymenuDomain);
+		
+		mymenuDomain.setMember_id("unghye");
+				
+		System.out.println("mymenu 수정 : " + modify );
+		System.out.println(mymenuDomain.getMymenu_num());
+		System.out.println(mymenuDomain.getMember_id());
 		return "redirect:/mymenu/listMyMenu";
 	}
 
+	/*private int mymenu_num ;
+	private String member_id ; //fk, member : id 
+	private String mymenu_name ;
+	private int menu_num ; //fk, menus : menu_num 
+	private String my_optionSize ; 
+	private String sub_day ;
+	private int mymenu_price;
+	private int my_optionShot ;
+	private int my_optionWhip ;*/
 
 
 

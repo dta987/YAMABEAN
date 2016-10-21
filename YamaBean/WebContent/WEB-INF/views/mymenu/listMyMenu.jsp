@@ -31,7 +31,7 @@
 					<tr align="center">
 						<td><img src="${uploadedFolder}${mymenulist.menuEntity.image}"></td>
 						<td>${mymenulist.menuEntity.m_name}</td>
-						<td><a href="/YamaBean/mymenu/detailMyMenu?mymenu_num=${mymenulist.mymenu_num}">${mymenulist.mymenu_name}</a></td>
+						<td>${mymenulist.mymenu_name}</a></td>
 						<td>${mymenulist.sub_day}</td>
 						<td>${mymenulist.my_optionSize}</td>
 						<td>${mymenulist.mymenu_price}</td>

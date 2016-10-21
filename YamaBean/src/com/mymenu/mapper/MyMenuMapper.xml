@@ -63,11 +63,10 @@
 	
 	<!-- mymenu 수정하기 -->
 	<update id="updateMyMenus" parameterType="com.mymenu.dto.MyMenuDomain">
-		update mymenus set mymenu_name==${mymenu_name} menu_num=${menu_num}, my_optionSize=${my_optionSize}, mymenu_price==${mymenu_price}, my_optionShot=${my_optionShot}, my_optionWhip=${my_optionWhip} where mymenu_num=${mymenu_num}
+		update mymenus set mymenu_name=#{mymenu_name}, menu_num=#{menu_num}, my_optionSize=#{my_optionSize}, mymenu_price=#{mymenu_price}, my_optionShot=#{my_optionShot}, my_optionWhip=#{my_optionWhip} where mymenu_num=#{mymenu_num}
 	</update>
 	
 
-	
 	<!-- mymenu 삭제하기 -->
 	<delete id="removeMyMenu" parameterType="int">
 		delete mymenus where mymenu_num=#{mymenu_num}
@@ -75,11 +74,6 @@
 	
 	
 	
-	
-
-
-	<!-- public int replaceMyMenu(MymenuDomain mymenuDomain); 	//mymenu 수정 -->
-
 
 </mapper>
 	

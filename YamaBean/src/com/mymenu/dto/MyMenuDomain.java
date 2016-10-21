@@ -13,7 +13,6 @@ public class MyMenuDomain {
 	private String my_optionSize ; 
 	private String sub_day ;
 	private int mymenu_price;
-	private int my_optionAmount ;
 	private int my_optionShot ;
 	private int my_optionWhip ;
 	
@@ -59,12 +58,7 @@ public class MyMenuDomain {
 	public void setMymenu_price(int mymenu_price) {
 		this.mymenu_price = mymenu_price;
 	}
-	public int getMy_optionAmount() {
-		return my_optionAmount;
-	}
-	public void setMy_optionAmount(int my_optionAmount) {
-		this.my_optionAmount = my_optionAmount;
-	}
+	
 	public int getMy_optionShot() {
 		return my_optionShot;
 	}
