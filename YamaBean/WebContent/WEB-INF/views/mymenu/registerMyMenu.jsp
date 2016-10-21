@@ -79,7 +79,6 @@
 	
 	
 	function sizePrice(price) {
-		
 		if(price != null) {
 			$("input:radio[value='small']").prop("checked", true) ;
 			$("input[name='mymenu_sizePrice']").val(price);
@@ -98,8 +97,30 @@
 					totalPrice(sizeprice);
 				}
 			});				
-
+		}
+	}	
+	
+	
+	function addshot(shotprice) {
+		var total = parseInt($("input[name='mymenu_price']").val()) ;
+		var minus = parseInt(shotprice);
+		var addAmount = parseInt($("input[name='my_optionShot']").val()) +1 ;
+		var shprice = addAmount * minus ;
+		var menuprice = parseInt($("input[name='mymenu_sizePrice']").val());
+		var whipprice = parseInt($("input[name='mymenu_whipPrice']").val()) ;
+		var totalprice = shprice + whipprice + menuprice ;
+		var optionprice = shprice + whipprice ;
+		$("input[name='mymenu_shotPrice']").val(shprice);
+		$("input[name='my_optionShot']").val(addAmount);
+		
+		if (menuprice == null) {
+			$("input[name='mymenu_price']").val(optiontotal)
+		}else{
+			$("input[name='mymenu_price']").val(totalprice);
+		}
+		
 	}
+	
 	
 	function subshot(shotprice) {
 		var total = parseInt($("input[name='mymenu_price']").val()) ;
@@ -155,11 +176,8 @@
 		}
 		
 		
-		
-		
-		
-		
 	}
+	
 	
 	function addwhip(shotprice){
 		var total = parseInt($("input[name='mymenu_price']").val()) ;	//총합계
