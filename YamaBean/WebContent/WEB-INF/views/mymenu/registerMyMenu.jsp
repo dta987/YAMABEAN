@@ -74,27 +74,41 @@
 					$("input[name='mymenu_price']").val(0);
 					
 		});
+		
+		
 	}
-	
+		
 	
 	
 	function sizePrice(price) {
+		alert(price);
+		
 		if(price != null) {
-			$("input:radio[value='small']").prop("checked", true) ;
-			$("input[name='mymenu_sizePrice']").val(price);
-			totalPrice(price);		
 			var mysize = null ;
+			var optionprice = parseInt($("input[name='mymenu_shotPrice']").val()) + parseInt($("input[name='mymenu_whipPrice']").val());
+			var midprice = parseInt(price) ;
+			var totalprice = null ;
+			var initprice = midprice + optionprice ;
+			
+			$("input:radio[value='small']").prop("checked", true) ;
+			$("input[name='mymenu_sizePrice']").val(midprice);
+			$("input[name='mymenu_price']").val(initprice);
+			
 			$("input:radio[name='my_optionSize']").click(function(){
-				mysize = this.value;
 				$("input[name='mymenu_sizePrice']").empty();
-				if (mysize == 'small') {
-					$("input[name='mymenu_sizePrice']").val(price);
-					totalPrice(price);
-				}else {
-					var add = 500 ;
-					var sizeprice = parseInt(price) + add ;
+				if ($("input[value='small']:checked").val()) {
+					var firoptionprice = parseInt($("input[name='mymenu_shotPrice']").val()) + parseInt($("input[name='mymenu_whipPrice']").val());
+					totalprice = firoptionprice + midprice ; 
+					$("input[name='mymenu_sizePrice']").val(midprice);
+					$("input[name='mymenu_price']").val(totalprice);		
+				}else if ($("input[value='large']:checked").val()) {
+					var sizeprice = parseInt(price) + 500 ;
+					var seoptionprice = parseInt($("input[name='mymenu_shotPrice']").val()) + parseInt($("input[name='mymenu_whipPrice']").val());
+					totalprice = sizeprice + seoptionprice ;
 					$("input[name='mymenu_sizePrice']").val(sizeprice);
-					totalPrice(sizeprice);
+					$("input[name='mymenu_price']").val(totalprice);		
+				}else {
+					alert("사이즈를 체크 해 주세요.") ;
 				}
 			});				
 		}
@@ -110,13 +124,18 @@
 		var whipprice = parseInt($("input[name='mymenu_whipPrice']").val()) ;
 		var totalprice = shprice + whipprice + menuprice ;
 		var optionprice = shprice + whipprice ;
-		$("input[name='mymenu_shotPrice']").val(shprice);
-		$("input[name='my_optionShot']").val(addAmount);
 		
-		if (menuprice == null) {
-			$("input[name='mymenu_price']").val(optiontotal)
-		}else{
-			$("input[name='mymenu_price']").val(totalprice);
+		
+		if (shotprice != null ) {
+			
+			$("input[name='mymenu_shotPrice']").val(shprice);
+			$("input[name='my_optionShot']").val(addAmount);
+			
+			if (menuprice == null) {
+				$("input[name='mymenu_price']").val(optiontotal)
+			}else{
+				$("input[name='mymenu_price']").val(totalprice);
+			}
 		}
 		
 	}
@@ -171,11 +190,8 @@
 				$("input[name='my_optionShot']").val(addAmount);
 				$("input[name='mymenu_shotPrice']").val(shprice);
 				$("input[name='mymenu_price']").val(totalprice);
-			}
-			
+			}	
 		}
-		
-		
 	}
 	
 	
@@ -197,15 +213,9 @@
 		}else{
 			$("input[name='mymenu_price']").val(totalprice);
 		}
-	
 	}
 	
-	
-	
-	
-	
-	
-	
+		
 	function subwhip(shotprice) {
 		var total = parseInt($("input[name='mymenu_price']").val()) ;
 		var minus = parseInt(shotprice);
@@ -257,8 +267,6 @@
 			}
 		}
 		
-		
-		
 	}
 		
 
@@ -278,9 +286,17 @@
 
 	$(function() {
 		$("#registerMenu").submit(function() {
-			$("#registerList > div").each(function(index) {
-				alert("m_num : "+ $(this).children($("input[name='m_num']")).val());
-			});
+			/* $("#registerList > div").each(function(index) {
+				alert("m_num : "+ $(this).children($("input[name='m_num']")).val() );
+				
+			}); */
+			
+			if ($("input[name='mymenu_name']").val() == null) {
+				alert("마이 메뉴 이름을 정해주세요.");
+				return false ;
+			}
+			
+			
 		return false;
 		});
 	});
