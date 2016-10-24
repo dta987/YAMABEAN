@@ -44,9 +44,9 @@ footer {
 
 			<div class="col-sm-2 sidenav" align="center">
 				<ul class="nav nav-pills nav-stacked">
-					<li><a href="/YamaBean/admin/page">HOME</a></li>
-					<li><a href="/YamaBean/admin/menu">메뉴관리</a></li>
-					<li><a href="/YamaBean/admin/member">회원관리</a></li>
+					<li><a href="${pageContext.request.contextPath}/admin/page">HOME</a></li>
+					<li><a href="${pageContext.request.contextPath}/admin/menu">메뉴관리</a></li>
+					<li><a href="${pageContext.request.contextPath}/admin/member">회원관리</a></li>
 					<li>---- 매장 ----</li>
 				</ul>
 				<ul class="nav nav-pills nav-stacked">
@@ -77,52 +77,7 @@ footer {
 				</c:forEach>
 			</div>
 			<div class=" w3-dark-grey col-sm-9">
-				<h4>
-					<b>${member.nickname}</b><br> ${member.id}
-				</h4>
-				<div class="w3-content w3-justify" style="max-width: 600px">
-					<h4>${member.name}
-						<c:if test="${member.gender=='남자'}">
-				男
-				</c:if>
-						<c:if test="${member.gender=='여자'}">
-				女
-				</c:if>
-					</h4>
-					<p></p>
-					<p>
-						Mail <span class="glyphicon glyphicon-envelope" aria-hidden="true"></span>
-						: ${member.email}
-					</p>
-					<p>
-						Tel <span class="glyphicon glyphicon-phone" aria-hidden="true"></span>
-						: ${member.phone}
-					</p>
-					<p>
-						Address <span class="glyphicon glyphicon-home" aria-hidden="true"></span>
-						: ${member.address}
-					</p>
-					<p>
-						Birthday <span class="glyphicon glyphicon-gift" aria-hidden="true"></span>
-						: ${member.bday}
-					</p>
-					<p>
-						가입일자 <span class="glyphicon glyphicon-plus" aria-hidden="true"></span>
-						: ${member.joinday}
-					</p>
-					<p>
-						Point <span class="glyphicon glyphicon-asterisk"
-							aria-hidden="true"></span> : ${member.point} point
-					</p>
-
-					<hr class="w3-opacity">
-					<div class="w3-center w3-padding-20">
-						<ul class="w3-pagination">
-							<li><a class="w3-black" href="#">수정하기</a></li>
-						</ul>
-					</div>
-					<div class="w3-row-padding" style="margin: 0 -16px"></div>
-				</div>
+				
 			</div>
 		</div>
 	</div>

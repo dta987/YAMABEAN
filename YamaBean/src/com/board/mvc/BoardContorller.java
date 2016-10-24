@@ -42,11 +42,8 @@ public class BoardContorller {
 		model.addAttribute("totalpage", totalpage);
 		model.addAttribute("beginPage", beginPage);
 		model.addAttribute("endPage", endPage);
-
-		System.out.println("totalpage : " + totalpage);
-		System.out.println("selectPage : " + boardPage.getSelectPage());
-		System.out.println("beginPage : " + beginPage);
-		System.out.println("endPage : " + endPage);
+		
+		System.out.println(boardList.toString());
 
 		return "board";
 	}

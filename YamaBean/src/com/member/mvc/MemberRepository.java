@@ -60,4 +60,8 @@ public class MemberRepository{
 		return MemberMapper.overLapCheckEmail(keyword);
 	}
 
+	public List<OrderList> findBylatelyOrderList(String id) {
+		return MemberMapper.findBylatelyOrderList(id);
+	}
+
 }

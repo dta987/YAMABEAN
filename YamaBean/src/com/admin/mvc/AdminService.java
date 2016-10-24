@@ -39,7 +39,7 @@ public class AdminService {
 		return repository.selectByMemberList();
 	}
 
-	public List<MenuEntity> findByMenuList() {
+	public List<MenuModel> findByMenuList() {
 		return repository.selectByMenuList();
 	}
 

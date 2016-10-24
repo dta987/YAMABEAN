@@ -15,6 +15,7 @@ import com.admin.dto.OrderList;
 import com.admin.dto.UpdateOrderYN;
 import com.member.dto.Member;
 import com.menu.dto.MenuEntity;
+import com.menu.dto.MenuModel;
 import com.storeMap.dto.Store;
 
 @Controller
@@ -56,7 +57,7 @@ public class AdminController {
 		System.out.println("=== 관리자 페이지 ===");
 		
 		List<Store> StoreList = service.findByStore();
-		List<MenuEntity> menuList = service.findByMenuList();
+		List<MenuModel> menuList = service.findByMenuList();
 		
 		model.addAttribute("StoreList", StoreList);
 		model.addAttribute("menuList", menuList);

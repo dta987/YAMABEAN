@@ -40,7 +40,7 @@ public class AdminRepository {
 		return mapper.selectByMemberList();
 	}
 
-	public List<MenuEntity> selectByMenuList() {
+	public List<MenuModel> selectByMenuList() {
 		return mapper.selectByMenuList();
 	}
 

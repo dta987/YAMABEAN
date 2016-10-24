@@ -33,10 +33,6 @@
 			<li class="w3-hide-small"><a
 				href="${pageContext.request.contextPath}/storeMap/move"
 				class="w3-padding-large w3-text-black">LOCATIONS</a></li>
-			<li class="w3-hide-small"><a
-				href="${pageContext.request.contextPath}/mymenu/mymenu"
-				class="w3-padding-large w3-text-black">MY MENU</a></li>
-
 			<c:if
 				test="${sessionScope.whologin != 1 && sessionScope.whologin != 2}">
 				<li class="w3-hide-small w3-right"><a

@@ -33,16 +33,16 @@
 		<id property="order_num" column="order_num" />
 		<result property="totalprice" column="total_price" />
 		<result property="store_num" column="store_num" />
+		<result property="sub_day" column="sub_day" />
 		<association property="member" column="member_id"
 			select="com.member.mapper.MemberMapper.selectByMember" />
 		<collection property="orderProduct" column="order_num"
 			select="com.order.mapper.OrderMapper.selectByOrder_p" />
 	</resultMap>
-
-
-	<select id="selectByOrderList" parameterType="String" resultMap="orderList">
-		select order_num, total_price, store_num, member_id, order_num,
-		sub_day, ranking
+	
+	<select id="findBylatelyOrderList" parameterType="String" resultMap="orderList">
+	    select order_num, total_price, store_num, member_id, order_num,
+		to_char(sub_day, 'yyyy-mm-dd') as sub_day, ranking
 		from
 		(
 		select order_num, total_price, store_num, member_id, sub_day,
@@ -52,12 +52,19 @@
 		where ranking between 1 and 3
 	</select>
 
+
+	<select id="selectByOrderList" parameterType="String" resultMap="orderList">
+		select order_num, total_price, store_num, member_id, order_num,
+		to_char(sub_day, 'yyyy-mm-dd') as sub_day from orders where member_id=#{id} order by sub_day desc
+	</select>
+
 	<select id="selectByMember" parameterType="string"
 		resultType="com.member.dto.Member">
-		select id, password, name, gender, phone, nickname, zipcode, address, bday, to_char(joinday, 'yyyy-mm-dd'), email from members where id = #{id}
+		select id, password, name, gender, phone, nickname, zipcode, address, to_char(bday, 'yyyy-mm-dd') as bday, to_char(joinday, 'yyyy-mm-dd') as joinday, email, point from members where id = #{id}
 	</select>
 
 	<update id="updateMember" parameterType="com.member.dto.Member">
+	    update members set name=#{name}, gender=#{gender}, phone=#{phone}, nickname=#{nickname}, zipcode=#{zipcode}, address=#{address}, bday=#{bday}, email=#{email} where id=#{id}
 
 	</update>
 	

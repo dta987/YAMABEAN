@@ -43,9 +43,9 @@ footer {
 		<div class="row content">
 			<div class="col-sm-2 sidenav" align="center">
 				<ul class="nav nav-pills nav-stacked">
-					<li><a href="/YamaBean/admin/page">HOME</a></li>
-					<li><a href="/YamaBean/admin/menu">메뉴관리</a></li>
-					<li><a href="/YamaBean/admin/member">회원관리</a></li>
+					<li><a href="${pageContext.request.contextPath}/admin/page">HOME</a></li>
+					<li><a href="${pageContext.request.contextPath}/admin/menu">메뉴관리</a></li>
+					<li><a href="${pageContext.request.contextPath}/admin/member">회원관리</a></li>
 					<li>---- 매장 ----</li>
 				</ul>
 				<ul class="nav nav-pills nav-stacked">

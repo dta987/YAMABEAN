@@ -16,9 +16,10 @@
 <body>
 
 
-
-	<div class="container col-md-offset-${myoffset}"
-		style="margin-top: 150px;">
+	<div class="w3-white w3-center w3-padding-24"
+		style="margin-top: 100px;">ID 찾기</div>
+	<br>
+	<div class="container col-md-offset-${myoffset}">
 		<form class="form-horizontal"
 			action="${pageContext.request.contextPath}/member/forgotten"
 			method="POST">
@@ -46,9 +47,10 @@
 		</form>
 	</div>
 
-
-	<div class="container col-md-offset-${myoffset}"
-		style="margin-top: 100px;">		
+	<div class="w3-white w3-center w3-padding-24"
+		style="margin-top: 100px;">PW 찾기</div>
+	<br>
+	<div class="container col-md-offset-${myoffset}">
 		<form class="form-horizontal"
 			action="${pageContext.request.contextPath}/member/forgotten"
 			method="POST">
@@ -83,7 +85,7 @@
 			</div>
 		</form>
 	</div>
-	
+
 	<c:if test="${not empty msg}">
 		<script type="text/javascript">
 			alert('${msg}');

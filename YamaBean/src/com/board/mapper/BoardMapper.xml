@@ -12,13 +12,11 @@
 		<result property="sub_day" column="sub_day" />
 		<result property="member_id" column="member_id" />
 		<result property="contents" column="contents" />
-		<result property="group_no" column="group_no" />
-		<result property="order_no" column="order_no" />
 	</resultMap>
 
 	<select id="selectAll" parameterType="com.board.dto.BoardPage"
 		resultMap="boardListResult">
-		select board_num, b_category, title, to_char(sub_day, 'yyyy-mm-dd'), member_id, contents, group_no order_no from boards where group_no=0
+		select board_num, b_category, title, to_char(sub_day, 'yyyy-mm-dd') as sub_day, member_id, contents from boards
 		<if test="mode != null and mode.equals('board_num')">
 			and board_num=#{keyword}
 		</if>
@@ -48,7 +46,7 @@
 	</select>
 	
 	<select id="selectByBoard" parameterType="int" resultType="com.board.dto.Board">
-	    select board_num, b_category, title, to_char(sub_day, 'yyyy-mm-dd'), member_id, contents, group_no, order_no from boards where board_num=#{num}
+	    select board_num, b_category, title, to_char(sub_day, 'yyyy-mm-dd') as sub_day, member_id, contents, group_no, order_no from boards where board_num=#{num}
 	</select>
 
 </mapper>

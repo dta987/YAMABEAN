@@ -11,6 +11,7 @@ import com.admin.dto.OrderList;
 import com.member.dto.Email;
 import com.member.dto.Forgotten;
 import com.member.dto.Member;
+import com.member.dto.MemberModel;
 import com.member.dto.OvelapCheck;
 
 @Service
@@ -25,7 +26,23 @@ public class MemberService {
 	@Autowired
 	private JavaMailSender mailSender;
 
-	public int addMember(Member member) {
+	public int addMember(MemberModel memberModel) {
+		
+		Member member = new Member();
+		member.setId(memberModel.getId());
+		member.setPassword(memberModel.getPassword());
+		member.setName(memberModel.getName());
+		member.setGender(memberModel.getGender());
+		member.setPhone(memberModel.getPhone());
+		member.setNickname(memberModel.getName());
+		member.setZipcode(memberModel.getZipcode());
+		member.setAddress(memberModel.getAddress());
+		member.setBday(memberModel.getBday());
+		member.setEmail(memberModel.getFirst_email() + "@" + memberModel.getLast_email());
+		
+		memberRepository.insertMember(member);
+		
+		
 		return memberRepository.insertMember(member);
 	}
 
@@ -109,11 +126,43 @@ public class MemberService {
 		return memberRepository.deleteMember(id);
 	}
 
-	public Member updateMember(String id) {
-		return memberRepository.selectByMember(id);
+	public MemberModel updateMember(String id) {
+		Member member = memberRepository.selectByMember(id);
+		
+		MemberModel memberModel = new MemberModel();
+		memberModel.setId(member.getId());
+		memberModel.setPassword(member.getPassword());
+		memberModel.setName(member.getName());
+		memberModel.setGender(member.getGender());
+		memberModel.setPhone(member.getPhone());
+		memberModel.setNickname(member.getNickname());
+		memberModel.setZipcode(member.getZipcode());
+		memberModel.setAddress(member.getAddress());
+		memberModel.setBday(member.getBday());
+		String email = member.getEmail();
+		int index = email.indexOf("@");
+		
+		memberModel.setFirst_email(email.substring(0, index));
+		memberModel.setLast_email(email.substring(index+1, email.length()));
+		
+		
+		return memberModel;
 	}
 
-	public int modifyMember(Member member) {
+	public int modifyMember(MemberModel memberModel) {
+		
+		Member member = new Member();
+		member.setId(memberModel.getId());
+		member.setPassword(memberModel.getPassword());
+		member.setName(memberModel.getName());
+		member.setGender(memberModel.getGender());
+		member.setPhone(memberModel.getPhone());
+		member.setNickname(memberModel.getName());
+		member.setZipcode(memberModel.getZipcode());
+		member.setAddress(memberModel.getAddress());
+		member.setBday(memberModel.getBday());
+		member.setEmail(memberModel.getFirst_email() + "@" + memberModel.getLast_email());
+		
 		return memberRepository.updateMember(member);
 	}
 
@@ -143,6 +192,10 @@ public class MemberService {
 		}
 		
 		return bool;
+	}
+
+	public List<OrderList> findBylatelyOrderList(String id) {
+		return memberRepository.findBylatelyOrderList(id);
 	}
 
 }

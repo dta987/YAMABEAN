@@ -31,4 +31,6 @@ public interface MemberMapper {
 
 	public Member overLapCheckEmail(String keyword);
 
+	public List<OrderList> findBylatelyOrderList(String id);
+
 }

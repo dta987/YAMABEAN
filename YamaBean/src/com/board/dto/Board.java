@@ -8,15 +8,12 @@ public class Board {
 	private String sub_day;
 	private String member_id;
 	private String contents;
-	private int group_no;
-	private int order_no;
 
 	@Override
 	public String toString() {
 		return "Board [board_num=" + board_num + ", b_category=" + b_category
 				+ ", title=" + title + ", sub_day=" + sub_day + ", member_id="
-				+ member_id + ", contents=" + contents + ", group_no="
-				+ group_no + ", order_no=" + order_no + "]";
+				+ member_id + ", contents=" + contents + "]";
 	}
 
 	public int getBoard_num() {
@@ -66,21 +63,4 @@ public class Board {
 	public void setContents(String contents) {
 		this.contents = contents;
 	}
-
-	public int getGroup_no() {
-		return group_no;
-	}
-
-	public void setGroup_no(int group_no) {
-		this.group_no = group_no;
-	}
-
-	public int getOrder_no() {
-		return order_no;
-	}
-
-	public void setOrder_no(int order_no) {
-		this.order_no = order_no;
-	}
-
 }

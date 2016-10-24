@@ -282,7 +282,7 @@
 	}
 </style>
 <body>
-<div style="margin-left: 100px; margin-top: 100px;">
+<div style="margin-left: 100px; margin-top: 100px; padding-bottom: 100px;">
 	<div style="margin-left: 70px"><p>회원가입<p></div>
 	<div style="margin-top: 20px; margin-left: 100px;" >
 	<form action="${pageContext.request.contextPath}/member/signup" method="post" id="member" onSubmit = "return checkIt()" name = "member">

@@ -8,7 +8,7 @@
 <title>Insert title here</title>
 
 <script type="text/x-jquery-tmpl" id="orderTemplate">
-	<div id="\${name}" class="w3-row menu bordershadow" style="padding: 10px 0px 10px 0px">
+	<div id="\${name}" class="w3-row menu w3-card-8" style="padding: 10px 0px 10px 0px">
 		<input type="hidden" name="m_num" value="\${num}">
 		<input type="hidden" name="m_price" value="\${price}">
 		<div class="w3-col s2">
@@ -182,9 +182,13 @@ input[type=text], select {
 			var mypoint = parseInt($("#mypoint").val());
 			var usepoint = parseInt($("input[name='usepoint']").val());
 			var totalprice = parseInt($("#total").text());
+			var percentage = (totalprice * 10) / 100;
 			if (mypoint < usepoint) {
 				alert("포인트가 부족합니다!!");
 				$(this).fouces();
+			} else if (percentage < usepoint) {
+				alert("포인트는 전체 가격의 10%만 사용가능합니다. \n" + percentage + "point 사용가능");
+				return false;
 			} else {
 				$("input[name='totalprice']").val(totalprice - usepoint);
 			}
@@ -231,6 +235,8 @@ input[type=text], select {
 
 			var mypoint = parseInt($("#mypoint").val());
 			var usepoint = parseInt($("input[name='usepoint']").val());
+			var totalprice = parseInt($("#total").text());
+			var percentage = (totalprice * 10) / 100;
 			var payment = $("#payment").val();
 			var store = $("#store").val();
 			alert("여기옴");
@@ -242,6 +248,9 @@ input[type=text], select {
 				return false;
 			} else if (mypoint < usepoint) {
 				alert("포인트가 부족합니다!!");
+				return false;
+			} else if (percentage < usepoint) {
+				alert("포인트는 전체 가격의 10%만 사용가능합니다. \n" + percentage + "point 사용가능");
 				return false;
 			} else {
 				return true;
@@ -255,7 +264,7 @@ input[type=text], select {
 
 	<div class="w3-row class w3-content"
 		style="max-width: 1300px; margin-top: 200px;">
-		<div class="w3-half w3-black w3-container w3-center"
+		<div class="w3-half w3-light-grey w3-container w3-center w3-card-8"
 			style="height: 500px;">
 			<div style="margin-top: 15px;">
 				<h1>MENU</h1>
@@ -264,7 +273,7 @@ input[type=text], select {
 			<div class="w3-padding-10 w3-container"
 				style="height: 400px; overflow: auto;">
 				<button onclick="myFunction('Demo1')"
-					class="w3-btn-block w3-theme-l1">
+					class="w3-btn-block w3-light-grey">
 					<h3>콜드블루</h3>
 				</button>
 				<div id="Demo1" class="w3-accordion-content w3-container">
@@ -283,7 +292,7 @@ input[type=text], select {
 					</c:forEach>
 				</div>
 				<button onclick="myFunction('Demo2')"
-					class="w3-btn-block w3-theme-l1">
+					class="w3-btn-block w3-light-grey">
 					<h3>브루드</h3>
 				</button>
 				<div id="Demo2" class="w3-accordion-content w3-container">
@@ -302,7 +311,7 @@ input[type=text], select {
 					</c:forEach>
 				</div>
 				<button onclick="myFunction('Demo3')"
-					class="w3-btn-block w3-theme-l1">
+					class="w3-btn-block w3-light-grey">
 					<h3>에스프레소</h3>
 				</button>
 				<div id="Demo3" class="w3-accordion-content w3-container">
@@ -321,7 +330,7 @@ input[type=text], select {
 					</c:forEach>
 				</div>
 				<button onclick="myFunction('Demo4')"
-					class="w3-btn-block w3-theme-l1">
+					class="w3-btn-block w3-light-grey">
 					<h3>프라푸치노</h3>
 				</button>
 				<div id="Demo4" class="w3-accordion-content w3-container">
@@ -341,7 +350,7 @@ input[type=text], select {
 				</div>
 			</div>
 		</div>
-		<div class="w3-half w3-blue-grey w3-container w3-center"
+		<div class="w3-half w3-white w3-card-8 w3-container w3-center"
 			style="height: 500px;">
 
 			<div style="margin-top: 15px;">

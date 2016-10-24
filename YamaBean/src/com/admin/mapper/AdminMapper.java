@@ -7,6 +7,7 @@ import com.admin.dto.OrderList;
 import com.admin.dto.UpdateOrderYN;
 import com.member.dto.Member;
 import com.menu.dto.MenuEntity;
+import com.menu.dto.MenuModel;
 import com.storeMap.dto.Store;
 
 public interface AdminMapper {
@@ -23,6 +24,6 @@ public interface AdminMapper {
 
 	List<Member> selectByMemberList();
 
-	List<MenuEntity> selectByMenuList();
+	List<MenuModel> selectByMenuList();
 
 }

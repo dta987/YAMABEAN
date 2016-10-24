@@ -18,6 +18,7 @@ import org.springframework.web.bind.annotation.ResponseBody;
 import com.admin.dto.OrderList;
 import com.member.dto.Forgotten;
 import com.member.dto.Member;
+import com.member.dto.MemberModel;
 import com.member.dto.OvelapCheck;
 
 @Controller
@@ -45,8 +46,8 @@ public class MemberContorller {
 		
 		Member loginInfo = (Member)session.getAttribute("loginInfo");
 		
-		List<OrderList> orderList = memberService.findByOrderList(loginInfo.getId());
-		
+		List<OrderList> orderList = null;
+		orderList = memberService.findBylatelyOrderList(loginInfo.getId());		
 		Member member = memberService.findByMember(loginInfo.getId());
 		
 		model.addAttribute("orderList", orderList);
@@ -55,6 +56,22 @@ public class MemberContorller {
 		
 		
 		return "mypage";
+	}
+	
+	@RequestMapping(value = "/orderlist", method = RequestMethod.GET)
+	public String orderList(HttpSession session, Model model) {
+		
+		Member loginInfo = (Member)session.getAttribute("loginInfo");
+		List<OrderList> orderList = null;
+		orderList = memberService.findByOrderList(loginInfo.getId());		
+		Member member = memberService.findByMember(loginInfo.getId());
+		
+		model.addAttribute("orderList", orderList);
+		model.addAttribute("member", member);
+		
+		
+		
+		return "orderListPage";
 	}
 
 	@RequestMapping(value = "/login", method = RequestMethod.POST)
@@ -110,8 +127,8 @@ public class MemberContorller {
 	}
 
 	@RequestMapping(value = "/signup", method = RequestMethod.POST)
-	public String createMember(@ModelAttribute Member member) {
-		int count = memberService.addMember(member);
+	public String createMember(@ModelAttribute MemberModel memberModel) {
+		int count = memberService.addMember(memberModel);
 		if (count > 0) {
 			System.out.println("회원가입 성공");
 		} else {
@@ -169,19 +186,27 @@ public class MemberContorller {
 	}
 
 	@RequestMapping(value = "/update", method = RequestMethod.GET)
-	public Member updateMember(@RequestParam String id) {
+	public String updateMember(HttpSession sesstion, Model model) {
 		System.out.println("updateMember 컨트롤러 접근");
-		Member member = memberService.updateMember(id);
+		
+		Member loginInfo = (Member)sesstion.getAttribute("loginInfo");
+		
+		MemberModel member = memberService.updateMember(loginInfo.getId());
+		
+		
+		model.addAttribute("member", member);
 	
-		return member;
+		return "update";
 	}
 
 	@RequestMapping(value = "/update", method = RequestMethod.POST)
-	public String alertMember(Member member, Model model) {
+	public String alertMember(MemberModel memberModel, Model model, HttpSession sesstion) {
 		System.out.println("alertMember 컨트롤러 접근");
-
-		int count = memberService.modifyMember(member);
-		model.addAttribute("member", member);
+		
+		Member loginInfo = (Member)sesstion.getAttribute("loginInfo");
+				
+		int count = memberService.modifyMember(memberModel);
+		
 		return "redirect:/member/listmember";
 	}
 }

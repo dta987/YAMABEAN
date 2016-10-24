@@ -16,7 +16,8 @@
 <body>
 	<div class="container col-md-offset-${myoffset}"
 		style="margin-top: 200px;">
-		<form class="form-horizontal" action="/YamaBean/member/login"
+		<form class="form-horizontal"
+			action="${pageContext.request.contextPath}/member/login"
 			method="POST">
 			<div class="form-group">
 				<label class="control-label col-md-${label}" for="email">ID:</label>

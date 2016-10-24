@@ -71,17 +71,17 @@
 		select * from members
 	</select>
 
-	<resultMap type="com.menu.dto.MenuEntity" id="MenuListResult">
+	<resultMap type="com.menu.dto.MenuModel" id="MenuListResult">
 		<id property="menu_num" column="menu_num" />
 		<result property="m_group" column="m_group" />
 		<result property="m_category" column="m_category" />
 		<result property="m_name" column="m_name" />
-		<result property="image" column="image" />
+		<result property="image_name" column="image" />
 		<result property="content" column="content" />
 		<result property="price" column="price" />
 		<result property="qty" column="qty" />
 	</resultMap>
 	<select id="selectByMenuList" resultMap="MenuListResult">
-		select * from menus
+		select * from menus where m_group='coffee'
 	</select>
 </mapper>

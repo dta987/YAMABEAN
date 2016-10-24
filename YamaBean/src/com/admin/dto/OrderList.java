@@ -12,12 +12,22 @@ public class OrderList {
 	private List<?> orderProduct;
 	private int totalprice;
 	private int store_num;
-	
+	private String sub_day;
+
+	public String getSub_day() {
+		return sub_day;
+	}
+
+	public void setSub_day(String sub_day) {
+		this.sub_day = sub_day;
+	}
+
 	@Override
 	public String toString() {
 		return "OrderList [order_num=" + order_num + ", member=" + member
 				+ ", orderProduct=" + orderProduct + ", totalprice="
-				+ totalprice + ", store_num=" + store_num + "]";
+				+ totalprice + ", store_num=" + store_num + ", sub_day="
+				+ sub_day + "]";
 	}
 
 	public int getOrder_num() {
