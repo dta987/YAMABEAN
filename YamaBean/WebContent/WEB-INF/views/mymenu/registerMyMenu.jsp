@@ -278,11 +278,8 @@
 	}
 
 	$(function() {
-		$("#registerMenu").submit(function() {
-			$("#registerList > div").each(function(index) {
-				/* alert("m_num : "+ $(this).children($("input[name='m_num']")).val() ); */
-
-				if ($("input[name='mymenu_name']").val() == null) {
+		$("#registerMyMenu").submit(function() {
+			if ($("input[name='mymenu_name']").val() == "") {
 					alert("마이 메뉴 이름을 정해주세요.");
 					return false;
 				}
@@ -458,7 +455,7 @@
 										<td>
 											<button type="button" class="btn btn-default" name="addWhip"
 												onclick="addwhip('500')">
-												<span class="glyphicon glyphicon-plus" aria-hidden="true"></span>
+												<span class="glyphiconx glyphicon-plus" aria-hidden="true"></span>
 											</button>
 										</td>
 									</tr>
