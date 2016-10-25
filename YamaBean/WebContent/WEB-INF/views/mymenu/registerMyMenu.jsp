@@ -278,7 +278,6 @@
 	}
 
 	$(function() {
-
 		$("#registerMyMenu").submit(function() {
 			if ($("input[name='mymenu_name']").val() == "") {
 				alert("마이 메뉴 이름을 정해주세요.");
@@ -286,7 +285,6 @@
 			} else {
 				return true;
 			}
-		});
 	});
 	
 </script>
@@ -449,7 +447,7 @@
 										<td>
 											<button type="button" class="btn btn-default" name="addWhip"
 												onclick="addwhip('500')">
-												<span class="glyphicon glyphicon-plus" aria-hidden="true"></span>
+												<span class="glyphiconx glyphicon-plus" aria-hidden="true"></span>
 											</button>
 										</td>
 									</tr>

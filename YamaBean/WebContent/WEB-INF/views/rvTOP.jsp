@@ -58,7 +58,8 @@
 						class="fa fa-caret-down"></i></a>
 					<div class="w3-dropdown-content w3-white w3-card-4">
 						<a href="${pageContext.request.contextPath}/admin/page">Admin
-							Page</a> <a href="${pageContext.request.contextPath}/member/logout">LOG OUT</a>
+							Page</a> <a href="${pageContext.request.contextPath}/member/logout">LOG
+							OUT</a>
 					</div></li>
 			</c:if>
 		</ul>
