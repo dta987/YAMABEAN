@@ -1,10 +1,9 @@
 package com.order.dto;
 
-import java.util.Arrays;
-
 public class OrderProductEntty {
 
 	private int order_p_num;
+	private String m_name;
 	private int menu_num;
 	private int order_num;
 	private int order_p_qty;
@@ -16,12 +15,21 @@ public class OrderProductEntty {
 
 	@Override
 	public String toString() {
-		return "OrderProductEntty [order_p_num=" + order_p_num + ", menu_num="
-				+ menu_num + ", order_num=" + order_num + ", order_p_qty="
-				+ order_p_qty + ", order_p_price=" + order_p_price
-				+ ", order_p_group=" + order_p_group + ", optionsize="
-				+ optionsize + ", optionshot=" + optionshot + ", optionwhip="
-				+ optionwhip + "]";
+		return "OrderProductEntty [order_p_num=" + order_p_num + ", m_name="
+				+ m_name + ", menu_num=" + menu_num + ", order_num="
+				+ order_num + ", order_p_qty=" + order_p_qty
+				+ ", order_p_price=" + order_p_price + ", order_p_group="
+				+ order_p_group + ", optionsize=" + optionsize
+				+ ", optionshot=" + optionshot + ", optionwhip=" + optionwhip
+				+ "]";
+	}
+
+	public String getM_name() {
+		return m_name;
+	}
+
+	public void setM_name(String m_name) {
+		this.m_name = m_name;
 	}
 
 	public int getOrder_p_num() {

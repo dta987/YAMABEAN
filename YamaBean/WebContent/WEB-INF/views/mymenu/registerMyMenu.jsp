@@ -278,24 +278,16 @@
 	}
 
 	$(function() {
-		$("#registerMenu").submit(function() {
-			/* $("#registerList > div").each(function(index) {
-				alert("m_num : "+ $(this).children($("input[name='m_num']")).val() );
-				
-			}); */
-
-			if ($("input[name='mymenu_name']").val() == null) {
+		$("#registerMyMenu").submit(function() {
+			if ($("input[name='mymenu_name']").val() == "") {
 				alert("마이 메뉴 이름을 정해주세요.");
 				return false;
+			} else {
+				return true;
 			}
-
-			return false;
 		});
 	});
-
-	function goBack() {
-		window.history.back();
-	}
+	
 </script>
 
 

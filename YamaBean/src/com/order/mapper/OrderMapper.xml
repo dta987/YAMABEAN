@@ -18,12 +18,16 @@
 
 	<resultMap type="com.order.dto.OrderProductEntty" id="orderProductResult">
 		<id property="order_p_num" column="order_p_num" />
+		<result property="m_name" column="m_name" />
 		<result property="menu_num" column="menu_num" />
 		<result property="order_num" column="order_num" />
 		<result property="order_p_qty" column="order_p_qty" />
 		<result property="order_p_price" column="order_p_price" />
 		<result property="order_p_group" column="order_p_group" />
-		<result property="m_name" column="m_name" />
+		<result property="optionsize" column="optionsize" />
+		<result property="optionshot" column="optionshot" />
+		<result property="optionwhip" column="optionwhip" />
+		
 	</resultMap>
 
 	<select id="selectByOrder_p" parameterType="int" resultMap="orderProductResult">
