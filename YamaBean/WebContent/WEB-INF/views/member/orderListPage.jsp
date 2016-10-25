@@ -101,6 +101,13 @@ body, h1, h2, h3, h4, h5 {
 			<!-- Pagination -->
 		</c:if>
 
+		<div class="w3-center w3-padding-32">
+			<ul class="w3-pagination">
+				<li><a class="w3-black"
+					href="${pageContext.request.contextPath}/order/order">주문하기</a></li>
+			</ul>
+		</div>
+
 
 
 

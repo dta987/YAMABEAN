@@ -67,7 +67,8 @@ footer {
 							<div style="height: 200px; overflow: auto;">
 								<c:forEach var="orderProduct" items="${order.orderProduct}">
 									<li class="w3-padding-16"><b>${orderProduct.m_name}</b>
-										${orderProduct.order_p_qty} 개</li>
+										${orderProduct.order_p_qty} 개 <br>
+										<b>Size-${orderProduct.optionsize}</b> / <b>Shot-${orderProduct.optionshot}</b> / <b>Whip-${orderProduct.optionwhip}</b></li>
 								</c:forEach>
 							</div>
 							<li class="w3-padding-16">

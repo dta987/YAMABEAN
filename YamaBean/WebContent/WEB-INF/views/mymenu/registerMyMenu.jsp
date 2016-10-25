@@ -280,19 +280,13 @@
 	$(function() {
 		$("#registerMyMenu").submit(function() {
 			if ($("input[name='mymenu_name']").val() == "") {
-					alert("마이 메뉴 이름을 정해주세요.");
-					return false;
-				}
-			});
-		
-
-			return false;
-		});
+				alert("마이 메뉴 이름을 정해주세요.");
+				return false;
+			} else {
+				return true;
+			}
 	});
-
-	function goBack() {
-		window.history.back();
-	}
+	
 </script>
 
 

@@ -378,7 +378,7 @@ input[type=text], select {
 								id="my${mymenu.mymenu_num}">
 								<img src="${uploadedFolder}${mymenu.menuEntity.image}"
 									alt="Norway" style="width: 100%" class="w3-hover-opacity"
-									onclick="orderFunction('${mymenu.mymenu_num}', 'MY ${mymenu.mymenu_name}', '${mymenu.menuEntity.image}', '${mymenu.mymenu_price}', '${mymenu.my_optionSize}', '${mymenu.my_optionShot}', '${mymenu.my_optionWhip}')">
+									onclick="orderFunction('${mymenu.menuEntity.menu_num}', 'MY ${mymenu.mymenu_name}', '${mymenu.menuEntity.image}', '${mymenu.mymenu_price}', '${mymenu.my_optionSize}', '${mymenu.my_optionShot}', '${mymenu.my_optionWhip}')">
 								<div>
 									<h5>${mymenu.mymenu_name}</h5>
 								</div>
