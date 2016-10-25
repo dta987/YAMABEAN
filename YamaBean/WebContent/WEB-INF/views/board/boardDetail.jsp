@@ -38,7 +38,7 @@
 		<form id="writerForm" class="form-horizontal" role="form"
 			action="${pageContext.request.contextPath}/board/boardWriter"
 			method="post" id="frm">
-			<label>BOARD WRITE</label><br>
+			<label>BOARD DETAIL</label><br>
 			<hr style="border: solid;">
 			<div class="form-group ">
 				<label class="control-label col-sm-${formleft}" for="subject">TITLE</label>

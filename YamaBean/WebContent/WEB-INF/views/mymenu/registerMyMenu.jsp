@@ -307,16 +307,16 @@
 
 	<div class="w3-row class w3-content"
 		style="max-width: 1300px; margin-top: 200px;">
-		<div class="w3-half w3-black w3-container w3-center"
+		<div class="w3-half w3-light-grey w3-container w3-center w3-card-8"
 			style="height: 500px;">
 			<div style="margin-top: 15px;">
-				<h1>REGISETER MY MENU</h1>
+				<h1>MENU</h1>
 			</div>
 			<hr>
 			<div class="w3-padding-10 w3-container"
 				style="height: 400px; overflow: auto;">
 				<button onclick="myFunction('Demo1')"
-					class="w3-btn-block w3-theme-l1">
+					class="w3-btn-block w3-light-grey">
 					<h3>콜드블루</h3>
 				</button>
 				<div id="Demo1" class="w3-accordion-content w3-container">
@@ -335,7 +335,7 @@
 					</c:forEach>
 				</div>
 				<button onclick="myFunction('Demo2')"
-					class="w3-btn-block w3-theme-l1">
+					class="w3-btn-block w3-light-grey">
 					<h3>브루드</h3>
 				</button>
 				<div id="Demo2" class="w3-accordion-content w3-container">
@@ -354,7 +354,7 @@
 					</c:forEach>
 				</div>
 				<button onclick="myFunction('Demo3')"
-					class="w3-btn-block w3-theme-l1">
+					class="w3-btn-block w3-light-grey">
 					<h3>에스프레소</h3>
 				</button>
 				<div id="Demo3" class="w3-accordion-content w3-container">
@@ -373,7 +373,7 @@
 					</c:forEach>
 				</div>
 				<button onclick="myFunction('Demo4')"
-					class="w3-btn-block w3-theme-l1">
+					class="w3-btn-block w3-light-grey">
 					<h3>프라푸치노</h3>
 				</button>
 				<div id="Demo4" class="w3-accordion-content w3-container">

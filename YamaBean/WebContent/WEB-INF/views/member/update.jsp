@@ -369,7 +369,7 @@ body, h1, h2, h3, h4, h5 {
 		class="w3-padding">주문 내역</a> <a
 		href="${pageContext.request.contextPath}/member/update"
 		onclick="w3_close()" class="w3-padding">개인 정보</a> <a
-		href="${pageContext.request.contextPath}/member/listMyMenu"
+		href="${pageContext.request.contextPath}/mymenu/listMyMenu"
 		onclick="w3_close()" class="w3-padding">My Menu</a> </nav>
 
 	<!-- Top menu on small screens -->

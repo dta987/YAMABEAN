@@ -20,6 +20,7 @@ import com.member.dto.Forgotten;
 import com.member.dto.Member;
 import com.member.dto.MemberModel;
 import com.member.dto.OvelapCheck;
+import com.mymenu.dto.MyMenuModel;
 
 @Controller
 public class MemberContorller {
@@ -49,6 +50,7 @@ public class MemberContorller {
 		List<OrderList> orderList = null;
 		orderList = memberService.findBylatelyOrderList(loginInfo.getId());		
 		Member member = memberService.findByMember(loginInfo.getId());
+		List<MyMenuModel> myMenuList = memberService.mymenuList(loginInfo.getId());
 		
 		model.addAttribute("orderList", orderList);
 		model.addAttribute("member", member);
@@ -57,7 +59,7 @@ public class MemberContorller {
 		
 		return "mypage";
 	}
-	
+
 	@RequestMapping(value = "/orderlist", method = RequestMethod.GET)
 	public String orderList(HttpSession session, Model model) {
 		
@@ -135,7 +137,7 @@ public class MemberContorller {
 			System.out.println("회원가입 실패");
 		}
 
-		return "redirect:/";
+		return "redirect:/member/login";
 	}
 	
 	@RequestMapping(value="/forgotten", method=RequestMethod.GET)

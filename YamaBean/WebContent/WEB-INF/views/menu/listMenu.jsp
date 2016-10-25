@@ -12,10 +12,10 @@
 
 
 	<!-- !PAGE CONTENT! -->
-	<div class="w3-main" style="margin-left: 20%; margin-right: 20%; padding-bottom: 100px;">
+	<div class="w3-main"
+		style="margin-left: 20%; margin-right: 20%; padding-bottom: 100px;">
 		<div class="w3-section w3-padding-16">
-			<img alt="" src="${imgFolder}index1.jpg" width="100%"
-				height="300px">
+			<img alt="" src="${imgFolder}index1.jpg" width="100%" height="300px">
 		</div>
 
 		<h1>
@@ -149,6 +149,12 @@
 		</div>
 	</div>
 
+	<!-- End Page Content -->
+	<footer class="w3-container w3-padding-32" id="contact"> </footer>
+
+
+	<div class="w3-black w3-center w3-padding-24">YamaBean</div>
+
 	<script type="text/javascript">
 		var cold_brew = $("div[id='cold_brew']");
 		var brood = $("div[id='brood']");
@@ -158,12 +164,12 @@
 		$(function() {
 			$("input[name='menu_all']").change(function() {
 				if ($("input[name='menu_all']").is(":checked") == true) {
-					
+
 					$("input[name='cold_brew']").attr("checked", false);
 					$("input[name='brood']").attr("checked", false);
 					$("input[name='espresso']").attr("checked", false);
 					$("input[name='frappuccino']").attr("checked", false);
-					
+
 					if (cold_brew.attr("class").indexOf("hide") != -1) {
 						cold_brew.attr("class", "w3-row-padding");
 					}
@@ -191,10 +197,10 @@
 					}
 				}
 			});
-			
+
 			$("input[name='cold_brew']").change(function() {
 				if ($("input[name='cold_brew']").is(":checked") == true) {
-					if($("input[name='menu_all']").is(":checked") == true) {
+					if ($("input[name='menu_all']").is(":checked") == true) {
 						$("input[name='menu_all']").attr("checked", false);
 						brood.attr("class", "w3-row-padding hide");
 						espresso.attr("class", "w3-row-padding hide");
@@ -206,11 +212,11 @@
 				} else {
 					cold_brew.attr("class", "w3-row-padding hide");
 				}
-				
+
 			});
-			$("input[name='brood']").change(function() {				
+			$("input[name='brood']").change(function() {
 				if ($("input[name='brood']").is(":checked") == true) {
-					if($("input[name='menu_all']").is(":checked") == true) {
+					if ($("input[name='menu_all']").is(":checked") == true) {
 						$("input[name='menu_all']").attr("checked", false);
 						cold_brew.attr("class", "w3-row-padding hide");
 						espresso.attr("class", "w3-row-padding hide");
@@ -218,15 +224,15 @@
 					}
 					if (brood.attr("class").indexOf("hide") != -1) {
 						brood.attr("class", "w3-row-padding");
-					} 
+					}
 				} else {
 					brood.attr("class", "w3-row-padding hide");
 				}
-				
+
 			});
 			$("input[name='espresso']").change(function() {
 				if ($("input[name='espresso']").is(":checked") == true) {
-					if($("input[name='menu_all']").is(":checked") == true) {
+					if ($("input[name='menu_all']").is(":checked") == true) {
 						$("input[name='menu_all']").attr("checked", false);
 						cold_brew.attr("class", "w3-row-padding hide");
 						brood.attr("class", "w3-row-padding hide");
@@ -234,15 +240,15 @@
 					}
 					if (espresso.attr("class").indexOf("hide") != -1) {
 						espresso.attr("class", "w3-row-padding");
-					} 
+					}
 				} else {
 					espresso.attr("class", "w3-row-padding hide");
 				}
-				
+
 			});
 			$("input[name='frappuccino']").change(function() {
 				if ($("input[name='frappuccino']").is(":checked") == true) {
-					if($("input[name='menu_all']").is(":checked") == true) {
+					if ($("input[name='menu_all']").is(":checked") == true) {
 						$("input[name='menu_all']").attr("checked", false);
 						cold_brew.attr("class", "w3-row-padding hide");
 						brood.attr("class", "w3-row-padding hide");
@@ -250,16 +256,13 @@
 					}
 					if (frappuccino.attr("class").indexOf("hide") != -1) {
 						frappuccino.attr("class", "w3-row-padding");
-					} 
+					}
 				} else {
 					frappuccino.attr("class", "w3-row-padding hide");
 				}
-				
+
 			});
 		});
-		
-		
-
 	</script>
 
 </body>

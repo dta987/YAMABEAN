@@ -21,7 +21,7 @@ tr:hover {
 <body>
 	<br>
 	<br>
-	<div class="col-sm-offset-${myoffset} col-sm-${mywidth}">
+	<div class="col-sm-offset-${myoffset} col-sm-${mywidth}" style="height: 700px;">
 		<label>Q & A</label><br> <br>
 		<table class="table">
 			<thead>
@@ -68,7 +68,8 @@ tr:hover {
 							type="button" id="searchAll"
 							onclick="location.href='${pageContext.request.contextPath}/board/move'">ALL</button>
 						<button class="w3-btn w3-white w3-border w3-round-large"
-							type="button" id="insertForm" onclick="location.href='${pageContext.request.contextPath}/board/boardForm'">WRITE</button>
+							type="button" id="insertForm"
+							onclick="location.href='${pageContext.request.contextPath}/board/boardForm'">WRITE</button>
 						&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
 					</form>
 				</td>
@@ -79,12 +80,19 @@ tr:hover {
 				<li><a href="#">&laquo;</a></li>
 				<c:forEach begin="${beginPage}" end="${endPage}" step="1" var="page"
 					varStatus="pageing">
-					<li><a href="${pageContext.request.contextPath}/board/move?selectPage=${pageing.index}">${pageing.index}</a></li>
+					<li><a
+						href="${pageContext.request.contextPath}/board/move?selectPage=${pageing.index}">${pageing.index}</a></li>
 				</c:forEach>
 				<li><a href="#">&raquo;</a></li>
 			</ul>
 		</div>
 	</div>
+
+	<!-- End Page Content -->
+	<footer class="w3-container w3-padding-32" id="contact"> </footer>
+
+
+	<div class="w3-black w3-center w3-padding-24">YamaBean</div>
 
 
 

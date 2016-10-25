@@ -13,6 +13,7 @@ import com.member.dto.Forgotten;
 import com.member.dto.Member;
 import com.member.dto.MemberModel;
 import com.member.dto.OvelapCheck;
+import com.mymenu.dto.MyMenuModel;
 
 @Service
 public class MemberService {
@@ -39,9 +40,7 @@ public class MemberService {
 		member.setAddress(memberModel.getAddress());
 		member.setBday(memberModel.getBday());
 		member.setEmail(memberModel.getFirst_email() + "@" + memberModel.getLast_email());
-		
-		memberRepository.insertMember(member);
-		
+			
 		
 		return memberRepository.insertMember(member);
 	}
@@ -196,6 +195,10 @@ public class MemberService {
 
 	public List<OrderList> findBylatelyOrderList(String id) {
 		return memberRepository.findBylatelyOrderList(id);
+	}
+
+	public List<MyMenuModel> mymenuList(String id) {
+		return memberRepository.mymenuList(id);
 	}
 
 }
