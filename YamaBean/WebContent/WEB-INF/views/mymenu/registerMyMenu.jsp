@@ -278,6 +278,7 @@
 	}
 
 	$(function() {
+
 		$("#registerMyMenu").submit(function() {
 			if ($("input[name='mymenu_name']").val() == "") {
 				alert("마이 메뉴 이름을 정해주세요.");

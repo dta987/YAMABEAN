@@ -47,14 +47,24 @@
 		<!-- The Band Section -->
 		<div class="w3-container w3-content w3-center w3-padding-64"
 			style="max-width: 800px" id="band">
-			<h2 class="w3-wide">YamaBean</h2>
+			<h2 class="w3-wide"><strong>YAMA BEAN</strong></h2>
 			<p class="w3-opacity">
-				<i>YamaBean 커피로스터스는</i>
+				<i>YAMA BEAN 커피로스터스</i>				
 			</p>
-			<p class="w3-justify">한국의 ‘커피 제3의 물결’을 주도하는 프리미엄 커피 서비스 컴퍼니입니다.
-				당신이 언제 어디서든 최고급 원두커피를 즐길 수 있도록 다양한 서비스와 컨텐츠를 제공하고 있습니다. 우리는 최고급 품질의
-				커피를 위하여 전세계의 제철 커피생두를 원료로 직접 로스팅합니다. 신선한 재료와 최신 생산시설을 통해 맛과 향이 풍부한
-				프리미엄 원두커피를 생산하여 기업과 가정, 당신이 있는 곳 어디든지 최상의 서비스를 제공합니다.</p>
+			<p class="w3-opacity">
+				<i>자연에서 얻은 최상의 원두로 최고의 서비스를 제공하는 프리미엄 커피 스토어입니다.</i>				
+			</p>
+			<p class="w3-opacity">
+				<i>당신이 원하는 메뉴를 만들어보세요. 자신만의 메뉴를 만들어 볼 수 있습니다. </i>				
+			</p>
+			<p class="w3-opacity">
+				<i>줄서서 기다리지 마세요. YAMA BEAN에서는 기다리실 필요가 없습니다.</i>				
+			</p>
+			<p class="w3-opacity">
+				<i><strong>당신이 바라는 커피 스토어, 우리는 YAMA BEAN 입니다.</strong></i>				
+			</p>
+			<!-- <p class="w3-justify"></p> -->
+			
 		</div>
 		<!-- End Page Content -->
 		<footer class="w3-container w3-padding-32" id="contact"> </footer>

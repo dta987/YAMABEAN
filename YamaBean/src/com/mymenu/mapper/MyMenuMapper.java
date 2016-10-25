@@ -2,6 +2,7 @@ package com.mymenu.mapper;
 
 import java.util.List;
 
+import com.member.dto.Member;
 import com.menu.dto.MenuEntity;
 import com.menu.dto.MenuModel;
 import com.mymenu.dto.MyMenuDomain;
@@ -13,7 +14,7 @@ public interface MyMenuMapper {
 	
 	public int addMyMenu(MyMenuDomain mymenuDomain);	//mymenu 등록
 	
-	public List<MyMenuModel> viewMyMenuList(); //mymenu 리스트
+	public List<MyMenuModel> viewMyMenuList(String member_id); //mymenu 리스트
 	public MenuEntity findByMenu(int menu_num);
 	
 	public int removeMyMenu(int mymenu_num) ; //mymenu 삭제
@@ -21,6 +22,8 @@ public interface MyMenuMapper {
 	public MyMenuModel detailViewMyMenu(int mymenu_num);	//mymenu 수정(mymenu_num으로 찾기)
 
 	public int updateMyMenus(MyMenuDomain mymenuDomain);
+
+	public Member selectByMember(String member_id);
 		
 	
 	

@@ -35,8 +35,8 @@
 
 
 	<!-- mymenu list 불러오기 -->
-	<select id="viewMyMenuList" resultMap="mymenuAllResult">
-		select mymenu_num, member_id, mymenu_name, menu_num, my_optionSize, mymenu_price, my_optionShot, my_optionWhip, to_char(sub_day, 'yyyy-MM-dd') as s_day from mymenus order by mymenu_num desc
+	<select id="viewMyMenuList" parameterType="String"  resultMap="mymenuAllResult">
+		select mymenu_num, mymenu_name, menu_num, my_optionSize, mymenu_price, my_optionShot, my_optionWhip, to_char(sub_day, 'yyyy-MM-dd') as s_day from mymenus where member_id=#{member_id} order by mymenu_num desc
 	</select>
 	
 	<resultMap type="com.mymenu.dto.MyMenuModel" id="mymenuAllResult">
@@ -73,6 +73,11 @@
 	</delete>
 	
 	
+	<!-- member 정보찾기 -->
+	<select id="seelctByMember" parameterType="String"
+		resultType="com.member.dto.Member">
+		select * from members where id=#{member_id}
+	</select>
 	
 
 </mapper>

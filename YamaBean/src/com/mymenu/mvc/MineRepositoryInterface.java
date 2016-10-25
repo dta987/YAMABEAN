@@ -15,7 +15,7 @@ public interface MineRepositoryInterface {
 	
 	public int deleteMyMenu(int mymenu_num) ; //mymenu 삭제
 	
-	public List<MyMenuModel> mymenuList(); //mymenu 리스트
+	public List<MyMenuModel> mymenuList(String member_id); //mymenu 리스트
 	
 	public MyMenuModel selectByMenu(int mymenu_num);	//mymenu 수정(mymenu_num으로 찾기)
 	public int updateMyMenu(MyMenuDomain mymenuDomain);

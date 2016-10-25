@@ -21,6 +21,7 @@
 	</resultMap>
 
 	<insert id="insertMember" parameterType="com.member.dto.Member">
+
 		insert into members (id,
 		password, name, gender, phone, nickname, zipcode, address, bday,
 		email) values

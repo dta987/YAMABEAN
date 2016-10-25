@@ -20,9 +20,9 @@ public interface MineControllerInterface {
 	
 	public String deleteMyMenu(int mymenu_num) ; //mymenu 삭제
 	
-	public List<MyMenuModel> mymenuList(); //mymenu 리스트
+	public List<MyMenuModel> mymenuList(HttpSession session); //mymenu 리스트
 	
-	public String updateMyMenu(MyMenuDomain mymenuDomain);	//mymenu 수정
+	public String updateMyMenu(MyMenuDomain mymenuDomain, HttpSession session);	//mymenu 수정
 	public MyMenuModel updateMyMenuForm(int mymenu_num) ;
 	
 }
