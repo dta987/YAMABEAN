@@ -48,7 +48,7 @@
 				<h4>
 					<p>
 						<button class="w3-btn w3-light-grey">
-							<b>최근 주문 목록이 없습니다</b>
+							<b>등록된 메뉴가 없습니다 </b>
 						</button>
 					</p>
 				</h4>
@@ -64,7 +64,7 @@
 									<p class="w3-xlarge">${mymenu.mymenu_name}</p> <span
 									class="w3-opacity">${mymenu.menuEntity.m_name}</span>
 								</li>
-								<li class="w3-padding-16"><b><img src="${uploadedFolder}${mymenu.menuEntity.image}"></b></li>
+								<li class="w3-padding-16"><b><img width="80%" src="${uploadedFolder}${mymenu.menuEntity.image}"></b></li>
 								<li class="w3-padding-16">Size : <b>${mymenu.my_optionSize}</b></li>
 								<li class="w3-padding-16">Shot : <b>${mymenu.my_optionShot}</b></li>
 								<li class="w3-padding-16">Whip : <b>${mymenu.my_optionWhip}</b></li>

@@ -211,7 +211,7 @@ body, h1, h2, h3, h4, h5 {
 									<p class="w3-xlarge">${mymenu.mymenu_name}</p> <span
 									class="w3-opacity">${mymenu.menuEntity.m_name}</span>
 								</li>
-								<li class="w3-padding-16"><b><img
+								<li class="w3-padding-16"><b><img width="80%"
 										src="${uploadedFolder}${mymenu.menuEntity.image}"></b></li>
 								<li class="w3-padding-16">Size : <b>${mymenu.my_optionSize}</b></li>
 								<li class="w3-padding-16">Shot : <b>${mymenu.my_optionShot}</b></li>

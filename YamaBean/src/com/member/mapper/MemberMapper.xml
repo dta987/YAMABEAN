@@ -58,18 +58,21 @@
 		where ranking between 1 and 3
 	</select>
 
-	<resultMap type="com.menu.dto.MenuEntity" id="menuAllResult">
-		<id property="menu_num" column="menu_num" />
-		<result property="m_group" column="m_group" />
-		<result property="m_category" column="m_category" />
-		<result property="m_name" column="m_name" />
-		<result property="image" column="image" />
-		<result property="content" column="content" />
-		<result property="price" column="price" />
+	<resultMap type="com.mymenu.dto.MyMenuModel" id="mymenuAllResult">
+		<id property="mymenu_num" column="mymenu_num" />
+		<result property="member_id" column="member_id" />
+		<result property="mymenu_name" column="mymenu_name" />
+		<result property="my_optionSize" column="my_optionSize" />
+		<result property="sub_day" column="s_day" />
+		<result property="mymenu_price" column="mymenu_price" />
+		<result property="my_optionShot" column="my_optionShot" />
+		<result property="my_optionWhip" column="my_optionWhip" />
+		<association property="menuEntity" column="menu_num"
+			select="com.mymenu.mapper.MyMenuMapper.findByMenu" />
 	</resultMap>
 
 
-	<select id="mymenuList" parameterType="String" resultMap="menuAllResult">
+	<select id="mymenuList" parameterType="String" resultMap="mymenuAllResult">
 		select
 		mymenu_num, member_id, mymenu_name, menu_num, my_optionSize,
 		mymenu_price, my_optionShot, my_optionWhip, sub_day, ranking from

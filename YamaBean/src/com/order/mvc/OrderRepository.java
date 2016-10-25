@@ -7,6 +7,7 @@ import org.springframework.stereotype.Repository;
 
 import com.member.dto.Member;
 import com.menu.dto.MenuEntity;
+import com.mymenu.dto.MyMenuModel;
 import com.order.dto.OrderEntty;
 import com.order.dto.OrderProductEntty;
 import com.order.dto.PointEntty;
@@ -23,11 +24,11 @@ public class OrderRepository {
 		return mapper.selectMenuList();
 	}
 
-	public List<Store> selectStoreList() { 
+	public List<Store> selectStoreList() {
 		return mapper.selectStoreList();
 	}
-	
-	public int insertOrder(OrderEntty orderEntty) { 
+
+	public int insertOrder(OrderEntty orderEntty) {
 		return mapper.insertOrder(orderEntty);
 	}
 
@@ -39,7 +40,6 @@ public class OrderRepository {
 		return mapper.selectOrder_num();
 	}
 
-
 	public int selectPoint(String member_id) {
 		return mapper.selectPoint(member_id);
 	}
@@ -49,11 +49,15 @@ public class OrderRepository {
 	}
 
 	public Store selectStore(int store_num) {
-		return mapper.selectStore(store_num);		
+		return mapper.selectStore(store_num);
 	}
 
 	public Member selectByMember(String member_id) {
 		return mapper.seelctByMember(member_id);
+	}
+
+	public List<MyMenuModel> mymenuList(String id) {
+		return mapper.mymenuList(id);
 	}
 
 }

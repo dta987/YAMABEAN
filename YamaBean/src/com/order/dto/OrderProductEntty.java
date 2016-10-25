@@ -1,5 +1,7 @@
 package com.order.dto;
 
+import java.util.Arrays;
+
 public class OrderProductEntty {
 
 	private int order_p_num;
@@ -8,15 +10,18 @@ public class OrderProductEntty {
 	private int order_p_qty;
 	private int order_p_price;
 	private String order_p_group;
-	private String m_name;
+	private String optionsize;
+	private int optionshot;
+	private int optionwhip;
 
 	@Override
 	public String toString() {
 		return "OrderProductEntty [order_p_num=" + order_p_num + ", menu_num="
 				+ menu_num + ", order_num=" + order_num + ", order_p_qty="
 				+ order_p_qty + ", order_p_price=" + order_p_price
-				+ ", order_p_group=" + order_p_group + ", m_name=" + m_name
-				+ "]";
+				+ ", order_p_group=" + order_p_group + ", optionsize="
+				+ optionsize + ", optionshot=" + optionshot + ", optionwhip="
+				+ optionwhip + "]";
 	}
 
 	public int getOrder_p_num() {
@@ -67,12 +72,28 @@ public class OrderProductEntty {
 		this.order_p_group = order_p_group;
 	}
 
-	public String getM_name() {
-		return m_name;
+	public String getOptionsize() {
+		return optionsize;
 	}
 
-	public void setM_name(String m_name) {
-		this.m_name = m_name;
+	public void setOptionsize(String optionsize) {
+		this.optionsize = optionsize;
+	}
+
+	public int getOptionshot() {
+		return optionshot;
+	}
+
+	public void setOptionshot(int optionshot) {
+		this.optionshot = optionshot;
+	}
+
+	public int getOptionwhip() {
+		return optionwhip;
+	}
+
+	public void setOptionwhip(int optionwhip) {
+		this.optionwhip = optionwhip;
 	}
 
 }

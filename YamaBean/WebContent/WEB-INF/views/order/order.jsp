@@ -50,6 +50,10 @@
 <script type="text/x-jquery-tmpl" id="orderInfoTemplate">
 	<div id="\${name}" class="w3-row menu bordershadow" style="padding: 10px 5px 10px">
 		<input type="hidden" name="m_num" value="\${num}">
+		<input type="hidden" name="m_name" value="\${name}">
+		<input type="hidden" name="optionsize" value="\${size}">
+		<input type="hidden" name="optionshot" value="\${shot}">
+		<input type="hidden" name="optionwhip" value="\${whip}">
 		<div class="w3-col s3">
 			<img src="${uploadedFolder}\${img}" style="width: 50%">
 		</div>
@@ -64,7 +68,6 @@
 		</div>
 	</div>
 </script>
-
 <style type="text/css">
 input[type=text], select {
 	width: 30%;
@@ -84,13 +87,20 @@ input[type=text], select {
 
 
 <script type="text/javascript">
-	function orderFunction(num, name, img, content, price) {
+	function orderFunction(num, name, img, price, size, shot, whip) {
+		
+		if(size == null) { size = 'small'; }
+		if(shot == null) { shot = 0; }
+		if(whip == null) { whip = 0; }
+		
+		
+		alert(size + ", " + shot + ", " + whip);
 
 		var bool = Boolean(false);
 
 		$("#orderList > div ").each(function(index) {
 			if ($(this).attr("id") == name) {
-				alert("이미 추가한 매뉴 입니다.")
+				alert("이미 추가한 매뉴 입니다.");
 				bool = true;
 			}
 		});
@@ -101,8 +111,10 @@ input[type=text], select {
 				"num" : num,
 				"name" : name,
 				"img" : img,
-				"content" : content,
 				"price" : price,
+				"size" : size,
+				"shot" : shot,
+				"whip" : whip,
 			};
 
 			var orderdiv = $("#orderTemplate").tmpl(data);
@@ -178,21 +190,24 @@ input[type=text], select {
 	}
 
 	$(function() {
-		$("input[name='usepoint']").change(function() {
-			var mypoint = parseInt($("#mypoint").val());
-			var usepoint = parseInt($("input[name='usepoint']").val());
-			var totalprice = parseInt($("#total").text());
-			var percentage = (totalprice * 10) / 100;
-			if (mypoint < usepoint) {
-				alert("포인트가 부족합니다!!");
-				$(this).fouces();
-			} else if (percentage < usepoint) {
-				alert("포인트는 전체 가격의 10%만 사용가능합니다. \n" + percentage + "point 사용가능");
-				return false;
-			} else {
-				$("input[name='totalprice']").val(totalprice - usepoint);
-			}
-		});
+		$("input[name='usepoint']").change(
+				function() {
+					var mypoint = parseInt($("#mypoint").val());
+					var usepoint = parseInt($("input[name='usepoint']").val());
+					var totalprice = parseInt($("#total").text());
+					var percentage = (totalprice * 10) / 100;
+					if (mypoint < usepoint) {
+						alert("포인트가 부족합니다!!");
+						$(this).fouces();
+					} else if (percentage < usepoint) {
+						alert("포인트는 전체 가격의 10%만 사용가능합니다. \n" + percentage
+								+ "point 사용가능");
+						return false;
+					} else {
+						$("input[name='totalprice']")
+								.val(totalprice - usepoint);
+					}
+				});
 	});
 
 	function myFunction(id) {
@@ -230,33 +245,37 @@ input[type=text], select {
 						});
 	});
 
-	$(function() {
-		$("#orderForm").submit(function() {
+	$(
+			function() {
+				$("#orderForm").submit(
+						function() {
 
-			var mypoint = parseInt($("#mypoint").val());
-			var usepoint = parseInt($("input[name='usepoint']").val());
-			var totalprice = parseInt($("#total").text());
-			var percentage = (totalprice * 10) / 100;
-			var payment = $("#payment").val();
-			var store = $("#store").val();
-			alert("여기옴");
-			if (store == "null") {
-				alert("매장을 선택해주세요");
-				return false;
-			} else if (payment == "null") {
-				alert("결재 수단을 선택해주세요");
-				return false;
-			} else if (mypoint < usepoint) {
-				alert("포인트가 부족합니다!!");
-				return false;
-			} else if (percentage < usepoint) {
-				alert("포인트는 전체 가격의 10%만 사용가능합니다. \n" + percentage + "point 사용가능");
-				return false;
-			} else {
-				return true;
-			}
-		});
-	})
+							var mypoint = parseInt($("#mypoint").val());
+							var usepoint = parseInt($("input[name='usepoint']")
+									.val());
+							var totalprice = parseInt($("#total").text());
+							var percentage = (totalprice * 10) / 100;
+							var payment = $("#payment").val();
+							var store = $("#store").val();
+							
+							if (percentage < usepoint) {
+								alert("포인트는 전체 가격의 10%만 사용가능합니다. \n"
+										+ percentage + "point 사용가능");
+								return false;
+							} else if (store == "null") {
+								alert("매장을 선택해주세요");
+								return false;
+							} else if (payment == "null") {
+								alert("결재 수단을 선택해주세요");
+								return false;
+							} else if (mypoint < usepoint) {
+								alert("포인트가 부족합니다!!");
+								return false;
+							} else {
+								return true;
+							}
+						});
+			})
 </script>
 
 </head>
@@ -283,7 +302,7 @@ input[type=text], select {
 								id="${item.menu_num}">
 								<img src="${uploadedFolder}${item.image_name}" alt="Norway"
 									style="width: 100%" class="w3-hover-opacity"
-									onclick="orderFunction('${item.menu_num}', '${item.m_name}', '${item.image_name}', '${item.content}', '${item.price}')">
+									onclick="orderFunction('${item.menu_num}', '${item.m_name}', '${item.image_name}', '${item.price}')">
 								<div>
 									<h5>${item.getM_name()}</h5>
 								</div>
@@ -302,7 +321,7 @@ input[type=text], select {
 								id="${item.menu_num}">
 								<img src="${uploadedFolder}${item.image_name}" alt="Norway"
 									style="width: 100%" class="w3-hover-opacity"
-									onclick="orderFunction('${item.menu_num}', '${item.m_name}', '${item.image_name}', '${item.content}', '${item.price}')">
+									onclick="orderFunction('${item.menu_num}', '${item.m_name}', '${item.image_name}', '${item.price}')">
 								<div>
 									<h5>${item.getM_name()}</h5>
 								</div>
@@ -321,7 +340,7 @@ input[type=text], select {
 								id="${item.menu_num}">
 								<img src="${uploadedFolder}${item.image_name}" alt="Norway"
 									style="width: 100%" class="w3-hover-opacity"
-									onclick="orderFunction('${item.menu_num}', '${item.m_name}', '${item.image_name}', '${item.content}', '${item.price}')">
+									onclick="orderFunction('${item.menu_num}', '${item.m_name}', '${item.image_name}', '${item.price}')">
 								<div>
 									<h5>${item.getM_name()}</h5>
 								</div>
@@ -340,7 +359,7 @@ input[type=text], select {
 								id="${item.menu_num}">
 								<img src="${uploadedFolder}${item.image_name}" alt="Norway"
 									style="width: 100%" class="w3-hover-opacity"
-									onclick="orderFunction('${item.menu_num}', '${item.m_name}', '${item.image_name}', '${item.content}', '${item.price}')">
+									onclick="orderFunction('${item.menu_num}', '${item.m_name}', '${item.image_name}', '${item.price}')">
 								<div>
 									<h5>${item.getM_name()}</h5>
 								</div>
@@ -348,6 +367,25 @@ input[type=text], select {
 						</c:if>
 					</c:forEach>
 				</div>
+				<c:if test="${not empty allListMyMenu}">
+					<button onclick="myFunction('Demo5')"
+						class="w3-btn-block w3-light-grey">
+						<h3>My Menu</h3>
+					</button>
+					<div id="Demo5" class="w3-accordion-content w3-container">
+						<c:forEach var="mymenu" items="${allListMyMenu}">
+							<div class="w3-third w3-container w3-margin-bottom"
+								id="my${mymenu.mymenu_num}">
+								<img src="${uploadedFolder}${mymenu.menuEntity.image}"
+									alt="Norway" style="width: 100%" class="w3-hover-opacity"
+									onclick="orderFunction('${mymenu.mymenu_num}', 'MY ${mymenu.mymenu_name}', '${mymenu.menuEntity.image}', '${mymenu.mymenu_price}', '${mymenu.my_optionSize}', '${mymenu.my_optionShot}', '${mymenu.my_optionWhip}')">
+								<div>
+									<h5>${mymenu.mymenu_name}</h5>
+								</div>
+							</div>
+						</c:forEach>
+					</div>
+				</c:if>
 			</div>
 		</div>
 		<div class="w3-half w3-white w3-card-8 w3-container w3-center"

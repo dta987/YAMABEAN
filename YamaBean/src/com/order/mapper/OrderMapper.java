@@ -4,6 +4,7 @@ import java.util.List;
 
 import com.member.dto.Member;
 import com.menu.dto.MenuEntity;
+import com.mymenu.dto.MyMenuModel;
 import com.order.dto.OrderEntty;
 import com.order.dto.OrderProductEntty;
 import com.order.dto.PointEntty;
@@ -30,4 +31,6 @@ public interface OrderMapper {
 	public Member seelctByMember(String member_id);
 	
 	public List<OrderProductEntty> selectByOrder_p(int order_num);
+
+	public List<MyMenuModel> mymenuList(String id);
 }

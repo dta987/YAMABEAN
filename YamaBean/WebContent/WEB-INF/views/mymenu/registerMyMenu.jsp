@@ -75,8 +75,6 @@
 	}
 
 	function sizePrice(price) {
-		alert(price);
-
 		if (price != null) {
 			var mysize = null;
 			var optionprice = parseInt($("input[name='mymenu_shotPrice']")
@@ -324,8 +322,8 @@
 						<c:if test="${item.getM_category() == '콜드브루' }">
 							<div class="w3-third w3-container w3-margin-bottom"
 								id="${item.menu_num}">
-								<img src="${pageContext.request.contextPath}${item.image_name}"
-									alt="Norway" style="width: 100%" class="w3-hover-opacity"
+								<img src="${uploadedFolder}${item.image_name}" alt="Norway"
+									style="width: 100%" class="w3-hover-opacity"
 									onclick="orderFunction('${item.menu_num}', '${item.m_name}', '${item.image_name}', '${item.content}', '${item.price}')">
 								<div>
 									<h5>${item.getM_name()}</h5>
@@ -398,92 +396,101 @@
 
 		<form action="/YamaBean/mymenu/registerMyMenu" method="POST"
 			id="registerMyMenu">
-			<div class="w3-half w3-blue-grey w3-container w3-center"
-				style="height: 200px;">
+			<div class="w3-half w3-white w3-card-8 w3-container w3-center"
+				style="height: 500px;">
 				<div style="margin-top: 15px;">
-					<h1>MY MENU REGISTER</h1>
+					<h1>MY MENU</h1>
 				</div>
 				<hr>
-				<div class="w3-padding-10"
-					style="padding-bottom: 10px; height: 300px; overflow: auto;">
+				<div class="w3-padding-10 w3-card-8"
+					style="padding-bottom: 10px; height: 100px;">
 					<div class="w3-row" align="left" id="registerList"></div>
 					<!-- 메뉴리스트에서 선택한 마이메뉴이미지 -->
 				</div>
+				<br>
+				<div align="left">
+					<label>My Menu NAME</label> <input type="text" name="mymenu_name">
+				</div>
+				<div id="my_size" align="left">
+					<label>My Menu SIZE</label> <input type="radio" value="small"
+						name="my_optionSize">small <input type="radio"
+						value="large" name="my_optionSize">large <input
+						type="text" value="0" name="mymenu_sizePrice" readonly="readonly"
+						style="border: none; display: none;">
+				</div>
+				<br>
+				<div align="left" style="height: 170px;">
+
+					<table>
+						<tr>
+							<td><label>add SHOT (+ 500)</label>
+								<table style="background-color: white;">
+									<tr>
+										<td rowspan="2" width="50px;"><input type="text"
+											name="my_optionShot" value="0" readonly="readonly"
+											style="color: black; width: 100%; height: 100%; border: none;">
+										</td>
+										<td>
+											<button type="button" class="btn btn-default" name="addShot"
+												id="addShot" onclick="addshot('500')">
+												<span class="glyphicon glyphicon-plus" aria-hidden="true"></span>
+											</button>
+										</td>
+									</tr>
+									<tr>
+										<td>
+											<button type="button" class="btn btn-default" name="subShot"
+												onclick="subshot('500')">
+												<span class="glyphicon glyphicon-minus" aria-hidden="true"></span>
+											</button> <input type="text" value="0" name="mymenu_shotPrice"
+											readonly="readonly" style="border: none; display: none;">
+										</td>
+									</tr>
+								</table></td>
+							<td>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</td>
+							<td><label>add WHIP (+ 500)</label>
+								<table style="background-color: white;">
+									<tr>
+										<td rowspan="2" width="50px;"><input type="text"
+											name="my_optionWhip" value="0" readonly="readonly"
+											style="color: black; width: 100%; height: 100%; border: none;">
+										</td>
+										<td>
+											<button type="button" class="btn btn-default" name="addWhip"
+												onclick="addwhip('500')">
+												<span class="glyphicon glyphicon-plus" aria-hidden="true"></span>
+											</button>
+										</td>
+									</tr>
+									<tr>
+										<td>
+											<button type="button" class="btn btn-default" name="subWhip"
+												onclick="subwhip('500')">
+												<span class="glyphicon glyphicon-minus" aria-hidden="true"></span>
+											</button> <input type="text" value="0" name="mymenu_whipPrice"
+											readonly="readonly" style="border: none; display: none;">
+										</td>
+									</tr>
+								</table></td>
+						</tr>
+
+
+					</table>
+				</div>
+				<div align="left">
+					<div class="w3-col s3" align="left">
+						<label>총 가격</label>
+					</div>
+					<div class="w3-col s6" align="right">
+						<input type="text" name="mymenu_price" value="0"
+							readonly="readonly" style="border: none;">
+					</div>
+					<div class="w3-col s3" align="right">
+						<button id="orderbtn" type="submit" class="btn btn-primary">주문하기</button>
+					</div>
+				</div>
+
 			</div>
-
-				<div >
-					<br> <br>
-					<div>
-						<label>My Menu NAME</label> <input type="text" name="mymenu_name">
-					</div>
-					<div id="my_size">
-						<label>My Menu SIZE</label> <input type="radio" value="small"
-							name="my_optionSize">small <input type="radio"
-							value="large" name="my_optionSize">large <input
-							type="text" value="0" name="mymenu_sizePrice" readonly="readonly"
-							style="border: none;">
-					</div>
-					<div>
-						<label>Personal Options</label> <br> <label>add SHOT
-							(+ 500)</label>
-						<table style="background-color: white;">
-							<tr>
-								<td rowspan="2" width="50px;"><input type="text"
-									name="my_optionShot" value="0" readonly="readonly"
-									style="color: black; width: 100%; height: 100%; border: none;">
-								</td>
-								<td>
-									<button type="button" class="btn btn-default" name="addShot"
-										id="addShot" onclick="addshot('500')">
-										<span class="glyphicon glyphicon-plus" aria-hidden="true"></span>
-									</button>
-								</td>
-							</tr>
-							<tr>
-								<td>
-									<button type="button" class="btn btn-default" name="subShot"
-										onclick="subshot('500')">
-										<span class="glyphicon glyphicon-minus" aria-hidden="true"></span>
-									</button> <input type="text" value="0" name="mymenu_shotPrice"
-									readonly="readonly" style="border: none;">
-								</td>
-							</tr>
-						</table>
-						<br> <label>add WHIP (+ 500)</label>
-						<table style="background-color: white;">
-							<tr>
-								<td rowspan="2" width="50px;"><input type="text"
-									name="my_optionWhip" value="0" readonly="readonly"
-									style="color: black; width: 100%; height: 100%; border: none;">
-								</td>
-								<td>
-									<button type="button" class="btn btn-default" name="addWhip"
-										onclick="addwhip('500')">
-										<span class="glyphicon glyphicon-plus" aria-hidden="true"></span>
-									</button>
-								</td>
-							</tr>
-							<tr>
-								<td>
-									<button type="button" class="btn btn-default" name="subWhip"
-										onclick="subwhip('500')">
-										<span class="glyphicon glyphicon-minus" aria-hidden="true"></span>
-									</button> <input type="text" value="0" name="mymenu_whipPrice"
-									readonly="readonly" style="border: none;">
-								</td>
-							</tr>
-						</table>
-					</div>
-					<div>
-						<label>총 가격</label> <input type="text" name="mymenu_price"
-							value="0" readonly="readonly" style="border: none;">
-					</div>
-				</div>
-				<div>
-					<button type="reset" onclick="goBack()">취소</button>
-					<button type="submit">주문하기</button>
-				</div>
-
 		</form>
 	</div>
 
