@@ -4,12 +4,10 @@ import java.util.List;
 
 import javax.servlet.http.HttpSession;
 
-import org.json.simple.JSONObject;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.ModelAttribute;
-import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RequestParam;
@@ -19,7 +17,7 @@ import com.admin.dto.OrderList;
 import com.member.dto.Forgotten;
 import com.member.dto.Member;
 import com.member.dto.MemberModel;
-import com.member.dto.OvelapCheck;
+import com.mymenu.dto.MyMenuModel;
 
 @Controller
 public class MemberContorller {
@@ -49,15 +47,19 @@ public class MemberContorller {
 		List<OrderList> orderList = null;
 		orderList = memberService.findBylatelyOrderList(loginInfo.getId());		
 		Member member = memberService.findByMember(loginInfo.getId());
+		List<MyMenuModel> allListMyMenu = memberService.mymenuList(loginInfo.getId());
 		
 		model.addAttribute("orderList", orderList);
 		model.addAttribute("member", member);
+		model.addAttribute("allListMyMenu", allListMyMenu);
+		
+		System.out.println(allListMyMenu.toString());
 		
 		
 		
 		return "mypage";
 	}
-	
+
 	@RequestMapping(value = "/orderlist", method = RequestMethod.GET)
 	public String orderList(HttpSession session, Model model) {
 		
@@ -135,7 +137,7 @@ public class MemberContorller {
 			System.out.println("회원가입 실패");
 		}
 
-		return "redirect:/";
+		return "redirect:/member/login";
 	}
 	
 	@RequestMapping(value="/forgotten", method=RequestMethod.GET)

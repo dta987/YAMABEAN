@@ -21,7 +21,13 @@
 	</resultMap>
 
 	<insert id="insertMember" parameterType="com.member.dto.Member">
-		insert into members (id, password, name, gender, phone, nickname, zipcode, address, bday, email) values (#{id},#{password},#{name}, #{gender}, #{phone},#{nickname},#{zipcode},#{address},to_date(#{bday}, 'yyyy-MM-dd'),#{email})
+
+		insert into members (id,
+		password, name, gender, phone, nickname, zipcode, address, bday,
+		email) values
+		(#{id},#{password},#{name}, #{gender},
+		#{phone},#{nickname},#{zipcode},#{address},to_date(#{bday},
+		'yyyy-MM-dd'),#{email})
 	</insert>
 
 
@@ -35,58 +41,102 @@
 		<collection property="orderProduct" column="order_num"
 			select="com.order.mapper.OrderMapper.selectByOrder_p" />
 	</resultMap>
-	
-	<select id="findBylatelyOrderList" parameterType="String" resultMap="orderList">
-	    select order_num, total_price, store_num, member_id, order_num,
+
+	<select id="findBylatelyOrderList" parameterType="String"
+		resultMap="orderList">
+		select order_num, total_price, store_num, member_id,
+		order_num,
 		to_char(sub_day, 'yyyy-mm-dd') as sub_day, ranking
 		from
 		(
-		select order_num, total_price, store_num, member_id, sub_day,
-		rank() over(order by sub_day desc) as ranking
-		from orders where member_id=#{id}
+		select
+		order_num, total_price, store_num, member_id, sub_day,
+		rank()
+		over(order by sub_day desc) as ranking
+		from orders where
+		member_id=#{id}
 		)
+		where ranking between 1 and 3
+	</select>
+
+	<resultMap type="com.mymenu.dto.MyMenuModel" id="mymenuAllResult">
+		<id property="mymenu_num" column="mymenu_num" />
+		<result property="member_id" column="member_id" />
+		<result property="mymenu_name" column="mymenu_name" />
+		<result property="my_optionSize" column="my_optionSize" />
+		<result property="sub_day" column="s_day" />
+		<result property="mymenu_price" column="mymenu_price" />
+		<result property="my_optionShot" column="my_optionShot" />
+		<result property="my_optionWhip" column="my_optionWhip" />
+		<association property="menuEntity" column="menu_num"
+			select="com.mymenu.mapper.MyMenuMapper.findByMenu" />
+	</resultMap>
+
+
+	<select id="mymenuList" parameterType="String" resultMap="mymenuAllResult">
+		select
+		mymenu_num, member_id, mymenu_name, menu_num, my_optionSize,
+		mymenu_price, my_optionShot, my_optionWhip, sub_day, ranking from
+		(select mymenu_num, member_id, mymenu_name, menu_num, my_optionSize,
+		mymenu_price, my_optionShot, my_optionWhip, to_char(sub_day,
+		'yyyy-MM-dd') as sub_day, rank() over(order by sub_day desc) as
+		ranking from mymenus where member_id=#{id} order by mymenu_num asc)
 		where ranking between 1 and 3
 	</select>
 
 
 	<select id="selectByOrderList" parameterType="String" resultMap="orderList">
 		select order_num, total_price, store_num, member_id, order_num,
-		to_char(sub_day, 'yyyy-mm-dd') as sub_day from orders where member_id=#{id} order by sub_day desc
+		to_char(sub_day, 'yyyy-mm-dd') as sub_day from orders where
+		member_id=#{id} order by sub_day desc
 	</select>
 
 	<select id="selectByMember" parameterType="string"
 		resultType="com.member.dto.Member">
-		select id, password, name, gender, phone, nickname, zipcode, address, to_char(bday, 'yyyy-mm-dd') as bday, to_char(joinday, 'yyyy-mm-dd') as joinday, email, point from members where id = #{id}
+		select id, password, name, gender, phone, nickname,
+		zipcode, address, to_char(bday, 'yyyy-mm-dd') as bday,
+		to_char(joinday, 'yyyy-mm-dd') as joinday, email, point from members
+		where id = #{id}
 	</select>
 
 	<update id="updateMember" parameterType="com.member.dto.Member">
-	    update members set name=#{name}, gender=#{gender}, phone=#{phone}, nickname=#{nickname}, zipcode=#{zipcode}, address=#{address}, bday=#{bday}, email=#{email} where id=#{id}
+		update members set
+		name=#{name}, gender=#{gender}, phone=#{phone},
+		nickname=#{nickname},
+		zipcode=#{zipcode}, address=#{address},
+		bday=#{bday}, email=#{email}
+		where id=#{id}
 
 	</update>
-	
-	<select id="overLapCheckID" parameterType="String" resultType="com.member.dto.Member" >
-	    select * from members where id=#{keyword}
+
+	<select id="overLapCheckID" parameterType="String"
+		resultType="com.member.dto.Member">
+		select * from members where id=#{keyword}
 	</select>
-	
-	<select id="overLapCheckNickName" parameterType="String" resultType="com.member.dto.Member" >
-	    select * from members where nickname=#{keyword}
+
+	<select id="overLapCheckNickName" parameterType="String"
+		resultType="com.member.dto.Member">
+		select * from members where nickname=#{keyword}
 	</select>
-	
-	<select id="overLapCheckEmail" parameterType="String" resultType="com.member.dto.Member" >
-	    select * from members where email=#{keyword}
+
+	<select id="overLapCheckEmail" parameterType="String"
+		resultType="com.member.dto.Member">
+		select * from members where email=#{keyword}
 	</select>
-	
+
 
 
 	<delete id="deleteMember" parameterType="int">
-		delete members where id=#{id}
+		delete members where
+		id=#{id}
 	</delete>
-	
-	<select id="forgotten" parameterType="com.member.dto.Forgotten" resultType="com.member.dto.Member">
-	    select * from members where name=#{name} and email=#{email}
-	    <if test="id != null">
-	        and id=#{id}
-	    </if>
+
+	<select id="forgotten" parameterType="com.member.dto.Forgotten"
+		resultType="com.member.dto.Member">
+		select * from members where name=#{name} and email=#{email}
+		<if test="id != null">
+			and id=#{id}
+		</if>
 	</select>
 
 </mapper>

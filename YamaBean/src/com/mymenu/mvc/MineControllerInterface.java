@@ -25,5 +25,4 @@ public interface MineControllerInterface {
 	public String updateMyMenu(MyMenuDomain mymenuDomain, HttpSession session);	//mymenu ¼öÁ¤
 	public MyMenuModel updateMyMenuForm(int mymenu_num) ;
 	
-	
 }

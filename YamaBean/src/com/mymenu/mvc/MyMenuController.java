@@ -43,10 +43,9 @@ public class MyMenuController implements MineControllerInterface {
 	@Override
 	@RequestMapping(value="/registerMyMenu", method=RequestMethod.POST)
 	public String registerMyMenu(@ModelAttribute MyMenuDomain mymenuDomain, HttpSession session) {
-		Member sessionid = (Member) session.getAttribute("loginInfo") ;
-		mymenuDomain.setMember_id(sessionid.getId());		
-		myMenuService.register(mymenuDomain);
-		
+
+		Member member = (Member)session.getAttribute("loginInfo");
+		mymenuDomain.setMember_id(member.getId());
 		System.out.println(mymenuDomain.getMember_id());
 		System.out.println(mymenuDomain.getMenu_num());
 		System.out.println(mymenuDomain.getMy_optionShot());
@@ -55,8 +54,8 @@ public class MyMenuController implements MineControllerInterface {
 		System.out.println(mymenuDomain.getMymenu_num());
 		System.out.println(mymenuDomain.getMymenu_price());
 		System.out.println(mymenuDomain.getSub_day());
-		System.out.println("controller_mymenuName : " +mymenuDomain.getMymenu_name());
-		
+		System.out.println("controller_mymenuName : " + mymenuDomain.getMymenu_name());
+		myMenuService.register(mymenuDomain);
 		return "redirect:/mymenu/listMyMenu";
 	}
 

@@ -6,6 +6,7 @@ import com.admin.dto.OrderList;
 import com.member.dto.Forgotten;
 import com.member.dto.Member;
 import com.member.dto.OvelapCheck;
+import com.mymenu.dto.MyMenuModel;
 
 public interface MemberMapper {
 
@@ -32,5 +33,7 @@ public interface MemberMapper {
 	public Member overLapCheckEmail(String keyword);
 
 	public List<OrderList> findBylatelyOrderList(String id);
+
+	public List<MyMenuModel> mymenuList(String id);
 
 }

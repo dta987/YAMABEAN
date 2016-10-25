@@ -26,7 +26,7 @@
 		<if test="mode != null and mode.equals('member_id')">
 			and member_id=#{keyword}
 		</if>
-		order by board_num asc
+		order by board_num desc
 	</select>
 
 	<select id="count" parameterType="com.board.dto.BoardPage"
@@ -48,5 +48,12 @@
 	<select id="selectByBoard" parameterType="int" resultType="com.board.dto.Board">
 	    select board_num, b_category, title, to_char(sub_day, 'yyyy-mm-dd') as sub_day, member_id, contents, group_no, order_no from boards where board_num=#{num}
 	</select>
+	
+	<insert id="insertBoard" parameterType="com.board.dto.Board">
+	    <selectKey keyProperty="board_num" resultType="int" order="BEFORE">
+	        select boards_seq.nextval from dual
+	    </selectKey>
+	    insert into boards(board_num, b_category, title, member_id, contents) values(#{board_num}, #{b_category}, #{title}, #{member_id}, #{contents}) 
+	</insert>
 
 </mapper>

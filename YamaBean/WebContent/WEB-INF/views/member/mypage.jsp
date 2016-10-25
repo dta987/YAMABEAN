@@ -29,19 +29,24 @@ body, h1, h2, h3, h4, h5 {
 		class="w3-sidenav w3-white w3-animate-left w3-center w3-text-grey w3-collapse w3-top-50"
 		style="z-index:3;width:300px;font-weight:bold;" id="mySidenav">
 	<br>
-	<h3 class="w3-padding-64" onclick="location.href='${pageContext.request.contextPath}/member/mypage'">
+	<h3 class="w3-padding-64"
+		onclick="location.href='${pageContext.request.contextPath}/member/mypage'">
 		<b>MYPAGE<br> <br>${sessionScope.loginInfo.nickname}
 		</b>
 	</h3>
-	<a href="${pageContext.request.contextPath}/member/orderlist" ${pageContext.request.contextPath}/member/orderlist="w3_close()" class="w3-padding">주문 내역</a> <a
-		href="${pageContext.request.contextPath}/member/update" onclick="w3_close()" class="w3-padding">개인 정보</a> <a
-		href="${pageContext.request.contextPath}/mymenu/listMyMenu" onclick="w3_close()" class="w3-padding">My Menu</a> </nav>
+	<a href="${pageContext.request.contextPath}/member/orderlist"
+		${pageContext.request.contextPath}/member/orderlist="w3_close()"
+		class="w3-padding">주문 내역</a> <a
+		href="${pageContext.request.contextPath}/member/update"
+		onclick="w3_close()" class="w3-padding">개인 정보</a> <a
+		href="${pageContext.request.contextPath}/mymenu/listMyMenu"
+		onclick="w3_close()" class="w3-padding">My Menu</a> </nav>
 
 	<!-- Top menu on small screens -->
 	<header
 		class="w3-container w3-top w3-hide-large w3-white w3-xlarge w3-padding-16">
-	<span class="w3-left w3-padding">${sessionScope.loginInfo.nickname}</span> <a
-		class="w3-right w3-btn w3-white" onclick="w3_open()">☰</a> </header>
+	<span class="w3-left w3-padding">${sessionScope.loginInfo.nickname}</span>
+	<a class="w3-right w3-btn w3-white" onclick="w3_open()">☰</a> </header>
 
 	<!-- Overlay effect when opening sidenav on small screens -->
 	<div class="w3-overlay w3-hide-large w3-animate-opacity"
@@ -96,8 +101,10 @@ body, h1, h2, h3, h4, h5 {
 			<!-- Pagination -->
 			<div class="w3-center w3-padding-32">
 				<ul class="w3-pagination">
-					<li><a class="w3-black" href="${pageContext.request.contextPath}/member/orderlist">더보기</a></li>
-					<li><a class="w3-black" href="${pageContext.request.contextPath}/order/order">주문하기</a></li>
+					<li><a class="w3-black"
+						href="${pageContext.request.contextPath}/member/orderlist">더보기</a></li>
+					<li><a class="w3-black"
+						href="${pageContext.request.contextPath}/order/order">주문하기</a></li>
 				</ul>
 			</div>
 		</c:if>
@@ -161,7 +168,8 @@ body, h1, h2, h3, h4, h5 {
 				<hr class="w3-opacity">
 				<div class="w3-center w3-padding-20">
 					<ul class="w3-pagination">
-						<li><a class="w3-black" href="${pageContext.request.contextPath}/member/update">수정하기</a></li>
+						<li><a class="w3-black"
+							href="${pageContext.request.contextPath}/member/update">수정하기</a></li>
 					</ul>
 				</div>
 				<div class="w3-row-padding" style="margin: 0 -16px"></div>
@@ -169,38 +177,52 @@ body, h1, h2, h3, h4, h5 {
 		</div>
 
 		<!-- Footer with contact section -->
-		<c:if test="${empty orderList}">
+		<c:if test="${empty allListMyMenu}">
 			<div
 				class="w3-white w3-center w3-text-black w3-padding-32 w3-padding"
 				id="about">
 				<h4>
 					<p>
 						<button class="w3-btn w3-light-grey">
-							<b>나만의 메뉴가 없습니다</b>
+							<b>등록된 메뉴가 없습니다</b>
 						</button>
 					</p>
 				</h4>
 			</div>
+			<div class="w3-center w3-padding-32">
+				<ul class="w3-pagination">
+					<li><a class="w3-black"
+						href="${pageContext.request.contextPath}/mymenu/listMyMenu">더보기</a></li>
+					<li><a class="w3-black"
+						href="${pageContext.request.contextPath}/mymenu/registerMyMenu">메뉴
+							추가하기</a></li>
+				</ul>
+			</div>
 		</c:if>
-		<c:if test="${not empty orderList}">
+
+		<c:if test="${not empty allListMyMenu}">
 			<footer class="w3-container w3-padding-32" id="contact">
 			<div class="w3-row">
 				<div class="col-sm-9 col-sm-offset-1">
-					<c:forEach var="order" items="${orderList}">
+					<c:forEach var="mymenu" items="${allListMyMenu}">
 						<div class="w3-third w3-margin-bottom col-sm-4">
 							<ul class="w3-ul w3-border w3-center w3-hover-shadow">
 								<li class="w3-black">
-									<p class="w3-xlarge">${order.member.nickname}</p> <span
-									class="w3-opacity">(${order.member.id})</span>
+									<p class="w3-xlarge">${mymenu.mymenu_name}</p> <span
+									class="w3-opacity">${mymenu.menuEntity.m_name}</span>
 								</li>
-								<div style="height: 200px; overflow: auto;">
-									<c:forEach var="orderProduct" items="${order.orderProduct}">
-										<li class="w3-padding-16"><b>${orderProduct.m_name}</b>
-											${orderProduct.order_p_qty} 개</li>
-									</c:forEach>
-								</div>
+								<li class="w3-padding-16"><b><img width="80%"
+										src="${uploadedFolder}${mymenu.menuEntity.image}"></b></li>
+								<li class="w3-padding-16">Size : <b>${mymenu.my_optionSize}</b></li>
+								<li class="w3-padding-16">Shot : <b>${mymenu.my_optionShot}</b></li>
+								<li class="w3-padding-16">Whip : <b>${mymenu.my_optionWhip}</b></li>
 								<li class="w3-padding-16">
-									<h2 class="w3-wide">${order.totalprice}원</h2>
+									<h2 class="w3-wide">${mymenu.mymenu_price}원</h2>
+								</li>
+								<li class="w3-black"><a class="w3-black"
+									href="${pageContext.request.contextPath}/mymenu/updateMyMenu?mymenu_num=${mymenu.mymenu_num}">수정
+								</a> &nbsp;&nbsp;&nbsp; <a class="w3-black"
+									href="${pageContext.request.contextPath}/mymenu/deleteMyMenu?mymenu_num=${mymenu.mymenu_num}">삭제</a>
 								</li>
 							</ul>
 						</div>
@@ -209,8 +231,11 @@ body, h1, h2, h3, h4, h5 {
 			</div>
 			<div class="w3-center w3-padding-32">
 				<ul class="w3-pagination">
-					<li><a class="w3-black" href="${pageContext.request.contextPath}/mymenu/listMyMenu">더보기</a></li>
-					<li><a class="w3-black" href="${pageContext.request.contextPath}/mymenu/registerMyMenu">메뉴 추가하기</a></li>
+					<li><a class="w3-black"
+						href="${pageContext.request.contextPath}/mymenu/listMyMenu">더보기</a></li>
+					<li><a class="w3-black"
+						href="${pageContext.request.contextPath}/mymenu/registerMyMenu">메뉴
+							추가하기</a></li>
 				</ul>
 			</div>
 			</footer>

@@ -15,23 +15,19 @@
 		class="w3-sidenav w3-white w3-animate-left w3-center w3-text-grey w3-collapse w3-top-50"
 		style="z-index:3;width:300px;font-weight:bold;" id="mySidenav">
 	<br>
-	<h3 class="w3-padding-64"
-		onclick="location.href='${pageContext.request.contextPath}/member/mypage'">
+	<h3 class="w3-padding-64" onclick="location.href='${pageContext.request.contextPath}/member/mypage'">
 		<b>MYPAGE<br> <br>${sessionScope.loginInfo.nickname}
 		</b>
 	</h3>
-	<a href="${pageContext.request.contextPath}/member/orderlist"
-		class="w3-padding">주문 내역</a> <a
-		href="${pageContext.request.contextPath}/member/update"
-		onclick="w3_close()" class="w3-padding">개인 정보</a> <a
-		href="${pageContext.request.contextPath}/member/listMyMenu"
-		onclick="w3_close()" class="w3-padding">My Menu</a> </nav>
+	<a href="${pageContext.request.contextPath}/member/orderlist" ${pageContext.request.contextPath}/member/orderlist="w3_close()" class="w3-padding">주문 내역</a> <a
+		href="${pageContext.request.contextPath}/member/update" onclick="w3_close()" class="w3-padding">개인 정보</a> <a
+		href="${pageContext.request.contextPath}/mymenu/listMyMenu" onclick="w3_close()" class="w3-padding">My Menu</a> </nav>
 
 	<!-- Top menu on small screens -->
 	<header
 		class="w3-container w3-top w3-hide-large w3-white w3-xlarge w3-padding-16">
-	<span class="w3-left w3-padding">${sessionScope.loginInfo.nickname}</span>
-	<a class="w3-right w3-btn w3-white" onclick="w3_open()">☰</a> </header>
+	<span class="w3-left w3-padding">${sessionScope.loginInfo.nickname}</span> <a
+		class="w3-right w3-btn w3-white" onclick="w3_open()">☰</a> </header>
 
 	<!-- Overlay effect when opening sidenav on small screens -->
 	<div class="w3-overlay w3-hide-large w3-animate-opacity"
@@ -52,7 +48,7 @@
 				<h4>
 					<p>
 						<button class="w3-btn w3-light-grey">
-							<b>최근 주문 목록이 없습니다</b>
+							<b>등록된 메뉴가 없습니다 </b>
 						</button>
 					</p>
 				</h4>
@@ -68,7 +64,7 @@
 									<p class="w3-xlarge">${mymenu.mymenu_name}</p> <span
 									class="w3-opacity">${mymenu.menuEntity.m_name}</span>
 								</li>
-								<li class="w3-padding-16"><b><img src="${uploadedFolder}${mymenu.menuEntity.image}"></b></li>
+								<li class="w3-padding-16"><b><img width="80%" src="${uploadedFolder}${mymenu.menuEntity.image}"></b></li>
 								<li class="w3-padding-16">Size : <b>${mymenu.my_optionSize}</b></li>
 								<li class="w3-padding-16">Shot : <b>${mymenu.my_optionShot}</b></li>
 								<li class="w3-padding-16">Whip : <b>${mymenu.my_optionWhip}</b></li>
@@ -84,13 +80,6 @@
 						</div>
 					</c:forEach>
 				</div>
-			</div>
-
-			<!-- Pagination -->
-			<div class="w3-center w3-padding-32">
-				<ul class="w3-pagination">
-					<li><a class="w3-black" href="#">더보기</a></li>
-				</ul>
 			</div>
 		</c:if>
 

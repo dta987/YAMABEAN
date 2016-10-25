@@ -1,4 +1,5 @@
-<%@ page language="java" contentType="text/html; charset=UTF-8" pageEncoding="UTF-8"%>
+<%@ page language="java" contentType="text/html; charset=UTF-8"
+	pageEncoding="UTF-8"%>
 <%@ include file="/WEB-INF/common/common.jsp"%>
 
 <!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3.org/TR/html4/loose.dtd">
@@ -22,17 +23,12 @@
 					class="fa fa-bars"></i></a></li>
 			<li><a href="/YamaBean/"
 				class="w3-hover-none w3-hover-text-grey w3-padding-large w3-text-black">HOME</a></li>
-			<li class="w3-hide-small"><a href="#"
-				class="w3-padding-large w3-text-black">ABOUT</a></li>
 			<li class="w3-hide-small"><a
 				href="${pageContext.request.contextPath}/menu/listMenu"
 				class="w3-padding-large w3-text-black">MENU</a></li>
 			<li class="w3-hide-small"><a
 				href="${pageContext.request.contextPath}/board/move"
 				class="w3-padding-large w3-text-black">BORAD</a></li>
-			<li class="w3-hide-small"><a
-				href="${pageContext.request.contextPath}/storeMap/move"
-				class="w3-padding-large w3-text-black">LOCATIONS</a></li>
 			<c:if
 				test="${sessionScope.whologin != 1 && sessionScope.whologin != 2}">
 				<li class="w3-hide-small w3-right"><a
@@ -50,8 +46,7 @@
 					<div class="w3-dropdown-content w3-white w3-card-4">
 						<a href="${pageContext.request.contextPath}/member/mypage">MY
 							PAGE</a> <a href="${pageContext.request.contextPath}/order/order">ORDER</a>
-						<a href="#">CART</a> <a
-							href="${pageContext.request.contextPath}/member/logout">LogOut</a>
+						<a href="${pageContext.request.contextPath}/member/logout">LogOut</a>
 					</div></li>
 			</c:if>
 			<c:if test="${sessionScope.whologin == 2}">
@@ -63,7 +58,7 @@
 						class="fa fa-caret-down"></i></a>
 					<div class="w3-dropdown-content w3-white w3-card-4">
 						<a href="${pageContext.request.contextPath}/admin/page">Admin
-							Page</a> <a href="${pageContext.request.contextPath}/member/logout">LogOut</a>
+							Page</a> <a href="${pageContext.request.contextPath}/member/logout">LOG OUT</a>
 					</div></li>
 			</c:if>
 		</ul>

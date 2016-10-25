@@ -10,6 +10,7 @@ import com.member.dto.Forgotten;
 import com.member.dto.Member;
 import com.member.dto.OvelapCheck;
 import com.member.mapper.MemberMapper;
+import com.mymenu.dto.MyMenuModel;
 
 @Repository
 public class MemberRepository{
@@ -62,6 +63,11 @@ public class MemberRepository{
 
 	public List<OrderList> findBylatelyOrderList(String id) {
 		return MemberMapper.findBylatelyOrderList(id);
+	}
+
+	public List<MyMenuModel> mymenuList(String id) {
+		// TODO Auto-generated method stub
+		return MemberMapper.mymenuList(id);
 	}
 
 }

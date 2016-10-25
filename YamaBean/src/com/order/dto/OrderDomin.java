@@ -6,33 +6,31 @@ public class OrderDomin {
 	private String member_id;
 	private int[] m_num;
 	private int[] ordervalue;
+	private String[] m_name;
 	private String m_group;
 	private int totalprice;
 	private int store_num;
 	private int usepoint;
 	private String payment;
-	private String pickup;
+	private String[] optionsize;
+	private int[] optionshot;
+	private int[] optionwhip;
 
 	@Override
 	public String toString() {
 		return "OrderDomin [member_id=" + member_id + ", m_num="
 				+ Arrays.toString(m_num) + ", ordervalue="
-				+ Arrays.toString(ordervalue) + ", m_group=" + m_group
+				+ Arrays.toString(ordervalue) + ", m_name="
+				+ Arrays.toString(m_name) + ", m_group=" + m_group
 				+ ", totalprice=" + totalprice + ", store_num=" + store_num
 				+ ", usepoint=" + usepoint + ", payment=" + payment
-				+ ", pickup=" + pickup + "]";
+				+ ", optionsize=" + Arrays.toString(optionsize)
+				+ ", optionshot=" + Arrays.toString(optionshot)
+				+ ", optionwhip=" + Arrays.toString(optionwhip) + "]";
 	}
 
 	public String getMember_id() {
 		return member_id;
-	}
-
-	public String getPickup() {
-		return pickup;
-	}
-
-	public void setPickup(String pickup) {
-		this.pickup = pickup;
 	}
 
 	public void setMember_id(String member_id) {
@@ -53,6 +51,14 @@ public class OrderDomin {
 
 	public void setOrdervalue(int[] ordervalue) {
 		this.ordervalue = ordervalue;
+	}
+
+	public String[] getM_name() {
+		return m_name;
+	}
+
+	public void setM_name(String[] m_name) {
+		this.m_name = m_name;
 	}
 
 	public String getM_group() {
@@ -93,6 +99,30 @@ public class OrderDomin {
 
 	public void setPayment(String payment) {
 		this.payment = payment;
+	}
+
+	public String[] getOptionsize() {
+		return optionsize;
+	}
+
+	public void setOptionsize(String[] optionsize) {
+		this.optionsize = optionsize;
+	}
+
+	public int[] getOptionshot() {
+		return optionshot;
+	}
+
+	public void setOptionshot(int[] optionshot) {
+		this.optionshot = optionshot;
+	}
+
+	public int[] getOptionwhip() {
+		return optionwhip;
+	}
+
+	public void setOptionwhip(int[] optionwhip) {
+		this.optionwhip = optionwhip;
 	}
 
 }

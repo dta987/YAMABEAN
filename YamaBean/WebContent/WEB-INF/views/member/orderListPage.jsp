@@ -25,24 +25,28 @@ body, h1, h2, h3, h4, h5 {
 <body>
 
 	<!-- Sidenav/menu -->
-	<!-- Sidenav/menu -->
 	<nav
 		class="w3-sidenav w3-white w3-animate-left w3-center w3-text-grey w3-collapse w3-top-50"
 		style="z-index:3;width:300px;font-weight:bold;" id="mySidenav">
 	<br>
-	<h3 class="w3-padding-64" onclick="location.href='${pageContext.request.contextPath}/member/mypage'">
+	<h3 class="w3-padding-64"
+		onclick="location.href='${pageContext.request.contextPath}/member/mypage'">
 		<b>MYPAGE<br> <br>${sessionScope.loginInfo.nickname}
 		</b>
 	</h3>
-	<a href="${pageContext.request.contextPath}/member/orderlist" ${pageContext.request.contextPath}/member/orderlist="w3_close()" class="w3-padding">주문 내역</a> <a
-		href="${pageContext.request.contextPath}/member/update" onclick="w3_close()" class="w3-padding">개인 정보</a> <a
-		href="${pageContext.request.contextPath}/member/listMyMenu" onclick="w3_close()" class="w3-padding">My Menu</a> </nav>
+	<a href="${pageContext.request.contextPath}/member/orderlist"
+		${pageContext.request.contextPath}/member/orderlist="w3_close()"
+		class="w3-padding">주문 내역</a> <a
+		href="${pageContext.request.contextPath}/member/update"
+		onclick="w3_close()" class="w3-padding">개인 정보</a> <a
+		href="${pageContext.request.contextPath}/mymenu/listMyMenu"
+		onclick="w3_close()" class="w3-padding">My Menu</a> </nav>
 
 	<!-- Top menu on small screens -->
 	<header
 		class="w3-container w3-top w3-hide-large w3-white w3-xlarge w3-padding-16">
-	<span class="w3-left w3-padding">${sessionScope.loginInfo.nickname}</span> <a
-		class="w3-right w3-btn w3-white" onclick="w3_open()">☰</a> </header>
+	<span class="w3-left w3-padding">${sessionScope.loginInfo.nickname}</span>
+	<a class="w3-right w3-btn w3-white" onclick="w3_open()">☰</a> </header>
 
 	<!-- Overlay effect when opening sidenav on small screens -->
 	<div class="w3-overlay w3-hide-large w3-animate-opacity"
@@ -95,11 +99,6 @@ body, h1, h2, h3, h4, h5 {
 			</div>
 
 			<!-- Pagination -->
-			<div class="w3-center w3-padding-32">
-				<ul class="w3-pagination">
-					<li><a class="w3-black" href="#">더보기</a></li>
-				</ul>
-			</div>
 		</c:if>
 
 

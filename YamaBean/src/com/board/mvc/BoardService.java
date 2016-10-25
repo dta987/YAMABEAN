@@ -39,4 +39,9 @@ public class BoardService {
 		return repository.selectByBoard(num);
 	}
 
+	public int addBoard(Board board) {
+		return repository.insertBoard(board);
+		
+	}
+
 }

@@ -51,6 +51,7 @@
 				<label class="control-label col-sm-${formleft}" for="content">NOTE</label>
 				<div class="col-sm-${mywidth}">
 					<input type="hidden" id="divtext" name="contents" value="">
+					<input type="hidden" name="b_category" value="qna">
 					<div id="divcontext" class="form-control" contentEditable="true"
 						style="height: 300px; overflow: auto;"></div>
 				</div>

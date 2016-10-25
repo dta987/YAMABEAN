@@ -2,6 +2,8 @@ package com.board.mvc;
 
 import java.util.List;
 
+import javax.servlet.http.HttpSession;
+
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
@@ -12,6 +14,7 @@ import org.springframework.web.bind.annotation.RequestParam;
 
 import com.board.dto.Board;
 import com.board.dto.BoardPage;
+import com.member.dto.Member;
 
 @Controller
 public class BoardContorller {
@@ -42,9 +45,6 @@ public class BoardContorller {
 		model.addAttribute("totalpage", totalpage);
 		model.addAttribute("beginPage", beginPage);
 		model.addAttribute("endPage", endPage);
-		
-		System.out.println(boardList.toString());
-
 		return "board";
 	}
 	
@@ -57,16 +57,22 @@ public class BoardContorller {
 	}
 	
 	@RequestMapping(value = "/boardWriter", method = RequestMethod.POST)
-	public String BoardWriter() {
+	public String BoardWriter(@ModelAttribute Board board, HttpSession seeion) {
 		System.out.println("==boardWriter이동==");
 		
-
-		return "boardForm";
+		Member member = (Member)seeion.getAttribute("loginInfo");
+		board.setMember_id(member.getId());
+		
+		System.out.println(board.toString());
+		
+		int cnt = service.addBoard(board);
+		
+		return "redirect:/board/move";
 	}
 	
 	@RequestMapping(value = "/detail", method = RequestMethod.GET)
 	public String BoardDetail(@RequestParam int num, Model model) {
-		System.out.println("==boardWriter이동==");
+		System.out.println("==boardDetail이동==");
 		
 		Board board = service.findByBoard(num);
 		

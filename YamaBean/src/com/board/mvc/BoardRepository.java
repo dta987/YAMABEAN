@@ -28,4 +28,8 @@ public class BoardRepository {
 		return mapper.selectByBoard(num);
 	}
 
+	public int insertBoard(Board board) {
+		return mapper.insertBoard(board);
+	}
+
 }

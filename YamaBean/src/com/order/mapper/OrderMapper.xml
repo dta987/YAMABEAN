@@ -15,7 +15,7 @@
 		<result property="price" column="price" />
 		<result property="qty" column="qty" />
 	</resultMap>
-	
+
 	<resultMap type="com.order.dto.OrderProductEntty" id="orderProductResult">
 		<id property="order_p_num" column="order_p_num" />
 		<result property="menu_num" column="menu_num" />
@@ -78,8 +78,8 @@
 			select order_p_seq.nextval from dual
 		</selectKey>
 		insert into order_products(order_p_num, menu_num, order_num,
-		order_p_qty, order_p_group) values(#{order_p_num}, #{menu_num},
-		#{order_num}, #{order_p_qty}, #{order_p_group})
+		order_p_qty, order_p_group, optionsize, optionshot, optionwhip) values(#{order_p_num}, #{menu_num},
+		#{order_num}, #{order_p_qty}, #{order_p_group}, #{optionsize}, #{optionshot}, #{optionwhip})
 	</insert>
 
 	<select id="selectPoint" resultType="int" parameterType="String">
@@ -98,5 +98,25 @@
 		image=#{image}, content=#{content}, price=#{price}, qty=#{qty} where
 		menu_num=#{menu_num}
 	</update>
+
+	<resultMap type="com.mymenu.dto.MyMenuModel" id="mymenuAllResult">
+		<id property="mymenu_num" column="mymenu_num" />
+		<result property="member_id" column="member_id" />
+		<result property="mymenu_name" column="mymenu_name" />
+		<result property="my_optionSize" column="my_optionSize" />
+		<result property="sub_day" column="sub_day" />
+		<result property="mymenu_price" column="mymenu_price" />
+		<result property="my_optionShot" column="my_optionShot" />
+		<result property="my_optionWhip" column="my_optionWhip" />
+		<association property="menuEntity" column="menu_num"
+			select="com.mymenu.mapper.MyMenuMapper.findByMenu" />
+	</resultMap>
+
+
+	<select id="mymenuList" parameterType="String" resultMap="mymenuAllResult">
+		 select mymenu_num, member_id, mymenu_name, menu_num, my_optionSize,
+		mymenu_price, my_optionShot, my_optionWhip, to_char(sub_day,
+		'yyyy-MM-dd') as sub_day from mymenus where member_id=#{id}
+	</select>
 
 </mapper>
