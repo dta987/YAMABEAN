@@ -5,6 +5,7 @@ import java.util.List;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Repository;
 
+import com.member.dto.Member;
 import com.menu.dto.MenuEntity;
 import com.menu.dto.MenuModel;
 import com.mymenu.dto.MyMenuDomain;
@@ -28,8 +29,8 @@ public class MyMenuRepository implements MineRepositoryInterface {
 	}
 
 	@Override
-	public List<MyMenuModel> mymenuList() {
-		return myMenuMapper.viewMyMenuList();
+	public List<MyMenuModel> mymenuList(String member_id) {
+		return myMenuMapper.viewMyMenuList(member_id);
 	}
 	
 	@Override
@@ -46,6 +47,10 @@ public class MyMenuRepository implements MineRepositoryInterface {
 	@Override
 	public int updateMyMenu(MyMenuDomain mymenuDomain) {
 		return myMenuMapper.updateMyMenus(mymenuDomain);
+	}
+
+	public Member selectByMember(String member_id) {
+		return myMenuMapper.selectByMember(member_id);
 	}
 
 	

@@ -142,6 +142,8 @@
 			// 지도를 생성한다 
 			var map = new daum.maps.Map(mapContainer, mapOption);
 
+			
+			
 			// 주소-좌표 변환 객체를 생성합니다
 		</script>
 		<c:forEach var="store" items="${stores}">
@@ -154,7 +156,7 @@
 								function(status, result) {
 									// 정상적으로 검색이 완료됐으면 
 									if (status === daum.maps.services.Status.OK) {
-
+										
 										var coords = new daum.maps.LatLng(
 												result.addr[0].lat,
 												result.addr[0].lng);
@@ -165,9 +167,7 @@
 											position : coords
 										});
 
-										// 지도의 중심을 결과값으로 받은 위치로 이동시킵니다
-										map.setCenter(coords);
-
+										
 										var content = '<div class="wrap">';
 										+'    <div class="info">';
 										+'        <div class="title">';
@@ -182,21 +182,41 @@
 										+'                <div class="ellipsis">${store.store_address}</div>';
 										+'                <div><a href="http://place.map.daum.net/26611597" target="_blank" class="link">홈페이지</a></div>';
 										+'            </div>'
-												+ '        </div>';
+										+ '        </div>';
 										+'    </div>' + '</div>';
+										
+										
+										var infowindow = new daum.maps.InfoWindow({
+											content : '${store.store_name}'
+									
+										});
+										 
+										infowindow.open(map, marker);
+										
+										
+										
+										// 지도의 중심을 결과값으로 받은 위치로 이동시킵니다
+										map.setCenter(coords);
 
+										
+
+										
+										
 										var customOverlay = new daum.maps.CustomOverlay(
 												{
 													content : content,
 													map : map,
-													position : marker
-															.getPosition()
+													position :coords
 												});
 
 										customOverlay.setMap(map);
+										
+										
 									}
 
 								});
+				
+					
 			</script>
 		</c:forEach>
 
@@ -218,7 +238,7 @@
 					<div class="storeList">
 						<input type="text" style="border: none;" name="name" id="name"
 							value="${store.store_name}"> <br> <input type="text"
-							style="border: none;" name="phone" id="phone"
+							style="border: none;" name="phone" id="phone"	
 							value="${store.store_phone}"> <br> <input
 							type="text" style="border: none;" name="address" id="phone"
 							value="${store.store_address}"> <br>

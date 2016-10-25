@@ -7,6 +7,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 import org.springframework.web.bind.annotation.RequestMapping;
 
+import com.member.dto.Member;
 import com.menu.dto.MenuEntity;
 import com.menu.dto.MenuModel;
 import com.mymenu.dto.MyMenuDomain;
@@ -44,8 +45,8 @@ public class MyMenuService implements MineServiceInterface {
 	}
 	
 	@Override
-	public List<MyMenuModel> mymenuList() {
-		return myMenuRepository.mymenuList();
+	public List<MyMenuModel> mymenuList(String member_id) {
+		return myMenuRepository.mymenuList(member_id);
 	}
 
 	@Override
@@ -61,6 +62,10 @@ public class MyMenuService implements MineServiceInterface {
 	@Override
 	public int updateMyMenu(MyMenuDomain mymenuDomain) {
 		return myMenuRepository.updateMyMenu(mymenuDomain) ;
+	}
+
+	public Member findByMember(String member_id) {
+		return myMenuRepository.selectByMember(member_id);
 	}
 
 	

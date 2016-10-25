@@ -40,8 +40,7 @@ public class MemberService {
 		member.setBday(memberModel.getBday());
 		member.setEmail(memberModel.getFirst_email() + "@" + memberModel.getLast_email());
 		
-		memberRepository.insertMember(member);
-		
+
 		
 		return memberRepository.insertMember(member);
 	}
