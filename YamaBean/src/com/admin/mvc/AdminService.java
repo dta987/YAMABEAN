@@ -2,14 +2,18 @@ package com.admin.mvc;
 
 import java.util.List;
 
+import org.apache.ibatis.session.RowBounds;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
 import com.admin.dto.BestMenuModel;
 import com.admin.dto.OrderList;
+import com.admin.dto.StoreOrder;
+import com.admin.dto.StoreOrdercondition;
+import com.admin.dto.StoreSales;
 import com.admin.dto.UpdateOrderYN;
+import com.board.mvc.Pageing;
 import com.member.dto.Member;
-import com.menu.dto.MenuEntity;
 import com.menu.dto.MenuModel;
 import com.storeMap.dto.Store;
 
@@ -18,6 +22,9 @@ public class AdminService {
 	
 	@Autowired
 	private AdminRepository repository;
+	
+	@Autowired
+	private Pageing pageing;
 
 	public List<OrderList> orderList(int num) {
 		return repository.selectByList(num);
@@ -41,6 +48,18 @@ public class AdminService {
 
 	public List<MenuModel> findByMenuList() {
 		return repository.selectByMenuList();
+	}
+
+	public List<StoreSales> findtotalSales() {
+		return repository.findtotalSales();
+	}
+
+	public List<StoreOrder> findstoreOrder(StoreOrdercondition condition) {
+		
+		RowBounds rowBounds = new RowBounds((condition.getSelectPage() - 1)
+				* pageing.getPageSize(), pageing.getPageSize());
+		
+		return repository.findstoreOrder(rowBounds, condition);
 	}
 
 }
