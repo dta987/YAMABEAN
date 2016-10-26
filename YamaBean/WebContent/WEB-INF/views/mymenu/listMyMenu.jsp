@@ -1,4 +1,4 @@
-<%@ page language="java" contentType="text/html; charset=UTF-8"
+=<%@ page language="java" contentType="text/html; charset=UTF-8"
 	pageEncoding="UTF-8"%>
 <%@ include file="/WEB-INF/views/rvTOP.jsp"%>
 
@@ -112,12 +112,10 @@
 			document.getElementById("mySidenav").style.display = "block";
 			document.getElementById("myOverlay").style.display = "block";
 		}
-
 		function w3_close() {
 			document.getElementById("mySidenav").style.display = "none";
 			document.getElementById("myOverlay").style.display = "none";
 		}
-
 		// Modal Image Gallery
 		function onClick(element) {
 			document.getElementById("img01").src = element.src;

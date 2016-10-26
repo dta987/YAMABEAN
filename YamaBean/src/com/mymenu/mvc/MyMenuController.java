@@ -93,6 +93,8 @@ public class MyMenuController implements MineControllerInterface {
 	public String updateMyMenu(@ModelAttribute MyMenuDomain mymenuDomain, HttpSession session) {
 		Member updateid = (Member) session.getAttribute("loginInfo") ;
 		mymenuDomain.setMember_id(updateid.getId());		
+		
+		System.out.println(mymenuDomain.toString());
 	
 		int modify = myMenuService.updateMyMenu(mymenuDomain);
 		

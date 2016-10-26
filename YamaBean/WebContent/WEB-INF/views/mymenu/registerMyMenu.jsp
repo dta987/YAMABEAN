@@ -285,6 +285,7 @@
 			} else {
 				return true;
 			}
+		});
 	});
 	
 </script>

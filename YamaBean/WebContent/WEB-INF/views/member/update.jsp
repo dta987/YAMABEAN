@@ -455,9 +455,9 @@ body, h1, h2, h3, h4, h5 {
 						value="false">
 					<div class="form-inline">
 						<input class="form-control" type="text" id="first_email"
-							name="email" placeholder="Enter mail"
+							name="first_email" placeholder="Enter mail"
 							value="${member.first_email}">@ <input
-							class="form-control" type="text" id="last_email" name="email"
+							class="form-control" type="text" id="last_email" name="last_email"
 							value="${member.last_email}"> <select
 							class="form-control" id="email_select">
 							<option value="1">::직접입력::</option>
