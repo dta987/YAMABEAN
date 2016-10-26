@@ -44,9 +44,9 @@
 						<c:if test="${sessionScope.loginInfo.nickname == null}">${sessionScope.loginInfo.id}</c:if><i
 						class="fa fa-caret-down"></i></a>
 					<div class="w3-dropdown-content w3-white w3-card-4">
-						<a href="${pageContext.request.contextPath}/member/mypage">MY
-							PAGE</a> <a href="${pageContext.request.contextPath}/order/order">ORDER</a>
-						<a href="${pageContext.request.contextPath}/member/logout">LogOut</a>
+						<a href="${pageContext.request.contextPath}/member/mypage">MYPAGE</a> 
+						<a href="${pageContext.request.contextPath}/order/order">ORDER</a>
+						<a href="${pageContext.request.contextPath}/member/logout">LOGOUT</a>
 					</div></li>
 			</c:if>
 			<c:if test="${sessionScope.whologin == 2}">
@@ -57,9 +57,8 @@
 						<c:if test="${sessionScope.loginInfo.nickname == null}">${sessionScope.loginInfo.id}</c:if><i
 						class="fa fa-caret-down"></i></a>
 					<div class="w3-dropdown-content w3-white w3-card-4">
-						<a href="${pageContext.request.contextPath}/admin/page">Admin
-							Page</a> <a href="${pageContext.request.contextPath}/member/logout">LOG
-							OUT</a>
+						<a href="${pageContext.request.contextPath}/admin/page">ADMIN PAGE</a> 
+						<a href="${pageContext.request.contextPath}/member/logout">LOGOUT</a>
 					</div></li>
 			</c:if>
 		</ul>
