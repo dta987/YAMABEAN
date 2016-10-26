@@ -93,9 +93,6 @@ input[type=text], select {
 		if(shot == null) { shot = 0; }
 		if(whip == null) { whip = 0; }
 		
-		
-		alert(size + ", " + shot + ", " + whip);
-
 		var bool = Boolean(false);
 
 		$("#orderList > div ").each(function(index) {

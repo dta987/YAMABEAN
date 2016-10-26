@@ -369,6 +369,8 @@ body, h1, h2, h3, h4, h5 {
 		class="w3-padding">주문 내역</a> <a
 		href="${pageContext.request.contextPath}/member/update"
 		onclick="w3_close()" class="w3-padding">개인 정보</a> <a
+		href="${pageContext.request.contextPath}/member/delete"
+		onclick="w3_close()" class="w3-padding">회원 탈퇴</a> <a
 		href="${pageContext.request.contextPath}/mymenu/listMyMenu"
 		onclick="w3_close()" class="w3-padding">My Menu</a> </nav>
 
@@ -457,8 +459,8 @@ body, h1, h2, h3, h4, h5 {
 						<input class="form-control" type="text" id="first_email"
 							name="first_email" placeholder="Enter mail"
 							value="${member.first_email}">@ <input
-							class="form-control" type="text" id="last_email" name="last_email"
-							value="${member.last_email}"> <select
+							class="form-control" type="text" id="last_email"
+							name="last_email" value="${member.last_email}"> <select
 							class="form-control" id="email_select">
 							<option value="1">::직접입력::</option>
 							<option value="naver.com">naver.com</option>
@@ -499,5 +501,30 @@ body, h1, h2, h3, h4, h5 {
 			</form>
 		</div>
 	</div>
+	<footer class="w3-container w3-padding-32" id="contact"> </footer>
+
+
+	<div class="w3-black w3-center w3-padding-24">YamaBean</div>
+
+	<script>
+		// Script to open and close sidenav
+		function w3_open() {
+			document.getElementById("mySidenav").style.display = "block";
+			document.getElementById("myOverlay").style.display = "block";
+		}
+
+		function w3_close() {
+			document.getElementById("mySidenav").style.display = "none";
+			document.getElementById("myOverlay").style.display = "none";
+		}
+
+		// Modal Image Gallery
+		function onClick(element) {
+			document.getElementById("img01").src = element.src;
+			document.getElementById("modal01").style.display = "block";
+			var captionText = document.getElementById("caption");
+			captionText.innerHTML = element.alt;
+		}
+	</script>
 </body>
 </html>

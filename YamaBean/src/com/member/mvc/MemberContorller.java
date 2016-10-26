@@ -39,6 +39,24 @@ public class MemberContorller {
 		return "login";
 	}
 	
+	@RequestMapping(value = "/delete", method = RequestMethod.GET)
+	public String delete() {
+		
+		return "delete";
+	}
+	
+	@RequestMapping(value = "/delete", method = RequestMethod.POST)
+	public String delete(HttpSession session) {
+		
+		Member member = (Member)session.getAttribute("loginInfo");
+		
+		int cnt = memberService.removeMember(member.getId());
+		
+		session.invalidate();
+		
+		return "redirect:/";
+	}
+	
 	@RequestMapping(value = "/mypage", method = RequestMethod.GET)
 	public String mypage(HttpSession session, Model model) {
 		
@@ -157,7 +175,7 @@ public class MemberContorller {
 
 		if(bool) {
 			path = "login";
-			model.addAttribute("msg", "메일을 확인해주세요");
+			model.addAttribute("msg", "등록한 메일 내용을 전송하였습니다.");
 		} else {
 			path = "forgotten";
 			model.addAttribute("msg", "입력정보를 확인해주세요");
@@ -177,14 +195,6 @@ public class MemberContorller {
 		
 		return bool;
 		
-	}
-
-	@RequestMapping(value = "/delete", method = RequestMethod.GET)
-	public String deleteMember(@RequestParam String id) {
-		System.out.println("deleteMember 컨트롤러 접근");
-		int count = memberService.removeMember(id);
-
-		return "redirect:/member/listmember";
 	}
 
 	@RequestMapping(value = "/update", method = RequestMethod.GET)

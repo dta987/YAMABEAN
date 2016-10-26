@@ -328,8 +328,8 @@
 			<label id="mylabelemail"></label><br>
 			<input type="hidden" name="overcheckemail" id="overcheckemail" value="false">
 			<div class="form-inline">
-			<input class="form-control" type="text" id="first_email" name="email" placeholder="Enter mail">@
-  			<input class="form-control" type="text" id="last_email" name="email">
+			<input class="form-control" type="text" id="first_email" name="first_email" placeholder="Enter mail">@
+  			<input class="form-control" type="text" id="last_email" name="last_email">
   			<select class="form-control" id="email_select">
    				<option value="1">::직접입력::</option>
    				<option value="naver.com">naver.com</option>
@@ -362,7 +362,6 @@
 		</div>
 		
 		<input type="submit" class="btn btn-primary" id="btn" name="btn" value="회원가입">
-		<input type="reset" class="btn btn-danger" value="가입취소">
 	</form>
 	</div>
 </div>	

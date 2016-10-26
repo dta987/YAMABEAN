@@ -17,6 +17,18 @@ tr:hover {
 }
 </style>
 
+<script type="text/javascript">
+function move(url, writer, id) {
+	if(writer == id) {
+		location.href=url;
+	} else {
+		alert("자신의 글만 열람 가능합니다.")
+	}
+	
+}
+
+</script>
+
 </head>
 <body>
 	<br>
@@ -38,7 +50,7 @@ tr:hover {
 					<tr>
 						<td>${boardList.board_num}</td>
 						<td><a
-							href="${pageContext.request.contextPath}/board/detail?num=${boardList.board_num}">${boardList.title}</a></td>
+							href="javascript:move('${pageContext.request.contextPath}/board/detail?num=${boardList.board_num}', '${boardList.member_id}', '${sessionScope.loginInfo.id}')">${boardList.title}</a></td>
 						<td>${boardList.member_id}</td>
 						<td>${boardList.sub_day}</td>
 					</tr>

@@ -476,7 +476,7 @@
 							readonly="readonly" style="border: none;">
 					</div>
 					<div class="w3-col s3" align="right">
-						<button id="orderbtn" type="submit" class="btn btn-primary">주문하기</button>
+						<button id="orderbtn" type="submit" class="btn btn-primary">등록하기</button>
 					</div>
 				</div>
 
