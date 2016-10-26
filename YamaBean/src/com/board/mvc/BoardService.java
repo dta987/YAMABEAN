@@ -44,4 +44,8 @@ public class BoardService {
 		
 	}
 
+	public int modifyBoard(Board board) {
+		return repository.updateBoard(board);
+	}
+
 }

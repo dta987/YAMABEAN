@@ -81,5 +81,29 @@ public class BoardContorller {
 
 		return "boardDetail";
 	}
+	
+	@RequestMapping(value = "/update", method = RequestMethod.GET)
+	public String BoardUpdate(@RequestParam int num, Model model) {
+		System.out.println("==BoardUpdate이동==");
+		
+		Board board = service.findByBoard(num);
+		
+		model.addAttribute("board", board);
+		
+
+		return "updateForm";
+	}
+	
+	@RequestMapping(value = "/update", method = RequestMethod.POST)
+	public String BoardUpdate(@ModelAttribute Board board, Model model) {
+		System.out.println("==BoardUpdate이동==");
+		
+		int cnt = service.modifyBoard(board);
+		
+
+		return "redirect:/board/detail?num=" + board.getBoard_num();
+	}
+	
+
 
 }

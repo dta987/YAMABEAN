@@ -126,9 +126,8 @@
 
 
 
-	<delete id="deleteMember" parameterType="int">
-		delete members where
-		id=#{id}
+	<delete id="deleteMember" parameterType="String">
+		delete members where id=#{id}
 	</delete>
 
 	<select id="forgotten" parameterType="com.member.dto.Forgotten"

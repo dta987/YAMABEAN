@@ -32,4 +32,8 @@ public class BoardRepository {
 		return mapper.insertBoard(board);
 	}
 
+	public int updateBoard(Board board) {
+		return mapper.updateBoard(board);
+	}
+
 }

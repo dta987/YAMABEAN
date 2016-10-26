@@ -46,7 +46,7 @@
 	</select>
 	
 	<select id="selectByBoard" parameterType="int" resultType="com.board.dto.Board">
-	    select board_num, b_category, title, to_char(sub_day, 'yyyy-mm-dd') as sub_day, member_id, contents, group_no, order_no from boards where board_num=#{num}
+	    select board_num, b_category, title, to_char(sub_day, 'yyyy-mm-dd') as sub_day, member_id, contents from boards where board_num=#{num}
 	</select>
 	
 	<insert id="insertBoard" parameterType="com.board.dto.Board">
@@ -55,5 +55,9 @@
 	    </selectKey>
 	    insert into boards(board_num, b_category, title, member_id, contents) values(#{board_num}, #{b_category}, #{title}, #{member_id}, #{contents}) 
 	</insert>
+	
+	<update id="updateBoard" parameterType="com.board.dto.Board">
+	    update boards set b_category=#{b_category}, title=#{title}, contents=#{contents} where board_num=#{board_num}
+	</update>
 
 </mapper>

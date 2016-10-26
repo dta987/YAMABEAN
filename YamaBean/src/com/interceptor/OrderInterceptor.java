@@ -19,23 +19,24 @@ public class OrderInterceptor extends HandlerInterceptorAdapter {
 		System.out.println("요청주소 : " + request.getRequestURI());
 
 		HttpSession session = request.getSession();
-		
+
 		Member loginInfo = null;
-		loginInfo = (Member)session.getAttribute("loginInfo");
-		
+		loginInfo = (Member) session.getAttribute("loginInfo");
+
 		if (loginInfo == null) {
 			response.sendRedirect(request.getContextPath() + "/member/login");
-		} else if (((int)session.getAttribute("whologin")) == 1) {
-			if(request.getRequestURI().indexOf("admin") == -1) {
+			return false;
+		} else if (((int) session.getAttribute("whologin")) == 1) {
+			if (request.getRequestURI().indexOf("admin") == -1) {
 				System.out.println(request.getRequestURI().indexOf("admin"));
 				return true;
 			} else {
 				response.sendRedirect(request.getContextPath() + "/");
+				return false;
 			}
-		} else if (((int)session.getAttribute("whologin")) == 2) {
+		} else if (((int) session.getAttribute("whologin")) == 2) {
 			return true;
 		}
-		
 		return true;
 
 	}

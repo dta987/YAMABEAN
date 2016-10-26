@@ -36,28 +36,29 @@
 	<div class="col-sm-offset-${myoffset} col-sm-${mywidth}"
 		style="margin-top: 100px;">
 		<form id="writerForm" class="form-horizontal" role="form"
-			action="${pageContext.request.contextPath}/board/boardWriter"
+			action="${pageContext.request.contextPath}/board/update"
 			method="post" id="frm">
 			<label>BOARD DETAIL</label><br>
 			<hr style="border: solid;">
 			<div class="form-group ">
 				<label class="control-label col-sm-${formleft}" for="subject">TITLE</label>
 				<div class="col-sm-${mywidth}">
-					<input type="text" class="form-control" name="title" id="title" value="${board.title}"
-						readonly="readonly">
+					<input type="text" class="form-control" name="title" id="title"
+						value="${board.title}" readonly="readonly">
 				</div>
 			</div>
-			<br>
 			<div class="form-group">
 				<label class="control-label col-sm-${formleft}" for="content">NOTE</label>
 				<div class="col-sm-${mywidth}">
-					<div id="divcontext" class="form-control" style="height: 300px; overflow: auto;">${board.contents}</div>
+					<div id="divcontext" class="form-control"
+						style="height: 300px; overflow: auto;">${board.contents}</div>
 				</div>
 			</div>
 			<div class="form-group">
 				<div align="center" class="col-sm-offset-6 col-sm-9">
 					<button class="w3-btn w3-white w3-border w3-round-large"
-						type="submit" id="updatebtn">수정하기</button>
+						type="button" id="updatebtn"
+						onclick="location.href='${pageContext.request.contextPath}/board/update?num=${board.board_num}'">수정하기</button>
 				</div>
 			</div>
 		</form>

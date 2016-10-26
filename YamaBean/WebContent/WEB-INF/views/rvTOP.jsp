@@ -68,15 +68,15 @@
 	<!-- Navbar on small screens -->
 	<div id="navDemo" class="w3-hide w3-hide-large w3-hide-medium w3-top"
 		style="margin-top: 46px">
-		<ul class="w3-navbar w3-left-align w3-black">
+		<ul class="w3-navbar w3-theme-d2 w3-left-align">
 
 			<c:if test="${sessionScope.whologin == null}">
 				<li><a href="${pageContext.request.contextPath}/member/login"
-					class="w3-padding-large">LOGIN</a></li>
+					class="w3-padding-large w3-text-black">LOGIN</a></li>
 			</c:if>
 
 			<c:if test="${sessionScope.whologin == 1}">
-				<li><a href="#" class="w3-padding-large"> <c:if
+				<li><a href="${pageContext.request.contextPath}/member/mypage" class="w3-padding-large"> <c:if
 							test="${sessionScope.loginInfo.nickname != null}">${sessionScope.loginInfo.nickname}</c:if>
 						<c:if test="${sessionScope.loginInfo.nickname == null}">${sessionScope.loginInfo.id}</c:if>
 				</a></li>
@@ -89,13 +89,10 @@
 						<c:if test="${sessionScope.loginInfo.nickname == null}">${sessionScope.loginInfo.id}</c:if>
 				</a></li>
 			</c:if>
-			<li><a class="w3-padding-large" href="#band">ABOUT</a></li>
-			<li><a class="w3-padding-large"
+			<li><a class="w3-padding-large w3-text-black"
 				href="${pageContext.request.contextPath}/menu/listMenu">MENU</a></li>
-			<li><a class="w3-padding-large"
+			<li><a class="w3-padding-large w3-text-black"
 				href="${pageContext.request.contextPath}/board/move/">BORAD</a></li>
-			<li><a class="w3-padding-large"
-				href="${pageContext.request.contextPath}/storeMap/move">LOCATIONS</a></li>
 		</ul>
 	</div>
 
