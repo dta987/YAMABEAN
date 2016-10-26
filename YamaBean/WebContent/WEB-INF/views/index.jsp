@@ -47,9 +47,9 @@
 		<!-- The Band Section -->
 		<div class="w3-container w3-content w3-center w3-padding-64"
 			style="max-width: 800px" id="band">
-			<h2 class="w3-wide"><strong>YAMA BEAN</strong></h2>
+			<h2 class="w3-wide"><strong>YAMABEAN</strong></h2>
 			<p class="w3-opacity">
-				<i>YAMA BEAN 커피로스터스</i>				
+				<i>YAMABEAN 커피로스터스</i>				
 			</p>
 			<p class="w3-opacity">
 				<i>자연에서 얻은 최상의 원두로 최고의 서비스를 제공하는 프리미엄 커피 스토어입니다.</i>				
@@ -58,19 +58,23 @@
 				<i>당신이 원하는 메뉴를 만들어보세요. 자신만의 메뉴를 만들어 볼 수 있습니다. </i>				
 			</p>
 			<p class="w3-opacity">
-				<i>줄서서 기다리지 마세요. YAMA BEAN에서는 기다리실 필요가 없습니다.</i>				
+				<i>줄서서 기다리지 마세요. YAMABEAN에서는 기다리실 필요가 없습니다.</i>				
 			</p>
 			<p class="w3-opacity">
-				<i><strong>당신이 바라는 커피 스토어, 우리는 YAMA BEAN 입니다.</strong></i>				
+				<i><strong>당신이 바라는 커피 스토어, 우리는 YAMABEAN 입니다.</strong></i>				
 			</p>
-			<!-- <p class="w3-justify"></p> -->
 			
+			<br><br><br><br>
+			<p class="w3-wide">YAMABEAN 서초커피하우스, 서울 서초구 효도로 서초트리플팰리스 80층</p>
+			<p class="w3-wide">YAMABEAN 건대커피박스, 서울 광진구 아차돌박이화산로 20000</p>
+			<p class="w3-wide">YAMABEAN 판교커피바, 경기 성남시 분당구 판교역로 야마빌딩 A동 119호</p>
 		</div>
 		<!-- End Page Content -->
 		<footer class="w3-container w3-padding-32" id="contact"> </footer>
 
-
-		<div class="w3-black w3-center w3-padding-24">YamaBean</div>
+		
+		<div class="w3-black w3-center w3-padding-24">2016. YAMABEAN COMPANY, ALL Rights Reserved</div>
+		<div class="w3-black w3-center w3-padding-24">안성민, 김나영, 함은혜</div>
 	</div>
 
 	<script>
