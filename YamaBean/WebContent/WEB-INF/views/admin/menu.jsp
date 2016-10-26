@@ -52,7 +52,7 @@ footer {
 </head>
 <body>
 
-	<div class="container-fluid" style="margin-top: 50px;">
+	<div class="container-fluid" style="margin-top: 50px; height: 1500px;">
 		<div class="row content">
 			<div class="col-sm-2 sidenav" align="center">
 				<ul class="nav nav-pills nav-stacked">
@@ -68,9 +68,15 @@ footer {
 					</c:forEach>
 				</ul>
 			</div>
-
-			<div class="w3-padding-10 w3-container"
-				style="height: 1500; overflow: auto;">
+			<div class="w3-padding-10 w3-container col-sm-8 col-sm-offset-1"
+				style="height: 1500; overflow: auto; margin-bottom: 50px;">
+				<div class="w3-center w3-padding-32">
+					<ul class="w3-pagination">
+						<li><a class="w3-black"
+							href="${pageContext.request.contextPath}/menu/createMenu">메뉴
+								추가하기</a></li>
+					</ul>
+				</div>
 				<button onclick="myFunction('Demo1')"
 					class="w3-btn-block w3-light-grey">
 					<h3>콜드블루</h3>
@@ -79,7 +85,8 @@ footer {
 					<c:forEach var="item" items="${menuList}">
 						<c:if test="${item.getM_category() == '콜드브루' }">
 							<div class="w3-third w3-container w3-margin-bottom"
-								id="${item.menu_num}" onclick="location.href='${pageContext.request.contextPath}/menu/detailMenu?menu_num=${item.menu_num}'">
+								id="${item.menu_num}"
+								onclick="location.href='${pageContext.request.contextPath}/menu/detailMenu?menu_num=${item.menu_num}'">
 								<img src="${uploadedFolder}${item.image_name}" alt="Norway"
 									style="width: 100%" class="w3-hover-opacity"
 									onclick="orderFunction('${item.menu_num}', '${item.m_name}', '${item.image_name}', '${item.content}', '${item.price}')">
@@ -98,7 +105,8 @@ footer {
 					<c:forEach var="item" items="${menuList}">
 						<c:if test="${item.getM_category() == '브루드커피' }">
 							<div class="w3-third w3-container w3-margin-bottom"
-								id="${item.menu_num}" onclick="location.href='${pageContext.request.contextPath}/menu/detailMenu?menu_num=${item.menu_num}'">
+								id="${item.menu_num}"
+								onclick="location.href='${pageContext.request.contextPath}/menu/detailMenu?menu_num=${item.menu_num}'">
 								<img src="${uploadedFolder}${item.image_name}" alt="Norway"
 									style="width: 100%" class="w3-hover-opacity"
 									onclick="orderFunction('${item.menu_num}', '${item.m_name}', '${item.image_name}', '${item.content}', '${item.price}')">
@@ -117,7 +125,8 @@ footer {
 					<c:forEach var="item" items="${menuList}">
 						<c:if test="${item.getM_category() == '에스프레소' }">
 							<div class="w3-third w3-container w3-margin-bottom"
-								id="${item.menu_num}" onclick="location.href='${pageContext.request.contextPath}/menu/detailMenu?menu_num=${item.menu_num}'">
+								id="${item.menu_num}"
+								onclick="location.href='${pageContext.request.contextPath}/menu/detailMenu?menu_num=${item.menu_num}'">
 								<img src="${uploadedFolder}${item.image_name}" alt="Norway"
 									style="width: 100%" class="w3-hover-opacity"
 									onclick="orderFunction('${item.menu_num}', '${item.m_name}', '${item.image_name}', '${item.content}', '${item.price}')">
@@ -136,7 +145,8 @@ footer {
 					<c:forEach var="item" items="${menuList}">
 						<c:if test="${item.getM_category() == '프라푸치노' }">
 							<div class="w3-third w3-container w3-margin-bottom"
-								id="${item.menu_num}" onclick="location.href='${pageContext.request.contextPath}/menu/detailMenu?menu_num=${item.menu_num}'">
+								id="${item.menu_num}"
+								onclick="location.href='${pageContext.request.contextPath}/menu/detailMenu?menu_num=${item.menu_num}'">
 								<img src="${uploadedFolder}${item.image_name}" alt="Norway"
 									style="width: 100%" class="w3-hover-opacity"
 									onclick="orderFunction('${item.menu_num}', '${item.m_name}', '${item.image_name}', '${item.content}', '${item.price}')">
@@ -148,8 +158,8 @@ footer {
 					</c:forEach>
 				</div>
 			</div>
-
 		</div>
+
 	</div>
 </body>
 </html>

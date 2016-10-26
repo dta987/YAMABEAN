@@ -194,8 +194,7 @@ public class MemberContorller {
 		Member loginInfo = (Member)sesstion.getAttribute("loginInfo");
 		
 		MemberModel member = memberService.updateMember(loginInfo.getId());
-		
-		
+
 		model.addAttribute("member", member);
 	
 		return "update";
@@ -206,9 +205,13 @@ public class MemberContorller {
 		System.out.println("alertMember 컨트롤러 접근");
 		
 		Member loginInfo = (Member)sesstion.getAttribute("loginInfo");
-				
+		
+		memberModel.setId(loginInfo.getId());
+		
+		System.out.println(memberModel.toString());
+		
 		int count = memberService.modifyMember(memberModel);
 		
-		return "redirect:/member/listmember";
+		return "redirect:/member/mypage";
 	}
 }

@@ -1,6 +1,7 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
-    pageEncoding="UTF-8"%>
-    <%@ taglib prefix="sf" uri="http://www.springframework.org/tags/form"%>
+	pageEncoding="UTF-8"%>
+
+<%@ include file="/WEB-INF/views/rvTOP.jsp"%>
 <!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3.org/TR/html4/loose.dtd">
 <html>
 <head>
@@ -10,35 +11,55 @@
 	function goBack() {
 		window.history.back();
 	}
-
 </script>
 </head>
 <body>
-	
-	<div align="center">
-		<br>
-		<h1>Menu</h1>
-		<hr width="500px">
-		<form method="POST" enctype="multipart/form-data" >
-		메뉴번호 menu_num <br><br>
-		분류(커피/원두) m_group <input type="radio" value="A" name="m_group" />커피 
-							<input type="radio" value="B" name="m_group" />원두<br><br>
-		카테고리 m_category <input type="radio" value="콜드브루" name="m_category" />콜드브루
-						<input type="radio" value="브루드커피" name="m_category" />브루드커피
-						<input type="radio" value="에스프레소" name="m_category" />에스프레소
-						<input type="radio" value="프라푸치노" name="m_category" />프라푸치노
-						<input type="radio" value="원두" name="m_category" />원두<br><br>
-		메뉴 이름 m_name <input type="text" name="m_name"/><br><br>
-		이미지 image <input type="file" name="image" /><br><br>
-		설명 content <input type="text" name="content" /><br><br>
-		가격 price <input type="text" name="price" /><br><br>
-	 	수량 qty : 메뉴추가에는 수량 등록 없음 
-	 	
-	 	<br><br>
-		<button type="reset" onclick="goBack()">취소</button>
-		<button type="submit">메뉴 등록</button>
-		</form>
+
+	<div class="container-fluid" style="margin-top: 100px;">
+		<div class="row content">
+			<form id="updateMyMenu"
+				action="${pageContext.request.contextPath}/menu/createMenu"
+				method="post" enctype="multipart/form-data">
+				<div class="col-sm-12 col-sm-offset-4">
+					<div class="w3-third w3-margin-bottom ">
+						<input type="hidden" value="coffee" name="m_group" />
+						<ul class="w3-ul w3-border w3-center w3-hover-shadow">
+							<li class="w3-black">
+								<p class="w3-xlarge">Menu</p> <span class="w3-opacity">메뉴를
+									추가하자</span>
+							</li>
+							<li class="w3-padding-16"><label>메뉴 이름 </label><br> <input
+								type="text" name="m_name" /></li>
+							<li class="w3-padding-16"><label>카테고리 </label><br> <input
+								type="radio" value="콜드브루" name="m_category" />콜드브루
+								&nbsp;&nbsp;&nbsp; <input type="radio" value="브루드커피"
+								name="m_category" />브루드커피 &nbsp;&nbsp;&nbsp; <input
+								type="radio" value="에스프레소" name="m_category" />에스프레소
+								&nbsp;&nbsp;&nbsp; <input type="radio" value="프라푸치노"
+								name="m_category" />프라푸치노</li>
+							<li class="w3-padding-16 w3-center"><label>이미지 </label><br>
+								<input type="file" name="image"></li>
+							<li class="w3-padding-16"><label> 설명 </label><br> <input
+								type="text" name="content" /></li>
+							<li class="w3-padding-16">
+								<h3 class="w3-wide">
+									<input type="text" name="price" size="3"/> 원
+								</h3> <span class="w3-opacity">가격</span></li>
+							<li class="w3-light-grey w3-padding-24">
+								<button type="submit" class="w3-btn w3-green w3-padding-large">저장</button>
+							</li>
+						</ul>
+					</div>
+				</div>
+			</form>
+		</div>
 	</div>
-	
+
+
+	<footer class="w3-container w3-padding-32" id="contact"> </footer>
+
+
+	<div class="w3-black w3-center w3-padding-24">YamaBean</div>
+
 </body>
 </html>

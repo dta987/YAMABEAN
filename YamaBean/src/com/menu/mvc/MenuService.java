@@ -27,7 +27,7 @@ public class MenuService{
 		3. DB에 저장할 엔티티 생성				*/
 		
 		String saveFileName = FileUtile.makeSavedFileName(menuDomain.getImage().getOriginalFilename()) ;
-		System.out.println("service_addMenuSaveFileName : " +saveFileName.toString());
+		System.out.println("service_addMenuSaveFileName : " + saveFileName.toString());
 		
 		boolean uploadResult = false; 
 		try {
@@ -36,12 +36,11 @@ public class MenuService{
 			System.out.println("--service_addMenu파일업로드실패--");
 			e.printStackTrace();
 		}		
-		System.out.println("service_addMenuUploadResult : "+uploadResult);
+		System.out.println("service_addMenuUploadResult : "+ uploadResult);
 		
 		MenuEntity menuEntity = null ;
 		if (uploadResult) {
 			menuEntity = new MenuEntity();
-			menuEntity.setMenu_num(menuDomain.getMenu_num());
 			menuEntity.setM_group(menuDomain.getM_group());
 			menuEntity.setM_category(menuDomain.getM_category());
 			menuEntity.setM_name(menuDomain.getM_name());
@@ -50,7 +49,7 @@ public class MenuService{
 			menuEntity.setPrice(menuDomain.getPrice());
 		}
 		
-		System.out.println("service_addMenuMenuEntity.getM_name : " +menuEntity.getM_name());
+		System.out.println("service_addMenuMenuEntity.getM_name : " + menuEntity.getM_name());
 		
 		return menuRepository.createMenu(menuEntity);
 	}

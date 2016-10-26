@@ -35,7 +35,7 @@ public class MemberService {
 		member.setName(memberModel.getName());
 		member.setGender(memberModel.getGender());
 		member.setPhone(memberModel.getPhone());
-		member.setNickname(memberModel.getName());
+		member.setNickname(memberModel.getNickname());
 		member.setZipcode(memberModel.getZipcode());
 		member.setAddress(memberModel.getAddress());
 		member.setBday(memberModel.getBday());
@@ -156,7 +156,7 @@ public class MemberService {
 		member.setName(memberModel.getName());
 		member.setGender(memberModel.getGender());
 		member.setPhone(memberModel.getPhone());
-		member.setNickname(memberModel.getName());
+		member.setNickname(memberModel.getNickname());
 		member.setZipcode(memberModel.getZipcode());
 		member.setAddress(memberModel.getAddress());
 		member.setBday(memberModel.getBday());

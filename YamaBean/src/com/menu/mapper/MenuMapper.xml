@@ -11,8 +11,8 @@
 			select menus_seq.nextval from dual
 		</selectKey>
 		insert into menus(menu_num, m_group, m_category, m_name, image,
-		content, price, qty) values(#{menu_num}, #{m_group}, #{m_category},
-		#{m_name}, #{image}, #{content}, #{price}, #{qty})
+		content, price) values(#{menu_num}, #{m_group}, #{m_category},
+		#{m_name}, #{image}, #{content}, #{price})
 	</insert>
 
 	<select id="selectList" resultMap="menuResult">
@@ -28,7 +28,6 @@
 		<result property="image" column="image" />
 		<result property="content" column="content" />
 		<result property="price" column="price" />
-		<result property="qty" column="qty" />
 	</resultMap>
 
 	<select id="selectByMenu" resultMap="menuResult">

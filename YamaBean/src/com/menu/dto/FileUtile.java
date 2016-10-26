@@ -10,7 +10,7 @@ import org.springframework.util.FileCopyUtils;
 
 public class FileUtile {
 
-	static final String uploadPath="..\\WEB-INF\\coffee";
+	static final String uploadPath="C:\\Users\\dta98\\git\\YamaBean\\YamaBean\\WebContent\\coffee";
 	
 	/*1. 파일 서버에 저장될 유일한 파일 이름 생성 */
 	public static String makeSavedFileName(String originalFilename) {
@@ -39,5 +39,4 @@ public class FileUtile {
 		File deleteFile = new File(uploadPath, image);
 		return deleteFile.delete();
 	}
-
 }
