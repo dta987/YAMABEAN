@@ -92,6 +92,12 @@ footer {
 								<div style="text-align: center;">
 									<h4>${item.getM_name()}</h4>
 								</div>
+								<div class="w3-center w3-padding-10">
+									<ul class="w3-pagination">
+										<li><a class="w3-black"
+											href="${pageContext.request.contextPath}/menu/deleteMenu?menu_num=${item.menu_num}">삭제</a></li>
+									</ul>
+								</div>
 							</div>
 						</c:if>
 					</c:forEach>
@@ -111,6 +117,12 @@ footer {
 									onclick="orderFunction('${item.menu_num}', '${item.m_name}', '${item.image_name}', '${item.content}', '${item.price}')">
 								<div style="text-align: center;">
 									<h4>${item.getM_name()}</h4>
+								</div>
+								<div class="w3-center w3-padding-10">
+									<ul class="w3-pagination">
+										<li><a class="w3-black"
+											href="${pageContext.request.contextPath}/menu/deleteMenu?menu_num=${item.menu_num}">삭제</a></li>
+									</ul>
 								</div>
 							</div>
 						</c:if>
@@ -132,6 +144,12 @@ footer {
 								<div style="text-align: center;">
 									<h4>${item.getM_name()}</h4>
 								</div>
+								<div class="w3-center w3-padding-10">
+									<ul class="w3-pagination">
+										<li><a class="w3-black"
+											href="${pageContext.request.contextPath}/menu/deleteMenu?menu_num=${item.menu_num}">삭제</a></li>
+									</ul>
+								</div>
 							</div>
 						</c:if>
 					</c:forEach>
@@ -151,6 +169,12 @@ footer {
 									onclick="orderFunction('${item.menu_num}', '${item.m_name}', '${item.image_name}', '${item.content}', '${item.price}')">
 								<div style="text-align: center;">
 									<h4>${item.getM_name()}</h4>
+								</div>
+								<div class="w3-center w3-padding-10">
+									<ul class="w3-pagination">
+										<li><a class="w3-black"
+											href="${pageContext.request.contextPath}/menu/deleteMenu?menu_num=${item.menu_num}">삭제</a></li>
+									</ul>
 								</div>
 							</div>
 						</c:if>

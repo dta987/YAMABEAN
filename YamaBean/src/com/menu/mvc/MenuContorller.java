@@ -49,7 +49,7 @@ public class MenuContorller {
 		boolean deleteMenu_num = menuService.removeMenu(menu_num);
 		System.out.println("controller_deleteMenu_num : " + menu_num + " / "
 				+ deleteMenu_num);
-		return "redirect:/menu/listMenu";
+		return "redirect:/admin/menu";
 	}
 
 	@RequestMapping(value = "/updateMenu", method = RequestMethod.GET)
@@ -63,7 +63,7 @@ public class MenuContorller {
 	public String updateMenu(@ModelAttribute MenuDomain menuDomain) {
 		int modify = menuService.modifyMenu(menuDomain);
 		System.out.println("controller_modify : " + modify);
-		return "redirect:/menu/listMenu";
+		return "redirect:/admin/menu";
 	}
 
 	@RequestMapping(value = "/detailMenu", method = RequestMethod.GET)

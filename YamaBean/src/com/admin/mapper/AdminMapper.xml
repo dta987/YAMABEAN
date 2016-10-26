@@ -20,6 +20,21 @@
 		store_num=#{num}
 	</select>
 
+	<resultMap type="com.admin.dto.StoreSales" id="StoreSalesResult">
+		<id property="store_num" column="store_num" />
+		<result property="totalprice" column="totalprice" />
+		<result property="store_name" column="store_name" />
+	</resultMap>
+
+	<select id="findtotalSales" resultMap="StoreSalesResult">
+		select
+		sum(orders.TOTAL_PRICE) as totalprice, orders.STORE_NUM as store_num,
+		stores.STORE_NAME as store_name from orders join ORDER_PRODUCTS p on
+		orders.ORDER_NUM=p.ORDER_NUM join stores on
+		orders.STORE_NUM=stores.STORE_NUM group by orders.STORE_NUM,
+		stores.STORE_NAME
+	</select>
+
 	<resultMap type="com.admin.dto.BestMenuModel" id="BestMenuResult">
 		<id property="menu_num" column="menu_num" />
 		<result property="qty" column="qty" />
@@ -82,6 +97,11 @@
 		<result property="qty" column="qty" />
 	</resultMap>
 	<select id="selectByMenuList" resultMap="MenuListResult">
-		select * from menus where m_group='coffee'
+		select * from menus
+		where m_group='coffee'
+	</select>
+	
+	<select id="findstoreOrder" parameterType="com.admin.dto.StoreOrder">
+	    
 	</select>
 </mapper>

@@ -12,9 +12,12 @@ import org.springframework.web.bind.annotation.RequestParam;
 
 import com.admin.dto.BestMenuModel;
 import com.admin.dto.OrderList;
+import com.admin.dto.StoreOrder;
+import com.admin.dto.StoreOrdercondition;
+import com.admin.dto.StoreSales;
 import com.admin.dto.UpdateOrderYN;
+import com.board.mvc.Pageing;
 import com.member.dto.Member;
-import com.menu.dto.MenuEntity;
 import com.menu.dto.MenuModel;
 import com.storeMap.dto.Store;
 
@@ -24,19 +27,40 @@ public class AdminController {
 	@Autowired
 	private AdminService service;
 	
+	@Autowired
+	private Pageing pageing;
+	
 	@RequestMapping(value="/page", method=RequestMethod.GET)
 	public String AdminPage(Model model) {
 		System.out.println("=== 관리자 페이지 ===");
 		
 		List<Store> StoreList = service.findByStore();
 		List<BestMenuModel> bestMenu = service.findBestMenu();
+		List<StoreSales> StoretotalSales = service.findtotalSales();
+		
 		model.addAttribute("StoreList", StoreList);
 		model.addAttribute("bestMenu", bestMenu);
+		model.addAttribute("StoretotalSales", StoretotalSales);
 		
 		System.out.println(bestMenu.toString());
 		
 		return "page";
 	}
+	
+	@RequestMapping(value="/storetotalSales", method=RequestMethod.GET)
+	public String storetotalSales(@ModelAttribute StoreOrdercondition condition, Model model) {
+		System.out.println("=== storetotalSales ===");
+		
+	
+		List<StoreOrder> StoreOrderList = service.findstoreOrder(condition);
+	
+		model.addAttribute("StoreOrder", StoreOrderList);
+	
+		
+		return "page";
+	} 
+	
+	
 	
 	@RequestMapping(value="/member", method=RequestMethod.GET)
 	public String AdminMemberPage(Model model) {
