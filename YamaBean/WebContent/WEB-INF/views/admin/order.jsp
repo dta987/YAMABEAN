@@ -56,31 +56,46 @@ footer {
 			</div>
 
 			<div class="col-sm-9">
-				<c:forEach var="order" items="${orderList}">
-					<div class="w3-third w3-margin-bottom">
-						<ul class="w3-ul w3-border w3-center w3-hover-shadow">
-							<li class="w3-black">
-								<p class="w3-xlarge">${order.member.nickname}</p> <span
-								class="w3-opacity">(${order.member.id})</span>
-							</li>
-							<div style="height: 200px; overflow: auto;">
-								<c:forEach var="orderProduct" items="${order.orderProduct}">
-									<li class="w3-padding-16"><b>${orderProduct.m_name}</b>
-										${orderProduct.order_p_qty} 개 <br>
-										<b>Size-${orderProduct.optionsize}</b> / <b>Shot-${orderProduct.optionshot}</b> / <b>Whip-${orderProduct.optionwhip}</b></li>
-								</c:forEach>
-							</div>
-							<li class="w3-padding-16">
-								<h2 class="w3-wide">${order.totalprice}원</h2>
-							</li>
-							<li class="w3-light-grey w3-padding-24">
-								<button class="w3-btn w3-green w3-padding-large"
-									onclick="location.href='${pageContext.request.contextPath}/admin/receipt?num=${order.order_num}&val=1&store=${order.store_num}'">
-									수 령</button>
-							</li>
-						</ul>
+				<c:if test="${empty orderList}">
+					<div
+						class="w3-white w3-center w3-text-black w3-padding-32 w3-padding"
+						id="about">
+						<h4>
+							<p>
+								<button class="w3-btn w3-light-grey">
+									<b>주문 목록이 없습니다</b>
+								</button>
+							</p>
+						</h4>
 					</div>
-				</c:forEach>
+				</c:if>
+				<c:if test="${not empty orderList}">
+					<c:forEach var="order" items="${orderList}">
+						<div class="w3-third w3-margin-bottom">
+							<ul class="w3-ul w3-border w3-center w3-hover-shadow">
+								<li class="w3-black">
+									<p class="w3-xlarge">${order.member.nickname}</p> <span
+									class="w3-opacity">(${order.member.id})</span>
+								</li>
+								<div style="height: 200px; overflow: auto;">
+									<c:forEach var="orderProduct" items="${order.orderProduct}">
+										<li class="w3-padding-16"><b>${orderProduct.m_name}</b>
+											${orderProduct.order_p_qty} 개 <br> <b>Size-${orderProduct.optionsize}</b>
+											/ <b>Shot-${orderProduct.optionshot}</b> / <b>Whip-${orderProduct.optionwhip}</b></li>
+									</c:forEach>
+								</div>
+								<li class="w3-padding-16">
+									<h2 class="w3-wide">${order.totalprice}원</h2>
+								</li>
+								<li class="w3-light-grey w3-padding-24">
+									<button class="w3-btn w3-green w3-padding-large"
+										onclick="location.href='${pageContext.request.contextPath}/admin/receipt?num=${order.order_num}&val=1&store=${order.store_num}'">
+										수 령</button>
+								</li>
+							</ul>
+						</div>
+					</c:forEach>
+				</c:if>
 			</div>
 		</div>
 	</div>

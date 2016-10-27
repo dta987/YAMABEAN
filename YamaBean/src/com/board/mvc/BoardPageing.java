@@ -1,9 +1,9 @@
-package com.admin.mvc;
+package com.board.mvc;
 
 import org.springframework.stereotype.Service;
 
 @Service
-public class Pageing {
+public class BoardPageing {
 
 	private int pageSize = 10; // 한번에 보여줄 게시글 수
 	private int beginPage = 0; // 시작 페이지

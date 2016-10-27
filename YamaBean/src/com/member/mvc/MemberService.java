@@ -5,15 +5,14 @@ import java.util.List;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.mail.javamail.JavaMailSender;
 import org.springframework.stereotype.Service;
-import org.springframework.web.bind.annotation.RequestParam;
 
 import com.admin.dto.OrderList;
 import com.member.dto.Email;
 import com.member.dto.Forgotten;
 import com.member.dto.Member;
 import com.member.dto.MemberModel;
-import com.member.dto.OvelapCheck;
 import com.mymenu.dto.MyMenuModel;
+import com.order.dto.OrderEntty;
 
 @Service
 public class MemberService {
@@ -199,6 +198,18 @@ public class MemberService {
 
 	public List<MyMenuModel> mymenuList(String id) {
 		return memberRepository.mymenuList(id);
+	}
+
+	public boolean findByOrder(String id) {
+		
+		List<OrderEntty> order = null;
+		order =  memberRepository.findByOrder(id);
+		
+		if(order == null) {
+			return false;
+		} else {
+			return true;
+		}		
 	}
 
 }

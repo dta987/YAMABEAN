@@ -16,7 +16,6 @@
 <script type="text/javascript">
 	$(function() {
 		$("#deleteForm").submit(function() {
-			alert("sadfds")
 			var password = $("#password").val();
 			var password2 = $("#password2").val();
 			if (password == password2) {
@@ -49,10 +48,18 @@
 			<div class="form-group">
 				<label class="control-label col-md-${label}" for="pwd">Password
 					:</label>
-				<div class="col-md-${input}">
-					<input type="password" class="form-control" id="password2"
-						name="password2" placeholder="Enter PassWord">
-				</div>
+				<c:if test="${empty msg}">
+					<div class="col-md-${input}">
+						<input type="password" class="form-control" id="password2"
+							name="password2" placeholder="Enter PassWord">
+					</div>
+				</c:if>
+				<c:if test="${not empty msg}">
+					<div class="col-md-${input}">
+						<input type="password" class="form-control" id="password2"
+							name="password2" placeholder="Enter PassWord" disabled="disabled">
+					</div>
+				</c:if>
 			</div>
 			<div class="form-group">
 				<div class="col-sm-offset-${label} col-sm-10">
@@ -61,12 +68,11 @@
 			</div>
 		</form>
 	</div>
-
+	
 	<c:if test="${not empty msg}">
 		<script type="text/javascript">
 			alert('${msg}');
 		</script>
 	</c:if>
-
 </body>
 </html>

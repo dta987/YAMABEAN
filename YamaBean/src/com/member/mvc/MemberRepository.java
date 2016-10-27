@@ -11,6 +11,7 @@ import com.member.dto.Member;
 import com.member.dto.OvelapCheck;
 import com.member.mapper.MemberMapper;
 import com.mymenu.dto.MyMenuModel;
+import com.order.dto.OrderEntty;
 
 @Repository
 public class MemberRepository{
@@ -68,6 +69,11 @@ public class MemberRepository{
 	public List<MyMenuModel> mymenuList(String id) {
 		// TODO Auto-generated method stub
 		return MemberMapper.mymenuList(id);
+	}
+
+	public List<OrderEntty> findByOrder(String id) {
+		// TODO Auto-generated method stub
+		return MemberMapper.findByOrder(id);
 	}
 
 }

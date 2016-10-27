@@ -206,8 +206,6 @@
 
 	$(function() {
 		$("#updateMyMenu").submit(function() {
-
-			alert("여기옴");
 			if ($("input[name='mymenu_name']").val() == "") {
 				alert("마이 메뉴 이름을 정해주세요.");
 				return false;

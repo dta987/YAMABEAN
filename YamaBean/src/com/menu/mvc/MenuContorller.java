@@ -10,8 +10,10 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RequestParam;
 
+import com.admin.mvc.AdminService;
 import com.menu.dto.MenuDomain;
 import com.menu.dto.MenuModel;
+import com.storeMap.dto.Store;
 
 @Controller
 public class MenuContorller {
@@ -26,15 +28,17 @@ public class MenuContorller {
 	}
 
 	@RequestMapping(value = "/createMenu", method = RequestMethod.GET)
-	public String insertMenu() {
-		System.out.println("--controller_메뉴추가하기로이동--");
+	public String insertMenu(Model model) {
+		System.out.println("--controller_메뉴추가하기로이동--");		
 		return "createMenu";
 	}
 
 	@RequestMapping(value = "/createMenu", method = RequestMethod.POST)
 	public String createMenu(@ModelAttribute MenuDomain menuDomain) {
+
 		menuService.addMenu(menuDomain);
-		return "redirect:/menu/listMenu";
+
+		return "redirect:/admin/menu";
 	}
 
 	@RequestMapping(value = "/listMenu", method = RequestMethod.GET)

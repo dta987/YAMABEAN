@@ -18,22 +18,22 @@ tr:hover {
 </style>
 
 <script type="text/javascript">
-function move(url, writer, id) {
-	if(writer == id) {
-		location.href=url;
-	} else {
-		alert("자신의 글만 열람 가능합니다.")
-	}
-	
-}
+	function move(url, writer, id) {
+		if (writer == id || id == 'admin') {
+			location.href = url;
+		} else {
+			alert("자신의 글만 열람 가능합니다.")
+		}
 
+	}
 </script>
 
 </head>
 <body>
 	<br>
 	<br>
-	<div class="col-sm-offset-${myoffset} col-sm-${mywidth}" style="height: 700px;">
+	<div class="col-sm-offset-${myoffset} col-sm-${mywidth}"
+		style="height: 700px;">
 		<label>Q & A</label><br> <br>
 		<table class="table">
 			<thead>
@@ -65,23 +65,26 @@ function move(url, writer, id) {
 						<div class="form-group">
 							<select class="form-control" name="mode" id="mode">
 								<option value="-" selected="selected">--- 선택하세요 ---
-								<option value="board_num">글 번호
-								<option value="title">제목
-								<option value="member_id">아이디
-							</select>
+		<option value="board_num">글 번호
+								
+		<option value="title">제목
+								
+		<option value="member_id">아이디
+							
+		</select>
 						</div>
 						<div class="form-group">
 							<input type="text" class="form-control btn-xs" name="keyword"
-								id="keyword" placeholder="검색 키워드">
+			id="keyword" placeholder="검색 키워드">
 						</div>
 						<button id="search"
-							class="w3-btn w3-white w3-border w3-round-large" type="submit">SEARCH</button>
+		class="w3-btn w3-white w3-border w3-round-large" type="submit">SEARCH</button>
 						<button class="w3-btn w3-white w3-border w3-round-large"
-							type="button" id="searchAll"
-							onclick="location.href='${pageContext.request.contextPath}/board/move'">ALL</button>
+		type="button" id="searchAll"
+		onclick="location.href='${pageContext.request.contextPath}/board/move'">ALL</button>
 						<button class="w3-btn w3-white w3-border w3-round-large"
-							type="button" id="insertForm"
-							onclick="location.href='${pageContext.request.contextPath}/board/boardForm'">WRITE</button>
+		type="button" id="insertForm"
+		onclick="location.href='${pageContext.request.contextPath}/board/boardForm'">WRITE</button>
 						&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
 					</form>
 				</td>
@@ -98,7 +101,7 @@ function move(url, writer, id) {
 				<li><a href="#">&raquo;</a></li>
 			</ul>
 		</div>
-	</div>
+		</div>
 
 	<!-- End Page Content -->
 	<footer class="w3-container w3-padding-32" id="contact"> </footer>

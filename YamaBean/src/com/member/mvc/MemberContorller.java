@@ -40,7 +40,18 @@ public class MemberContorller {
 	}
 	
 	@RequestMapping(value = "/delete", method = RequestMethod.GET)
-	public String delete() {
+	public String delete(HttpSession session, Model model) {
+		
+		Member member = (Member)session.getAttribute("loginInfo");
+		boolean bool = memberService.findByOrder(member.getId());
+		
+		String msg=null;
+		if(bool) {
+			msg = "주문 후 수령하지 않은 물품이 존재합니다. 수령 후 다시 시도해주세요";
+			model.addAttribute("msg", msg);
+		} else {
+			model.addAttribute("msg", msg);
+		}
 		
 		return "delete";
 	}

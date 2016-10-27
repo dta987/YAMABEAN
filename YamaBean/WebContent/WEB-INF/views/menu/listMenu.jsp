@@ -47,8 +47,6 @@
 					<li role="presentation"><input type="checkbox"
 						name="frappuccino" value="frappuccino"> <label
 						for="frappuccino">프라푸치노&nbsp;&nbsp;</label></li>
-					<li role="presentation"><input type="checkbox" name="bean"
-						value="bean"><label for="bean">원두</label></li>
 				</ul>
 			</div>
 		</fieldset>
