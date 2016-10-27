@@ -8,13 +8,11 @@ import org.springframework.stereotype.Repository;
 
 import com.admin.dto.BestMenuModel;
 import com.admin.dto.OrderList;
-import com.admin.dto.StoreOrder;
 import com.admin.dto.StoreOrdercondition;
 import com.admin.dto.StoreSales;
 import com.admin.dto.UpdateOrderYN;
 import com.admin.mapper.AdminMapper;
 import com.member.dto.Member;
-import com.menu.dto.MenuEntity;
 import com.menu.dto.MenuModel;
 import com.storeMap.dto.Store;
 
@@ -52,9 +50,13 @@ public class AdminRepository {
 		return mapper.findtotalSales();
 	}
 
-	public List<StoreOrder> findstoreOrder(RowBounds rowBounds,
+	public List<OrderList> findstoreOrder(RowBounds rowBounds,
 			StoreOrdercondition condition) {
 		return mapper.findstoreOrder(rowBounds, condition);
+	}
+
+	public double Count(StoreOrdercondition condition) {
+		return mapper.Count(condition);
 	}
 
 }

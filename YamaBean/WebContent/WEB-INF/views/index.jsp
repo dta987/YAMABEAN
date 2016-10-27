@@ -14,16 +14,6 @@
 
 		<!-- Automatic Slideshow Images -->
 		<div class="mySlides w3-display-container">
-			<img src="${imgFolder}index1.jpg" style="width: 100%; height: 500px;">
-			<div
-				class="w3-display-bottommiddle w3-container w3-text-white w3-padding-32 w3-hide-small">
-				<h3></h3>
-				<p>
-					<b></b>
-				</p>
-			</div>
-		</div>
-		<div class="mySlides w3-display-container">
 			<img src="${imgFolder}index2.jpg" style="width: 100%; height: 500px;">
 			<div
 				class="w3-display-bottommiddle w3-container w3-text-white w3-padding-32 w3-hide-small">
@@ -35,6 +25,16 @@
 		</div>
 		<div class="mySlides w3-display-container">
 			<img src="${imgFolder}index3.jpg" style="width: 100%; height: 500px;">
+			<div
+				class="w3-display-bottommiddle w3-container w3-text-white w3-padding-32 w3-hide-small">
+				<h3></h3>
+				<p>
+					<b></b>
+				</p>
+			</div>
+		</div>
+		<div class="mySlides w3-display-container">
+			<img src="${imgFolder}index1.jpg" style="width: 100%; height: 500px;">
 			<div
 				class="w3-display-bottommiddle w3-container w3-text-white w3-padding-32 w3-hide-small">
 				<h3></h3>

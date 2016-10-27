@@ -7,6 +7,7 @@ import com.member.dto.Forgotten;
 import com.member.dto.Member;
 import com.member.dto.OvelapCheck;
 import com.mymenu.dto.MyMenuModel;
+import com.order.dto.OrderEntty;
 
 public interface MemberMapper {
 
@@ -35,5 +36,7 @@ public interface MemberMapper {
 	public List<OrderList> findBylatelyOrderList(String id);
 
 	public List<MyMenuModel> mymenuList(String id);
+
+	public List<OrderEntty> findByOrder(String id);
 
 }

@@ -77,7 +77,7 @@ footer {
 			</div>
 			<div class="col-sm-9">
 				<c:forEach var="StoretotalSales" items="${StoretotalSales}">
-					<div class="w3-third w3-margin-bottom" onclick="location.href='${pageContext.request.contextPath}/admin/storetotalSales?num=${StoretotalSales.store_num}'">
+					<div class="w3-third w3-margin-bottom" onclick="location.href='${pageContext.request.contextPath}/admin/stororder?store_num=${StoretotalSales.store_num}'">
 						<ul class="w3-ul w3-border w3-center w3-hover-shadow">
 							<li class="w3-black">
 								<p class="w3-xlarge">

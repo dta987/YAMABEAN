@@ -100,8 +100,40 @@
 		select * from menus
 		where m_group='coffee'
 	</select>
-	
-	<select id="findstoreOrder" parameterType="com.admin.dto.StoreOrder">
-	    
+
+	<resultMap type="com.admin.dto.OrderList" id="storeorderList">
+		<id property="order_num" column="order_num" />
+		<result property="totalprice" column="total_price" />
+		<result property="store_num" column="store_num" />
+		<result property="sub_day" column="sub_day" />
+		<association property="member" column="member_id"
+			select="com.member.mapper.MemberMapper.selectByMember" />
+		<collection property="orderProduct" column="order_num"
+			select="com.order.mapper.OrderMapper.selectByOrder_p" />
+	</resultMap>
+
+	<select id="findstoreOrder" parameterType="com.admin.dto.StoreOrdercondition"
+		resultMap="storeorderList">
+		select order_num, total_price, store_num, member_id, order_num,
+		to_char(sub_day, 'yyyy-mm-dd') as sub_day from orders where
+		store_num=#{store_num}
+		<if test="mode != null and mode.equals('member_id')">
+			and member_id=#{keyword}
+		</if>
+		<if test="mode != null and mode.equals('sub_day')">
+			and sub_day like to_date(#{keyword}, 'yy/mm/dd')
+		</if>
+		order by sub_day desc
+	</select>
+
+	<select id="Count" parameterType="com.admin.dto.StoreOrdercondition" resultType="double">
+		select count(*) as cnt from orders join ORDER_PRODUCTS p on
+		orders.ORDER_NUM=p.ORDER_NUM where orders.store_num=#{store_num}
+		<if test="mode != null and mode.equals('member_id')">
+			and member_id=#{keyword}
+		</if>
+		<if test="mode != null and mode.equals('sub_day')">
+			and sub_day like to_date(#{keyword}, 'yy/mm/dd')
+		</if>
 	</select>
 </mapper>

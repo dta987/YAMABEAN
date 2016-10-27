@@ -9,8 +9,12 @@ import java.util.UUID;
 import org.springframework.util.FileCopyUtils;
 
 public class FileUtile {
-
-	static final String uploadPath="C:\\Users\\dta98\\git\\YamaBean\\YamaBean\\WebContent\\coffee";
+	
+	/*성민이꼬*/
+	/*static final String uploadPath="C:\\Users\\dta98\\git\\YamaBean\\YamaBean\\WebContent\\coffee";*/
+	
+	/*웅헤꼬*/
+	static final String uploadPath="C:\\Users\\User\\YamaBean\\YamaBean\\WebContent\\coffee";
 	
 	/*1. 파일 서버에 저장될 유일한 파일 이름 생성 */
 	public static String makeSavedFileName(String originalFilename) {

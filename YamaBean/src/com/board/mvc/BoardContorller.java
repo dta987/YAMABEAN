@@ -23,7 +23,7 @@ public class BoardContorller {
 	private BoardService service;
 
 	@Autowired
-	private Pageing pageing;
+	private BoardPageing pageing;
 
 	@RequestMapping(value = "/move", method = RequestMethod.GET)
 	public String Boardmove(@ModelAttribute BoardPage boardPage, Model model) {

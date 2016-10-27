@@ -21,9 +21,9 @@
 	</resultMap>
 
 	<insert id="insertMember" parameterType="com.member.dto.Member">
-
 		insert into members (id,
-		password, name, gender, phone, nickname, zipcode, address, bday,
+		password, name, gender, phone, nickname, zipcode,
+		address, bday,
 		email) values
 		(#{id},#{password},#{name}, #{gender},
 		#{phone},#{nickname},#{zipcode},#{address},to_date(#{bday},
@@ -127,7 +127,8 @@
 
 
 	<delete id="deleteMember" parameterType="String">
-		delete members where id=#{id}
+		delete members where
+		id=#{id}
 	</delete>
 
 	<select id="forgotten" parameterType="com.member.dto.Forgotten"
@@ -138,5 +139,21 @@
 		</if>
 	</select>
 
+	<resultMap type="com.order.dto.OrderEntty" id="findByOrderResult">
+		<id property="order_num" column="order_num" />
+		<result property="member_id" column="member_id" />
+		<result property="m_group" column="m_group" />
+		<result property="pickup" column="pickup" />
+		<result property="address" column="address" />
+		<result property="store_num" column="store_num" />
+		<result property="total_price" column="total_price" />
+		<result property="payment" column="payment" />
+		<result property="order_etc" column="order_etc" />
+	</resultMap>
+
+
+	<select id="findByOrder" parameterType="String" resultMap="findByOrderResult">
+		select * from orders where member_id=#{id} and yn=0
+	</select>
 </mapper>
 

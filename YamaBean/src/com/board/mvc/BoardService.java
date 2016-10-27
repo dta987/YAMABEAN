@@ -16,7 +16,7 @@ public class BoardService {
 	private BoardRepository repository;
 	
 	@Autowired
-	private Pageing pageing;
+	private BoardPageing pageing;
 
 	public List<Board> getBoardByPage(BoardPage boardPage) {
 		RowBounds rowBounds = new RowBounds((boardPage.getSelectPage() - 1)
