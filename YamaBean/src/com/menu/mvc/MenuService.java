@@ -4,6 +4,8 @@ import java.io.IOException;
 import java.util.ArrayList;
 import java.util.List;
 
+import javax.servlet.http.HttpServletRequest;
+
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
@@ -18,7 +20,7 @@ public class MenuService{
 	@Autowired
 	private MenuRepository menuRepository ;
 	
-	public int addMenu(MenuDomain menuDomain) {
+	public int addMenu(MenuDomain menuDomain, HttpServletRequest request) {
 		System.out.println("addMenuService");
 		
 		/*	전체 과정 ( 파일 서버를 관리할 FileUtil.class 만듬 )
@@ -26,7 +28,7 @@ public class MenuService{
 		2. 파일 서버에 파일 저장
 		3. DB에 저장할 엔티티 생성				*/
 		
-		String saveFileName = FileUtile.makeSavedFileName(menuDomain.getImage().getOriginalFilename()) ;
+		String saveFileName = FileUtile.makeSavedFileName(menuDomain.getImage().getOriginalFilename(), request) ;
 		System.out.println("service_addMenuSaveFileName : " + saveFileName.toString());
 		
 		boolean uploadResult = false; 
@@ -105,8 +107,8 @@ public class MenuService{
 		
 	}
 	
-	public int modifyMenu(MenuDomain menuDomain) {
-		String saveFileName = FileUtile.makeSavedFileName(menuDomain.getImage().getOriginalFilename()) ;
+	public int modifyMenu(MenuDomain menuDomain, HttpServletRequest request) {
+		String saveFileName = FileUtile.makeSavedFileName(menuDomain.getImage().getOriginalFilename(), request) ;
 		System.out.println("service_modifyMenuSaveFileName" +saveFileName.toString());
 		
 		boolean uploadResult = false; 

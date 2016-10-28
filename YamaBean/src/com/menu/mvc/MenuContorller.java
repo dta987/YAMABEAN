@@ -2,6 +2,8 @@ package com.menu.mvc;
 
 import java.util.List;
 
+import javax.servlet.http.HttpServletRequest;
+
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
@@ -10,10 +12,9 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RequestParam;
 
-import com.admin.mvc.AdminService;
+import com.menu.dto.FileUtile;
 import com.menu.dto.MenuDomain;
 import com.menu.dto.MenuModel;
-import com.storeMap.dto.Store;
 
 @Controller
 public class MenuContorller {
@@ -34,9 +35,8 @@ public class MenuContorller {
 	}
 
 	@RequestMapping(value = "/createMenu", method = RequestMethod.POST)
-	public String createMenu(@ModelAttribute MenuDomain menuDomain) {
-
-		menuService.addMenu(menuDomain);
+	public String createMenu(@ModelAttribute MenuDomain menuDomain, HttpServletRequest request) {
+		menuService.addMenu(menuDomain, request);
 
 		return "redirect:/admin/menu";
 	}
@@ -64,8 +64,8 @@ public class MenuContorller {
 	}
 
 	@RequestMapping(value = "/updateMenu", method = RequestMethod.POST)
-	public String updateMenu(@ModelAttribute MenuDomain menuDomain) {
-		int modify = menuService.modifyMenu(menuDomain);
+	public String updateMenu(@ModelAttribute MenuDomain menuDomain, HttpServletRequest request) {
+		int modify = menuService.modifyMenu(menuDomain, request);
 		System.out.println("controller_modify : " + modify);
 		return "redirect:/admin/menu";
 	}

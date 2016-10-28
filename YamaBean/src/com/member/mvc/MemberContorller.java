@@ -1,7 +1,9 @@
 package com.member.mvc;
 
+import java.io.File;
 import java.util.List;
 
+import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpSession;
 
 import org.springframework.beans.factory.annotation.Autowired;
@@ -26,8 +28,10 @@ public class MemberContorller {
 	private MemberService memberService;
 
 	@RequestMapping(value = "/login", method = RequestMethod.GET)
-	public String login() {
+	public String login(HttpServletRequest request) {
 		System.out.println("==Member¿Ãµø==");
+		System.out.println();
+		
 		return "login";
 
 	}
