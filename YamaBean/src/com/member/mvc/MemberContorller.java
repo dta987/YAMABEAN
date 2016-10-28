@@ -190,7 +190,7 @@ public class MemberContorller {
 
 		if(bool) {
 			path = "login";
-			model.addAttribute("msg", "등록한 메일 내용을 전송하였습니다.");
+			model.addAttribute("msg", "등록된 메일로 회원 정보를 전송하였습니다.");
 		} else {
 			path = "forgotten";
 			model.addAttribute("msg", "입력정보를 확인해주세요");

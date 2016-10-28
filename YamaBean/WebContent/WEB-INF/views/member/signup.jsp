@@ -78,6 +78,7 @@
 	}
 
 	//회원가입 유효성 검사 
+
 	function checkIt() {
 		/* var id = document.getElementById("id"); */
 		var password = document.getElementById("password");

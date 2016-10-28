@@ -73,8 +73,8 @@
 		<footer class="w3-container w3-padding-32" id="contact"> </footer>
 
 		
-		<div class="w3-black w3-center w3-padding-24">2016. YAMABEAN COMPANY, ALL Rights Reserved</div>
-		<div class="w3-black w3-center w3-padding-24">안성민, 김나영, 함은혜</div>
+		<div class="w3-black w3-center w3-padding-24">2016. AHN, KIM, HAM / YAMABEAN COMPANY, ALL Rights Reserved</div>
+	
 	</div>
 
 	<script>

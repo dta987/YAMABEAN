@@ -448,7 +448,7 @@
 										<td>
 											<button type="button" class="btn btn-default" name="addWhip"
 												onclick="addwhip('500')">
-												<span class="glyphiconx glyphicon-plus" aria-hidden="true"></span>
+												<span class="glyphicon glyphicon-plus" aria-hidden="true"></span>
 											</button>
 										</td>
 									</tr>
