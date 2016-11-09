@@ -25,7 +25,7 @@
 	</bean>
 
 	<context:component-scan base-package="com.board.mvc" />
-	
+
 	<mvc:interceptors> <!-- 컨트롤러 전에 preHandle를 거쳐서 가라 -->
 		<mvc:interceptor>
 			<mvc:mapping path="/boardWriter" />
